@@ -1,29 +1,23 @@
 import React, { FC, useCallback } from "react";
 import { View, Text, Button, TextInput } from "react-native";
 import { useRegisterUserMutation } from "../api/registerApi";
-import {
-    Controller,
-    SubmitHandler,
-    useForm,
-    FieldValues,
-} from "react-hook-form";
-import { CreateRegisterType, CreateRegisterResolver } from "../lib/schema";
+import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { RegisterType, RegisterResolver, registerSchema } from "../lib/schema";
 
 const Register: FC = () => {
+    const inputFields = registerSchema.keyof()._def.values;
     const {
         control,
         handleSubmit,
         formState: { errors },
     } = useForm({
-        resolver: CreateRegisterResolver,
+        resolver: RegisterResolver,
     });
-
-    console.log(CreateRegisterType);
 
     const [registerUser, { isLoading, isError, error, isSuccess }] =
         useRegisterUserMutation();
 
-    const onSubmitHandler: SubmitHandler<CreateRegisterType> = (data) => {
+    const onSubmitHandler: SubmitHandler<RegisterType> = (data) => {
         const formData = new FormData();
 
         formData.append("data", JSON.stringify(data));
