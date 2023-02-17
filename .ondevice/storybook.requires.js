@@ -56,7 +56,7 @@ try {
 
 const getStories = () => {
   return {
-    "./components/Button/Button.stories.tsx": require("../components/Button/Button.stories.tsx"),
+    "./src/entities/iam/authentication/register/stories/Register.stories.tsx": require("../src/entities/iam/authentication/register/stories/Register.stories.tsx"),
     "./src/entities/markets/stories/Markets.stories.tsx": require("../src/entities/markets/stories/Markets.stories.tsx"),
   };
 };
