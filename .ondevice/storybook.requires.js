@@ -18,17 +18,17 @@ global.STORIES = [
   },
   {
     titlePrefix: "",
-    directory: "./src/entities",
+    directory: "./src/services",
     files: "**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src\\/entities(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src\\/services(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
   {
     titlePrefix: "",
-    directory: "./src/entities",
+    directory: "./src/services",
     files: "**/**/**/**/*.stories.@(js|jsx|ts|tsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:src\\/entities(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$",
+      "^\\.[\\\\/](?:src\\/services(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$",
   },
 ];
 
@@ -63,10 +63,10 @@ try {
 
 const getStories = () => {
   return {
-    "./src/entities/iam/authentication/register/stories/Register.stories.tsx": require("../src/entities/iam/authentication/register/stories/Register.stories.tsx"),
-    "./src/entities/markets/stories/Markets.stories.tsx": require("../src/entities/markets/stories/Markets.stories.tsx"),
-    "./src/entities/iam/authentication/register/stories/Register.stories.tsx": require("../src/entities/iam/authentication/register/stories/Register.stories.tsx"),
-    "./src/entities/markets/stories/Markets.stories.tsx": require("../src/entities/markets/stories/Markets.stories.tsx"),
+    "./src/services/iam/authentication/register/stories/Register.stories.tsx": require("../src/services/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/services/markets/stories/Markets.stories.tsx": require("../src/services/markets/stories/Markets.stories.tsx"),
+    "./src/services/iam/authentication/register/stories/Register.stories.tsx": require("../src/services/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/services/markets/stories/Markets.stories.tsx": require("../src/services/markets/stories/Markets.stories.tsx"),
   };
 };
 

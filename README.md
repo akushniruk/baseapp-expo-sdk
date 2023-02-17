@@ -5,13 +5,11 @@
 ```bash
 └── src/
     ├── widgets/                # Independent and self-contained blocks for pages (combination of entities and features)
-    ├── features/               # Processing of user scenarios
-    ├── entities/               # Business entities that domain logic operates with
+    ├── services/               # Business entities that domain logic operates with
     └── shared/                 # Reused modules, non business specific
 ```
 
 ![image info](./assets/fsd.png)
-
 
 ## Layers order
 
@@ -19,7 +17,7 @@ If you look at the order of the layers , you can distinguish two general pattern
 
 **By the level of knowledge/responsibility**
 
-`widgets` > `feature` > `entities` > `shared`
+`widgets` > `services` > `shared`
 
 The module "knows" only about itself and the underlying modules, but not the ones lying above
 
@@ -27,14 +25,13 @@ This also affects the allowed imports
 
 **By the level of danger of changes**
 
-`shared` > `entities` > `feature` > `widgets`
+`shared` > `services` > `widgets`
 
 The lower the module is located , the more dangerous it is to make changes to it
 
 | Layer        | Content                                                                                                   | Allowed Segments   |
 |--------------|-----------------------------------------------------------------------------------------------------------|--------------------|
 | **widgets**  | The slices inside include the combination of features, enteties and shared components                     | ui lib model (api) |
-| **feature**  | The slices inside include the composition of entities and the implementation of BL in the model + display | ui lib model (api) |
 | **enteties** | The slices inside represent a disparate set of submodules for using                                       | ui lib model (api) |
 | **shared**   | Contains only infrastructure logic without BL (1)                                                         | ui lib api         |
 
