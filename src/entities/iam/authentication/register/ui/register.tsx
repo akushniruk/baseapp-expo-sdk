@@ -1,6 +1,6 @@
 import React, { useCallback } from "react";
 import { View, Text, Button, TextInput } from "react-native";
-import { useRegisterUserMutation } from "../../shared/api/authApi";
+import { useRegisterUserMutation } from "../api/registerApi";
 import {
     Controller,
     FormProvider,

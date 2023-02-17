@@ -1,18 +1,12 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { api } from "../../../../../shared/providers/redux/lib/rtkApi";
 import { GenericResponse } from "./types";
 
-const BASE_URL = process.env.REACT_APP_SERVER_ENDPOINT as string;
-
-export const authApi = createApi({
-    reducerPath: "authApi",
-    baseQuery: fetchBaseQuery({
-        baseUrl: `http://localhost:9002/api/v2/barong/identity`,
-    }),
-    endpoints: (builder) => ({
-        registerUser: builder.mutation<GenericResponse, FormData>({
+export const registerApi = api.injectEndpoints({
+    endpoints: (build) => ({
+        registerUser: build.mutation<GenericResponse, FormData>({
             query(data) {
                 return {
-                    url: "users",
+                    url: "api/v2/barong/identity/users",
                     method: "POST",
                     body: data,
                 };
@@ -64,4 +58,4 @@ export const {
     useRegisterUserMutation,
     // useLogoutUserMutation,
     // useVerifyEmailMutation,
-} = authApi;
+} = registerApi;
