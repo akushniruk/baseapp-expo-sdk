@@ -1,7 +1,7 @@
 import { object, string, z, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const createRegisterSchema = object({
+export const registerSchema = object({
     email: z
         .string()
         .min(1, "This is required")
@@ -12,6 +12,6 @@ export const createRegisterSchema = object({
     captcha_response: z.string().optional(),
 });
 
-export const CreateRegisterResolver = zodResolver(createRegisterSchema);
+export const RegisterResolver = zodResolver(registerSchema);
 
-export type CreateRegisterType = TypeOf<typeof createRegisterSchema>;
+export type RegisterType = TypeOf<typeof registerSchema>;
