@@ -23,6 +23,13 @@ global.STORIES = [
     importPathMatcher:
       "^\\.[\\\\/](?:src\\/entities(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
+  {
+    titlePrefix: "",
+    directory: "./src/entities",
+    files: "**/**/**/**/*.stories.@(js|jsx|ts|tsx)",
+    importPathMatcher:
+      "^\\.[\\\\/](?:src\\/entities(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$",
+  },
 ];
 
 import "@storybook/addon-ondevice-notes/register";
@@ -56,6 +63,8 @@ try {
 
 const getStories = () => {
   return {
+    "./src/entities/iam/authentication/register/stories/Register.stories.tsx": require("../src/entities/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/entities/markets/stories/Markets.stories.tsx": require("../src/entities/markets/stories/Markets.stories.tsx"),
     "./src/entities/iam/authentication/register/stories/Register.stories.tsx": require("../src/entities/iam/authentication/register/stories/Register.stories.tsx"),
     "./src/entities/markets/stories/Markets.stories.tsx": require("../src/entities/markets/stories/Markets.stories.tsx"),
   };
