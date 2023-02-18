@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
     },
 });
 
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 6 });
+const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
 
 /**
  * Create a base API to inject endpoints into elsewhere.
