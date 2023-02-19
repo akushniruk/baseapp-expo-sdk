@@ -11,10 +11,10 @@ import {
 global.STORIES = [
   {
     titlePrefix: "",
-    directory: "./components",
-    files: "**/*.stories.?(ts|tsx|js|jsx)",
+    directory: "./src/shared",
+    files: "**/**/*.stories.?(ts|tsx|js|jsx)",
     importPathMatcher:
-      "^\\.[\\\\/](?:components(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+      "^\\.[\\\\/](?:src\\/shared(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
   },
   {
     titlePrefix: "",
@@ -29,6 +29,20 @@ global.STORIES = [
     files: "**/**/**/**/*.stories.@(js|jsx|ts|tsx)",
     importPathMatcher:
       "^\\.[\\\\/](?:src\\/services(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$",
+  },
+  {
+    titlePrefix: "",
+    directory: "./src/widgets",
+    files: "**/*.stories.?(ts|tsx|js|jsx)",
+    importPathMatcher:
+      "^\\.[\\\\/](?:src\\/widgets(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(?:ts|tsx|js|jsx)?)$",
+  },
+  {
+    titlePrefix: "",
+    directory: "./src/widgets",
+    files: "**/**/**/**/*.stories.@(js|jsx|ts|tsx)",
+    importPathMatcher:
+      "^\\.[\\\\/](?:src\\/widgets(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|ts|tsx))$",
   },
 ];
 
@@ -63,10 +77,12 @@ try {
 
 const getStories = () => {
   return {
-    "./src/services/iam/authentication/register/stories/Register.stories.tsx": require("../src/services/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx": require("../src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx"),
     "./src/services/markets/stories/Markets.stories.tsx": require("../src/services/markets/stories/Markets.stories.tsx"),
-    "./src/services/iam/authentication/register/stories/Register.stories.tsx": require("../src/services/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx": require("../src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx"),
     "./src/services/markets/stories/Markets.stories.tsx": require("../src/services/markets/stories/Markets.stories.tsx"),
+    "./src/widgets/iam/authentication/register/stories/Register.stories.tsx": require("../src/widgets/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/widgets/iam/authentication/register/stories/Register.stories.tsx": require("../src/widgets/iam/authentication/register/stories/Register.stories.tsx"),
   };
 };
 
