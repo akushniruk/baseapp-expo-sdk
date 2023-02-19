@@ -12,7 +12,7 @@ import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
 import { Colors } from "../../../../../shared/styles/themes/defaultColors";
 
-const Register: FC = () => {
+const RegisterForm: FC = () => {
     const schemaInputFields: string[] = registerSchema.keyof()._def.values;
 
     const {
@@ -86,7 +86,7 @@ const Register: FC = () => {
     );
 };
 
-export default Register;
+export default RegisterForm;
 
 const styles = StyleSheet.create({
     inputWrapper: {
