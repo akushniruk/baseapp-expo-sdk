@@ -33,9 +33,7 @@ const Input: FC<any> = (props: InputProps) => {
 export default Input;
 
 const styles = StyleSheet.create({
-    fieldWrapper: {
-        marginBottom: 16,
-    },
+    fieldWrapper: {},
     label: {
         textTransform: "capitalize",
         marginBottom: 4,

@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo } from "react";
-import { View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useRegisterUserMutation } from "../api/registerApi";
 import {
     Controller,
@@ -10,9 +10,11 @@ import {
 import { RegisterType, RegisterResolver, registerSchema } from "../lib/schema";
 import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
+import { Colors } from "../../../../../shared/styles/themes/defaultColors";
 
 const Register: FC = () => {
-    const inputFields: string[] = registerSchema.keyof()._def.values;
+    const schemaInputFields: string[] = registerSchema.keyof()._def.values;
+
     const {
         control,
         handleSubmit,
@@ -22,8 +24,7 @@ const Register: FC = () => {
         resolver: RegisterResolver,
     });
 
-    const [registerUser, { isLoading, isError, error, isSuccess }] =
-        useRegisterUserMutation();
+    const [registerUser, { isLoading }] = useRegisterUserMutation();
 
     const onSubmitHandler: SubmitHandler<RegisterType> = (data) => {
         const formData = new FormData();
@@ -32,28 +33,33 @@ const Register: FC = () => {
         registerUser(formData);
     };
 
-    console.log(errors);
-
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
-            <Input
-                onBlur={field.onBlur}
-                onChangeText={field.onChange}
-                value={field.value}
-                placeholder={field.name}
-                label={field.name}
-                testID={field.name}
-                keyboardType={
-                    field.name === "email" ? "email-address" : "default"
-                }
-                secureTextEntry={field.name === "password"}
-            />
+            <View style={styles.inputWrapper}>
+                <Input
+                    onBlur={field.onBlur}
+                    onChangeText={field.onChange}
+                    value={field.value}
+                    placeholder={field.name}
+                    label={field.name}
+                    testID={field.name}
+                    keyboardType={
+                        field.name === "email" ? "email-address" : "default"
+                    }
+                    secureTextEntry={field.name === "password"}
+                />
+                {errors && (
+                    <Text style={styles.error}>
+                        {errors[`${field.name}`]?.message}
+                    </Text>
+                )}
+            </View>
         ),
-        [inputFields, control]
+        [schemaInputFields, control]
     );
 
     const renderRegisterForm = useMemo(() => {
-        return inputFields.map((name: string) => {
+        return schemaInputFields.map((name: string) => {
             return (
                 <Controller
                     key={name}
@@ -64,12 +70,11 @@ const Register: FC = () => {
                 />
             );
         });
-    }, [inputFields, control]);
+    }, [schemaInputFields, control]);
 
     return (
         <View>
             {renderRegisterForm}
-            {/* {errors.email && <Text>This is required. Email</Text>} */}
 
             <Button
                 isLoading={isLoading}
@@ -82,3 +87,13 @@ const Register: FC = () => {
 };
 
 export default Register;
+
+const styles = StyleSheet.create({
+    inputWrapper: {
+        marginBottom: 16,
+    },
+    error: {
+        marginTop: 4,
+        color: Colors["system-red-60"],
+    },
+});
