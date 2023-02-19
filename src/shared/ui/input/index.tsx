@@ -30,6 +30,8 @@ const Input: FC<any> = (props: InputProps) => {
     );
 };
 
+export default Input;
+
 const styles = StyleSheet.create({
     fieldWrapper: {
         marginBottom: 16,
@@ -49,5 +51,3 @@ const styles = StyleSheet.create({
         backgroundColor: Colors["input-background-color"],
     },
 });
-
-export default Input;

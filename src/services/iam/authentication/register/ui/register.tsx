@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo } from "react";
-import { View, Button } from "react-native";
+import { View } from "react-native";
 import { useRegisterUserMutation } from "../api/registerApi";
 import {
     Controller,
@@ -9,6 +9,7 @@ import {
 } from "react-hook-form";
 import { RegisterType, RegisterResolver, registerSchema } from "../lib/schema";
 import Input from "../../../../../shared/ui/input";
+import Button from "../../../../../shared/ui/button";
 
 const Register: FC = () => {
     const inputFields: string[] = registerSchema.keyof()._def.values;
@@ -71,7 +72,8 @@ const Register: FC = () => {
             {/* {errors.email && <Text>This is required. Email</Text>} */}
 
             <Button
-                disabled={!errors}
+                isLoading={isLoading}
+                disabled={!errors || isLoading}
                 title="Submit"
                 onPress={handleSubmit(onSubmitHandler)}
             />
@@ -80,21 +82,3 @@ const Register: FC = () => {
 };
 
 export default Register;
-
-{
-    /* <Controller
-control={control}
-rules={{
-    required: true,
-}}
-render={({ field: { onChange, onBlur, value } }) => (
-    <Input
-        onBlur={onBlur}
-        onChangeText={onChange}
-        value={value}
-        placeholder={name}
-    />
-)}
-name={name}
-/>; */
-}
