@@ -7,10 +7,11 @@ import {
     UseControllerReturn,
     useForm,
 } from "react-hook-form";
-import { RegisterType, RegisterResolver, registerSchema } from "../lib/schema";
+import { RegisterType, RegisterResolver, registerSchema } from "../libs/schema";
 import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
 import { Colors } from "../../../../../shared/styles/themes/defaultColors";
+import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 
 const RegisterForm: FC = () => {
     const schemaInputFields: string[] = registerSchema.keyof()._def.values;
@@ -26,12 +27,8 @@ const RegisterForm: FC = () => {
 
     const [registerUser, { isLoading }] = useRegisterUserMutation();
 
-    const onSubmitHandler: SubmitHandler<RegisterType> = (data) => {
-        const formData = new FormData();
-
-        formData.append("data", JSON.stringify(data));
-        registerUser(formData);
-    };
+    const onSubmitHandler: SubmitHandler<RegisterType> = (data) =>
+        registerUser(data);
 
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
@@ -75,11 +72,10 @@ const RegisterForm: FC = () => {
     return (
         <View>
             {renderRegisterForm}
-
             <Button
                 isLoading={isLoading}
                 disabled={!errors || isLoading}
-                title="Submit"
+                title={i18n.t("registerFormCreateNewAccountButton")}
                 onPress={handleSubmit(onSubmitHandler)}
             />
         </View>

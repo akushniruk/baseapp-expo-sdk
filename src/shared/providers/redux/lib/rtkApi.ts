@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:9002/",
+    baseUrl: "https://yellowsoftwareexchange.uat.opendax.app/",
     prepareHeaders: (headers, { getState }) => {
         // By default, if we have a token in the store, let's use that for authenticated requests
         // const token = (getState() as RootState).auth.token

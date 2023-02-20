@@ -1,11 +1,12 @@
 import { api } from "../../../../../shared/providers/redux/lib/rtkApi";
 import { User } from "../../../../user";
+import { RegisterType } from "../libs/schema";
 
 type ResponseType = User;
 
 export const registerApi = api.injectEndpoints({
     endpoints: (build) => ({
-        registerUser: build.mutation<ResponseType, FormData>({
+        registerUser: build.mutation<ResponseType, RegisterType>({
             query(data) {
                 return {
                     url: "api/v2/barong/identity/users",
