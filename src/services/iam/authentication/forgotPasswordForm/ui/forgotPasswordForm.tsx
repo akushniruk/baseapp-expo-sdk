@@ -1,13 +1,17 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useLoginUserMutation } from "../api/loginApi";
+import { useForgotPasswordMutation } from "../api/forgotPasswordApi";
 import {
     Controller,
     SubmitHandler,
     UseControllerReturn,
     useForm,
 } from "react-hook-form";
-import { LoginType, LoginResolver, loginSchema } from "../libs/schema";
+import {
+    ForgotPasswordType,
+    ForgotPasswordResolver,
+    forgotPasswordSchema,
+} from "../libs/schema";
 import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
@@ -15,7 +19,8 @@ import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 
 const LoginForm: FC = () => {
-    const schemaInputFields: string[] = loginSchema.keyof()._def.values;
+    const schemaInputFields: string[] =
+        forgotPasswordSchema.keyof()._def.values;
 
     const {
         control,
@@ -23,26 +28,13 @@ const LoginForm: FC = () => {
         formState: { errors },
     } = useForm({
         mode: "onBlur",
-        resolver: LoginResolver,
+        resolver: ForgotPasswordResolver,
     });
 
-    const [loginUser, { isLoading }] = useLoginUserMutation();
+    const [handleForgotPassword, { isLoading }] = useForgotPasswordMutation();
 
-    const onSubmitHandler: SubmitHandler<LoginType> = (data) => loginUser(data);
-
-    const renderForgotPasswordLink = useMemo(
-        () => (
-            <View style={styles.forgotPasswordLinkWrapper}>
-                <Link
-                    style={styles.forgotPasswordLink}
-                    to={{ screen: "ForgotPassword" }}
-                >
-                    Forgot password?
-                </Link>
-            </View>
-        ),
-        []
-    );
+    const onSubmitHandler: SubmitHandler<ForgotPasswordType> = (data) =>
+        handleForgotPassword(data);
 
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
@@ -57,9 +49,7 @@ const LoginForm: FC = () => {
                     keyboardType={
                         field.name === "email" ? "email-address" : "default"
                     }
-                    secureTextEntry={field.name === "password"}
                 />
-                {field.name === "password" && renderForgotPasswordLink}
                 {errors && (
                     <Text style={styles.error}>
                         {errors[`${field.name}`]?.message}
@@ -90,12 +80,12 @@ const LoginForm: FC = () => {
             <Button
                 isLoading={isLoading}
                 disabled={!errors || isLoading}
-                title={i18n.t("loginFormCreateNewAccountButton")}
+                title={i18n.t("forgotPasswordFormSendButton")}
                 onPress={handleSubmit(onSubmitHandler)}
             />
-            <View style={styles.registerLinkWrapper}>
-                <Link style={styles.registerLink} to={{ screen: "Register" }}>
-                    Create an account
+            <View style={styles.backToLoginLinkWrapper}>
+                <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>
+                    Back to login
                 </Link>
             </View>
         </View>
@@ -112,18 +102,11 @@ const styles = StyleSheet.create({
         marginTop: 4,
         color: Palette.System["system-red"][60].value,
     },
-    forgotPasswordLinkWrapper: {
-        display: "flex",
-        alignItems: "flex-end",
-    },
-    forgotPasswordLink: {
-        marginTop: 4,
-    },
-    registerLinkWrapper: {
+    backToLoginLinkWrapper: {
         display: "flex",
         alignItems: "flex-start",
     },
-    registerLink: {
+    backToLoginLink: {
         marginTop: 16,
         color: Palette.Controls["primary-cta-color"][60].value,
     },

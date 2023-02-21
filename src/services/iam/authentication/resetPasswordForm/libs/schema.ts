@@ -1,7 +1,7 @@
 import { object, string, z, TypeOf } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const loginSchema = object({
+export const resetPasswordSchema = object({
     email: z
         .string()
         .min(1, "Email is required")
@@ -9,6 +9,6 @@ export const loginSchema = object({
     password: string().min(1, "Password is required"),
 });
 
-export const LoginResolver = zodResolver(loginSchema);
+export const ResetPasswordResolver = zodResolver(resetPasswordSchema);
 
-export type LoginType = TypeOf<typeof loginSchema>;
+export type ResetPasswordType = TypeOf<typeof resetPasswordSchema>;

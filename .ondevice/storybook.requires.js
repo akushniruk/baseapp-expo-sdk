@@ -77,11 +77,21 @@ try {
 
 const getStories = () => {
   return {
+    "./src/services/iam/authentication/forgotPasswordForm/stories/ForgotPasswordForm.stories.tsx": require("../src/services/iam/authentication/forgotPasswordForm/stories/ForgotPasswordForm.stories.tsx"),
+    "./src/services/iam/authentication/loginForm/stories/LoginForm.stories.tsx": require("../src/services/iam/authentication/loginForm/stories/LoginForm.stories.tsx"),
     "./src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx": require("../src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx"),
+    "./src/services/iam/authentication/resetPasswordForm/stories/ResetPasswordForm.stories.tsx": require("../src/services/iam/authentication/resetPasswordForm/stories/ResetPasswordForm.stories.tsx"),
+    "./src/services/iam/authentication/verifyEmailForm/stories/VerifyEmailForm.stories.tsx": require("../src/services/iam/authentication/verifyEmailForm/stories/VerifyEmailForm.stories.tsx"),
     "./src/services/markets/stories/Markets.stories.tsx": require("../src/services/markets/stories/Markets.stories.tsx"),
+    "./src/services/iam/authentication/forgotPasswordForm/stories/ForgotPasswordForm.stories.tsx": require("../src/services/iam/authentication/forgotPasswordForm/stories/ForgotPasswordForm.stories.tsx"),
+    "./src/services/iam/authentication/loginForm/stories/LoginForm.stories.tsx": require("../src/services/iam/authentication/loginForm/stories/LoginForm.stories.tsx"),
     "./src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx": require("../src/services/iam/authentication/registerForm/stories/RegisterForm.stories.tsx"),
+    "./src/services/iam/authentication/resetPasswordForm/stories/ResetPasswordForm.stories.tsx": require("../src/services/iam/authentication/resetPasswordForm/stories/ResetPasswordForm.stories.tsx"),
+    "./src/services/iam/authentication/verifyEmailForm/stories/VerifyEmailForm.stories.tsx": require("../src/services/iam/authentication/verifyEmailForm/stories/VerifyEmailForm.stories.tsx"),
     "./src/services/markets/stories/Markets.stories.tsx": require("../src/services/markets/stories/Markets.stories.tsx"),
+    "./src/widgets/iam/authentication/login/stories/Login.stories.tsx": require("../src/widgets/iam/authentication/login/stories/Login.stories.tsx"),
     "./src/widgets/iam/authentication/register/stories/Register.stories.tsx": require("../src/widgets/iam/authentication/register/stories/Register.stories.tsx"),
+    "./src/widgets/iam/authentication/login/stories/Login.stories.tsx": require("../src/widgets/iam/authentication/login/stories/Login.stories.tsx"),
     "./src/widgets/iam/authentication/register/stories/Register.stories.tsx": require("../src/widgets/iam/authentication/register/stories/Register.stories.tsx"),
   };
 };
