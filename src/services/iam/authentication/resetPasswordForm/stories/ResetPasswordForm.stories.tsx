@@ -4,7 +4,7 @@ import ResetPasswordForm from "../ui/resetPasswordForm";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const ResetPasswordFormMeta: ComponentMeta<typeof ResetPasswordForm> = {
-    title: "ResetPasswordForm",
+    title: "Services/Authentication/ResetPasswordForm",
     component: ResetPasswordForm,
 };
 

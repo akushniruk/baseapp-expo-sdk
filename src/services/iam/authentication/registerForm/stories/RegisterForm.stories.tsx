@@ -4,7 +4,7 @@ import RegisterForm from "../ui/registerForm";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const RegisterFormMeta: ComponentMeta<typeof RegisterForm> = {
-    title: "RegisterForm",
+    title: "Services/Authentication/RegisterForm",
     component: RegisterForm,
 };
 
