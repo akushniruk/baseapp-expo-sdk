@@ -6,7 +6,7 @@ import {
     StyleSheet,
     View,
 } from "react-native";
-import { Colors } from "../../styles/themes/defaultColors";
+import { Palette } from "../../styles/themes/defaultPalette";
 
 interface InputProps extends TextInputProps {
     label: string;
@@ -37,15 +37,15 @@ const styles = StyleSheet.create({
     label: {
         textTransform: "capitalize",
         marginBottom: 4,
-        color: Colors["text-color-70"],
+        color: Palette["text-color"][70].value,
     },
     input: {
-        color: Colors["text-color-90"],
+        color: Palette["text-color"][90].value,
         padding: 12,
         fontSize: 16,
-        borderColor: Colors["divider-color-20"],
+        borderColor: Palette["text-color"][20].value,
         borderWidth: 1,
         borderRadius: 4,
-        backgroundColor: Colors["input-background-color"],
+        backgroundColor: Palette.Background["input-background-color"].value,
     },
 });

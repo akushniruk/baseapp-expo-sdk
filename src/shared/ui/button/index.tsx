@@ -6,7 +6,7 @@ import {
     StyleSheet,
     Text,
 } from "react-native";
-import { Colors } from "../../styles/themes/defaultColors";
+import { Palette } from "../../styles/themes/defaultPalette";
 
 interface ButtonProps extends PressableProps {
     title: string;
@@ -55,12 +55,12 @@ const styles = StyleSheet.create({
         minHeight: 32,
     },
     active: {
-        backgroundColor: Colors["primary-cta-color-60"],
-        color: Colors["primary-cta-layer-color-60"],
+        color: Palette.Controls["primary-cta-layer-color"][60].value,
+        backgroundColor: Palette.Controls["primary-cta-color"][60].value,
     },
     disabled: {
-        backgroundColor: Colors["neutral-control-color-20"],
-        color: Colors["neutral-control-layer-color-20"],
+        backgroundColor: Palette.Controls["neutral-control-color"][20].value,
+        color: Palette.Controls["neutral-control-layer-color"][20].value,
     },
     title: {
         fontSize: 14,
