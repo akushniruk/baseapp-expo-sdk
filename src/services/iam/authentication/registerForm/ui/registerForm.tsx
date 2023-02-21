@@ -10,7 +10,7 @@ import {
 import { RegisterType, RegisterResolver, registerSchema } from "../libs/schema";
 import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
-import { Colors } from "../../../../../shared/styles/themes/defaultColors";
+import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 
 const RegisterForm: FC = () => {
@@ -90,6 +90,6 @@ const styles = StyleSheet.create({
     },
     error: {
         marginTop: 4,
-        color: Colors["system-red-60"],
+        color: Palette.System["system-red"][60].value,
     },
 });
