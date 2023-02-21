@@ -1,21 +1,25 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useLoginUserMutation } from "../api/loginApi";
+import { useLoginUserMutation } from "../api/verifyEmailFormApi";
 import {
     Controller,
     SubmitHandler,
     UseControllerReturn,
     useForm,
 } from "react-hook-form";
-import { LoginType, LoginResolver, loginSchema } from "../libs/schema";
+import {
+    VerifyEmailType,
+    VerifyEmailResolver,
+    verifyEmailSchema,
+} from "../libs/schema";
 import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 
-const LoginForm: FC = () => {
-    const schemaInputFields: string[] = loginSchema.keyof()._def.values;
+const VerifyEmailForm: FC = () => {
+    const schemaInputFields: string[] = verifyEmailSchema.keyof()._def.values;
 
     const {
         control,
@@ -23,12 +27,13 @@ const LoginForm: FC = () => {
         formState: { errors },
     } = useForm({
         mode: "onBlur",
-        resolver: LoginResolver,
+        resolver: VerifyEmailResolver,
     });
 
     const [loginUser, { isLoading }] = useLoginUserMutation();
 
-    const onSubmitHandler: SubmitHandler<LoginType> = (data) => loginUser(data);
+    const onSubmitHandler: SubmitHandler<VerifyEmailType> = (data) =>
+        loginUser(data);
 
     const renderForgotPasswordLink = useMemo(
         () => (
@@ -70,7 +75,7 @@ const LoginForm: FC = () => {
         [schemaInputFields, control]
     );
 
-    const renderLoginForm = useMemo(() => {
+    const VerifyEmailrLoginForm = useMemo(() => {
         return schemaInputFields.map((name: string) => {
             return (
                 <Controller
@@ -86,11 +91,11 @@ const LoginForm: FC = () => {
 
     return (
         <View>
-            {renderLoginForm}
+            {VerifyEmailrLoginForm}
             <Button
                 isLoading={isLoading}
                 disabled={!errors || isLoading}
-                title={i18n.t("loginFormCreateNewAccountButton")}
+                title={i18n.t("verifyEmailFormCreateNewAccountButton")}
                 onPress={handleSubmit(onSubmitHandler)}
             />
             <View style={styles.registerLinkWrapper}>
@@ -102,7 +107,7 @@ const LoginForm: FC = () => {
     );
 };
 
-export default LoginForm;
+export default VerifyEmailForm;
 
 const styles = StyleSheet.create({
     inputWrapper: {
