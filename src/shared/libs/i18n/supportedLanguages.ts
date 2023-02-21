@@ -8,7 +8,7 @@ i18n.translations = {
     es: es,
 };
 
-i18n.locale = Localisation.locale || "es";
+i18n.locale = Localisation.locale || "en";
 i18n.fallbacks = true;
 
 export default i18n;
