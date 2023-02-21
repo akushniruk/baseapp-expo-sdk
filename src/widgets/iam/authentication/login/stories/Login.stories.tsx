@@ -4,7 +4,7 @@ import Login from "../ui/login";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const LoginMeta: ComponentMeta<typeof Login> = {
-    title: "Login",
+    title: "Widgets/Authentication/Login",
     component: Login,
 };
 

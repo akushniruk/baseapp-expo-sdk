@@ -4,7 +4,7 @@ import ForgotPasswordForm from "../ui/forgotPasswordForm";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const ForgotPasswordFormMeta: ComponentMeta<typeof ForgotPasswordForm> = {
-    title: "ForgotPasswordForm",
+    title: "Services/Authentication/ForgotPasswordForm",
     component: ForgotPasswordForm,
 };
 

@@ -4,7 +4,7 @@ import LoginForm from "../ui/loginForm";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const LoginFormMeta: ComponentMeta<typeof LoginForm> = {
-    title: "LoginForm",
+    title: "Services/Authentication/LoginForm",
     component: LoginForm,
 };
 

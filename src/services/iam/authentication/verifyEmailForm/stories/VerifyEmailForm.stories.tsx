@@ -4,7 +4,7 @@ import VerifyEmailForm from "../ui/verifyEmailForm";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const VerifyEmailFormMeta: ComponentMeta<typeof VerifyEmailForm> = {
-    title: "VerifyEmailForm",
+    title: "Services/Authentication/VerifyEmailForm",
     component: VerifyEmailForm,
 };
 

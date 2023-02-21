@@ -4,7 +4,7 @@ import Register from "../ui/register";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const RegisterMeta: ComponentMeta<typeof Register> = {
-    title: "Register",
+    title: "Widgets/Authentication/Register",
     component: Register,
 };
 
