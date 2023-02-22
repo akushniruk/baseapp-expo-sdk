@@ -13,9 +13,14 @@ import Button from "../../../../../shared/ui/button";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
+import { useAppSelector } from "../../../../../shared/providers/redux/lib/useAppSelector";
+import { RootState } from "../../../../../shared/providers/redux/model/store";
 
 const LoginForm: FC = () => {
     const schemaInputFields: string[] = loginSchema.keyof()._def.values;
+    const require2FA: boolean = useAppSelector(
+        (state: RootState) => state.user.require2FA
+    );
 
     const {
         control,
@@ -27,7 +32,6 @@ const LoginForm: FC = () => {
     });
 
     const [loginUser, { isLoading }] = useLoginUserMutation();
-
     const onSubmitHandler: SubmitHandler<LoginType> = (data) => loginUser(data);
 
     const renderForgotPasswordLink = useMemo(
@@ -86,7 +90,7 @@ const LoginForm: FC = () => {
 
     return (
         <View>
-            {renderLoginForm}
+            {!require2FA ? renderLoginForm : <Text>2fa</Text>}
             <Button
                 isLoading={isLoading}
                 disabled={!errors || isLoading}

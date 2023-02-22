@@ -1,25 +1,30 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../api/types';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../api/types";
 
 interface UserState {
-  user: User | null;
+    profile: User | null;
+    require2FA: boolean;
 }
 
 const initialState: UserState = {
-  user: null,
+    profile: null,
+    require2FA: false,
 };
 
-export const userSlice = createSlice({
-  initialState,
-  name: 'userSlice',
-  reducers: {
-    logout: () => initialState,
-    setUser: (state, action: PayloadAction<User>) => {
-      state.user = action.payload;
+export const user = createSlice({
+    initialState,
+    name: "user",
+    reducers: {
+        logout: () => initialState,
+        setProfile: (state, action: PayloadAction<User>) => {
+            state.profile = action.payload;
+        },
+        setRequire2FA: (state, action: PayloadAction<boolean>) => {
+            state.require2FA = action.payload;
+        },
     },
-  },
 });
 
-export default userSlice.reducer;
+export default user.reducer;
 
-export const { logout, setUser } = userSlice.actions;
+export const { logout, setProfile, setRequire2FA } = user.actions;

@@ -1,5 +1,6 @@
 import { api } from "../../../../../shared/providers/redux/lib/rtkApi";
 import { User } from "../../../../user";
+import { setProfile, setRequire2FA } from "../../../../user/model/userSlice";
 import { LoginType } from "../libs/schema";
 
 type ResponseType = User;
@@ -9,17 +10,19 @@ export const loginApi = api.injectEndpoints({
         loginUser: build.mutation<ResponseType, LoginType>({
             query(data) {
                 return {
-                    url: "api/v2/barong/identity/users",
+                    url: "api/v2/barong/identity/sessions",
                     method: "POST",
                     body: data,
-                    credentials: "include",
                 };
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-                    await queryFulfilled;
-                    // await dispatch(userApi.endpoints.getMe.initiate(null));
-                } catch (error) {}
+                    const response = await queryFulfilled;
+                    dispatch(setProfile(response.data));
+                } catch (error) {
+                    console.log(error);
+                    dispatch(setRequire2FA(true));
+                }
             },
         }),
     }),

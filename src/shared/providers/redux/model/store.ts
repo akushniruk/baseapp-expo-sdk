@@ -1,5 +1,6 @@
 import { configureStore, ConfigureStoreOptions } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import { user } from "../../../../services/user/model/userSlice";
 import { api } from "../lib/rtkApi";
 
 export const createStore = (
@@ -8,6 +9,7 @@ export const createStore = (
     configureStore({
         reducer: {
             [api.reducerPath]: api.reducer,
+            user: user.reducer,
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(api.middleware),
