@@ -25,13 +25,18 @@ const LoginForm: FC = () => {
     const {
         control,
         handleSubmit,
+        watch,
         formState: { errors },
     } = useForm({
-        mode: "onBlur",
+        // Warning: onChange can bring issue with performance
+        mode: "onChange",
         resolver: ForgotPasswordResolver,
     });
 
     const [handleForgotPassword, { isLoading }] = useForgotPasswordMutation();
+
+    const buttonDisabled = () =>
+        !watch("email")?.length || Object.keys(errors).length;
 
     const onSubmitHandler: SubmitHandler<ForgotPasswordType> = (data) =>
         handleForgotPassword(data);
@@ -50,9 +55,9 @@ const LoginForm: FC = () => {
                         field.name === "email" ? "email-address" : "default"
                     }
                 />
-                {errors && (
+                {errors && errors[`${field.name}`]?.message && (
                     <Text style={styles.error}>
-                        {errors[`${field.name}`]?.message}
+                        {i18n.t(errors[`${field.name}`]?.message as string)}
                     </Text>
                 )}
             </View>
@@ -79,13 +84,13 @@ const LoginForm: FC = () => {
             {renderLoginForm}
             <Button
                 isLoading={isLoading}
-                disabled={!errors || isLoading}
+                disabled={buttonDisabled()}
                 title={i18n.t("forgotPasswordFormSendButton")}
                 onPress={handleSubmit(onSubmitHandler)}
             />
             <View style={styles.backToLoginLinkWrapper}>
                 <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>
-                    Back to login
+                    {i18n.t("forgotPasswordFormBackToLoginButton")}
                 </Link>
             </View>
         </View>
