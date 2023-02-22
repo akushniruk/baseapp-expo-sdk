@@ -7,17 +7,10 @@ export const forgotPasswordApi = api.injectEndpoints({
         forgotPassword: build.mutation<any, ForgotPasswordType>({
             query(data) {
                 return {
-                    url: "api/v2/barong/identity/users",
+                    url: "api/v2/barong/identity/users/password/generate_code",
                     method: "POST",
                     body: data,
-                    credentials: "include",
                 };
-            },
-            async onQueryStarted(args, { dispatch, queryFulfilled }) {
-                try {
-                    await queryFulfilled;
-                    // await dispatch(userApi.endpoints.getMe.initiate(null));
-                } catch (error) {}
             },
         }),
     }),

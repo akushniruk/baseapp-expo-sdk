@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useForgotPasswordMutation } from "../api/forgotPasswordApi";
 import {
@@ -26,6 +26,7 @@ const LoginForm: FC = () => {
         control,
         handleSubmit,
         watch,
+        reset,
         formState: { errors },
     } = useForm({
         // Warning: onChange can bring issue with performance
@@ -33,13 +34,21 @@ const LoginForm: FC = () => {
         resolver: ForgotPasswordResolver,
     });
 
-    const [handleForgotPassword, { isLoading }] = useForgotPasswordMutation();
+    const [handleForgotPassword, { isLoading, isSuccess }] =
+        useForgotPasswordMutation();
+
+    useEffect(() => {
+        if (isSuccess) {
+            reset({ email: "" });
+        }
+    }, [isSuccess]);
 
     const buttonDisabled = () =>
         !watch("email")?.length || Object.keys(errors).length;
 
-    const onSubmitHandler: SubmitHandler<ForgotPasswordType> = (data) =>
+    const onSubmitHandler: SubmitHandler<ForgotPasswordType> = (data) => {
         handleForgotPassword(data);
+    };
 
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
@@ -109,7 +118,7 @@ const styles = StyleSheet.create({
     },
     backToLoginLinkWrapper: {
         display: "flex",
-        alignItems: "flex-start",
+        alignItems: "center",
     },
     backToLoginLink: {
         marginTop: 16,

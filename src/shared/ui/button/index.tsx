@@ -61,6 +61,7 @@ const styles = StyleSheet.create({
     disabled: {
         backgroundColor: Palette.Controls["neutral-control-color"][20].value,
         color: Palette.Controls["neutral-control-layer-color"][20].value,
+        cursor: "not-allowed",
     },
     title: {
         fontSize: 14,
