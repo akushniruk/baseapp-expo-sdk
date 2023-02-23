@@ -69,7 +69,7 @@ const LoginForm: FC = () => {
                     style={styles.forgotPasswordLink}
                     to={{ screen: "ForgotPassword" }}
                 >
-                    Forgot password?
+                    {i18n.t("loginFormForgotPasswordLink")}
                 </Link>
             </View>
         ),
@@ -133,7 +133,7 @@ const LoginForm: FC = () => {
                         style={styles.registerLink}
                         to={{ screen: "Register" }}
                     >
-                        Create an account
+                        {i18n.t("loginFormCreateAccount")}
                     </Link>
                 </View>
             </View>
@@ -142,7 +142,7 @@ const LoginForm: FC = () => {
 
     return (
         <>
-            {false ? (
+            {!require2FA ? (
                 renderLoginForm
             ) : (
                 <TwoFactorAuthForm

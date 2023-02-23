@@ -22,10 +22,11 @@ const OTPInput: FC<OTPInputProps> = ({
 
     const [isInputBoxFocused, setIsInputBoxFocused] = useState(false);
 
-    const fetchCopiedText = async () => {
+    const fetchCopiedText = useCallback(async () => {
         const text = await Clipboard.getStringAsync();
+
         setCode(text);
-    };
+    }, []);
 
     const handleOnPress = useCallback(() => {
         setIsInputBoxFocused(true);

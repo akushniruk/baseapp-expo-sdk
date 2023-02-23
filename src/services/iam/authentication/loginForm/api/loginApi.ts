@@ -20,7 +20,6 @@ export const loginApi = api.injectEndpoints({
                     const response = await queryFulfilled;
                     dispatch(setProfile(response.data));
                 } catch (error) {
-                    console.log(error);
                     dispatch(setRequire2FA(true));
                 }
             },
