@@ -1,6 +1,8 @@
 import React, { createRef, useState, useEffect, FC, useCallback } from "react";
 import { View, TextInput, Text, Pressable, StyleSheet } from "react-native";
 import { Palette } from "../../styles/themes/defaultPalette";
+import * as Clipboard from "expo-clipboard";
+import SecondaryButton from "../secondaryButton";
 
 interface OTPInputProps {
     code: string;
@@ -19,6 +21,11 @@ const OTPInput: FC<OTPInputProps> = ({
     const inputRef = createRef<TextInput>();
 
     const [isInputBoxFocused, setIsInputBoxFocused] = useState(false);
+
+    const fetchCopiedText = async () => {
+        const text = await Clipboard.getStringAsync();
+        setCode(text);
+    };
 
     const handleOnPress = useCallback(() => {
         setIsInputBoxFocused(true);
@@ -66,9 +73,7 @@ const OTPInput: FC<OTPInputProps> = ({
                 >
                     {boxArray.map(boxDigit)}
                 </Pressable>
-                <Pressable>
-                    <Text>Paste</Text>
-                </Pressable>
+                <SecondaryButton title="Paste" onPress={fetchCopiedText} />
             </View>
             <TextInput
                 style={styles.textInputHidden}
@@ -91,6 +96,8 @@ const styles = StyleSheet.create({
     },
     boxAndPastContainer: {
         flexDirection: "row",
+        maxHeight: 40,
+        justifyContent: "space-between",
     },
     textInputHidden: {
         borderColor: "transparent",
@@ -106,13 +113,14 @@ const styles = StyleSheet.create({
         borderColor: Palette.Controls["neutral-control-color"][70].value,
         borderWidth: 2,
         borderRadius: 4,
-        padding: 12,
         marginLeft: 6,
-        minWidth: 52,
-        minHeight: 52,
+        alignItems: "center",
+        justifyContent: "center",
+        minWidth: 40,
+        minHeight: 40,
     },
     splitBoxText: {
-        fontSize: 20,
+        fontSize: 14,
         textAlign: "center",
         color: Palette["text-color"][50].value,
     },

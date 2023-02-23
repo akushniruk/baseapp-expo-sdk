@@ -142,7 +142,7 @@ const LoginForm: FC = () => {
 
     return (
         <>
-            {!require2FA ? (
+            {false ? (
                 renderLoginForm
             ) : (
                 <TwoFactorAuthForm
