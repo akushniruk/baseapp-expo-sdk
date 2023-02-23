@@ -1,8 +1,9 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useRegisterUserMutation } from "../api/registerApi";
 import {
     Controller,
+    FieldValues,
     SubmitHandler,
     UseControllerReturn,
     useForm,
@@ -12,6 +13,7 @@ import Input from "../../../../../shared/ui/input";
 import Button from "../../../../../shared/ui/button";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
+import { Link } from "@react-navigation/native";
 
 const RegisterForm: FC = () => {
     const schemaInputFields: string[] = registerSchema.keyof()._def.values;
@@ -19,13 +21,32 @@ const RegisterForm: FC = () => {
     const {
         control,
         handleSubmit,
+        watch,
+        reset,
         formState: { errors },
     } = useForm({
-        mode: "onBlur",
+        mode: "onChange",
         resolver: RegisterResolver,
     });
 
-    const [registerUser, { isLoading }] = useRegisterUserMutation();
+    const [registerUser, { isLoading, isSuccess }] = useRegisterUserMutation();
+
+    useEffect(() => {
+        if (isSuccess) {
+            reset({
+                email: "",
+                password: "",
+                username: "",
+                refid: "",
+                captcha_response: "",
+            });
+            // TODO: redirect to the verify email
+        }
+    }, [isSuccess]);
+
+    const buttonDisabled = () =>
+        (!watch("email")?.length && !watch("password")?.length) ||
+        Object.keys(errors).length;
 
     const onSubmitHandler: SubmitHandler<RegisterType> = (data) =>
         registerUser(data);
@@ -47,7 +68,7 @@ const RegisterForm: FC = () => {
                 />
                 {errors && (
                     <Text style={styles.error}>
-                        {errors[`${field.name}`]?.message}
+                        {errors[`${field.name}`]?.message as string}
                     </Text>
                 )}
             </View>
@@ -74,10 +95,17 @@ const RegisterForm: FC = () => {
             {renderRegisterForm}
             <Button
                 isLoading={isLoading}
-                disabled={!errors || isLoading}
+                disabled={buttonDisabled()}
                 title={i18n.t("registerFormCreateNewAccountButton")}
-                onPress={handleSubmit(onSubmitHandler)}
+                onPress={handleSubmit(
+                    onSubmitHandler as SubmitHandler<FieldValues>
+                )}
             />
+            <View style={styles.backToLoginLinkWrapper}>
+                <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>
+                    {i18n.t("registerFormBackToLogin")}
+                </Link>
+            </View>
         </View>
     );
 };
@@ -91,5 +119,14 @@ const styles = StyleSheet.create({
     error: {
         marginTop: 4,
         color: Palette.System["system-red"][60].value,
+    },
+    backToLoginLinkWrapper: {
+        display: "flex",
+        alignItems: "center",
+    },
+    backToLoginLink: {
+        marginTop: 16,
+        fontWeight: "bold",
+        color: Palette["text-color"][100].value,
     },
 });

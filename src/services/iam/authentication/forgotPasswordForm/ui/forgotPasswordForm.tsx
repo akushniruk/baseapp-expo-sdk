@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     },
     backToLoginLink: {
         marginTop: 16,
-        color: Palette.Controls["primary-cta-color"][60].value,
+        fontWeight: "bold",
+        color: Palette["text-color"][100].value,
     },
 });

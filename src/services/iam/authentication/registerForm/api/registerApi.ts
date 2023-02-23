@@ -15,25 +15,6 @@ export const registerApi = api.injectEndpoints({
                 };
             },
         }),
-        // loginUser: builder.mutation<
-        //     { access_token: string; status: string },
-        //     LoginInput
-        // >({
-        //     query(data) {
-        //         return {
-        //             url: "login",
-        //             method: "POST",
-        //             body: data,
-        //             credentials: "include",
-        //         };
-        //     },
-        //     async onQueryStarted(args, { dispatch, queryFulfilled }) {
-        //         try {
-        //             await queryFulfilled;
-        //             await dispatch(userApi.endpoints.getMe.initiate(null));
-        //         } catch (error) {}
-        //     },
-        // }),
         // verifyEmail: builder.mutation<
         //     GenericResponse,
         //     { verificationCode: string }
