@@ -4,12 +4,10 @@
 
 ```bash
 └── src/
-    ├── widgets/                # Independent and self-contained blocks for pages (combination of entities and features)
-    ├── services/               # Business entities that domain logic operates with
+    ├── widgets/                # Independent and self-contained blocks for pages (combination of services and features)
+    ├── services/               # Business services that domain logic operates with
     └── shared/                 # Reused modules, non business specific
 ```
-
-![image info](./assets/fsd.png)
 
 ## Layers order
 
@@ -52,8 +50,8 @@ Before that , it is necessary to determine the scope of responsibility (layer)
 |   ├── header
 |   ├── feed
 |   └── ...
-├── entities/
-|   # Slices of business entities for implementing a more complex BL
+├── services/
+|   # Slices of business services for implementing a more complex BL
 |   ├── viewer
 |   ├── posts
 |   ├── i18n
