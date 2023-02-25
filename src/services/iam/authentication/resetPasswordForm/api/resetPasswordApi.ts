@@ -1,28 +1,25 @@
 import { api } from "../../../../../shared/providers/redux/lib/rtkApi";
 import { User } from "../../../../user";
-import { LoginType } from "../libs/schema";
+import { ResetPasswordType } from "../libs/schema";
 
 type ResponseType = User;
+type ResetPasswordBodyType = ResetPasswordType & {
+    reset_password_token: string;
+};
 
-export const loginApi = api.injectEndpoints({
+export const resetPasswordApi = api.injectEndpoints({
     endpoints: (build) => ({
-        loginUser: build.mutation<ResponseType, LoginType>({
+        resetPassword: build.mutation<ResponseType, ResetPasswordBodyType>({
             query(data) {
                 return {
-                    url: "api/v2/barong/identity/users",
+                    url: "api/v2/barong/identity/users/password/confirm_code",
                     method: "POST",
                     body: data,
                     credentials: "include",
                 };
             },
-            async onQueryStarted(args, { dispatch, queryFulfilled }) {
-                try {
-                    await queryFulfilled;
-                    // await dispatch(userApi.endpoints.getMe.initiate(null));
-                } catch (error) {}
-            },
         }),
     }),
 });
 
-export const { useLoginUserMutation } = loginApi;
+export const { useResetPasswordMutation } = resetPasswordApi;

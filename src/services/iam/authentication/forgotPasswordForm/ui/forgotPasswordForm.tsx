@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { useForgotPasswordMutation } from "../api/forgotPasswordApi";
 import {
     Controller,
+    FieldValues,
     SubmitHandler,
     UseControllerReturn,
     useForm,
@@ -60,9 +61,7 @@ const LoginForm: FC = () => {
                     placeholder={field.name}
                     label={field.name}
                     testID={field.name}
-                    keyboardType={
-                        field.name === "email" ? "email-address" : "default"
-                    }
+                    keyboardType="email-address"
                 />
                 {errors && errors[`${field.name}`]?.message && (
                     <Text style={styles.error}>
@@ -95,7 +94,9 @@ const LoginForm: FC = () => {
                 isLoading={isLoading}
                 disabled={buttonDisabled()}
                 title={i18n.t("forgotPasswordFormSendButton")}
-                onPress={handleSubmit(onSubmitHandler)}
+                onPress={handleSubmit(
+                    onSubmitHandler as SubmitHandler<FieldValues>
+                )}
             />
             <View style={styles.backToLoginLinkWrapper}>
                 <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>

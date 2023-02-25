@@ -1,3 +1,4 @@
 export const es = {
-    resetPasswordFormCreateNewAccountButton: "Iniciar sesión",
+    resetPasswordFormButton: "Iniciar sesión",
+    resetPasswordFormBackToLoginButton: "Atrás para iniciar sesión",
 };

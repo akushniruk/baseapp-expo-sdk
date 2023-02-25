@@ -1,8 +1,9 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { useLoginUserMutation } from "../api/resetPasswordApi";
+import { useResetPasswordMutation } from "../api/resetPasswordApi";
 import {
     Controller,
+    FieldValues,
     SubmitHandler,
     UseControllerReturn,
     useForm,
@@ -30,24 +31,15 @@ const ResetPasswordForm: FC = () => {
         resolver: ResetPasswordResolver,
     });
 
-    const [loginUser, { isLoading }] = useLoginUserMutation();
+    const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-    const onSubmitHandler: SubmitHandler<ResetPasswordType> = (data) =>
-        loginUser(data);
-
-    const renderForgotPasswordLink = useMemo(
-        () => (
-            <View style={styles.forgotPasswordLinkWrapper}>
-                <Link
-                    style={styles.forgotPasswordLink}
-                    to={{ screen: "ForgotPassword" }}
-                >
-                    Forgot password?
-                </Link>
-            </View>
-        ),
-        []
-    );
+    const onSubmitHandler: SubmitHandler<ResetPasswordType> = (data) => {
+        const dataWithResetToken = {
+            ...data,
+            reset_password_token: "changeme",
+        };
+        resetPassword(dataWithResetToken);
+    };
 
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
@@ -59,15 +51,12 @@ const ResetPasswordForm: FC = () => {
                     placeholder={field.name}
                     label={field.name}
                     testID={field.name}
-                    keyboardType={
-                        field.name === "email" ? "email-address" : "default"
-                    }
-                    secureTextEntry={field.name === "password"}
+                    keyboardType="default"
+                    secureTextEntry={true}
                 />
-                {field.name === "password" && renderForgotPasswordLink}
                 {errors && (
                     <Text style={styles.error}>
-                        {errors[`${field.name}`]?.message}
+                        {errors[`${field.name}`]?.message as string}
                     </Text>
                 )}
             </View>
@@ -95,12 +84,14 @@ const ResetPasswordForm: FC = () => {
             <Button
                 isLoading={isLoading}
                 disabled={!errors || isLoading}
-                title={i18n.t("resetPasswordFormCreateNewAccountButton")}
-                onPress={handleSubmit(onSubmitHandler)}
+                title={i18n.t("resetPasswordFormButton")}
+                onPress={handleSubmit(
+                    onSubmitHandler as SubmitHandler<FieldValues>
+                )}
             />
-            <View style={styles.registerLinkWrapper}>
-                <Link style={styles.registerLink} to={{ screen: "Register" }}>
-                    Create an account
+            <View style={styles.backToLoginLinkWrapper}>
+                <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>
+                    {i18n.t("forgotPasswordFormBackToLoginButton")}
                 </Link>
             </View>
         </View>
@@ -124,12 +115,13 @@ const styles = StyleSheet.create({
     forgotPasswordLink: {
         marginTop: 4,
     },
-    registerLinkWrapper: {
+    backToLoginLinkWrapper: {
         display: "flex",
-        alignItems: "flex-start",
+        alignItems: "center",
     },
-    registerLink: {
+    backToLoginLink: {
         marginTop: 16,
-        color: Palette.Controls["primary-cta-color"][60].value,
+        fontWeight: "bold",
+        color: Palette["text-color"][100].value,
     },
 });

@@ -1,3 +1,4 @@
 export const en = {
-    resetPasswordFormCreateNewAccountButton: "Reset password",
+    resetPasswordFormButton: "Reset password",
+    resetPasswordFormBackToLoginButton: "Back to Login",
 };

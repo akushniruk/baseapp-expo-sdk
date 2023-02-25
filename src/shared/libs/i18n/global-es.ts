@@ -7,6 +7,8 @@ import { es as registerEs } from "../../../widgets/iam/authentication/register/l
 import { es as forgotPasswordFormEs } from "../../../services/iam/authentication/forgotPasswordForm/libs/i18n/es";
 import { es as forgotPasswordEs } from "../../../widgets/iam/authentication/forgotPassword/libs/i18n/es";
 
+import { en as resetPasswordFormEn } from "../../../services/iam/authentication/resetPasswordForm/libs/i18n/en";
+
 const es = {
     ...loginFormEs,
     ...loginEs,
@@ -14,6 +16,7 @@ const es = {
     ...registerFormEs,
     ...forgotPasswordFormEs,
     ...forgotPasswordEs,
+    ...resetPasswordFormEn,
 };
 
 export { es };
