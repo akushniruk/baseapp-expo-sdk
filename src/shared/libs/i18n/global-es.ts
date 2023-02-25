@@ -7,7 +7,11 @@ import { es as registerEs } from "../../../widgets/iam/authentication/register/l
 import { es as forgotPasswordFormEs } from "../../../services/iam/authentication/forgotPasswordForm/libs/i18n/es";
 import { es as forgotPasswordEs } from "../../../widgets/iam/authentication/forgotPassword/libs/i18n/es";
 
-import { en as resetPasswordFormEn } from "../../../services/iam/authentication/resetPasswordForm/libs/i18n/en";
+import { es as resetPasswordFormEs } from "../../../services/iam/authentication/resetPasswordForm/libs/i18n/es";
+import { es as resetPasswordEs } from "../../../widgets/iam/authentication/resetPassword/libs/i18n/es";
+
+import { es as verifyEmailFormEs } from "../../../services/iam/authentication/verifyEmailForm/libs/i18n/es";
+import { es as verifyEmailEs } from "../../../widgets/iam/authentication/verifyEmail/libs/i18n/es";
 
 const es = {
     ...loginFormEs,
@@ -16,7 +20,10 @@ const es = {
     ...registerFormEs,
     ...forgotPasswordFormEs,
     ...forgotPasswordEs,
-    ...resetPasswordFormEn,
+    ...resetPasswordFormEs,
+    ...resetPasswordEs,
+    ...verifyEmailFormEs,
+    ...verifyEmailEs,
 };
 
 export { es };

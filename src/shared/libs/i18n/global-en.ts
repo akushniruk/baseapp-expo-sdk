@@ -8,6 +8,10 @@ import { en as forgotPasswordFormEn } from "../../../services/iam/authentication
 import { en as forgotPasswordEn } from "../../../widgets/iam/authentication/forgotPassword/libs/i18n/en";
 
 import { en as resetPasswordFormEn } from "../../../services/iam/authentication/resetPasswordForm/libs/i18n/en";
+import { en as resetPasswordEn } from "../../../widgets/iam/authentication/resetPassword/libs/i18n/en";
+
+import { en as verifyEmailFormEn } from "../../../services/iam/authentication/verifyEmailForm/libs/i18n/en";
+import { en as verifyEmailEn } from "../../../widgets/iam/authentication/verifyEmail/libs/i18n/en";
 
 const en = {
     ...loginFormEn,
@@ -17,6 +21,9 @@ const en = {
     ...forgotPasswordFormEn,
     ...forgotPasswordEn,
     ...resetPasswordFormEn,
+    ...resetPasswordEn,
+    ...verifyEmailFormEn,
+    ...verifyEmailEn,
 };
 
 export { en };
