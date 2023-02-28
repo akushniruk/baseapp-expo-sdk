@@ -3,7 +3,7 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { user } from "../../../../services/user/model/userSlice";
 import { api } from "../lib/rtkApi";
 
-export const createStore = (
+export const createStore: any = (
     options?: ConfigureStoreOptions["preloadedState"] | undefined
 ) =>
     configureStore({
@@ -16,7 +16,7 @@ export const createStore = (
         ...options,
     });
 
-export const store = createStore();
+export const store: any = createStore();
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

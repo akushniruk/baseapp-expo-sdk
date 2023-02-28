@@ -11,7 +11,7 @@ const initialState: UserState = {
     require2FA: false,
 };
 
-export const user = createSlice({
+export const user: any = createSlice({
     initialState,
     name: "user",
     reducers: {
