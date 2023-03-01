@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import RegisterForm from "../../../../../services/iam/authentication/registerForm/ui/registerForm";
+import { RegisterForm } from "../../../../../services/iam/authentication/registerForm";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 
-const Register: FC = () => {
+export const Register: FC = () => {
     return (
         <View>
             <Text style={styles.title}>
@@ -13,8 +13,6 @@ const Register: FC = () => {
         </View>
     );
 };
-
-export default Register;
 
 const styles = StyleSheet.create({
     title: {

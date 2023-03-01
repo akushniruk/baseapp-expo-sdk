@@ -13,13 +13,12 @@ import {
     ForgotPasswordResolver,
     forgotPasswordSchema,
 } from "../libs/schema";
-import Input from "../../../../../shared/ui/input";
-import Button from "../../../../../shared/ui/button";
+import { Input, Button } from "../../../../../shared";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 
-const LoginForm: FC = () => {
+export const ForgotPasswordForm: FC = () => {
     const schemaInputFields: string[] =
         forgotPasswordSchema.keyof()._def.values;
 
@@ -106,8 +105,6 @@ const LoginForm: FC = () => {
         </View>
     );
 };
-
-export default LoginForm;
 
 const styles = StyleSheet.create({
     inputWrapper: {

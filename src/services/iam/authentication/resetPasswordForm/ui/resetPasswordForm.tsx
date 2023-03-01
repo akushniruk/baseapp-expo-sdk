@@ -13,13 +13,12 @@ import {
     ResetPasswordResolver,
     resetPasswordSchema,
 } from "../libs/schema";
-import Input from "../../../../../shared/ui/input";
-import Button from "../../../../../shared/ui/button";
+import { Input, Button } from "../../../../../shared";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 
-const ResetPasswordForm: FC = () => {
+export const ResetPasswordForm: FC = () => {
     const schemaInputFields: string[] = resetPasswordSchema.keyof()._def.values;
 
     const {
@@ -97,8 +96,6 @@ const ResetPasswordForm: FC = () => {
         </View>
     );
 };
-
-export default ResetPasswordForm;
 
 const styles = StyleSheet.create({
     inputWrapper: {

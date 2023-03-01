@@ -3,8 +3,8 @@ import { View, StyleSheet, Pressable, Text } from "react-native";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { useAppDispatch } from "../../../../../shared/providers/redux/lib/useAppDispatch";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
-import Button from "../../../../../shared/ui/button";
-import OTPInput from "../../../../../shared/ui/otpInput";
+import { Button } from "../../../../../shared/ui/button";
+import { OTPInput } from "../../../../../shared/ui/otpInput";
 import { setRequire2FA } from "../../../../user/model/userSlice";
 
 interface TwoFactorAuthFormProps {
@@ -15,7 +15,7 @@ interface TwoFactorAuthFormProps {
     onSubmit: () => void;
 }
 
-const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
+export const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
     code = "",
     isLoading = false,
     disabled = true,
@@ -48,8 +48,6 @@ const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
         </View>
     );
 };
-
-export default TwoFactorAuthForm;
 
 const styles = StyleSheet.create({
     twoFactorAuthFormContainer: {

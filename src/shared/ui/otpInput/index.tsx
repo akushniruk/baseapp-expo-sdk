@@ -1,8 +1,8 @@
-import React, { createRef, useState, useEffect, FC, useCallback } from "react";
+import React, { createRef, useState, FC, useCallback } from "react";
 import { View, TextInput, Text, Pressable, StyleSheet } from "react-native";
 import { Palette } from "../../styles/themes/defaultPalette";
 import * as Clipboard from "expo-clipboard";
-import SecondaryButton from "../secondaryButton";
+import { SecondaryButton } from "../secondaryButton";
 
 interface OTPInputProps {
     code: string;
@@ -11,7 +11,7 @@ interface OTPInputProps {
     emptyInputSymbol?: string;
 }
 
-const OTPInput: FC<OTPInputProps> = ({
+export const OTPInput: FC<OTPInputProps> = ({
     code,
     setCode,
     maximumLength,
@@ -88,8 +88,6 @@ const OTPInput: FC<OTPInputProps> = ({
         </View>
     );
 };
-
-export default OTPInput;
 
 const styles = StyleSheet.create({
     otpInputContainer: {

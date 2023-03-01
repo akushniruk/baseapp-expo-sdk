@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import LoginForm from "../../../../../services/iam/authentication/loginForm/ui/loginForm";
+import { LoginForm } from "../../../../../services/iam/authentication/loginForm";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 
-const Login: FC = () => {
+export const Login: FC = () => {
     return (
         <View>
             <Text style={styles.title}>
@@ -13,8 +13,6 @@ const Login: FC = () => {
         </View>
     );
 };
-
-export default Login;
 
 const styles = StyleSheet.create({
     title: {

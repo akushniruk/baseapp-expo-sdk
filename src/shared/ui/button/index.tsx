@@ -13,7 +13,7 @@ interface ButtonProps extends PressableProps {
     isLoading: boolean;
 }
 
-const Button: FC<any> = (props: ButtonProps) => {
+export const Button: FC<any> = (props: ButtonProps) => {
     return (
         <Pressable
             style={
@@ -41,8 +41,6 @@ const Button: FC<any> = (props: ButtonProps) => {
         </Pressable>
     );
 };
-
-export default Button;
 
 const styles = StyleSheet.create({
     button: {

@@ -9,13 +9,12 @@ import {
     useForm,
 } from "react-hook-form";
 import { RegisterType, RegisterResolver, registerSchema } from "../libs/schema";
-import Input from "../../../../../shared/ui/input";
-import Button from "../../../../../shared/ui/button";
+import { Input, Button } from "../../../../../shared";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 
-const RegisterForm: FC = () => {
+export const RegisterForm: FC = () => {
     const schemaInputFields: string[] = registerSchema.keyof()._def.values;
 
     const {
@@ -109,8 +108,6 @@ const RegisterForm: FC = () => {
         </View>
     );
 };
-
-export default RegisterForm;
 
 const styles = StyleSheet.create({
     inputWrapper: {

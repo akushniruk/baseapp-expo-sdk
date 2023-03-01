@@ -6,7 +6,7 @@ import ResetPasswordForm from "./services/iam/authentication/resetPasswordForm/u
 import VerifyEmailForm from "./services/iam/authentication/verifyEmailForm/ui/verifyEmailForm";
 
 // Widgets - IAM
-import Login from "./widgets/iam/authentication/login/ui/login";
+import { Login } from "./widgets/iam/authentication/login";
 import Register from "./widgets/iam/authentication/register/ui/register";
 import ForgotPassword from "./widgets/iam/authentication/forgotPassword/ui/forgotPassword";
 import ResetPassword from "./widgets/iam/authentication/resetPassword/ui/resetPassword";

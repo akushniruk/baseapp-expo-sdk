@@ -9,16 +9,15 @@ import {
     useForm,
 } from "react-hook-form";
 import { LoginType, LoginResolver, loginSchema } from "../libs/schema";
-import Input from "../../../../../shared/ui/input";
-import Button from "../../../../../shared/ui/button";
+import { Input, Button } from "../../../../../shared";
 import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 import { useAppSelector } from "../../../../../shared/providers/redux/lib/useAppSelector";
 import { RootState } from "../../../../../shared/providers/redux/model/store";
-import TwoFactorAuthForm from "./twoFactorAuthForm";
+import { TwoFactorAuthForm } from "./twoFactorAuthForm";
 
-const LoginForm: FC = () => {
+export const LoginForm: FC = () => {
     const schemaInputFields: string[] = loginSchema.keyof()._def.values;
     const require2FA: boolean = useAppSelector(
         (state: RootState) => state.user.require2FA
@@ -158,8 +157,6 @@ const LoginForm: FC = () => {
         </>
     );
 };
-
-export default LoginForm;
 
 const styles = StyleSheet.create({
     inputWrapper: {

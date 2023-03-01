@@ -8,7 +8,7 @@ import {
     useResendVerificationCodeMutation,
 } from "../api/verifyEmailFormApi";
 
-const VerifyEmailForm: FC = () => {
+export const VerifyEmailForm: FC = () => {
     const [resendVerificationCode] = useResendVerificationCodeMutation();
 
     const onPress = useCallback(() => {
@@ -40,8 +40,6 @@ const VerifyEmailForm: FC = () => {
         </View>
     );
 };
-
-export default VerifyEmailForm;
 
 const styles = StyleSheet.create({
     verifyEmailForm: {

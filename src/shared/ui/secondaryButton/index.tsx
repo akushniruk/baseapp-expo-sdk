@@ -6,7 +6,7 @@ interface SecondaryButtonProps extends PressableProps {
     title: string;
 }
 
-const SecondaryButton: FC<any> = (props: SecondaryButtonProps) => {
+export const SecondaryButton: FC<any> = (props: SecondaryButtonProps) => {
     return (
         <Pressable
             style={styles.secondaryButton}
@@ -17,8 +17,6 @@ const SecondaryButton: FC<any> = (props: SecondaryButtonProps) => {
         </Pressable>
     );
 };
-
-export default SecondaryButton;
 
 const styles = StyleSheet.create({
     secondaryButton: {

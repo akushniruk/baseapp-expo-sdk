@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import VerifyEmailForm from "../../../../../services/iam/authentication/verifyEmailForm/ui/verifyEmailForm";
+import { VerifyEmailForm } from "../../../../../services/iam/authentication/verifyEmailForm";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 
-const VerifyEmail: FC = () => {
+export const VerifyEmail: FC = () => {
     return (
         <View>
             <Text style={styles.title}>{i18n.t("VerifyEmailTitle")}</Text>
@@ -11,8 +11,6 @@ const VerifyEmail: FC = () => {
         </View>
     );
 };
-
-export default VerifyEmail;
 
 const styles = StyleSheet.create({
     title: {

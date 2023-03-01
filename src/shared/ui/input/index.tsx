@@ -12,7 +12,7 @@ interface InputProps extends TextInputProps {
     label: string;
 }
 
-const Input: FC<any> = (props: InputProps) => {
+export const Input: FC<any> = (props: InputProps) => {
     return (
         <View style={styles.fieldWrapper}>
             <Text style={styles.label}>{props.label}</Text>
@@ -29,8 +29,6 @@ const Input: FC<any> = (props: InputProps) => {
         </View>
     );
 };
-
-export default Input;
 
 const styles = StyleSheet.create({
     fieldWrapper: {},
