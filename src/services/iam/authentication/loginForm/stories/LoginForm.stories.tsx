@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import LoginForm from "../ui/loginForm";
+import { LoginForm } from "../ui/loginForm";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const LoginFormMeta: ComponentMeta<typeof LoginForm> = {

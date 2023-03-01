@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import VerifyEmail from "../ui/verifyEmail";
+import { VerifyEmail } from "../ui/verifyEmail";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const VerifyEmailMeta: ComponentMeta<typeof VerifyEmail> = {

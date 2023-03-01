@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import ResetPassword from "../ui/resetPassword";
+import { ResetPassword } from "../ui/resetPassword";
 import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
 
 const ResetPasswordMeta: ComponentMeta<typeof ResetPassword> = {
