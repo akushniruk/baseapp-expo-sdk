@@ -121,7 +121,7 @@ export const LoginForm: FC = () => {
                 {renderInputFields}
                 <Button
                     isLoading={isLoading}
-                    disabled={buttonDisabled()}
+                    disabled={!!buttonDisabled()}
                     title={i18n.t("loginFormCreateNewAccountButton")}
                     onPress={handleSubmit(
                         onSubmitHandler as SubmitHandler<FieldValues>

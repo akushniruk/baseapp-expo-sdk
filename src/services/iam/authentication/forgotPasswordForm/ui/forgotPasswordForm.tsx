@@ -91,7 +91,7 @@ export const ForgotPasswordForm: FC = () => {
             {renderLoginForm}
             <Button
                 isLoading={isLoading}
-                disabled={buttonDisabled()}
+                disabled={!!buttonDisabled()}
                 title={i18n.t("forgotPasswordFormSendButton")}
                 onPress={handleSubmit(
                     onSubmitHandler as SubmitHandler<FieldValues>

@@ -15,6 +15,10 @@ import { VerifyEmail } from "./widgets/iam/authentication/verifyEmail/ui/verifyE
 // Shared providers
 import { ReduxProvider } from "./shared/providers/redux/redux";
 
+// AppSelector & AppDispatch
+import { useAppDispatch } from "./shared/providers/redux/lib/useAppDispatch";
+import { useAppSelector } from "./shared/providers/redux/lib/useAppSelector";
+
 // Shared UI - Buttons
 import { Button } from "./shared/ui/button";
 import { SecondaryButton } from "./shared/ui/secondaryButton";
@@ -39,4 +43,6 @@ export {
     ForgotPasswordForm,
     ResetPasswordForm,
     VerifyEmailForm,
+    useAppDispatch,
+    useAppSelector,
 };

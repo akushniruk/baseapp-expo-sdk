@@ -13,7 +13,7 @@ interface ButtonProps extends PressableProps {
     isLoading: boolean;
 }
 
-export const Button: FC<any> = (props: ButtonProps) => {
+export const Button: FC<ButtonProps> = (props) => {
     return (
         <Pressable
             style={
@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     disabled: {
         backgroundColor: Palette.Controls["neutral-control-color"][20].value,
         color: Palette.Controls["neutral-control-layer-color"][20].value,
-        cursor: "not-allowed",
     },
     title: {
         fontSize: 14,

@@ -12,7 +12,7 @@ interface InputProps extends TextInputProps {
     label: string;
 }
 
-export const Input: FC<any> = (props: InputProps) => {
+export const Input: FC<InputProps> = (props) => {
     return (
         <View style={styles.fieldWrapper}>
             <Text style={styles.label}>{props.label}</Text>

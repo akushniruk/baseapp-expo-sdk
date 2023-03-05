@@ -94,7 +94,7 @@ export const RegisterForm: FC = () => {
             {renderRegisterForm}
             <Button
                 isLoading={isLoading}
-                disabled={buttonDisabled()}
+                disabled={!!buttonDisabled()}
                 title={i18n.t("registerFormCreateNewAccountButton")}
                 onPress={handleSubmit(
                     onSubmitHandler as SubmitHandler<FieldValues>
