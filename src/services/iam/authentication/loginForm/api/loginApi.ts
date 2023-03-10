@@ -26,6 +26,7 @@ export const loginApi = api.injectEndpoints({
             },
         }),
     }),
+    overrideExisting: true,
 });
 
 export const { useLoginUserMutation } = loginApi;
