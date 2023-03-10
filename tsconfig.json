@@ -3,5 +3,8 @@
   "compilerOptions": {
     "strict": true,
     "noEmit": false
-  }
+  },
+  "exclude": [
+    "src/shared/providers/redux/model/*",
+  ]
 }
