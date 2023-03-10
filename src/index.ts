@@ -19,6 +19,9 @@ import { ReduxProvider } from "./shared/providers/redux/redux";
 import { useAppDispatch } from "./shared/providers/redux/lib/useAppDispatch";
 import { useAppSelector } from "./shared/providers/redux/lib/useAppSelector";
 
+// Shared LIB - withAuth
+import { withAuth } from "../src/shared/libs/withAuth";
+
 // Shared UI - Buttons
 import { Button } from "./shared/ui/button";
 import { SecondaryButton } from "./shared/ui/secondaryButton";
@@ -45,4 +48,5 @@ export {
     VerifyEmailForm,
     useAppDispatch,
     useAppSelector,
+    withAuth,
 };

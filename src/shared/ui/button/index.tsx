@@ -13,7 +13,7 @@ interface ButtonProps extends PressableProps {
     isLoading: boolean;
 }
 
-export const Button: FC<ButtonProps> = (props) => {
+export const Button: FC<any> = (props: ButtonProps) => {
     return (
         <Pressable
             style={
