@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { Login } from "../ui/login";
-import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
+import { CoreProvider } from "../../../../../shared/providers/core";
 
 const LoginMeta: ComponentMeta<typeof Login> = {
     title: "Widgets/Authentication/Login",
@@ -13,7 +13,7 @@ export default LoginMeta;
 type LoginStory = ComponentStory<typeof Login>;
 
 export const Basic: LoginStory = (args) => (
-    <ReduxProvider>
+    <CoreProvider>
         <Login />
-    </ReduxProvider>
+    </CoreProvider>
 );

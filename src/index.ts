@@ -14,6 +14,7 @@ import { VerifyEmail } from "./widgets/iam/authentication/verifyEmail/ui/verifyE
 
 // Shared providers
 import { ReduxProvider } from "./shared/providers/redux/redux";
+import { CoreProvider } from "./shared/providers/core";
 
 // Shared LIB - withAuth
 import { withAuth } from "../src/shared/libs/withAuth";
@@ -42,6 +43,7 @@ export {
     ForgotPasswordForm,
     ResetPasswordForm,
     VerifyEmailForm,
+    CoreProvider,
     withAuth,
 };
 

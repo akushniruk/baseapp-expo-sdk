@@ -48,6 +48,7 @@ export const LoginForm: FC<LoginFormProps> = ({
     useEffect(() => {
         if (isSuccess) {
             reset({ email: "", password: "" });
+            // TODO: handle Storybook
             linkTo(redirectToOnLogin);
         }
     }, [isSuccess]);
