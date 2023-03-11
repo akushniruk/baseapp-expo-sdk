@@ -1,5 +1,7 @@
 import { api } from "../../../../../shared/providers/redux/lib/rtkApi";
+import { dispatchAlert } from "../../../../../shared/ui/alerts";
 import { User } from "../../../../user";
+import { setProfile } from "../../../../user/model/userSlice";
 import { RegisterType } from "../libs/schema";
 
 type ResponseType = User;
@@ -14,32 +16,21 @@ export const registerApi = api.injectEndpoints({
                     body: data,
                 };
             },
+            async onQueryStarted(args, { dispatch, queryFulfilled }) {
+                try {
+                    const response = await queryFulfilled;
+                    dispatch(setProfile(response.data));
+                } catch (error: any) {
+                    dispatch(
+                        dispatchAlert({
+                            type: "error",
+                            messageText: error.error.data.errors[0],
+                        })
+                    );
+                }
+            },
         }),
-        // verifyEmail: builder.mutation<
-        //     GenericResponse,
-        //     { verificationCode: string }
-        // >({
-        //     query({ verificationCode }) {
-        //         return {
-        //             url: `verifyemail/${verificationCode}`,
-        //             method: "GET",
-        //         };
-        //     },
-        // }),
-        // logoutUser: builder.mutation<void, void>({
-        //     query() {
-        //         return {
-        //             url: "logout",
-        //             credentials: "include",
-        //         };
-        //     },
-        // }),
     }),
 });
 
-export const {
-    // useLoginUserMutation,
-    useRegisterUserMutation,
-    // useLogoutUserMutation,
-    // useVerifyEmailMutation,
-} = registerApi;
+export const { useRegisterUserMutation } = registerApi;
