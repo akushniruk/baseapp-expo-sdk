@@ -1,13 +1,13 @@
 import { FC, useCallback, useMemo } from "react";
-import { useAppSelector } from "../../../providers/redux";
+import { useAppSelector } from "../../../providers/redux/lib/useAppSelector";
 import { AlertComponent, AlertComponentProps } from "./alertComponent";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../../providers/redux/lib/useAppDispatch";
 import { deleteAlert, deleteAlertByIndex } from "../model/alertsSlice";
 import { View } from "react-native";
 import { styles } from "./styles/alertStyle";
 
 export const Alerts: FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const alerts = useAppSelector((state) => state.alerts.alerts);
 
     const handleCloseAlert = useCallback(() => {
@@ -41,16 +41,11 @@ export const Alerts: FC = () => {
                 messageText: messageText as any,
                 messageType: alert.messageType,
                 onClose: handleCloseAlert,
-                onCloseByPress: () => handleCloseAlertByPress(index),
             };
 
-            return (
-                <View key={index}>
-                    <AlertComponent {...alertParams} />
-                </View>
-            );
+            return <AlertComponent {...alertParams} />;
         });
     }, [alerts]);
 
-    return <View>{renderAlerts}</View>;
+    return <>{renderAlerts}</>;
 };

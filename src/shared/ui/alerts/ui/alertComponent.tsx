@@ -55,6 +55,7 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
     }, [messageText, messageType, type, alertDisplayTime]);
 
     const content = useMemo(() => {
+        console.log("messageText", messageText);
         return (
             <Animated.View
                 style={{
@@ -75,7 +76,7 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
                                   })
                                 : 1,
                         position: "absolute",
-                        top: 0,
+                        top: -200,
                         bottom: 0,
                         right: 0,
                         left: 0,
@@ -95,14 +96,9 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
                         <Text numberOfLines={2} style={styles.contentTitle}>
                             test
                         </Text>
-                        {messageText ? (
-                            <Text
-                                numberOfLines={2}
-                                style={styles.contentMessage}
-                            >
-                                {messageText}
-                            </Text>
-                        ) : null}
+                        <Text numberOfLines={2} style={styles.contentMessage}>
+                            {messageText}
+                        </Text>
                     </View>
                 </TouchableOpacity>
             </Animated.View>
