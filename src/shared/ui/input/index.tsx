@@ -12,19 +12,28 @@ interface InputProps extends TextInputProps {
     label: string;
 }
 
-export const Input: FC<any> = (props: InputProps) => {
+export const Input: FC<InputProps> = ({
+    label,
+    value,
+    placeholder,
+    secureTextEntry,
+    testID,
+    keyboardType,
+    onBlur,
+    onChangeText,
+}: InputProps) => {
     return (
         <View style={styles.fieldWrapper}>
-            <Text style={styles.label}>{props.label}</Text>
+            <Text style={styles.label}>{label}</Text>
             <TextInput
                 style={styles.input}
-                onBlur={props.onBlur}
-                onChangeText={props.onChangeText}
-                value={props.value}
-                placeholder={props.placeholder}
-                secureTextEntry={props.secureTextEntry}
-                testID={props.testID}
-                keyboardType={props.keyboardType}
+                onBlur={onBlur}
+                onChangeText={onChangeText}
+                value={value}
+                placeholder={placeholder}
+                secureTextEntry={secureTextEntry}
+                testID={testID}
+                keyboardType={keyboardType}
             />
         </View>
     );

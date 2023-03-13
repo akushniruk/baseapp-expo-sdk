@@ -2,7 +2,7 @@ import { FC, useCallback, useMemo } from "react";
 import { useAppSelector } from "../../../providers/redux/lib/useAppSelector";
 import { AlertComponent, AlertComponentProps } from "./alertComponent";
 import { useAppDispatch } from "../../../providers/redux/lib/useAppDispatch";
-import { deleteAlert, deleteAlertByIndex } from "../model/alertsSlice";
+import { deleteAlert } from "../model/alertsSlice";
 
 export const Alerts: FC = () => {
     const dispatch = useAppDispatch();
@@ -10,10 +10,6 @@ export const Alerts: FC = () => {
 
     const handleCloseAlert = useCallback(() => {
         dispatch(deleteAlert());
-    }, []);
-
-    const handleCloseAlertByPress = useCallback((alertIndex: number) => {
-        dispatch(deleteAlertByIndex(alertIndex));
     }, []);
 
     const getCustomAlertData = useCallback(
@@ -28,7 +24,7 @@ export const Alerts: FC = () => {
             const [alertType, messageText] = getCustomAlertData(alert);
 
             const alertParams: AlertComponentProps = {
-                alertDisplayTime: "10000", // TODO: move to config
+                alertDisplayTime: "3000", // TODO: move to config
                 type: alertType as any,
                 messageText: messageText as any,
                 messageType: alert.messageType,

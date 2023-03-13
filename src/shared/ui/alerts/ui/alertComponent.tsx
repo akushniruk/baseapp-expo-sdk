@@ -16,16 +16,16 @@ type AlertComponentType = "success" | "error" | "info" | "warn";
 export interface AlertComponentProps {
     type: AlertComponentType;
     messageType: string;
-    messageText: string | React.ReactNode;
-    alertDisplayTime?: string;
+    messageText: string;
+    alertDisplayTime: string;
     onClose?: () => void;
 }
 
 export const AlertComponent: React.FC<AlertComponentProps> = ({
-    type,
-    messageType,
-    messageText,
-    alertDisplayTime,
+    type = "info",
+    messageType = "info",
+    messageText = "Info",
+    alertDisplayTime = "3000",
     onClose,
 }: AlertComponentProps) => {
     const [animatedValue] = useState(new Animated.Value(0));
@@ -44,7 +44,7 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
     }, [animatedValue]);
 
     useEffect(() => {
-        if (messageText || alertDisplayTime) {
+        if (messageText) {
             style.push(styles.containerShown);
 
             Animated.timing(animatedValue, {
@@ -54,7 +54,7 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
             }).start(() => {
                 hideTimer.current = window.setTimeout(() => {
                     handleHideNotification();
-                }, 3000);
+                }, +alertDisplayTime);
             });
         }
     }, [messageText, messageType, type, alertDisplayTime]);
@@ -64,24 +64,28 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
             case "success":
                 return (
                     <Image
+                        style={styles.icon}
                         source={require("../../../../assets/notification/success.png")}
                     />
                 );
             case "error":
                 return (
                     <Image
+                        style={styles.icon}
                         source={require("../../../../assets/notification/error.png")}
                     />
                 );
             case "info":
                 return (
                     <Image
+                        style={styles.icon}
                         source={require("../../../../assets/notification/info.png")}
                     />
                 );
             case "warn":
                 return (
                     <Image
+                        style={styles.icon}
                         source={require("../../../../assets/notification/warning.png")}
                     />
                 );
@@ -121,7 +125,7 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
                 }}
             >
                 <TouchableOpacity onPress={onClose} style={styles.content}>
-                    {renderAlertIcon}
+                    <View style={styles.iconWrapper}>{renderAlertIcon}</View>
                     <View style={styles.contentTextWrapper}>
                         <Text numberOfLines={2} style={styles.contentTitle}>
                             {messageType}

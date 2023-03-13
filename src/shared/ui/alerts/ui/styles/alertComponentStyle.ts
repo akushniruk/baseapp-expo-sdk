@@ -53,4 +53,14 @@ export const styles = StyleSheet.create({
         fontSize: 13,
         color: Palette["text-color"][100].value,
     },
+    iconWrapper: {
+        alignItems: "flex-start",
+        height: "100%",
+        marginTop: 13,
+        marginRight: 12,
+    },
+    icon: {
+        height: 18,
+        width: 18,
+    },
 });

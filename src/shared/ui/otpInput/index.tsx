@@ -16,7 +16,7 @@ export const OTPInput: FC<OTPInputProps> = ({
     setCode,
     maximumLength,
     emptyInputSymbol = "X",
-}) => {
+}: OTPInputProps) => {
     const boxArray: number[] = new Array(maximumLength).fill(0);
     const inputRef = createRef<TextInput>();
 

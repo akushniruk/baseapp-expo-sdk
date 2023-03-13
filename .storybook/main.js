@@ -1,6 +1,6 @@
 module.exports = {
     stories: [
-        "../src/shared/**/**/*.stories.?(ts|tsx|js|jsx)",
+        "../src/shared/**/**/**/*.stories.?(ts|tsx|js|jsx)",
         "../src/services/**/*.stories.@(js|jsx|ts|tsx)",
         "../src/services/**/**/**/**/*.stories.@(js|jsx|ts|tsx)",
         "../src/widgets/**/*.stories.@(js|jsx|ts|tsx)",
@@ -12,4 +12,7 @@ module.exports = {
         "@storybook/addon-react-native-web",
     ],
     framework: "@storybook/react",
+    typescript: {
+        reactDocgen: "none",
+    },
 };

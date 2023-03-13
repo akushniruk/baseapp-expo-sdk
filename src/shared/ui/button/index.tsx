@@ -7,60 +7,48 @@ import {
     Text,
 } from "react-native";
 import { Palette } from "../../styles/themes/defaultPalette";
+import { buttonStyles, StylesType } from "./styles";
 
-interface ButtonProps extends PressableProps {
+export interface ButtonProps extends PressableProps {
     title: string;
     isLoading: boolean;
+    styles?: StylesType;
 }
 
-export const Button: FC<any> = (props: ButtonProps) => {
+export const Button: FC<ButtonProps> = ({
+    title,
+    isLoading,
+    testID,
+    disabled,
+    styles = buttonStyles,
+    onPress,
+}: ButtonProps) => {
     return (
         <Pressable
             style={
-                props.disabled
+                disabled
                     ? [styles.disabled, styles.button]
                     : [styles.active, styles.button]
             }
-            disabled={props.disabled}
-            onPress={props.onPress}
-            testID={props.testID}
+            disabled={disabled}
+            onPress={onPress}
+            testID={testID}
         >
-            {props.isLoading ? (
-                <ActivityIndicator color="#ffffff" />
+            {isLoading ? (
+                <ActivityIndicator
+                    color={`${Palette.Controls["primary-cta-layer-color"][60].value}`}
+                />
             ) : (
                 <Text
                     style={
-                        props.disabled
+                        disabled
                             ? [styles.disabled, styles.title]
                             : [styles.active, styles.title]
                     }
                 >
-                    {props.title}
+                    {title}
                 </Text>
             )}
         </Pressable>
     );
 };
-
-const styles = StyleSheet.create({
-    button: {
-        paddingHorizontal: 12,
-        paddingVertical: 7,
-        borderRadius: 4,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: 32,
-    },
-    active: {
-        color: Palette.Controls["primary-cta-layer-color"][60].value,
-        backgroundColor: Palette.Controls["primary-cta-color"][60].value,
-    },
-    disabled: {
-        backgroundColor: Palette.Controls["neutral-control-color"][20].value,
-        color: Palette.Controls["neutral-control-layer-color"][20].value,
-    },
-    title: {
-        fontSize: 14,
-    },
-});
