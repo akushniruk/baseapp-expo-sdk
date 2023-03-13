@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        backgroundColor: "#fff",
+        backgroundColor: Palette.Background["body-background-color"].value,
         maxWidth: 400,
         marginHorizontal: 15,
         paddingHorizontal: 15,
@@ -47,9 +47,10 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: "600",
         marginBottom: 2,
+        textTransform: "capitalize",
     },
     contentMessage: {
         fontSize: 13,
-        color: "#777",
+        color: Palette["text-color"][100].value,
     },
 });

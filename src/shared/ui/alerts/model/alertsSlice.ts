@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 export interface DispatchAlertPayload {
     messageText?: string | React.ReactNode;
     type: string;
-    messageType?: string | React.ReactNode;
+    messageType?: string;
     alertDisplayTime?: string;
 }
 export interface AlertsState {

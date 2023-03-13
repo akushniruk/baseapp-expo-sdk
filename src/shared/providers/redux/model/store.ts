@@ -4,7 +4,7 @@ import { user } from "../../../../services/user/model/userSlice";
 import { api } from "../lib/rtkApi";
 import { alerts } from "../../../ui/alerts/model/alertsSlice";
 
-export const createStore: any = (
+export const createStore = (
     options?: ConfigureStoreOptions["preloadedState"] | undefined
 ) =>
     configureStore({
@@ -18,7 +18,7 @@ export const createStore: any = (
         ...options,
     });
 
-export const store: any = createStore();
+export const store = createStore();
 
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch: () => AppDispatch = useDispatch;

@@ -32,6 +32,7 @@ export const loginApi = api.injectEndpoints({
                         dispatch(
                             dispatchAlert({
                                 type: "error",
+                                messageType: "error",
                                 messageText: error.error.data.errors[0],
                             })
                         );

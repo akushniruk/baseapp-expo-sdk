@@ -3,8 +3,6 @@ import { useAppSelector } from "../../../providers/redux/lib/useAppSelector";
 import { AlertComponent, AlertComponentProps } from "./alertComponent";
 import { useAppDispatch } from "../../../providers/redux/lib/useAppDispatch";
 import { deleteAlert, deleteAlertByIndex } from "../model/alertsSlice";
-import { View } from "react-native";
-import { styles } from "./styles/alertStyle";
 
 export const Alerts: FC = () => {
     const dispatch = useAppDispatch();
@@ -19,21 +17,15 @@ export const Alerts: FC = () => {
     }, []);
 
     const getCustomAlertData = useCallback(
-        (
-            alert: { type: AlertComponentProps; messageText: string },
-            index: number
-        ) => {
-            switch (alert.type) {
-                default:
-                    return [alert.type, alert.messageText, undefined];
-            }
+        (alert: { type: AlertComponentProps; messageText: string }) => {
+            return [alert.type, alert.messageText, undefined];
         },
         []
     );
 
     const renderAlerts = useMemo(() => {
         return alerts.map((alert: any, index: number) => {
-            const [alertType, messageText] = getCustomAlertData(alert, index);
+            const [alertType, messageText] = getCustomAlertData(alert);
 
             const alertParams: AlertComponentProps = {
                 alertDisplayTime: "10000", // TODO: move to config

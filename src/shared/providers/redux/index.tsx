@@ -1,2 +1,2 @@
-export { useAppSelector } from "./lib/useAppSelector";
-export { useAppDispatch } from "./lib/useAppDispatch";
+export * from "./lib/useAppSelector";
+export * from "./lib/useAppDispatch";

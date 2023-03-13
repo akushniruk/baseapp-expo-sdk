@@ -8,13 +8,14 @@ import {
     Animated,
     ViewStyle,
     Platform,
+    Image,
 } from "react-native";
 
 type AlertComponentType = "success" | "error" | "info" | "warn";
 
 export interface AlertComponentProps {
     type: AlertComponentType;
-    messageType: string | React.ReactNode;
+    messageType: string;
     messageText: string | React.ReactNode;
     alertDisplayTime?: string;
     onClose?: () => void;
@@ -30,6 +31,8 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
     const [animatedValue] = useState(new Animated.Value(0));
     const hideTimer = useRef<number | undefined>();
 
+    const style: ViewStyle[] = [styles.container];
+
     const handleHideNotification = useCallback(() => {
         Animated.timing(animatedValue, {
             toValue: 0,
@@ -42,6 +45,8 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
 
     useEffect(() => {
         if (messageText || alertDisplayTime) {
+            style.push(styles.containerShown);
+
             Animated.timing(animatedValue, {
                 toValue: 1,
                 duration: 400,
@@ -54,8 +59,38 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
         }
     }, [messageText, messageType, type, alertDisplayTime]);
 
+    const renderAlertIcon = useMemo(() => {
+        switch (type) {
+            case "success":
+                return (
+                    <Image
+                        source={require("../../../../assets/notification/success.png")}
+                    />
+                );
+            case "error":
+                return (
+                    <Image
+                        source={require("../../../../assets/notification/error.png")}
+                    />
+                );
+            case "info":
+                return (
+                    <Image
+                        source={require("../../../../assets/notification/info.png")}
+                    />
+                );
+            case "warn":
+                return (
+                    <Image
+                        source={require("../../../../assets/notification/warning.png")}
+                    />
+                );
+            default:
+                return null;
+        }
+    }, [type]);
+
     const content = useMemo(() => {
-        console.log("messageText", messageText);
         return (
             <Animated.View
                 style={{
@@ -76,25 +111,20 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
                                   })
                                 : 1,
                         position: "absolute",
-                        top: -200,
-                        bottom: 0,
-                        right: 0,
+                        top: 0,
                         left: 0,
+                        right: 0,
+                        zIndex: 1000,
+                        elevation: 1,
+                        height: 65,
                     },
                 }}
             >
-                <TouchableOpacity
-                    onPress={onClose}
-                    style={[styles.content, { backgroundColor: "#fff" }]}
-                >
-                    {/* {notification.icon ? (
-                        <View style={styles.contentIcon}>
-                            {notification.icon}
-                        </View>
-                    ) : null} */}
+                <TouchableOpacity onPress={onClose} style={styles.content}>
+                    {renderAlertIcon}
                     <View style={styles.contentTextWrapper}>
                         <Text numberOfLines={2} style={styles.contentTitle}>
-                            test
+                            {messageType}
                         </Text>
                         <Text numberOfLines={2} style={styles.contentMessage}>
                             {messageText}
@@ -104,12 +134,6 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
             </Animated.View>
         );
     }, [messageText, animatedValue]);
-
-    const style: ViewStyle[] = [styles.container];
-
-    if (messageText) {
-        style.push(styles.containerShown);
-    }
 
     return content;
 };
