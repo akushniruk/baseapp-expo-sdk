@@ -1,3 +1,5 @@
-import * as paletteLight from "./dark.json";
+import * as light from "./light.json";
+import * as dark from "./dark.json";
 
-export const Palette = { ...paletteLight };
+export const LightPalette = { ...light };
+export const DarkPalette = { ...dark };

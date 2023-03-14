@@ -4,41 +4,18 @@ import { setValueStorage, getValueStorage } from "./useMMKVStorage";
 
 export const useTheme = () => {
     const colorScheme = Appearance.getColorScheme();
-    setValueStorage("postIndex", "test123");
+    const defaultTheme = getValueStorage("theme") || colorScheme;
+    const [theme, setTheme] = useState<string>(defaultTheme || "light");
 
-    const [theme, setTheme] = useState("light");
+    const setNewTheme = useCallback(() => {
+        console.log("test");
+        setTheme(theme === "dark" ? "light" : "dark");
+    }, [theme]);
 
-    console.log("colorScheme", colorScheme);
-    console.log(getValueStorage("postIndex"));
-    // const setNewTheme = useCallback(
-    //     () => setTheme(theme === "dark" ? "light" : "dark"),
-    //     [theme]
-    // );
+    useEffect(() => {
+        setValueStorage("theme", theme);
+        // window.localStorage.setItem("tradingview.current_theme.name", theme);
+    }, [theme]);
 
-    // const colorTheme = theme === "dark" ? "light" : "dark";
-
-    // useEffect(() => {
-    // setTheme(
-    //     window.localStorage.theme ? window.localStorage.theme : "light"
-    // );
-    // }, []);
-
-    // useEffect(() => {
-    // const root = window.document.body;
-    // root.classList.remove(colorTheme);
-    // root.classList.add(theme);
-    // if (isBrowser()) {
-    //     dispatch(changeTheme(theme));
-    //     dispatch(toggleChartRebuild());
-    //     window.localStorage.setItem("theme", theme);
-    //     window.localStorage.setItem(
-    //         "tradingview.current_theme.name",
-    //         theme
-    //     );
-    // }
-    // }, [theme]);
-
-    return [theme, setTheme];
+    return [theme, setNewTheme];
 };
-
-export default useTheme;

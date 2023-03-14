@@ -1,8 +1,8 @@
 import React, { createRef, useState, FC, useCallback } from "react";
 import { View, TextInput, Text, Pressable, StyleSheet } from "react-native";
-import { Palette } from "../../styles/themes/defaultPalette";
 import * as Clipboard from "expo-clipboard";
 import { SecondaryButton } from "../secondaryButton";
+import { getPalette } from "../../libs/getPalette";
 
 interface OTPInputProps {
     code: string;
@@ -108,8 +108,9 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     splitBoxes: {
-        backgroundColor: Palette.Background["input-background-color"].value,
-        borderColor: Palette.Controls["neutral-control-color"][70].value,
+        backgroundColor:
+            getPalette().Background["input-background-color"].value,
+        borderColor: getPalette().Controls["neutral-control-color"][70].value,
         borderWidth: 2,
         borderRadius: 4,
         marginLeft: 6,
@@ -121,11 +122,12 @@ const styles = StyleSheet.create({
     splitBoxText: {
         fontSize: 14,
         textAlign: "center",
-        color: Palette["text-color"][50].value,
+        color: getPalette()["text-color"][50].value,
     },
     splitBoxesFocused: {
-        borderColor: Palette.Controls["primary-cta-color"][60].value,
-        backgroundColor: Palette.Background["input-background-color"].value,
-        color: Palette["text-color"][100].value,
+        borderColor: getPalette().Controls["primary-cta-color"][60].value,
+        backgroundColor:
+            getPalette().Background["input-background-color"].value,
+        color: getPalette()["text-color"][100].value,
     },
 });

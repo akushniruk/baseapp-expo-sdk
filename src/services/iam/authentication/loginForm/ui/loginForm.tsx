@@ -10,13 +10,13 @@ import {
 } from "react-hook-form";
 import { LoginType, LoginResolver, loginSchema } from "../libs/schema";
 import { Input, Button } from "../../../../../shared";
-import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link, useLinkTo } from "@react-navigation/native";
 import { useAppSelector } from "../../../../../shared/providers/redux/lib/useAppSelector";
 import { RootState } from "../../../../../shared/providers/redux/model/store";
 import { TwoFactorAuthForm } from "./twoFactorAuthForm";
 import { LoginFormProps } from "./interface";
+import { getPalette } from "../../../../../shared/libs/getPalette";
 
 export const LoginForm: FC<LoginFormProps> = ({
     redirectToOnLogin = "/Home",
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
     },
     error: {
         marginTop: 4,
-        color: Palette.System["system-red"][60].value,
+        color: getPalette().System["system-red"][60].value,
     },
     forgotPasswordLinkWrapper: {
         display: "flex",
@@ -186,6 +186,6 @@ const styles = StyleSheet.create({
     },
     registerLink: {
         marginTop: 16,
-        color: Palette.Controls["primary-cta-color"][60].value,
+        color: getPalette().Controls["primary-cta-color"][60].value,
     },
 });

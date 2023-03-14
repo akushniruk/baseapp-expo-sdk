@@ -1,9 +1,13 @@
 import React, { FC } from "react";
-import { Text } from "react-native";
-import useTheme from "../../hooks/useTheme";
-// import { Palette } from "../../styles/themes/defaultPalette";
+import { Text, Pressable } from "react-native";
+import { useTheme } from "../../hooks/useTheme";
 
 export const ThemeSwitcher: FC = () => {
-    useTheme();
-    return <Text>test</Text>;
+    const [theme, setNewTheme] = useTheme();
+
+    return (
+        <Pressable onPress={setNewTheme}>
+            <Text>{`Current theme: ${theme}`}</Text>
+        </Pressable>
+    );
 };

@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from "react";
 import { View, StyleSheet, Pressable, Text } from "react-native";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
+import { getPalette } from "../../../../../shared/libs/getPalette";
 import { useAppDispatch } from "../../../../../shared/providers/redux/lib/useAppDispatch";
-import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import { Button } from "../../../../../shared/ui/button";
 import { OTPInput } from "../../../../../shared/ui/otpInput";
 import { setRequire2FA } from "../../../../user/model/userSlice";
@@ -60,6 +60,6 @@ const styles = StyleSheet.create({
     backToLoginLink: {
         marginTop: 16,
         fontWeight: "bold",
-        color: Palette["text-color"][100].value,
+        color: getPalette()["text-color"][100].value,
     },
 });

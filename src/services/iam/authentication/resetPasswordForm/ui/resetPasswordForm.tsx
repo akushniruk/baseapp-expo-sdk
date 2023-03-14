@@ -14,9 +14,9 @@ import {
     resetPasswordSchema,
 } from "../libs/schema";
 import { Input, Button } from "../../../../../shared";
-import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
+import { getPalette } from "../../../../../shared/libs/getPalette";
 
 export const ResetPasswordForm: FC = () => {
     const schemaInputFields: string[] = resetPasswordSchema.keyof()._def.values;
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     },
     error: {
         marginTop: 4,
-        color: Palette.System["system-red"][60].value,
+        color: getPalette().System["system-red"][60].value,
     },
     forgotPasswordLinkWrapper: {
         display: "flex",
@@ -119,6 +119,6 @@ const styles = StyleSheet.create({
     backToLoginLink: {
         marginTop: 16,
         fontWeight: "bold",
-        color: Palette["text-color"][100].value,
+        color: getPalette()["text-color"][100].value,
     },
 });

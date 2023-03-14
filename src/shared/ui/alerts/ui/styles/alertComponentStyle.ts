@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { Palette } from "../../../../styles/themes/defaultPalette";
+import { getPalette } from "../../../../libs/getPalette";
 
 export const styles = StyleSheet.create({
     container: {
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        backgroundColor: Palette.Background["body-background-color"].value,
+        backgroundColor: getPalette().Background["body-background-color"].value,
         maxWidth: 400,
         marginHorizontal: 15,
         paddingHorizontal: 15,
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
     },
     contentMessage: {
         fontSize: 13,
-        color: Palette["text-color"][100].value,
+        color: getPalette()["text-color"][100].value,
     },
     iconWrapper: {
         alignItems: "flex-start",

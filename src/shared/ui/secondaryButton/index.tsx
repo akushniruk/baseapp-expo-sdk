@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
-import { Palette } from "../../styles/themes/defaultPalette";
+import { getPalette } from "../../libs/getPalette";
 
 interface SecondaryButtonProps extends PressableProps {
     title: string;
@@ -30,11 +30,12 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: Palette.Controls["neutral-control-color"][30].value,
+        backgroundColor:
+            getPalette().Controls["neutral-control-color"][30].value,
     },
     title: {
         fontSize: 12,
         backgroundColor:
-            Palette.Controls["neutral-control-layer-color"][80].value,
+            getPalette().Controls["neutral-control-layer-color"][80].value,
     },
 });

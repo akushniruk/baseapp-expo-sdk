@@ -1,12 +1,12 @@
 import React, { FC, useCallback } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { Palette } from "../../../../../shared/styles/themes/defaultPalette";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 import {
     ResendVerificationCodeType,
     useResendVerificationCodeMutation,
 } from "../api/verifyEmailFormApi";
+import { getPalette } from "../../../../../shared/libs/getPalette";
 
 export const VerifyEmailForm: FC = () => {
     const [resendVerificationCode] = useResendVerificationCodeMutation();
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     infoText: {
         maxWidth: 456,
-        color: Palette["text-color"][70].value,
+        color: getPalette()["text-color"][70].value,
     },
     resendConfirmWrapper: {
         marginTop: 24,
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     resendConfirmButton: {
-        color: Palette["text-color"][100].value,
+        color: getPalette()["text-color"][100].value,
         textDecorationLine: "underline",
     },
     backToLoginLinkWrapper: {
@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
     backToLoginLink: {
         marginTop: 16,
         fontWeight: "bold",
-        color: Palette["text-color"][100].value,
+        color: getPalette()["text-color"][100].value,
     },
 });
