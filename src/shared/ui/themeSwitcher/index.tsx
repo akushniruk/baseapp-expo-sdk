@@ -1,12 +1,17 @@
 import React, { FC } from "react";
-import { Text, Pressable } from "react-native";
-import { useTheme } from "../../hooks/useTheme";
+import { Text, Pressable, GestureResponderEvent } from "react-native";
+import { useThemeContext } from "../../hooks/useThemeContext";
 
 export const ThemeSwitcher: FC = () => {
-    const [theme, setNewTheme] = useTheme();
+    const { theme, setTheme } = useThemeContext();
 
+    console.log("theme");
     return (
-        <Pressable onPress={setNewTheme}>
+        <Pressable
+            onPress={(event: GestureResponderEvent) =>
+                setTheme(theme === "dark" ? "light" : "dark")
+            }
+        >
             <Text>{`Current theme: ${theme}`}</Text>
         </Pressable>
     );
