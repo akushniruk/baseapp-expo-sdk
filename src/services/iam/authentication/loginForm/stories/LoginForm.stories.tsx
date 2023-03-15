@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { LoginForm } from "../ui/loginForm";
-import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
+import { CoreProvider } from "../../../../../shared/providers/core";
 
 const LoginFormMeta: ComponentMeta<typeof LoginForm> = {
     title: "Services/Authentication/LoginForm",
@@ -13,7 +13,7 @@ export default LoginFormMeta;
 type LoginFormStory = ComponentStory<typeof LoginForm>;
 
 export const Basic: LoginFormStory = (args) => (
-    <ReduxProvider>
+    <CoreProvider>
         <LoginForm />
-    </ReduxProvider>
+    </CoreProvider>
 );

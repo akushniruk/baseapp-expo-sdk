@@ -1,6 +1,7 @@
-import React, { FC } from "react";
-import { Pressable, PressableProps, StyleSheet, Text } from "react-native";
-import { getPalette } from "../../libs/getPalette";
+import React, { FC, useMemo } from "react";
+import { Pressable, PressableProps, Text } from "react-native";
+import { useThemeContext } from "../../hooks/useThemeContext";
+import { secondaryButtonStyles } from "./secondaryButton.styles";
 
 interface SecondaryButtonProps extends PressableProps {
     title: string;
@@ -11,6 +12,9 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
     testID,
     onPress,
 }: SecondaryButtonProps) => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => secondaryButtonStyles(theme), [theme]);
+
     return (
         <Pressable
             style={styles.secondaryButton}
@@ -21,21 +25,3 @@ export const SecondaryButton: FC<SecondaryButtonProps> = ({
         </Pressable>
     );
 };
-
-const styles = StyleSheet.create({
-    secondaryButton: {
-        paddingHorizontal: 5,
-        paddingVertical: 5,
-        borderRadius: 4,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor:
-            getPalette().Controls["neutral-control-color"][30].value,
-    },
-    title: {
-        fontSize: 12,
-        backgroundColor:
-            getPalette().Controls["neutral-control-layer-color"][80].value,
-    },
-});

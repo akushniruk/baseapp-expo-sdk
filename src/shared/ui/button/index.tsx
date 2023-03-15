@@ -1,18 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useMemo } from "react";
 import {
     Pressable,
     ActivityIndicator,
     PressableProps,
-    StyleSheet,
     Text,
 } from "react-native";
-import { Palette } from "../../styles/themes/defaultPalette";
-import { buttonStyles, StylesType } from "./styles";
+import { useThemeContext } from "../../hooks/useThemeContext";
+import { buttonStyles } from "./button.styles";
+import { getPalette } from "../../libs/getPalette";
 
 export interface ButtonProps extends PressableProps {
     title: string;
     isLoading: boolean;
-    styles?: StylesType;
 }
 
 export const Button: FC<ButtonProps> = ({
@@ -20,9 +19,11 @@ export const Button: FC<ButtonProps> = ({
     isLoading,
     testID,
     disabled,
-    styles = buttonStyles,
     onPress,
 }: ButtonProps) => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => buttonStyles(theme), [theme]);
+
     return (
         <Pressable
             style={
@@ -36,7 +37,11 @@ export const Button: FC<ButtonProps> = ({
         >
             {isLoading ? (
                 <ActivityIndicator
-                    color={`${Palette.Controls["primary-cta-layer-color"][60].value}`}
+                    color={`${
+                        getPalette(theme).Controls[
+                            "primary-cta-layer-color"
+                        ][60].value
+                    }`}
                 />
             ) : (
                 <Text

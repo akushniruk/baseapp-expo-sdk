@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useMemo } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { useForgotPasswordMutation } from "../api/forgotPasswordApi";
 import {
     Controller,
@@ -16,9 +16,13 @@ import {
 import { Input, Button } from "../../../../../shared";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
-import { getPalette } from "../../../../../shared/libs/getPalette";
+import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
+import { forgotPasswordFormStyles } from "./forgotPasswordForm.style";
 
 export const ForgotPasswordForm: FC = () => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => forgotPasswordFormStyles(theme), [theme]);
+
     const schemaInputFields: string[] =
         forgotPasswordSchema.keyof()._def.values;
 
@@ -105,22 +109,3 @@ export const ForgotPasswordForm: FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    inputWrapper: {
-        marginBottom: 16,
-    },
-    error: {
-        marginTop: 4,
-        color: getPalette().System["system-red"][60].value,
-    },
-    backToLoginLinkWrapper: {
-        display: "flex",
-        alignItems: "center",
-    },
-    backToLoginLink: {
-        marginTop: 16,
-        fontWeight: "bold",
-        color: getPalette()["text-color"][100].value,
-    },
-});

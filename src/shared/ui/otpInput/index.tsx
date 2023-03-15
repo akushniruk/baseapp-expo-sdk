@@ -1,8 +1,9 @@
-import React, { createRef, useState, FC, useCallback } from "react";
-import { View, TextInput, Text, Pressable, StyleSheet } from "react-native";
+import React, { createRef, useState, FC, useCallback, useMemo } from "react";
+import { View, TextInput, Text, Pressable } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { SecondaryButton } from "../secondaryButton";
-import { getPalette } from "../../libs/getPalette";
+import { useThemeContext } from "../../hooks/useThemeContext";
+import { otpInputStyles } from "./otpInput.styles";
 
 interface OTPInputProps {
     code: string;
@@ -17,6 +18,9 @@ export const OTPInput: FC<OTPInputProps> = ({
     maximumLength,
     emptyInputSymbol = "X",
 }: OTPInputProps) => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => otpInputStyles(theme), [theme]);
+
     const boxArray: number[] = new Array(maximumLength).fill(0);
     const inputRef = createRef<TextInput>();
 
@@ -88,46 +92,3 @@ export const OTPInput: FC<OTPInputProps> = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    otpInputContainer: {
-        marginBottom: 24,
-    },
-    boxAndPastContainer: {
-        flexDirection: "row",
-        maxHeight: 40,
-        justifyContent: "space-between",
-    },
-    textInputHidden: {
-        borderColor: "transparent",
-        color: "transparent",
-        position: "absolute",
-        opacity: 0,
-    },
-    splitOTPBoxesContainer: {
-        flexDirection: "row",
-    },
-    splitBoxes: {
-        backgroundColor:
-            getPalette().Background["input-background-color"].value,
-        borderColor: getPalette().Controls["neutral-control-color"][70].value,
-        borderWidth: 2,
-        borderRadius: 4,
-        marginLeft: 6,
-        alignItems: "center",
-        justifyContent: "center",
-        minWidth: 40,
-        minHeight: 40,
-    },
-    splitBoxText: {
-        fontSize: 14,
-        textAlign: "center",
-        color: getPalette()["text-color"][50].value,
-    },
-    splitBoxesFocused: {
-        borderColor: getPalette().Controls["primary-cta-color"][60].value,
-        backgroundColor:
-            getPalette().Background["input-background-color"].value,
-        color: getPalette()["text-color"][100].value,
-    },
-});

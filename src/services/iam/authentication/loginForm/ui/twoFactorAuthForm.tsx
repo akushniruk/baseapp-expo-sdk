@@ -1,11 +1,12 @@
-import React, { FC, useCallback } from "react";
-import { View, StyleSheet, Pressable, Text } from "react-native";
+import React, { FC, useCallback, useMemo } from "react";
+import { View, Pressable, Text } from "react-native";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
-import { getPalette } from "../../../../../shared/libs/getPalette";
 import { useAppDispatch } from "../../../../../shared/providers/redux/lib/useAppDispatch";
 import { Button } from "../../../../../shared/ui/button";
 import { OTPInput } from "../../../../../shared/ui/otpInput";
 import { setRequire2FA } from "../../../../user/model/userSlice";
+import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
+import { twoFactorAuthFormStyles } from "./twoFactorAuthFrom.styles";
 
 interface TwoFactorAuthFormProps {
     code: string;
@@ -22,6 +23,9 @@ export const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
     onChange,
     onSubmit,
 }) => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => twoFactorAuthFormStyles(theme), [theme]);
+
     const dispatch = useAppDispatch();
 
     const changeRequire2FA = useCallback(() => {
@@ -48,18 +52,3 @@ export const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    twoFactorAuthFormContainer: {
-        maxWidth: 456,
-    },
-    backToLoginLinkWrapper: {
-        display: "flex",
-        alignItems: "center",
-    },
-    backToLoginLink: {
-        marginTop: 16,
-        fontWeight: "bold",
-        color: getPalette()["text-color"][100].value,
-    },
-});

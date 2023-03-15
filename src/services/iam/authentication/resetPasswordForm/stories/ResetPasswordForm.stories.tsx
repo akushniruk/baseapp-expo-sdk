@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { ResetPasswordForm } from "../ui/resetPasswordForm";
-import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
+import { CoreProvider } from "../../../../../shared/providers/core";
 
 const ResetPasswordFormMeta: ComponentMeta<typeof ResetPasswordForm> = {
     title: "Services/Authentication/ResetPasswordForm",
@@ -13,7 +13,7 @@ export default ResetPasswordFormMeta;
 type ResetPasswordFormStory = ComponentStory<typeof ResetPasswordForm>;
 
 export const Basic: ResetPasswordFormStory = (args) => (
-    <ReduxProvider>
+    <CoreProvider>
         <ResetPasswordForm />
-    </ReduxProvider>
+    </CoreProvider>
 );

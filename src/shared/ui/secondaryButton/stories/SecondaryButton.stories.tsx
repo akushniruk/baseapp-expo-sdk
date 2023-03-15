@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { SecondaryButton } from "..";
+import { CoreProvider } from "../../../providers/core";
 
 const SecondaryButtonMeta: ComponentMeta<typeof SecondaryButton> = {
     title: "Shared/UI/SecondaryButton",
@@ -12,5 +13,7 @@ export default SecondaryButtonMeta;
 type SecondaryButtonStory = ComponentStory<typeof SecondaryButton>;
 
 export const Basic: SecondaryButtonStory = (args) => (
-    <SecondaryButton title="default" />
+    <CoreProvider>
+        <SecondaryButton title="default" />
+    </CoreProvider>
 );

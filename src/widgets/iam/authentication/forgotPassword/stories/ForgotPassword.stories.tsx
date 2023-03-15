@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { ForgotPassword } from "../ui/forgotPassword";
-import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
+import { CoreProvider } from "../../../../../shared/providers/core";
 
 const ForgotPasswordMeta: ComponentMeta<typeof ForgotPassword> = {
     title: "Widgets/Authentication/ForgotPassword",
@@ -13,7 +13,7 @@ export default ForgotPasswordMeta;
 type ForgotPasswordStory = ComponentStory<typeof ForgotPassword>;
 
 export const Basic: ForgotPasswordStory = (args) => (
-    <ReduxProvider>
+    <CoreProvider>
         <ForgotPassword />
-    </ReduxProvider>
+    </CoreProvider>
 );

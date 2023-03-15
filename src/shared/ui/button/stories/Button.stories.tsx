@@ -1,6 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { Button } from "..";
+import { CoreProvider } from "../../../providers/core";
 
 const ButtonMeta: ComponentMeta<typeof Button> = {
     title: "Shared/UI/Button",
@@ -12,5 +13,7 @@ export default ButtonMeta;
 type ButtonStory = ComponentStory<typeof Button>;
 
 export const Basic: ButtonStory = (args) => (
-    <Button title="default" isLoading={false} />
+    <CoreProvider>
+        <Button title="default" isLoading={false} />
+    </CoreProvider>
 );

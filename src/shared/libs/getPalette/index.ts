@@ -1,9 +1,6 @@
-import { getValueStorage } from "../../hooks/useMMKVStorage";
 import { DarkPalette, LightPalette } from "../../styles/themes/defaultPalette";
 
-// TODO: rework to ThemeProvider
-export const getPalette = () => {
-    const currentTheme = getValueStorage("theme");
-
-    return currentTheme === "dark" ? DarkPalette : LightPalette;
-};
+export const getPalette = (theme: string) =>
+    // TODO: palette should be stored in context;
+    // it will allows us to dynamic change palette color from customer application
+    theme === "dark" ? DarkPalette : LightPalette;

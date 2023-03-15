@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
 import { Register } from "../ui/register";
-import { ReduxProvider } from "../../../../../shared/providers/redux/redux";
+import { CoreProvider } from "../../../../../shared/providers/core";
 
 const RegisterMeta: ComponentMeta<typeof Register> = {
     title: "Widgets/Authentication/Register",
@@ -13,7 +13,7 @@ export default RegisterMeta;
 type RegisterStory = ComponentStory<typeof Register>;
 
 export const Basic: RegisterStory = (args) => (
-    <ReduxProvider>
+    <CoreProvider>
         <Register />
-    </ReduxProvider>
+    </CoreProvider>
 );

@@ -5,7 +5,6 @@ import { useThemeContext } from "../../hooks/useThemeContext";
 export const ThemeSwitcher: FC = () => {
     const { theme, setTheme } = useThemeContext();
 
-    console.log("theme");
     return (
         <Pressable
             onPress={(event: GestureResponderEvent) =>

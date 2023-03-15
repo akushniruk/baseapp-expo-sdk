@@ -1,12 +1,7 @@
-import React, { FC } from "react";
-import {
-    TextInput,
-    Text,
-    TextInputProps,
-    StyleSheet,
-    View,
-} from "react-native";
-import { getPalette } from "../../libs/getPalette";
+import React, { FC, useMemo } from "react";
+import { TextInput, Text, TextInputProps, View } from "react-native";
+import { useThemeContext } from "../../hooks/useThemeContext";
+import { inputStyles } from "./input.styles";
 
 interface InputProps extends TextInputProps {
     label: string;
@@ -22,6 +17,9 @@ export const Input: FC<InputProps> = ({
     onBlur,
     onChangeText,
 }: InputProps) => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => inputStyles(theme), [theme]);
+
     return (
         <View style={styles.fieldWrapper}>
             <Text style={styles.label}>{label}</Text>
@@ -38,22 +36,3 @@ export const Input: FC<InputProps> = ({
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    fieldWrapper: {},
-    label: {
-        textTransform: "capitalize",
-        marginBottom: 4,
-        color: getPalette()["text-color"][70].value,
-    },
-    input: {
-        color: getPalette()["text-color"][90].value,
-        padding: 12,
-        fontSize: 16,
-        borderColor: getPalette()["text-color"][20].value,
-        borderWidth: 1,
-        borderRadius: 4,
-        backgroundColor:
-            getPalette().Background["input-background-color"].value,
-    },
-});

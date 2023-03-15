@@ -1,14 +1,18 @@
-import React, { FC, useCallback } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import React, { FC, useCallback, useMemo } from "react";
+import { View, Text, Pressable } from "react-native";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
 import {
     ResendVerificationCodeType,
     useResendVerificationCodeMutation,
 } from "../api/verifyEmailFormApi";
-import { getPalette } from "../../../../../shared/libs/getPalette";
+import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
+import { verifyEmailFormStyles } from "./verifyEmailForm.styles";
 
 export const VerifyEmailForm: FC = () => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => verifyEmailFormStyles(theme), [theme]);
+
     const [resendVerificationCode] = useResendVerificationCodeMutation();
 
     const onPress = useCallback(() => {
@@ -40,31 +44,3 @@ export const VerifyEmailForm: FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    verifyEmailForm: {
-        maxWidth: 456,
-    },
-    infoText: {
-        maxWidth: 456,
-        color: getPalette()["text-color"][70].value,
-    },
-    resendConfirmWrapper: {
-        marginTop: 24,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    resendConfirmButton: {
-        color: getPalette()["text-color"][100].value,
-        textDecorationLine: "underline",
-    },
-    backToLoginLinkWrapper: {
-        display: "flex",
-        alignItems: "center",
-    },
-    backToLoginLink: {
-        marginTop: 16,
-        fontWeight: "bold",
-        color: getPalette()["text-color"][100].value,
-    },
-});

@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useMemo } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { useRegisterUserMutation } from "../api/registerApi";
 import {
     Controller,
@@ -12,9 +12,13 @@ import { RegisterType, RegisterResolver, registerSchema } from "../libs/schema";
 import { Input, Button } from "../../../../../shared";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
-import { getPalette } from "../../../../../shared/libs/getPalette";
+import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
+import { registerFormStyles } from "./registerForm.styles";
 
 export const RegisterForm: FC = () => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => registerFormStyles(theme), [theme]);
+
     const schemaInputFields: string[] = registerSchema.keyof()._def.values;
 
     const {
@@ -108,22 +112,3 @@ export const RegisterForm: FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    inputWrapper: {
-        marginBottom: 16,
-    },
-    error: {
-        marginTop: 4,
-        color: getPalette().System["system-red"][60].value,
-    },
-    backToLoginLinkWrapper: {
-        display: "flex",
-        alignItems: "center",
-    },
-    backToLoginLink: {
-        marginTop: 16,
-        fontWeight: "bold",
-        color: getPalette()["text-color"][100].value,
-    },
-});

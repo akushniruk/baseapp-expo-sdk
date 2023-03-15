@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useMemo } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { useResetPasswordMutation } from "../api/resetPasswordApi";
 import {
     Controller,
@@ -16,9 +16,13 @@ import {
 import { Input, Button } from "../../../../../shared";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
-import { getPalette } from "../../../../../shared/libs/getPalette";
+import { resetPasswordFormStyles } from "./resetPasswordForm.styles";
+import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
 
 export const ResetPasswordForm: FC = () => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => resetPasswordFormStyles(theme), [theme]);
+
     const schemaInputFields: string[] = resetPasswordSchema.keyof()._def.values;
 
     const {
@@ -96,29 +100,3 @@ export const ResetPasswordForm: FC = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    inputWrapper: {
-        marginBottom: 16,
-    },
-    error: {
-        marginTop: 4,
-        color: getPalette().System["system-red"][60].value,
-    },
-    forgotPasswordLinkWrapper: {
-        display: "flex",
-        alignItems: "flex-end",
-    },
-    forgotPasswordLink: {
-        marginTop: 4,
-    },
-    backToLoginLinkWrapper: {
-        display: "flex",
-        alignItems: "center",
-    },
-    backToLoginLink: {
-        marginTop: 16,
-        fontWeight: "bold",
-        color: getPalette()["text-color"][100].value,
-    },
-});

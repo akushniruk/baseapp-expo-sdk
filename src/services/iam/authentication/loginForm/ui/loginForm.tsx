@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text } from "react-native";
 import { useLoginUserMutation } from "../api/loginApi";
 import {
     Controller,
@@ -16,12 +16,16 @@ import { useAppSelector } from "../../../../../shared/providers/redux/lib/useApp
 import { RootState } from "../../../../../shared/providers/redux/model/store";
 import { TwoFactorAuthForm } from "./twoFactorAuthForm";
 import { LoginFormProps } from "./interface";
-import { getPalette } from "../../../../../shared/libs/getPalette";
+import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
+import { loginFormStyles } from "./loginForm.styles";
 
 export const LoginForm: FC<LoginFormProps> = ({
     redirectToOnLogin = "/Home",
 }) => {
     const linkTo = useLinkTo();
+
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => loginFormStyles(theme), [theme]);
 
     const schemaInputFields: string[] = loginSchema.keyof()._def.values;
     const require2FA: boolean = useAppSelector(
@@ -164,28 +168,3 @@ export const LoginForm: FC<LoginFormProps> = ({
         </>
     );
 };
-
-const styles = StyleSheet.create({
-    inputWrapper: {
-        marginBottom: 16,
-    },
-    error: {
-        marginTop: 4,
-        color: getPalette().System["system-red"][60].value,
-    },
-    forgotPasswordLinkWrapper: {
-        display: "flex",
-        alignItems: "flex-end",
-    },
-    forgotPasswordLink: {
-        marginTop: 4,
-    },
-    registerLinkWrapper: {
-        display: "flex",
-        alignItems: "flex-start",
-    },
-    registerLink: {
-        marginTop: 16,
-        color: getPalette().Controls["primary-cta-color"][60].value,
-    },
-});

@@ -1,6 +1,5 @@
 import * as React from "react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { styles } from "./styles/alertComponentStyle";
 import {
     TouchableOpacity,
     View,
@@ -10,6 +9,8 @@ import {
     Platform,
     Image,
 } from "react-native";
+import { useThemeContext } from "../../../hooks/useThemeContext";
+import { AlertComponentStyles } from "./alertComponent.styles";
 
 type AlertComponentType = "success" | "error" | "info" | "warn";
 
@@ -28,6 +29,9 @@ export const AlertComponent: React.FC<AlertComponentProps> = ({
     alertDisplayTime = "3000",
     onClose,
 }: AlertComponentProps) => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => AlertComponentStyles(theme), [theme]);
+
     const [animatedValue] = useState(new Animated.Value(0));
     const hideTimer = useRef<number | undefined>();
 
