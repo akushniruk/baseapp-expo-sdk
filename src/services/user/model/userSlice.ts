@@ -1,13 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../api/types";
+import { Member, User } from "../api/types";
 
 interface UserState {
     profile: User | null;
+    peatioMember: Member | null;
     require2FA: boolean;
 }
 
 const initialState: UserState = {
     profile: null,
+    peatioMember: null,
     require2FA: false,
 };
 
@@ -15,11 +17,14 @@ export const user = createSlice({
     initialState,
     name: "user",
     reducers: {
+        setPeatioMember: (state: UserState, action: PayloadAction<Member>) => {
+            state.peatioMember = action.payload;
+        },
         logout: () => initialState,
-        setProfile: (state, action: PayloadAction<User>) => {
+        setProfile: (state: UserState, action: PayloadAction<User>) => {
             state.profile = action.payload;
         },
-        setRequire2FA: (state, action: PayloadAction<boolean>) => {
+        setRequire2FA: (state: UserState, action: PayloadAction<boolean>) => {
             state.require2FA = action.payload;
         },
     },
@@ -27,4 +32,5 @@ export const user = createSlice({
 
 export default user.reducer;
 
-export const { logout, setProfile, setRequire2FA } = user.actions;
+export const { logout, setProfile, setRequire2FA, setPeatioMember } =
+    user.actions;

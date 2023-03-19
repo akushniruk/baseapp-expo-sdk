@@ -43,3 +43,10 @@ export interface Label {
     updated_at: string;
     value: string;
 }
+
+export interface Member {
+    uid: string;
+    email: string;
+    group: string;
+    beneficiaries_whitelisting: boolean;
+}

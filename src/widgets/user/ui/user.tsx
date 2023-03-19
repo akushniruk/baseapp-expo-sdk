@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useState } from "react";
 import {
     StyleSheet,
     ScrollView,
@@ -6,6 +6,7 @@ import {
     SafeAreaView,
     RefreshControl,
 } from "react-native";
+import { UserInfo } from "../../../services/user";
 
 export const User: FC = () => {
     const [refreshing, setRefreshing] = useState(false);
@@ -35,8 +36,8 @@ export const User: FC = () => {
                     />
                 }
             >
-                <Text>User Info</Text>
-                <Text>Referal</Text>
+                <UserInfo />
+                <Text>Referral</Text>
                 <Text>Security</Text>
                 <Text>Clear Cache 40Mb</Text>
                 <Text>Share app</Text>

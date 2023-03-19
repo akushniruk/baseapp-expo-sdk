@@ -53,7 +53,8 @@ export const LoginForm: FC<LoginFormProps> = ({
         if (isSuccess) {
             reset({ email: "", password: "" });
             // TODO: handle Storybook
-            linkTo(redirectToOnLogin);
+            process.env.REACT_APP_MODE !== "storybook" &&
+                linkTo(redirectToOnLogin);
         }
     }, [isSuccess]);
 
