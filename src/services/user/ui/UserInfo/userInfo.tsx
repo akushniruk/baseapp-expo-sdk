@@ -1,17 +1,26 @@
 import React, { FC, useMemo } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { useAppSelector } from "../../../../shared";
+import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { useMemberMeQuery } from "../../api/peatioMember";
-import { Label, User } from "../../api/types";
+import { Label, Member, User } from "../../api/types";
+import { userInfoFormStyles } from "./userInfo.styles";
 
+// TODO: get from config
 const kycLabels = ["email", "phone", "profile", "document", "address"];
 
 export const UserInfo: FC = () => {
     useMemberMeQuery();
-    const user: User = useAppSelector((state: RootState) => state.user.profile);
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => userInfoFormStyles(theme), [theme]);
 
-    const getVerificationLabel = useMemo(() => {
+    const user: User = useAppSelector((state: RootState) => state.user.profile);
+    const peatioMember: Member = useAppSelector(
+        (state: RootState) => state.user.peatioMember
+    );
+
+    const getCurrentUserVerificationStatus = useMemo(() => {
         if (user?.labels && kycLabels) {
             if (user?.labels.length === kycLabels.length) {
                 const verifiedLabels = user?.labels.map(
@@ -41,25 +50,40 @@ export const UserInfo: FC = () => {
 
         return null;
     }, [user?.level]);
-    console.log(process.env.REACT_APP_MODE);
 
     return (
-        <View>
-            <View>
-                <Text>image</Text>
-                <View>
-                    <Text>{user?.username || user?.uid}</Text>
-                    <View>
-                        <Text>{getVerificationLabel}</Text>
-                        <Text>Fee group</Text>
+        <View style={styles.container}>
+            <View style={styles.infoWrapper}>
+                <Image
+                    style={styles.icon}
+                    source={require("../../../../assets/profile.png")}
+                />
+                <View style={styles.infoContainer}>
+                    <Text style={styles.username}>
+                        {user?.username || user?.uid}
+                    </Text>
+                    <View style={styles.details}>
+                        <View style={styles.labelWrapper}>
+                            <Text style={styles.labelIcon}>i</Text>
+                            <Text style={styles.label}>
+                                {getCurrentUserVerificationStatus}
+                            </Text>
+                        </View>
+                        <View
+                            style={[
+                                styles.labelWrapper,
+                                styles.feeGroupBackground,
+                            ]}
+                        >
+                            <Text style={styles.labelIcon}>i</Text>
+                            <Text style={styles.feeGroupText}>
+                                {peatioMember?.group}
+                            </Text>
+                        </View>
                     </View>
                 </View>
             </View>
-            <Text>icon</Text>
+            <Text style={styles.arrowRight}>icon</Text>
         </View>
     );
 };
-
-//https://yellowsoftwareexchange.uat.opendax.app/api/v2/peatio/account/members/me
-// user fee group
-// {"uid":"ID3F850D07D2","email":"akushniruk@openware.com","group":"user-0","beneficiaries_whitelisting":true}
