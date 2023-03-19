@@ -100,11 +100,13 @@ const getStories = () => {
     "./src/widgets/iam/authentication/register/stories/Register.stories.tsx": require("../src/widgets/iam/authentication/register/stories/Register.stories.tsx"),
     "./src/widgets/iam/authentication/resetPassword/stories/ResetPassword.stories.tsx": require("../src/widgets/iam/authentication/resetPassword/stories/ResetPassword.stories.tsx"),
     "./src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx": require("../src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx"),
+    "./src/widgets/user/stories/User.stories.tsx": require("../src/widgets/user/stories/User.stories.tsx"),
     "./src/widgets/iam/authentication/forgotPassword/stories/ForgotPassword.stories.tsx": require("../src/widgets/iam/authentication/forgotPassword/stories/ForgotPassword.stories.tsx"),
     "./src/widgets/iam/authentication/login/stories/Login.stories.tsx": require("../src/widgets/iam/authentication/login/stories/Login.stories.tsx"),
     "./src/widgets/iam/authentication/register/stories/Register.stories.tsx": require("../src/widgets/iam/authentication/register/stories/Register.stories.tsx"),
     "./src/widgets/iam/authentication/resetPassword/stories/ResetPassword.stories.tsx": require("../src/widgets/iam/authentication/resetPassword/stories/ResetPassword.stories.tsx"),
     "./src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx": require("../src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx"),
+    "./src/widgets/user/stories/User.stories.tsx": require("../src/widgets/user/stories/User.stories.tsx"),
   };
 };
 
