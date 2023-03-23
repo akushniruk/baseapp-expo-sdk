@@ -1,10 +1,10 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { setPeatioMember } from "../model/userSlice";
-import { User } from "./types";
+import { Member } from "./types";
 
 export const memberApi = api.injectEndpoints({
     endpoints: (build) => ({
-        memberMe: build.query<User, void>({
+        memberMe: build.query<Member, void>({
             query: () => ({
                 url: "/api/v2/peatio/account/members/me",
             }),

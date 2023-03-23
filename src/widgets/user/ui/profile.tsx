@@ -1,11 +1,5 @@
 import React, { FC, useCallback, useState } from "react";
-import {
-    StyleSheet,
-    ScrollView,
-    Text,
-    SafeAreaView,
-    RefreshControl,
-} from "react-native";
+import { ScrollView, Text, View, RefreshControl } from "react-native";
 import { Profile } from "../../../services/user";
 
 export const ProfileWidget: FC = () => {
@@ -27,28 +21,14 @@ export const ProfileWidget: FC = () => {
     // 2.4. Share app
 
     return (
-        <SafeAreaView style={styles.container}>
-            <ScrollView
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
-            >
+        <View>
+            <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 <Profile />
                 <Text>Referral</Text>
                 <Text>Security</Text>
                 <Text>Clear Cache 40Mb</Text>
                 <Text>Share app</Text>
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        width: "100%",
-    },
-});

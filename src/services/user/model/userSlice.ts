@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Member, User } from "../api/types";
 
-interface UserState {
+export interface UserState {
     profile: User | null;
     peatioMember: Member | null;
     require2FA: boolean;
 }
 
-const initialState: UserState = {
+export const initialState: UserState = {
     profile: null,
     peatioMember: null,
     require2FA: false,
@@ -29,8 +29,6 @@ export const user = createSlice({
         },
     },
 });
-
-export default user.reducer;
 
 export const { logout, setProfile, setRequire2FA, setPeatioMember } =
     user.actions;
