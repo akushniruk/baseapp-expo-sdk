@@ -1,19 +1,19 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import { User } from "../ui/user";
+import { ProfileWidget } from "../ui/profile";
 import { CoreProvider } from "../../../shared/providers/core";
 
-const UserMeta: ComponentMeta<typeof User> = {
-    title: "Widgets/User",
-    component: User,
+const ProfileWidgetMeta: ComponentMeta<typeof ProfileWidget> = {
+    title: "Widgets/Profile",
+    component: ProfileWidget,
 };
 
-export default UserMeta;
+export default ProfileWidgetMeta;
 
-type UserStory = ComponentStory<typeof User>;
+type ProfileWidgetStory = ComponentStory<typeof ProfileWidget>;
 
-export const Basic: UserStory = (args) => (
+export const Basic: ProfileWidgetStory = (args) => (
     <CoreProvider>
-        <User />
+        <ProfileWidget />
     </CoreProvider>
 );

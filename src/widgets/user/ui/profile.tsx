@@ -6,9 +6,9 @@ import {
     SafeAreaView,
     RefreshControl,
 } from "react-native";
-import { UserInfo } from "../../../services/user";
+import { Profile } from "../../../services/user";
 
-export const User: FC = () => {
+export const ProfileWidget: FC = () => {
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = useCallback(() => {
@@ -36,7 +36,7 @@ export const User: FC = () => {
                     />
                 }
             >
-                <UserInfo />
+                <Profile />
                 <Text>Referral</Text>
                 <Text>Security</Text>
                 <Text>Clear Cache 40Mb</Text>
