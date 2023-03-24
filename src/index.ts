@@ -5,12 +5,19 @@ import { ForgotPasswordForm } from "./services/iam/authentication/forgotPassword
 import { ResetPasswordForm } from "./services/iam/authentication/resetPasswordForm/ui/resetPasswordForm";
 import { VerifyEmailForm } from "./services/iam/authentication/verifyEmailForm/ui/verifyEmailForm";
 
+// Services - User - Profile
+import { Profile } from "./services/user";
+import { ProfileDetails } from "./services/user";
+
 // Widgets - IAM
 import { Login } from "./widgets/iam/authentication/login/ui/login";
 import { Register } from "./widgets/iam/authentication/register/ui/register";
 import { ForgotPassword } from "./widgets/iam/authentication/forgotPassword/ui/forgotPassword";
 import { ResetPassword } from "./widgets/iam/authentication/resetPassword/ui/resetPassword";
 import { VerifyEmail } from "./widgets/iam/authentication/verifyEmail/ui/verifyEmail";
+
+// Widgets - User - Profile
+import { ProfileWidget } from "./widgets/user/ui/profile";
 
 // Shared providers
 import { ReduxProvider } from "./shared/providers/redux/redux";
@@ -44,6 +51,9 @@ export {
     ResetPasswordForm,
     VerifyEmailForm,
     CoreProvider,
+    Profile,
+    ProfileDetails,
+    ProfileWidget,
     withAuth,
 };
 
