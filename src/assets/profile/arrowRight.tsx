@@ -2,9 +2,9 @@ import React, { FC } from "react";
 import Svg, { Path } from "react-native-svg";
 import { IconProps } from "./interface";
 
-export const ArrowRightIcon: FC<IconProps> = ({ color }) => {
+export const ArrowRightIcon: FC<IconProps> = ({ color, width }) => {
     return (
-        <Svg width="8" height="12" viewBox="0 0 8 12" fill="none">
+        <Svg style={{ width }} width="8" height="12" viewBox="0 0 8 12" fill="none">
             <Path
                 fill-rule="evenodd"
                 clip-rule="evenodd"

@@ -11,7 +11,7 @@ import { profileStyles } from "./profile.styles";
 import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
 
 // TODO: get from config
-const kycLabels = ["email", "phone", "profile", "document", "address"];
+const kycSteps = ["email", "phone", "profile", "document", "address"];
 
 export const Profile: FC = () => {
     const linkTo = useLinkTo();
@@ -24,11 +24,11 @@ export const Profile: FC = () => {
     const peatioMember: Member | null = useAppSelector((state: RootState) => state.user.peatioMember);
 
     const getCurrentUserVerificationStatus = useMemo(() => {
-        if (profile?.labels && kycLabels) {
-            if (profile?.labels.length === kycLabels.length) {
+        if (profile?.labels && kycSteps) {
+            if (profile?.labels.length === kycSteps.length) {
                 const verifiedLabels = profile?.labels.map((label: Label, index: number) => {
-                    if (label.key === kycLabels[index] && label.value === "verified") {
-                        return kycLabels[index];
+                    if (label.key === kycSteps[index] && label.value === "verified") {
+                        return kycSteps[index];
                     }
                 });
 
@@ -75,7 +75,7 @@ export const Profile: FC = () => {
                         </View>
                         <View style={[styles.labelWrapper, styles.feeGroupBackground]}>
                             <View style={styles.labelIcon}>
-                                <StarFeeGroup color={styles.feeGroupText.color} />
+                                <StarFeeGroup width={14} color={styles.feeGroupText.color} />
                             </View>
                             <Text style={styles.feeGroupText}>{peatioMember?.group}</Text>
                         </View>

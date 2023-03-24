@@ -1,90 +1,80 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { View, Text, Image, Pressable } from "react-native";
-import { Link, useLinkTo } from "@react-navigation/native";
-import { AcceptedIcon, RejectedIcon, StarFeeGroup } from "../../../../assets/profile";
+import { StarFeeGroup } from "../../../../assets/profile";
 import { useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { useMemberMeQuery } from "../../api/peatioMember";
 import { Label, Member, User } from "../../api/types";
-import { profileStyles } from "./profile.styles";
-import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
+import { profileDetailsStyles } from "./profileDetails.styles";
+import { VerificationBlock } from "./VerificationBlock";
+import Clipboard from "@react-native-clipboard/clipboard";
+import { Copy } from "../../../../assets/profile/profileDetails/copy";
+import { RegisterInfoIcon } from "../../../../assets/profile/profileDetails/registerInfoIcon";
+import { UidIcon } from "../../../../assets/profile/profileDetails/uidIcon";
 
 // TODO: get from config
-const kycLabels = ["email", "phone", "profile", "document", "address"];
+const kycSteps = ["email", "phone", "profile", "document", "address"];
 
 export const ProfileDetails: FC = () => {
-    const linkTo = useLinkTo();
-
     useMemberMeQuery();
     const { theme } = useThemeContext();
-    const styles = useMemo(() => profileStyles(theme), [theme]);
+    const styles = useMemo(() => profileDetailsStyles(theme), [theme]);
 
     const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
     const peatioMember: Member | null = useAppSelector((state: RootState) => state.user.peatioMember);
 
-    const getCurrentUserVerificationStatus = useMemo(() => {
-        if (profile?.labels && kycLabels) {
-            if (profile?.labels.length === kycLabels.length) {
-                const verifiedLabels = profile?.labels.map((label: Label, index: number) => {
-                    if (label.key === kycLabels[index] && label.value === "verified") {
-                        return kycLabels[index];
-                    }
-                });
+    const renderVerificationBlock = useMemo(() => {
+        return kycSteps.map((step: string) => {
+            const isVerified = profile?.labels.find(
+                (label: Label) => label.key === step && (label.value === "verified" || label.value === "verify")
+            );
 
-                if (verifiedLabels?.every((label: string | undefined) => label !== undefined)) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        return null;
-    }, [profile?.level]);
-
-    const verificationLabelStyles = useMemo(() => {
-        return getCurrentUserVerificationStatus ? styles.verified : styles.unverified;
-    }, [getCurrentUserVerificationStatus]);
-
-    const renderLabelIcon = useMemo(() => {
-        return getCurrentUserVerificationStatus ? (
-            <AcceptedIcon color={styles.labelIconVerified.color} />
-        ) : (
-            <RejectedIcon color={styles.labelIconUnverified.color} />
-        );
+            return <VerificationBlock key={step} isVerified={!!isVerified} step={step} />;
+        });
     }, []);
 
-    const redirectToDetails = useCallback(() => {
-        // TODO: apply storybook redirect
-        process.env.REACT_APP_MODE !== "storybook" && linkTo("/Home/Profile/Details");
-    }, []);
+    const copyToClipboard = useCallback(() => {
+        Clipboard.setString(profile?.uid || "");
+    }, [profile]);
 
     return (
-        <Pressable onPress={redirectToDetails} style={styles.container}>
-            <View style={styles.infoWrapper}>
-                <Image style={styles.icon} source={require("../../../../assets/profile/profile.png")} />
-                <View style={styles.infoContainer}>
-                    <Text style={styles.username}>{profile?.username || profile?.uid}</Text>
-                    <View style={styles.details}>
-                        <View style={[styles.labelWrapper, verificationLabelStyles]}>
-                            <View style={styles.labelIcon}>{renderLabelIcon}</View>
-                            <Text style={verificationLabelStyles}>
-                                {getCurrentUserVerificationStatus ? "Verified" : "Unverified"}
-                            </Text>
-                        </View>
-                        <View style={[styles.labelWrapper, styles.feeGroupBackground]}>
-                            <View style={styles.labelIcon}>
-                                <StarFeeGroup color={styles.feeGroupText.color} />
-                            </View>
-                            <Text style={styles.feeGroupText}>{peatioMember?.group}</Text>
-                        </View>
+        <View style={styles.container}>
+            <View style={styles.profileImageWrapper}>
+                <Image style={styles.profileImage} source={require("../../../../assets/profile/profile.png")} />
+            </View>
+            <Text style={styles.username}>{profile?.username || profile?.uid}</Text>
+            <View style={styles.verificationContainer}>
+                <Text style={styles.verificationContainerTitle}>Verification</Text>
+                <Text style={styles.verificationContainerSubTitle}>
+                    To get platform benefits you need to pass the verification
+                </Text>
+                <View style={styles.verificationContainerBlocks}>{renderVerificationBlock}</View>
+            </View>
+            <View style={styles.block}>
+                <StarFeeGroup color={styles.blockIcon.color} width={24}></StarFeeGroup>
+                <Text style={styles.blockTitle}>{peatioMember?.group}</Text>
+            </View>
+            <View style={styles.secondaryBlock}>
+                <View style={styles.block}>
+                    <UidIcon color={styles.blockIcon.color} width={24} />
+                    <View>
+                        <Text style={styles.blockTitle}>UID</Text>
+                        <Text style={styles.blockSubTitle}>{profile?.uid}</Text>
                     </View>
                 </View>
+
+                <Pressable onPress={copyToClipboard}>
+                    <Copy color={styles.blockIcon.color} width={14} />
+                </Pressable>
             </View>
-            <Text style={styles.arrowRight}>
-                <ArrowRightIcon />
-            </Text>
-        </Pressable>
+            <View style={styles.block}>
+                <RegisterInfoIcon color={styles.blockIcon.color} width={24} />
+                <View>
+                    <Text style={styles.blockTitle}>Registration Info</Text>
+                    <Text style={styles.blockSubTitle}>{profile?.email}</Text>
+                </View>
+            </View>
+        </View>
     );
 };
