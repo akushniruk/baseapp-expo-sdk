@@ -57,7 +57,7 @@ export const Profile: FC = () => {
 
     const redirectToDetails = useCallback(() => {
         // TODO: apply storybook redirect
-        process.env.REACT_APP_MODE !== "storybook" && linkTo("/Home/Profile/Details");
+        process.env.REACT_APP_MODE !== "storybook" && linkTo("/Details");
     }, []);
 
     return (
