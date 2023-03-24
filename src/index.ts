@@ -6,8 +6,8 @@ import { ResetPasswordForm } from "./services/iam/authentication/resetPasswordFo
 import { VerifyEmailForm } from "./services/iam/authentication/verifyEmailForm/ui/verifyEmailForm";
 
 // Services - User - Profile
-import { Profile } from "./services/user";
-import { ProfileDetails } from "./services/user";
+import { Profile } from "./services/user/ui/profile/profile";
+import { ProfileDetails } from "./services/user/ui/profile/profileDetails";
 
 // Widgets - IAM
 import { Login } from "./widgets/iam/authentication/login/ui/login";

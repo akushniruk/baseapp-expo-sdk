@@ -8,7 +8,7 @@ import { useMemberMeQuery } from "../../api/peatioMember";
 import { Label, Member, User } from "../../api/types";
 import { profileDetailsStyles } from "./profileDetails.styles";
 import { VerificationBlock } from "./VerificationBlock";
-import Clipboard from "@react-native-clipboard/clipboard";
+// import Clipboard from "@react-native-clipboard/clipboard";
 import { Copy } from "../../../../assets/profile/profileDetails/copy";
 import { RegisterInfoIcon } from "../../../../assets/profile/profileDetails/registerInfoIcon";
 import { UidIcon } from "../../../../assets/profile/profileDetails/uidIcon";
@@ -35,7 +35,9 @@ export const ProfileDetails: FC = () => {
     }, []);
 
     const copyToClipboard = useCallback(() => {
-        Clipboard.setString(profile?.uid || "");
+        console.log("copy");
+        // TODO: find another solution
+        // Clipboard.setString(profile?.uid || "");
     }, [profile]);
 
     return (
