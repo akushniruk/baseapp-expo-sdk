@@ -24,7 +24,7 @@ import { ReduxProvider } from "./shared/providers/redux/redux";
 import { CoreProvider } from "./shared/providers/core";
 
 // Shared LIB - withAuth
-import { withAuth } from "../src/shared/libs/withAuth";
+import { withAuth } from "./shared/libs/withAuth";
 
 // Shared UI - Buttons
 import { Button } from "./shared/ui/button";

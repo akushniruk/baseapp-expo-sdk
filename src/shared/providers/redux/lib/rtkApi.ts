@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
-    baseUrl: "https://4a3a-2a02-a31d-a13f-5f00-30ba-785-fc1a-c344.eu.ngrok.io",
+    baseUrl: "https://fdd2-2a02-a31d-a13f-5f00-30ba-785-fc1a-c344.eu.ngrok.io",
     prepareHeaders: (headers: Headers) => {
         // By default, if we have a token in the store, let's use that for authenticated requests
         // headers.set(
