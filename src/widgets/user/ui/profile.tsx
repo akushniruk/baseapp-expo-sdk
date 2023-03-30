@@ -1,7 +1,8 @@
 import React, { FC, useCallback, useState } from "react";
 import { ScrollView, Text, View, RefreshControl } from "react-native";
 import { Profile } from "../../../services/user";
-
+import { ProfileNavigation } from "../../../services/user/ui/profileNavigation/index";
+import { ProfileNavigationOption, profileNavigationOptions } from "./config";
 export const ProfileWidget: FC = () => {
     const [refreshing, setRefreshing] = useState(false);
 
@@ -12,22 +13,22 @@ export const ProfileWidget: FC = () => {
         }, 2000);
     }, []);
 
-    // TODO:
-    // 1.User button with: image, user nickname or UID, verification and arrow for going in
-    // 2.list of options.
-    // 2.1. Referal
-    // 2.2. Security
-    // 2.3 Clear cache.
-    // 2.4. Share app
+    const renderList = (item: ProfileNavigationOption) => {
+        return <ProfileNavigation option={item} />;
+    };
 
     return (
         <View>
-            <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+            <ScrollView
+                refreshControl={
+                    <RefreshControl
+                        refreshing={refreshing}
+                        onRefresh={onRefresh}
+                    />
+                }
+            >
                 <Profile />
-                <Text>Referral</Text>
-                <Text>Security</Text>
-                <Text>Clear Cache 40Mb</Text>
-                <Text>Share app</Text>
+                {profileNavigationOptions.map(renderList)}
             </ScrollView>
         </View>
     );
