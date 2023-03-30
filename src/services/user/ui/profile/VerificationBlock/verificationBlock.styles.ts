@@ -6,17 +6,23 @@ export const verificationBlockStyles = (theme: string) => {
 
     return StyleSheet.create({
         container: {
-            backgroundColor: palette.Controls["neutral-control-color"][20].value,
-            marginRight: 12,
+            backgroundColor:
+                palette.Controls["neutral-control-color"][20].value,
             marginTop: 8,
             padding: 12,
             borderRadius: 2,
-            width: "45%",
+            flexGrow: 1,
+            flexShrink: 1,
+            flexBasis: "45%",
+            width: "50%",
+        },
+        containerWithMargin: {
+            marginLeft: 12,
         },
         containerIcons: {
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
         },
         title: {
             textTransform: "capitalize",

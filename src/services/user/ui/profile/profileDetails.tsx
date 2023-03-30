@@ -8,53 +8,95 @@ import { useMemberMeQuery } from "../../api/peatioMember";
 import { Label, Member, User } from "../../api/types";
 import { profileDetailsStyles } from "./profileDetails.styles";
 import { VerificationBlock } from "./VerificationBlock";
-// import Clipboard from "@react-native-clipboard/clipboard";
+import * as Clipboard from "expo-clipboard";
 import { Copy } from "../../../../assets/profile/profileDetails/copy";
 import { RegisterInfoIcon } from "../../../../assets/profile/profileDetails/registerInfoIcon";
 import { UidIcon } from "../../../../assets/profile/profileDetails/uidIcon";
+import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
+import { useLinkTo } from "@react-navigation/native";
 
 // TODO: get from config
 const kycSteps = ["email", "phone", "profile", "document", "address"];
 
 export const ProfileDetails: FC = () => {
+    const linkTo = useLinkTo();
+
     useMemberMeQuery();
     const { theme } = useThemeContext();
     const styles = useMemo(() => profileDetailsStyles(theme), [theme]);
 
-    const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
-    const peatioMember: Member | null = useAppSelector((state: RootState) => state.user.peatioMember);
+    const profile: User | null = useAppSelector(
+        (state: RootState) => state.user.profile
+    );
+    const peatioMember: Member | null = useAppSelector(
+        (state: RootState) => state.user.peatioMember
+    );
+
+    const redirectToVerificationCenter = useCallback(() => {
+        // TODO: apply storybook redirect
+        process.env.REACT_APP_MODE !== "storybook" &&
+            linkTo("/VerificationCenter");
+    }, []);
 
     const renderVerificationBlock = useMemo(() => {
-        return kycSteps.map((step: string) => {
+        return kycSteps.map((step: string, index: number) => {
             const isVerified = profile?.labels.find(
-                (label: Label) => label.key === step && (label.value === "verified" || label.value === "verify")
+                (label: Label) =>
+                    label.key === step &&
+                    (label.value === "verified" || label.value === "verify")
             );
 
-            return <VerificationBlock key={step} isVerified={!!isVerified} step={step} />;
+            return (
+                <VerificationBlock
+                    key={step}
+                    index={index}
+                    isVerified={!!isVerified}
+                    step={step}
+                />
+            );
         });
     }, []);
 
-    const copyToClipboard = useCallback(() => {
-        console.log("copy");
-        // TODO: find another solution
-        // Clipboard.setString(profile?.uid || "");
+    const copyToClipboard = useCallback(async () => {
+        await Clipboard.setStringAsync(profile?.uid || "");
     }, [profile]);
 
     return (
         <View style={styles.container}>
             <View style={styles.profileImageWrapper}>
-                <Image style={styles.profileImage} source={require("../../../../assets/profile/profile.png")} />
+                <Image
+                    style={styles.profileImage}
+                    source={require("../../../../assets/profile/profile.png")}
+                />
             </View>
-            <Text style={styles.username}>{profile?.username || profile?.uid}</Text>
+            <Text style={styles.username}>
+                {profile?.username || profile?.uid}
+            </Text>
             <View style={styles.verificationContainer}>
-                <Text style={styles.verificationContainerTitle}>Verification</Text>
-                <Text style={styles.verificationContainerSubTitle}>
-                    To get platform benefits you need to pass the verification
-                </Text>
-                <View style={styles.verificationContainerBlocks}>{renderVerificationBlock}</View>
+                <Pressable
+                    onPress={redirectToVerificationCenter}
+                    style={styles.verificationContainerBlock}
+                >
+                    <View>
+                        <Text style={styles.verificationContainerTitle}>
+                            Verification
+                        </Text>
+                        <Text style={styles.verificationContainerSubTitle}>
+                            To get platform benefits you need to pass the
+                            verification
+                        </Text>
+                    </View>
+                    <ArrowRightIcon color="#090909" />
+                </Pressable>
+                <View style={styles.verificationContainerBlocks}>
+                    {renderVerificationBlock}
+                </View>
             </View>
             <View style={styles.block}>
-                <StarFeeGroup color={styles.blockIcon.color} width={24}></StarFeeGroup>
+                <StarFeeGroup
+                    color={styles.blockIcon.color}
+                    width={24}
+                ></StarFeeGroup>
                 <Text style={styles.blockTitle}>{peatioMember?.group}</Text>
             </View>
             <View style={styles.secondaryBlock}>
@@ -66,7 +108,7 @@ export const ProfileDetails: FC = () => {
                     </View>
                 </View>
 
-                <Pressable onPress={copyToClipboard}>
+                <Pressable style={styles.blockIcon} onPress={copyToClipboard}>
                     <Copy color={styles.blockIcon.color} width={14} />
                 </Pressable>
             </View>

@@ -10,7 +10,7 @@ export const profileDetailsStyles = (theme: string) => {
             flexDirection: "column",
         },
         profileImageWrapper: {
-            alignItems: "center"
+            alignItems: "center",
         },
         profileImage: {
             width: 54,
@@ -25,6 +25,13 @@ export const profileDetailsStyles = (theme: string) => {
         },
         verificationContainer: {
             marginTop: 24,
+        },
+        verificationContainerBlock: {
+            flexDirection: "row",
+            paddingHorizontal: 12,
+            width: "100%",
+            justifyContent: "space-between",
+            alignItems: "center",
         },
         verificationContainerTitle: {
             color: palette["text-color"][100].value,
@@ -43,9 +50,11 @@ export const profileDetailsStyles = (theme: string) => {
             marginTop: 24,
             flexDirection: "row",
             alignItems: "center",
-            textTransform: "Capitalize"
+            textTransform: "Capitalize",
+            paddingHorizontal: 12,
         },
         blockIcon: {
+            paddingRight: 12,
             color: palette["text-color"][70].value,
         },
         blockTitle: {

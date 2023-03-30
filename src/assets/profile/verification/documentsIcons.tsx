@@ -41,14 +41,14 @@ export const DocumentsVerified: FC<ImageProps> = () => {
                 fill="#9199B1"
             />
             <Path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M25 19C21.7 19 19 21.7 19 25C19 28.3 21.7 31 25 31C28.3 31 31 28.3 31 25C31 21.7 28.3 19 25 19Z"
                 fill="#419E6A"
             />
             <Path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.64 24.7L20.8 25.54L23.5 28.24L29.5 22.24L28.66 21.4L23.5 26.56L21.64 24.7Z"
                 fill="white"
             />

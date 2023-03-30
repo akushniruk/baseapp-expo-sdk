@@ -16,14 +16,14 @@ export const EmailVerified: FC<ImageProps> = () => {
                 fill="#9199B1"
             />
             <Path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M25 20C21.7 20 19 22.7 19 26C19 29.3 21.7 32 25 32C28.3 32 31 29.3 31 26C31 22.7 28.3 20 25 20Z"
                 fill="#419E6A"
             />
             <Path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M21.64 25.7L20.8 26.54L23.5 29.24L29.5 23.24L28.66 22.4L23.5 27.56L21.64 25.7Z"
                 fill="white"
             />
