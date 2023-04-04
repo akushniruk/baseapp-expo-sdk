@@ -12,5 +12,5 @@ export const profileNavigationOptions: ProfileNavigationOption[] = [
     { title: "Security", route: "/Security", icon: <StarFeeGroup /> },
     { title: "API Docs", route: "/ApiDocs", icon: <StarFeeGroup /> },
     { title: "Help & Support", route: "/Support", icon: <StarFeeGroup /> },
-    // { title: "Share App", route: "/ShareApp", icon: <StarFeeGroup /> },
+    { title: "Settings", route: "/Settings", icon: <StarFeeGroup /> },
 ];
