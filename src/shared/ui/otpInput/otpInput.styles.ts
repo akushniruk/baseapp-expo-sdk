@@ -27,7 +27,7 @@ export const otpInputStyles = (theme: string) => {
             borderColor: palette.Controls["neutral-control-color"][70].value,
             borderWidth: 2,
             borderRadius: 4,
-            marginLeft: 6,
+            marginRight: 6,
             alignItems: "center",
             justifyContent: "center",
             minWidth: 40,

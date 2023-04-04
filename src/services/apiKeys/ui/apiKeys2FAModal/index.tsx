@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 import { View, Text } from "react-native";
-import { useAppSelector } from "../../../../../shared";
+import { useAppSelector } from "../../../../shared";
 // import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
-import { RootState } from "../../../../../shared/providers/redux/model/store";
-import { User } from "../../../api/types";
+import { RootState } from "../../../../shared/providers/redux/model/store";
+import { User } from "../../api/types";
 
 export const ApiKeys2FAModal: FC = () => {
     // const { theme } = useThemeContext();

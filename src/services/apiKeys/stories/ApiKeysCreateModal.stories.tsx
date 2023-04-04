@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import { ApiKeysCreateModal } from "../ui/apiKeys/apiKeysCreateModal";
+import { ApiKeysCreateModal } from "../ui/apiKeysCreateModal";
 import { CoreProvider } from "../../../shared/providers/core";
 
 const ApiKeysCreateModalMeta: ComponentMeta<typeof ApiKeysCreateModal> = {
@@ -14,6 +14,10 @@ type ApiKeysCreateModalStory = ComponentStory<typeof ApiKeysCreateModal>;
 
 export const Basic: ApiKeysCreateModalStory = (args) => (
     <CoreProvider>
-        <ApiKeysCreateModal />
+        <ApiKeysCreateModal
+            title="Create"
+            isLoading={false}
+            sendRequest={() => console.log("sendRequest")}
+        />
     </CoreProvider>
 );

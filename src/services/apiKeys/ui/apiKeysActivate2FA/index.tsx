@@ -3,7 +3,7 @@ import React, { FC, useMemo, useCallback } from "react";
 import { View, Text } from "react-native";
 import { Button } from "../../../../../shared";
 import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
-import { apiKeysActivate2FAStyles } from "./apiKeysActivate2FA.style";
+import { apiKeysActivate2FAStyles } from "./apiKeysActivate2FA.styles";
 
 export const ApiKeysActivate2FA: FC = () => {
     const linkTo = useLinkTo();

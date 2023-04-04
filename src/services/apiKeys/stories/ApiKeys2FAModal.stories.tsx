@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import { ApiKeys2FAModal } from "../ui/apiKeys/apiKeys2FAModal";
+import { ApiKeys2FAModal } from "../ui/apiKeys2FAModal";
 import { CoreProvider } from "../../../shared/providers/core";
 
 const ApiKeys2FAModalMeta: ComponentMeta<typeof ApiKeys2FAModal> = {
