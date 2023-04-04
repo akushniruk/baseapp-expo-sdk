@@ -1,4 +1,4 @@
-export interface ApiKeysCreateModalProps {
+export interface ApiKeys2FAModalProps {
     isLoading: boolean;
     title: string;
     sendRequest: () => void;

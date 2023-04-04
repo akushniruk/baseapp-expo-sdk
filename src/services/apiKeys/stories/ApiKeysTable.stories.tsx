@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import { ApiKeysTable } from "../ui/apiKeys/apiKeysTable";
+import { ApiKeysTable } from "../ui/apiKeysTable";
 import { CoreProvider } from "../../../shared/providers/core";
 
 const ApiKeysTableMeta: ComponentMeta<typeof ApiKeysTable> = {
-    title: "Services/Profile/ApiKeys/Table",
+    title: "Services/ApiKeys/Table",
     component: ApiKeysTable,
 };
 

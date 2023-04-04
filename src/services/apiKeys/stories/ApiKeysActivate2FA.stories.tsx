@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import { ApiKeysActivate2FA } from "../ui/apiKeys/apiKeysActivate2FA";
+import { ApiKeysActivate2FA } from "../ui/apiKeysActivate2FA";
 import { CoreProvider } from "../../../shared/providers/core";
 
 const ApiKeysActivate2FAMeta: ComponentMeta<typeof ApiKeysActivate2FA> = {
-    title: "Services/Profile/ApiKeys/Activate2FA",
+    title: "Services/ApiKeys/Activate2FA",
     component: ApiKeysActivate2FA,
 };
 

@@ -1,9 +1,9 @@
 import { useLinkTo } from "@react-navigation/native";
 import React, { FC, useMemo, useCallback } from "react";
 import { View, Text } from "react-native";
-import { Button } from "../../../../../shared";
-import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
-import { apiKeysActivate2FAStyles } from "./apiKeysActivate2FA.styles";
+import { Button } from "../../../../shared";
+import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
+import { apiKeysActivate2FAStyles } from "./apiKeysActivate2FA1.styles";
 
 export const ApiKeysActivate2FA: FC = () => {
     const linkTo = useLinkTo();

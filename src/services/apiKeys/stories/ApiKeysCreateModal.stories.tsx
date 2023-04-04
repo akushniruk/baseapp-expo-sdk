@@ -4,7 +4,7 @@ import { ApiKeysCreateModal } from "../ui/apiKeysCreateModal";
 import { CoreProvider } from "../../../shared/providers/core";
 
 const ApiKeysCreateModalMeta: ComponentMeta<typeof ApiKeysCreateModal> = {
-    title: "Services/Profile/ApiKeys/CreateModal",
+    title: "Services/ApiKeys/CreateModal",
     component: ApiKeysCreateModal,
 };
 
@@ -14,10 +14,6 @@ type ApiKeysCreateModalStory = ComponentStory<typeof ApiKeysCreateModal>;
 
 export const Basic: ApiKeysCreateModalStory = (args) => (
     <CoreProvider>
-        <ApiKeysCreateModal
-            title="Create"
-            isLoading={false}
-            sendRequest={() => console.log("sendRequest")}
-        />
+        <ApiKeysCreateModal />
     </CoreProvider>
 );
