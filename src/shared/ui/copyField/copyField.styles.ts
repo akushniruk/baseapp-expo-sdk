@@ -10,7 +10,7 @@ export const copyFieldStyles = (theme: string) => {
             alignItems: "center",
             justifyContent: "space-between",
             paddingHorizontal: 12,
-            paddingVertical: 6,
+            paddingVertical: 14,
             color: palette.Controls["neutral-control-layer-color"][100].value,
             backgroundColor: palette.Background["input-background-color"].value,
             borderColor: palette["text-color"][20].value,
@@ -30,6 +30,9 @@ export const copyFieldStyles = (theme: string) => {
         },
         copyColor: {
             color: palette.Controls["neutral-control-layer-color"][100].value,
+        },
+        touchHighlight: {
+            color: palette.Controls["neutral-control-color"][40].value,
         },
     });
 };

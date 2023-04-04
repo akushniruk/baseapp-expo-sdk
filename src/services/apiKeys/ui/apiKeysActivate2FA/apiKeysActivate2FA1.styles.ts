@@ -13,7 +13,7 @@ export const apiKeysActivate2FAStyles = (theme: string) => {
         },
         subtitle: {
             marginBottom: 24,
-            color: palette["text-color"][100].value,
+            color: palette["text-color"][70].value,
         },
         bold: {
             color: palette["text-color"][100].value,
