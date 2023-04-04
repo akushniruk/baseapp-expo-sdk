@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useMemo } from "react";
 import { View, Text, Image, Pressable } from "react-native";
-import { Link, useLinkTo } from "@react-navigation/native";
+import { useLinkTo } from "@react-navigation/native";
 import {
     AcceptedIcon,
     RejectedIcon,
