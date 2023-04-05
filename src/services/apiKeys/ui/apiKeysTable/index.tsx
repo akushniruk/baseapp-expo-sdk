@@ -1,5 +1,12 @@
 import React, { FC, useEffect, useCallback, useMemo } from "react";
-import { View, ScrollView, Text, Pressable } from "react-native";
+import {
+    View,
+    ScrollView,
+    Switch,
+    Text,
+    Platform,
+    Pressable,
+} from "react-native";
 import { apiKeysTableStyles } from "./apiKeysTable.styles";
 import { Button, useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
@@ -80,6 +87,8 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
 
     const renderTableBlock = useCallback(
         (apiKey: ApiKey) => {
+            const isEnabled = apiKey.state === "active";
+
             return (
                 <View style={styles.container}>
                     <View style={styles.row}>
@@ -89,7 +98,26 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
                                 handleUpdateRequest(apiKey.kid, apiKey.state)
                             }
                         >
-                            <Text>{apiKey.state}</Text>
+                            <Switch
+                                value={isEnabled}
+                                ios_backgroundColor="#e3e3de"
+                                trackColor={{
+                                    false: styles.switchInactive
+                                        .backgroundColor,
+                                    true: styles.switchEnabled.backgroundColor,
+                                }}
+                                thumbColor={
+                                    isEnabled
+                                        ? styles.switchEnabled.color
+                                        : styles.switchInactive.color
+                                }
+                                {...Platform.select({
+                                    web: {
+                                        activeThumbColor:
+                                            styles.switchEnabled.color,
+                                    },
+                                })}
+                            />
                         </Pressable>
                     </View>
                     <View style={styles.row}>
@@ -110,7 +138,9 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
                     <View style={styles.row}>
                         {renderTableBlockHead("Created", apiKey.created_at)}
                         {renderTableBlockHead("Updated", apiKey.updated_at)}
-                        <Text style={[styles.hide, styles.cancelIcon]}>X</Text>
+                        <View style={[styles.hide, styles.cancelIcon]}>
+                            <CancelIcon />
+                        </View>
                     </View>
                 </View>
             );

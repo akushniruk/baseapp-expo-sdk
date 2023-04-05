@@ -18,7 +18,7 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 const ThemeProvider = ({ children }: any) => {
     const colorScheme = Appearance.getColorScheme();
 
-    const [theme, setTheme] = useState<any>(colorScheme);
+    const [theme, setTheme] = useState<any>("light");
 
     const getValue = useCallback(async () => {
         const themeFromStorage = await getValueStorage("theme");
@@ -31,7 +31,7 @@ const ThemeProvider = ({ children }: any) => {
     }, []);
 
     useEffect(() => {
-        setValueStorage("theme", theme || colorScheme || "light");
+        setValueStorage("theme", theme || "light");
     }, [theme]);
 
     const contextValue = useMemo(

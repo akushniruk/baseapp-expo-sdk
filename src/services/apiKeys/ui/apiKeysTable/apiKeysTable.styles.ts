@@ -46,5 +46,14 @@ export const apiKeysTableStyles = (theme: string) => {
         cancelIcon: {
             paddingLeft: 24,
         },
+        switchEnabled: {
+            backgroundColor: palette.Controls["primary-cta-color"][20].value,
+            color: palette.Controls["primary-cta-color"][60].value,
+        },
+        switchInactive: {
+            backgroundColor:
+                palette.Controls["neutral-control-layer-color"][20].value,
+            color: palette.Controls["neutral-control-color"][10].value,
+        },
     });
 };
