@@ -1,10 +1,6 @@
 import React, { FC } from "react";
 import Svg, { Circle, Path } from "react-native-svg";
-
-export interface IconProps {
-    color?: string;
-    width?: number;
-}
+import { IconProps } from "./interface";
 
 export const NoDataIcon: FC<IconProps> = ({ color, width }: IconProps) => {
     return (

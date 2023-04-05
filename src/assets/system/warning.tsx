@@ -1,10 +1,6 @@
 import React, { FC } from "react";
 import Svg, { Path } from "react-native-svg";
-
-export interface IconProps {
-    color?: string;
-    width?: number;
-}
+import { IconProps } from "./interface";
 
 export const Warning: FC<IconProps> = ({ color, width }: IconProps) => {
     return (

@@ -12,6 +12,9 @@ import {
     ApiKeyUpdateRequest,
 } from "./types";
 
+// delete no response
+//https://yellowsoftwareexchange.uat.opendax.app/api/v2/barong/resource/api_keys/a36d3e949608c426?totp_code=311274
+
 // TODO: add type for error
 export const apiKeysApi = api.injectEndpoints({
     endpoints: (build) => ({
