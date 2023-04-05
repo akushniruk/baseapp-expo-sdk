@@ -5,6 +5,11 @@ export const apiKeysTableStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
+        createButton: {
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            marginBottom: 12,
+        },
         container: {
             marginTop: 12,
             paddingBottom: 12,

@@ -159,7 +159,7 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
 
     return (
         <ScrollView>
-            <View style={{ width: "40%" }}>
+            <View style={styles.createButton}>
                 <Button
                     onPress={handleCreateRequest}
                     title="Create +"
