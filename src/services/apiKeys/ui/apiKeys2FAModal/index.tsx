@@ -1,12 +1,13 @@
 import React, { FC, useCallback, useMemo, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Modal } from "react-native";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { apiKeys2FAModalStyles } from "./apiKeys2FAModal.styles";
 import { ApiKeys2FAModalProps } from "./interface";
 import { OTPInput, Button } from "../../../../shared";
 
 export const ApiKeys2FAModal: FC<ApiKeys2FAModalProps> = ({
-    title,
+    isOpen,
+    buttonTitle,
     isLoading,
     sendRequest,
 }) => {
@@ -21,7 +22,7 @@ export const ApiKeys2FAModal: FC<ApiKeys2FAModalProps> = ({
     }, [otp]);
 
     return (
-        <View>
+        <Modal animationType="slide" transparent={true} visible={isOpen}>
             <Text style={styles.label}>
                 Enter 2fa code from the Google Authenticator app
             </Text>
@@ -34,9 +35,9 @@ export const ApiKeys2FAModal: FC<ApiKeys2FAModalProps> = ({
 
             <Button
                 onPress={handleSendRequest}
-                title={title}
+                title={buttonTitle}
                 isLoading={isLoading}
             />
-        </View>
+        </Modal>
     );
 };

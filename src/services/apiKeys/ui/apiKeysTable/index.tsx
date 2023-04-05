@@ -39,17 +39,17 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
 
     const handleCreateRequest = useCallback(() => {
         // Will open ApiKeys2FAModal inside widget
-        createRequest(true);
+        createRequest();
     }, []);
 
     const handleUpdateRequest = useCallback((kid: string, state: string) => {
         // Will open ApiKeys2FAModal inside widget
-        updateRequest(kid, state, true);
+        updateRequest(kid, state);
     }, []);
 
     const handleDeleteRequest = useCallback((kid: string) => {
         // Will open ApiKeys2FAModal inside widget
-        deleteRequest(kid, true);
+        deleteRequest(kid);
     }, []);
 
     const renderTableBlockHead = useCallback(

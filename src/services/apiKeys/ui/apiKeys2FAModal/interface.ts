@@ -1,5 +1,6 @@
 export interface ApiKeys2FAModalProps {
     isLoading: boolean;
-    title: string;
+    buttonTitle: string;
+    isOpen: boolean;
     sendRequest: () => void;
 }
