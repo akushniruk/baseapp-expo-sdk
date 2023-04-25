@@ -14,6 +14,10 @@ type ApiKeysTableStory = ComponentStory<typeof ApiKeysTable>;
 
 export const Basic: ApiKeysTableStory = (args) => (
     <CoreProvider>
-        <ApiKeysTable />
+        <ApiKeysTable
+            createRequest={() => console.log("createRequest")}
+            updateRequest={() => console.log("updateRequest")}
+            deleteRequest={() => console.log("deleteRequest")}
+        />
     </CoreProvider>
 );

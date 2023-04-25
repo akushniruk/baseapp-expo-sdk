@@ -18,7 +18,7 @@ export const apiKeysTableStyles = (theme: string) => {
         },
         row: {
             display: "flex",
-            flexFlow: "row",
+            flexDirection: "row",
             justifyContent: "space-between",
         },
         rowItem: {

@@ -5,6 +5,13 @@ export const apiKeysCreateModalStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
+        modalContainer: {
+            height: "100%",
+            backgroundColor: palette.Background["body-background-color"].value,
+            flex: 1,
+            justifyContent: "center",
+            paddingHorizontal: 12,
+        },
         title: {
             color: palette["text-color"][100].value,
             fontWeight: "bold",

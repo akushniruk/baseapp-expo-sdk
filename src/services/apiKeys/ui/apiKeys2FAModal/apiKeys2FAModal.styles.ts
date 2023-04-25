@@ -9,5 +9,12 @@ export const apiKeys2FAModalStyles = (theme: string) => {
             color: palette["text-color"][100].value,
             marginBottom: 6,
         },
+        container: {
+            height: "100%",
+            backgroundColor: palette.Background["body-background-color"].value,
+            flex: 1,
+            justifyContent: "center",
+            paddingHorizontal: 12,
+        },
     });
 };

@@ -14,6 +14,11 @@ type ApiKeysCreateModalStory = ComponentStory<typeof ApiKeysCreateModal>;
 
 export const Basic: ApiKeysCreateModalStory = (args) => (
     <CoreProvider>
-        <ApiKeysCreateModal />
+        <ApiKeysCreateModal
+            buttonTitle="Close"
+            isLoading={false}
+            isOpen={true}
+            handleClose={() => console.log("handleClose")}
+        />
     </CoreProvider>
 );

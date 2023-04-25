@@ -15,8 +15,9 @@ type ApiKeys2FAModalStory = ComponentStory<typeof ApiKeys2FAModal>;
 export const Basic: ApiKeys2FAModalStory = (args) => (
     <CoreProvider>
         <ApiKeys2FAModal
-            title="Create"
+            buttonTitle="Create"
             isLoading={false}
+            isOpen={true}
             sendRequest={() => console.log("sendRequest")}
         />
     </CoreProvider>

@@ -1,14 +1,22 @@
 import React, { FC, useCallback, useState } from "react";
-import { ScrollView, Text, View, RefreshControl } from "react-native";
+import { ScrollView, View, RefreshControl } from "react-native";
 import { ApiKeysTable } from "../../../services/apiKeys/ui/apiKeysTable/index";
 import { ApiKeysActivate2FA } from "../../../services/apiKeys/ui/apiKeysActivate2FA/index";
 import { ApiKeys2FAModal } from "../../../services/apiKeys/ui/apiKeys2FAModal/index";
 import { ApiKeysCreateModal } from "../../../services/apiKeys/ui/apiKeysCreateModal/index";
+import { useAppSelector } from "../../../shared";
+import { User } from "../../../services/user";
+import { RootState } from "../../../shared/providers/redux/model/store";
 
 export const ApiKeysWidget: FC = () => {
-    // TODO: add selectedAPIKEY state
     const [isOpen2FAModal, setIsOpen2FAModal] = useState(false);
+    const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
+
     const [refreshing, setRefreshing] = useState(false);
+
+    const profile: User | null = useAppSelector(
+        (state: RootState) => state.user.profile
+    );
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
@@ -30,8 +38,14 @@ export const ApiKeysWidget: FC = () => {
     }, []);
 
     const sendRequest = useCallback(() => {
-        console.log("test");
         setIsOpen2FAModal(false);
+        setIsOpenCreateModal(true);
+
+        // TODO: handle delete, create, update
+    }, []);
+
+    const handleClose = useCallback(() => {
+        setIsOpenCreateModal(false);
     }, []);
 
     return (
@@ -44,7 +58,7 @@ export const ApiKeysWidget: FC = () => {
                     />
                 }
             >
-                <ApiKeysActivate2FA />
+                {!profile?.otp ? <ApiKeysActivate2FA /> : null}
                 <ApiKeysTable
                     createRequest={sendCreateRequest}
                     updateRequest={sendUpdateRequest}
@@ -56,7 +70,12 @@ export const ApiKeysWidget: FC = () => {
                     isLoading={false}
                     sendRequest={sendRequest}
                 />
-                <ApiKeysCreateModal />
+                <ApiKeysCreateModal
+                    isOpen={isOpenCreateModal}
+                    buttonTitle="close"
+                    isLoading={false}
+                    handleClose={handleClose}
+                />
             </ScrollView>
         </View>
     );
