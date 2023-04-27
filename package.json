@@ -1,6 +1,6 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
-    "version": "0.0.49",
+    "version": "0.0.51",
     "main": "lib/commonjs/index.js",
     "license": "MIT",
     "scripts": {
