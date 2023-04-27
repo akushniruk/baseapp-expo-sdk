@@ -1,6 +1,6 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
-    "version": "0.0.51",
+    "version": "0.0.58",
     "main": "lib/commonjs/index.js",
     "license": "MIT",
     "scripts": {
@@ -12,7 +12,7 @@
         "update-stories": "sb-rn-get-stories --config-path .ondevice",
         "prestart": "yarn update-stories",
         "storybook-watcher": "sb-rn-watcher --config-path .ondevice",
-        "storybook": "start-storybook -p 3000",
+        "storybook": "start-storybook -p 3001",
         "build-storybook": "build-storybook",
         "serve-storybook": "serve storybook-static",
         "prepack": "bob build",

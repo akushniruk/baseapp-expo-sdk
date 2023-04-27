@@ -30,9 +30,9 @@ export const Referral: FC = () => {
                 </View>
                 <CopyField
                     title="Referral Link"
-                    value={`https://${process.env.DOMAIN_NAME}/signup?refid=${
-                        profile?.uid || ""
-                    }`}
+                    value={`https://${
+                        process.env.REACT_APP_DOMAIN_NAME
+                    }/signup?refid=${profile?.uid || ""}`}
                 />
             </View>
         </View>

@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ApiKey } from "../api/types";
 
 export interface ApiKeyState {
-    list: ApiKey[] | null;
+    list: ApiKey[];
 }
 
 export const initialState: ApiKeyState = {
-    list: null,
+    list: [],
 };
 
 export const apiKey = createSlice({

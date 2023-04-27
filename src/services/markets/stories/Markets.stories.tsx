@@ -1,19 +1,19 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import Markets from "../ui/Markets";
-import { ReduxProvider } from "../../../shared/providers/redux/redux";
+import { MarketsV1 } from "../ui/marketsV1";
+import { CoreProvider } from "../../..";
 
-const MyButtonMeta: ComponentMeta<typeof Markets> = {
-    title: "Markets",
-    component: Markets,
+const MyButtonMeta: ComponentMeta<typeof MarketsV1> = {
+    title: "Services/Markets/V1",
+    component: MarketsV1,
 };
 
 export default MyButtonMeta;
 
-type MarketsStory = ComponentStory<typeof Markets>;
+type MarketsV1Story = ComponentStory<typeof MarketsV1>;
 
-export const Basic: MarketsStory = (args) => (
-    <ReduxProvider>
-        <Markets />
-    </ReduxProvider>
+export const Basic: MarketsV1Story = (args) => (
+    <CoreProvider>
+        <MarketsV1 />
+    </CoreProvider>
 );

@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Market } from './type';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Market } from "./type";
 
 export interface MarketsState {
     markets: Market[];
@@ -12,26 +12,21 @@ export const initialMarketsState: MarketsState = {
     marketsLoading: true,
 };
 
-const marketsSlice = createSlice({
-    name: 'markets',
+export const markets = createSlice({
+    name: "markets",
     initialState: initialMarketsState,
     reducers: {
-        saveMarkets(state, action: PayloadAction<(string | number)[][]>) {
-            console.log('save Markets,', state, action)
+        saveMarkets(state, action: PayloadAction<Market[]>) {
+            state.markets = action.payload;
         },
         setCurrentMarket(state, action: PayloadAction<Market>) {
-            console.log('currentMarket');
+            console.log("currentMarket");
         },
         initializeCurrentMarket(state, action: PayloadAction<Market>) {
-            console.log('InitCurrentMarket')
+            console.log("InitCurrentMarket");
         },
     },
 });
 
-export const {
-    saveMarkets,
-    setCurrentMarket,
-    initializeCurrentMarket,
-} = marketsSlice.actions;
-export const marketsReducer = marketsSlice.reducer;
-export default marketsSlice.reducer;
+export const { saveMarkets, setCurrentMarket, initializeCurrentMarket } =
+    markets.actions;

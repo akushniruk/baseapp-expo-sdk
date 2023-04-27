@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
-    baseUrl: "http://localhost:9002",
+    baseUrl: process.env.REACT_APP_REST_API || "http://192.168.0.101:9002",
     prepareHeaders: (headers: Headers) => {
         // By default, if we have a token in the store, let's use that for authenticated requests
         // headers.set(

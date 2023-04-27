@@ -9,6 +9,9 @@ import { VerifyEmailForm } from "./services/iam/authentication/verifyEmailForm/u
 import { Profile } from "./services/user/ui/profile/profile";
 import { ProfileDetails } from "./services/user/ui/profile/profileDetails";
 
+// Services - Markets - V1
+import { MarketsV1 } from "./services/markets/ui/marketsV1";
+
 // Widgets - IAM
 import { Login } from "./widgets/iam/authentication/login/ui/login";
 import { Register } from "./widgets/iam/authentication/register/ui/register";
@@ -54,6 +57,7 @@ export {
     Profile,
     ProfileDetails,
     ProfileWidget,
+    MarketsV1,
     withAuth,
 };
 
