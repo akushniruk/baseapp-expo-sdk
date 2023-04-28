@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Text, View } from "react-native";
-import { useAppSelector, Link } from "../../../../shared";
+// import { useLinkTo } from "@react-navigation/native";
+import React, { FC, useEffect, useMemo, useState } from "react";
+import { Text, View, Pressable } from "react-native";
+import { useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { Market } from "../../model/type";
@@ -8,8 +9,12 @@ import { marketsV1Styles } from "./marketsV1";
 
 const TABLE_HEAD: string[] = ["Name", "Last price", "24h change"];
 
+interface IMarketsV1 {
+    navigation?: any;
+}
+
 // TODO: add currencies and tickers
-export const MarketsV1 = () => {
+export const MarketsV1: FC<IMarketsV1> = ({ navigation }: IMarketsV1) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => marketsV1Styles(theme), [theme]);
 
@@ -40,15 +45,24 @@ export const MarketsV1 = () => {
         );
     };
 
+    const redirectToTrading = (marketID: string) => {
+        navigation &&
+            navigation.navigate("MarketsStack", {
+                screen: "Trading",
+                params: { id: marketID },
+            });
+    };
+
     const renderMarketRow = (market: Market) => {
         const price_change = "+1.35%";
         const isPositive = /\+/.test(price_change);
 
         return (
-            <Link
+            <Pressable
                 key={market.id}
                 style={styles.row}
-                to={{ screen: "Trading", params: { id: market.id } }}
+                onPress={() => redirectToTrading(market.id)}
+                // to={{ screen: "Markets/Trading", params: { id: market.id } }}
             >
                 <View style={{ width: 120 }}>
                     <Text
@@ -70,7 +84,7 @@ export const MarketsV1 = () => {
                 >
                     <Text style={styles.labelText}>{price_change}</Text>
                 </View>
-            </Link>
+            </Pressable>
         );
     };
 
