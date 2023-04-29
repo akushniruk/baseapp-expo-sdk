@@ -5,6 +5,7 @@ import { api } from "../lib/rtkApi";
 import { alerts } from "../../../ui/alerts/model/alertsSlice";
 import { apiKey } from "../../../../services/apiKeys/model/apiKeySlice";
 import { markets } from "../../../../services/markets/model/marketsSlice";
+import { currencies } from "../../../../services/currencies/model/currenciesSlice";
 
 export const createStore = (
     options?: ConfigureStoreOptions["preloadedState"] | undefined
@@ -16,6 +17,7 @@ export const createStore = (
             alerts: alerts.reducer,
             apiKey: apiKey.reducer,
             markets: markets.reducer,
+            currency: currencies.reducer,
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(api.middleware),

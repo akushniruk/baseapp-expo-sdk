@@ -1,4 +1,3 @@
-// import { useLinkTo } from "@react-navigation/native";
 import React, { FC, useEffect, useMemo, useState } from "react";
 import { Text, View, Pressable } from "react-native";
 import { useAppSelector } from "../../../../shared";
@@ -13,7 +12,6 @@ interface IMarketsV1 {
     navigation?: any;
 }
 
-// TODO: add currencies and tickers
 export const MarketsV1: FC<IMarketsV1> = ({ navigation }: IMarketsV1) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => marketsV1Styles(theme), [theme]);

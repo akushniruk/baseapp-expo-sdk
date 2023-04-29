@@ -1,4 +1,5 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
+import { saveCurrencies } from "../../currencies/model/currenciesSlice";
 import { saveMarkets } from "../../markets/model/marketsSlice";
 // import { dispatchAlert } from "../../../shared/ui/alerts";
 
@@ -10,9 +11,9 @@ export const apiKeysApi = api.injectEndpoints({
             }),
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-                    const { markets } = (await queryFulfilled).data;
-                    console.log(markets);
+                    const { markets, currencies } = (await queryFulfilled).data;
                     dispatch(saveMarkets(markets));
+                    dispatch(saveCurrencies(currencies));
                 } catch (error) {
                     // TODO: handle errors;
                     console.log(error);
