@@ -31,17 +31,28 @@ export const marketsV1Styles = (theme: string) => {
         rowMarketText: {
             fontWeight: "700",
         },
+        lastPrice: {
+            textAlign: "right",
+        },
         priceChangePositive: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             backgroundColor: palette.System.bid[40].value,
             paddingHorizontal: 12,
             paddingVertical: 6,
             borderRadius: 4,
+            width: 70,
         },
         priceChangeNegative: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             backgroundColor: palette.System.ask[40].value,
             paddingHorizontal: 12,
             paddingVertical: 6,
             borderRadius: 4,
+            width: 70,
         },
         labelText: {
             color: palette["text-color"]["00"].value,

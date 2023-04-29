@@ -14,6 +14,6 @@ type MarketsV1Story = ComponentStory<typeof MarketsV1>;
 
 export const Basic: MarketsV1Story = (args) => (
     <CoreProvider>
-        <MarketsV1 />
+        <MarketsV1 limit={5} />
     </CoreProvider>
 );

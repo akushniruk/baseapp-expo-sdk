@@ -6,6 +6,7 @@ import { alerts } from "../../../ui/alerts/model/alertsSlice";
 import { apiKey } from "../../../../services/apiKeys/model/apiKeySlice";
 import { markets } from "../../../../services/markets/model/marketsSlice";
 import { currencies } from "../../../../services/currencies/model/currenciesSlice";
+import { tickers } from "../../../../services/tickers/model/tickersSlice";
 
 export const createStore = (
     options?: ConfigureStoreOptions["preloadedState"] | undefined
@@ -18,6 +19,7 @@ export const createStore = (
             apiKey: apiKey.reducer,
             markets: markets.reducer,
             currency: currencies.reducer,
+            tickers: tickers.reducer,
         },
         middleware: (getDefaultMiddleware) =>
             getDefaultMiddleware().concat(api.middleware),
