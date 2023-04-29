@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { Text, View, Pressable } from "react-native";
-import { useAppSelector } from "../../../../shared";
+import { Link, useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { format } from "../../../../shared/libs/format";
 import { RootState } from "../../../../shared/providers/redux/model/store";
@@ -39,14 +39,6 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
         return <Text style={[{ width: index === 0 ? 120 : "auto" }, styles.headContainerText]}>{headText}</Text>;
     };
 
-    const redirectToTrading = (marketID: string) => {
-        navigation &&
-            navigation.navigate("MarketsStack", {
-                screen: "Trading",
-                params: { id: marketID },
-            });
-    };
-
     const renderMarketRow = useCallback(
         (market: Market) => {
             const tickerForMarketById: Ticker | null = tickers ? tickers[market.id] : null;
@@ -57,11 +49,13 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
                 ","
             )}`;
             return (
-                <Pressable
+                <Link
                     key={market.id}
                     style={styles.row}
-                    onPress={() => redirectToTrading(market.id)}
-                    // to={{ screen: "Markets/Trading", params: { id: market.id } }}
+                    to={{
+                        screen: "Trading",
+                        params: { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit },
+                    }}
                 >
                     <View style={{ width: 120 }}>
                         <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
@@ -83,7 +77,7 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
                     <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
                         <Text style={styles.labelText}>{tickerForMarketById ? `${priceChange}%` : "-"}</Text>
                     </View>
-                </Pressable>
+                </Link>
             );
         },
         [tickers, topMarkets]
