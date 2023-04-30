@@ -20,7 +20,7 @@ export const markets = createSlice({
             state.markets = action.payload;
         },
         setCurrentMarket(state, action: PayloadAction<Market>) {
-            console.log("currentMarket");
+            state.currentMarket = action.payload;
         },
         initializeCurrentMarket(state, action: PayloadAction<Market>) {
             console.log("InitCurrentMarket");
@@ -28,5 +28,4 @@ export const markets = createSlice({
     },
 });
 
-export const { saveMarkets, setCurrentMarket, initializeCurrentMarket } =
-    markets.actions;
+export const { saveMarkets, setCurrentMarket, initializeCurrentMarket } = markets.actions;

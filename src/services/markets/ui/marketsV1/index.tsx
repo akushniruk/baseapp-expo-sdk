@@ -1,16 +1,17 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { Text, View, Pressable } from "react-native";
+import { Text, View } from "react-native";
 import { Link, useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { format } from "../../../../shared/libs/format";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { Ticker, Tickers } from "../../../tickers/model/type";
 import { Market } from "../../model/type";
-import { marketsV1Styles } from "./marketsV1";
+import { marketsV1Styles } from "./marketsV1.styles";
 
 const TABLE_HEAD: string[] = ["Name", "Last price", "24h change"];
 const SYMBOL = "$";
 const DEFAULT_PERCENTAGE_PRECISION = 2;
+const FIXED_VOL_PRECISION = 2;
 
 interface IMarketsV1 {
     navigation?: any;
@@ -48,6 +49,7 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
                 DEFAULT_PERCENTAGE_PRECISION,
                 ","
             )}`;
+
             return (
                 <Link
                     key={market.id}
@@ -64,7 +66,7 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
                         <Text style={styles.bodyContainerText}>
                             Vol{" "}
                             {tickerForMarketById
-                                ? format(Number(tickerForMarketById.volume), market.price_precision, ",")
+                                ? format(Number(tickerForMarketById.volume), FIXED_VOL_PRECISION, ",")
                                 : "-"}
                         </Text>
                     </View>
