@@ -15,6 +15,9 @@ import { MarketsV1 } from "./services/markets/ui/marketsV1";
 // Services - Ticker - V1
 import { TickerV1 } from "./services/tickers/ui/ticker";
 
+// Widgets - Orderbook
+import { OrderbookWidget } from "./widgets/orderbook/ui/orderbook";
+
 // Widgets - IAM
 import { Login } from "./widgets/iam/authentication/login/ui/login";
 import { Register } from "./widgets/iam/authentication/register/ui/register";
@@ -62,6 +65,7 @@ export {
     ProfileWidget,
     MarketsV1,
     TickerV1,
+    OrderbookWidget,
     withAuth,
 };
 

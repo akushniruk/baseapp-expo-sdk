@@ -1,10 +1,11 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { Text, View } from "react-native";
-import { Link, useAppSelector } from "../../../../shared";
+import { Pressable, Text, View } from "react-native";
+import { Link, useAppDispatch, useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { format } from "../../../../shared/libs/format";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { Ticker, Tickers } from "../../../tickers/model/type";
+import { setCurrentMarket } from "../../model/marketsSlice";
 import { Market } from "../../model/type";
 import { marketsV1Styles } from "./marketsV1.styles";
 
@@ -19,6 +20,7 @@ interface IMarketsV1 {
 }
 
 export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => {
+    const dispatch = useAppDispatch();
     const { theme } = useThemeContext();
     const styles = useMemo(() => marketsV1Styles(theme), [theme]);
 
@@ -40,6 +42,10 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
         return <Text style={[{ width: index === 0 ? 120 : "auto" }, styles.headContainerText]}>{headText}</Text>;
     };
 
+    const handleUpdateCurrentMarket = (market: Market) => {
+        dispatch(setCurrentMarket(market));
+    };
+
     const renderMarketRow = useCallback(
         (market: Market) => {
             const tickerForMarketById: Ticker | null = tickers ? tickers[market.id] : null;
@@ -51,35 +57,37 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
             )}`;
 
             return (
-                <Link
-                    key={market.id}
-                    style={styles.row}
-                    to={{
-                        screen: "Trading",
-                        params: { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit },
-                    }}
-                >
-                    <View style={{ width: 120 }}>
-                        <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
-                            {market.base_unit?.toUpperCase()}/{market.quote_unit?.toUpperCase()}
-                        </Text>
-                        <Text style={styles.bodyContainerText}>
-                            Vol{" "}
+                <Pressable onPress={() => handleUpdateCurrentMarket(market)}>
+                    <Link
+                        key={market.id}
+                        style={styles.row}
+                        to={{
+                            screen: "Trading",
+                            params: { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit },
+                        }}
+                    >
+                        <View style={{ width: 120 }}>
+                            <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
+                                {market.base_unit?.toUpperCase()}/{market.quote_unit?.toUpperCase()}
+                            </Text>
+                            <Text style={styles.bodyContainerText}>
+                                Vol{" "}
+                                {tickerForMarketById
+                                    ? format(Number(tickerForMarketById.volume), FIXED_VOL_PRECISION, ",")
+                                    : "-"}
+                            </Text>
+                        </View>
+
+                        <Text style={[styles.bodyContainerText, styles.lastPrice]}>
                             {tickerForMarketById
-                                ? format(Number(tickerForMarketById.volume), FIXED_VOL_PRECISION, ",")
+                                ? `${SYMBOL}${format(Number(tickerForMarketById.last), market.price_precision, ",")}`
                                 : "-"}
                         </Text>
-                    </View>
-
-                    <Text style={[styles.bodyContainerText, styles.lastPrice]}>
-                        {tickerForMarketById
-                            ? `${SYMBOL}${format(Number(tickerForMarketById.last), market.price_precision, ",")}`
-                            : "-"}
-                    </Text>
-                    <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
-                        <Text style={styles.labelText}>{tickerForMarketById ? `${priceChange}%` : "-"}</Text>
-                    </View>
-                </Link>
+                        <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
+                            <Text style={styles.labelText}>{tickerForMarketById ? `${priceChange}%` : "-"}</Text>
+                        </View>
+                    </Link>
+                </Pressable>
             );
         },
         [tickers, topMarkets]

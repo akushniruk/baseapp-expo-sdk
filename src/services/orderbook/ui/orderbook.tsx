@@ -1,6 +1,7 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useContext, useEffect, useMemo } from "react";
 import { View, Text } from "react-native";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
+import { WebSocketContext } from "../../../shared/providers/websocket";
 import { mapValues } from "../libs/mapValue";
 import { orderBookTableStyles } from "./orderbook.styles";
 
@@ -12,8 +13,11 @@ interface IOrderBookTable {
 }
 
 export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBookEntry, side }: IOrderBookTable) => {
+    const ws = useContext(WebSocketContext);
     const { theme } = useThemeContext();
     const styles = useMemo(() => orderBookTableStyles(theme), [theme]);
+
+    // TODO: handle ws stream
 
     const resultData = mapValues(maxVolume, orderBookEntry);
 
@@ -28,37 +32,30 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
         [resultData]
     );
 
-    const renderSide = useCallback((item: any, index: number) => {
-        if (side === "ask") {
+    const renderSide = useCallback(
+        (item: any, index: number) => {
+            const width = getRowWidth(index)?.width;
+
+            if (side === "ask") {
+                return (
+                    <View style={styles.row}>
+                        <Text style={[styles.rowText, styles.rowTextPriceAsks]}>{item[0]}</Text>
+                        <Text style={styles.rowText}>{item[1]}</Text>
+                        <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorAsks, { width: width }]} />
+                    </View>
+                );
+            }
+
             return (
                 <View style={styles.row}>
-                    <Text style={[styles.rowText, styles.rowTextPriceAsks]}>{item[0]}</Text>
                     <Text style={styles.rowText}>{item[1]}</Text>
-                    <View
-                        style={[
-                            styles.rowBackgroundColor,
-                            styles.rowBackgroundColorAsks,
-                            { width: getRowWidth(index)?.width },
-                        ]}
-                    />
+                    <Text style={[styles.rowText, styles.rowTextPriceBids]}>{item[0]}</Text>
+                    <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorBids, { width: width }]} />
                 </View>
             );
-        }
-
-        return (
-            <View style={styles.row}>
-                <Text style={styles.rowText}>{item[1]}</Text>
-                <Text style={[styles.rowText, styles.rowTextPriceBids]}>{item[0]}</Text>
-                <View
-                    style={[
-                        styles.rowBackgroundColor,
-                        styles.rowBackgroundColorBids,
-                        { width: getRowWidth(index)?.width },
-                    ]}
-                />
-            </View>
-        );
-    }, []);
+        },
+        [getRowWidth]
+    );
 
     return (
         <>
