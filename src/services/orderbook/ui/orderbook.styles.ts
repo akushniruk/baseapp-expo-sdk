@@ -11,6 +11,7 @@ export const orderBookTableStyles = (theme: string) => {
             justifyContent: "space-between",
             flexDirection: "row",
             position: "relative",
+            marginRight: 4,
         },
         rowText: {
             position: "relative",
@@ -20,8 +21,10 @@ export const orderBookTableStyles = (theme: string) => {
         },
         rowTextPriceAsks: {
             color: palette.System.ask[60].value,
+            paddingLeft: 4,
         },
         rowTextPriceBids: {
+            paddingRight: 4,
             color: palette.System.bid[60].value,
         },
         rowBackgroundColor: {

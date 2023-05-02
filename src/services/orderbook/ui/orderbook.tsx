@@ -1,6 +1,9 @@
 import React, { FC, useCallback, useContext, useEffect, useMemo } from "react";
 import { View, Text } from "react-native";
+import { useAppSelector } from "../../../shared";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
+import { format } from "../../../shared/libs/format";
+import { RootState } from "../../../shared/providers/redux/model/store";
 import { WebSocketContext } from "../../../shared/providers/websocket";
 import { mapValues } from "../libs/mapValue";
 import { orderBookTableStyles } from "./orderbook.styles";
@@ -13,11 +16,33 @@ interface IOrderBookTable {
 }
 
 export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBookEntry, side }: IOrderBookTable) => {
-    const ws = useContext(WebSocketContext);
+    const ws: any = useContext(WebSocketContext);
     const { theme } = useThemeContext();
     const styles = useMemo(() => orderBookTableStyles(theme), [theme]);
+    const currentMarket = useAppSelector((state: RootState) => state.markets.currentMarket);
 
-    // TODO: handle ws stream
+    // FIX: ME double subscription
+    useEffect(() => {
+        if (ws && currentMarket) {
+            ws.send(
+                JSON.stringify({
+                    event: "subscribe",
+                    streams: [`${currentMarket?.id}.ob-inc`],
+                })
+            );
+        }
+
+        return () => {
+            if (ws && currentMarket) {
+                ws.send(
+                    JSON.stringify({
+                        event: "unsubscribe",
+                        streams: [`${currentMarket?.id}.ob-inc`],
+                    })
+                );
+            }
+        };
+    }, [currentMarket]);
 
     const resultData = mapValues(maxVolume, orderBookEntry);
 
@@ -39,8 +64,10 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
             if (side === "ask") {
                 return (
                     <View style={styles.row}>
-                        <Text style={[styles.rowText, styles.rowTextPriceAsks]}>{item[0]}</Text>
-                        <Text style={styles.rowText}>{item[1]}</Text>
+                        <Text style={[styles.rowText, styles.rowTextPriceAsks]}>
+                            {format(item[0], currentMarket?.price_precision || 2)}
+                        </Text>
+                        <Text style={styles.rowText}>{format(item[1], currentMarket?.amount_precision || 2)}</Text>
                         <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorAsks, { width: width }]} />
                     </View>
                 );
@@ -48,8 +75,10 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
 
             return (
                 <View style={styles.row}>
-                    <Text style={styles.rowText}>{item[1]}</Text>
-                    <Text style={[styles.rowText, styles.rowTextPriceBids]}>{item[0]}</Text>
+                    <Text style={styles.rowText}>{format(item[1], currentMarket?.amount_precision || 2)}</Text>
+                    <Text style={[styles.rowText, styles.rowTextPriceBids]}>
+                        {format(item[0], currentMarket?.price_precision || 2)}
+                    </Text>
                     <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorBids, { width: width }]} />
                 </View>
             );

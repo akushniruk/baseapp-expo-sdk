@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { Link, useAppDispatch, useAppSelector } from "../../../../shared";
+import { Pressable, Text, View, VirtualizedList } from "react-native";
+import { useAppDispatch, useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { format } from "../../../../shared/libs/format";
 import { RootState } from "../../../../shared/providers/redux/model/store";
@@ -43,7 +43,9 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
     };
 
     const handleUpdateCurrentMarket = (market: Market) => {
+        console.log("setMarket", market);
         dispatch(setCurrentMarket(market));
+        navigation?.navigate("Trading", { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit });
     };
 
     const renderMarketRow = useCallback(
@@ -57,46 +59,55 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
             )}`;
 
             return (
-                <Pressable onPress={() => handleUpdateCurrentMarket(market)}>
-                    <Link
-                        key={market.id}
-                        style={styles.row}
-                        to={{
-                            screen: "Trading",
-                            params: { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit },
-                        }}
-                    >
-                        <View style={{ width: 120 }}>
-                            <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
-                                {market.base_unit?.toUpperCase()}/{market.quote_unit?.toUpperCase()}
-                            </Text>
-                            <Text style={styles.bodyContainerText}>
-                                Vol{" "}
-                                {tickerForMarketById
-                                    ? format(Number(tickerForMarketById.volume), FIXED_VOL_PRECISION, ",")
-                                    : "-"}
-                            </Text>
-                        </View>
-
-                        <Text style={[styles.bodyContainerText, styles.lastPrice]}>
+                <Pressable
+                    key={`${market.id}-${market.base_unit}`}
+                    style={styles.row}
+                    onPress={() => handleUpdateCurrentMarket(market)}
+                >
+                    <View style={{ width: 120 }}>
+                        <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
+                            {market.base_unit?.toUpperCase()}/{market.quote_unit?.toUpperCase()}
+                        </Text>
+                        <Text style={styles.bodyContainerText}>
+                            Vol{" "}
                             {tickerForMarketById
-                                ? `${SYMBOL}${format(Number(tickerForMarketById.last), market.price_precision, ",")}`
+                                ? format(Number(tickerForMarketById.volume), FIXED_VOL_PRECISION, ",")
                                 : "-"}
                         </Text>
-                        <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
-                            <Text style={styles.labelText}>{tickerForMarketById ? `${priceChange}%` : "-"}</Text>
-                        </View>
-                    </Link>
+                    </View>
+
+                    <Text style={[styles.bodyContainerText, styles.lastPrice]}>
+                        {tickerForMarketById
+                            ? `${SYMBOL}${format(Number(tickerForMarketById.last), market.price_precision, ",")}`
+                            : "-"}
+                    </Text>
+                    <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
+                        <Text style={styles.labelText}>{tickerForMarketById ? `${priceChange}%` : "-"}</Text>
+                    </View>
                 </Pressable>
             );
         },
         [tickers, topMarkets]
     );
 
+    const getItemCount = (_data: unknown) => topMarkets?.length;
+
+    const getItem = (_data: unknown, index: number) => {
+        return topMarkets[index];
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.headContainer}>{TABLE_HEAD.map(renderTableHead)}</View>
-            <View style={styles.bodyContainer}>{topMarkets?.map(renderMarketRow)}</View>
+            <VirtualizedList
+                initialNumToRender={14}
+                renderItem={({ item }) => renderMarketRow(item)}
+                keyExtractor={(item) => item.id}
+                getItemCount={getItemCount}
+                getItem={getItem}
+                maxToRenderPerBatch={14}
+                style={styles.bodyContainer}
+            />
         </View>
     );
 };

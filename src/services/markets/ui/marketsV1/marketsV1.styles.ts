@@ -42,7 +42,7 @@ export const marketsV1Styles = (theme: string) => {
             paddingHorizontal: 12,
             paddingVertical: 6,
             borderRadius: 4,
-            width: 70,
+            minWidth: 70,
         },
         priceChangeNegative: {
             display: "flex",
@@ -52,7 +52,7 @@ export const marketsV1Styles = (theme: string) => {
             paddingHorizontal: 12,
             paddingVertical: 6,
             borderRadius: 4,
-            width: 70,
+            minWidth: 70,
         },
         labelText: {
             color: palette["text-color"]["00"].value,
