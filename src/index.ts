@@ -43,7 +43,11 @@ import { SecondaryButton } from "./shared/ui/secondaryButton";
 import { Input } from "./shared/ui/input";
 import { OTPInput } from "./shared/ui/otpInput";
 
+// Shared UI - TabPanel
+import { TabPanel } from "./shared/ui/tabPanel";
+
 export {
+    TabPanel,
     Button,
     SecondaryButton,
     Input,

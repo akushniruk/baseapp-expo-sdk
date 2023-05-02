@@ -1,6 +1,6 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
-    "version": "0.0.66",
+    "version": "0.0.67",
     "main": "lib/commonjs/index.js",
     "license": "MIT",
     "scripts": {
@@ -34,6 +34,7 @@
         "i18n-js": "3.8",
         "react-hook-form": "7.43.1",
         "react-native-safe-area-context": "^4.4.1",
+        "react-native-tab-view": "3.5.1",
         "react-native-web": "^0.18.10",
         "react-redux": "8.0.5",
         "redux": "4.2.1",

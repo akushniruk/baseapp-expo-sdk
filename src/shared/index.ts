@@ -3,6 +3,7 @@ export * from "./ui/button";
 export * from "./ui/input";
 export * from "./ui/otpInput";
 export * from "./ui/link";
+export * from "./ui/tabPanel";
 
 export * from "./providers/redux";
 export * from "./providers/redux/lib/useAppDispatch";
