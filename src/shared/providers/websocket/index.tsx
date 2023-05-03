@@ -1,10 +1,10 @@
 import React, { createContext, useEffect, useState } from "react";
-import { useAppSelector } from "../../../../lib/commonjs/shared/providers/redux";
 import { Market } from "../../../services/markets/model/type";
 import { saveOrderbookSnapshot, updateOrderbook } from "../../../services/orderbook/model/orderbookSlice";
 import { saveTickers } from "../../../services/tickers/model/tickersSlice";
+import { updateTrades } from "../../../services/trades/model/tradesSlice";
 import { useAppDispatch } from "../redux";
-import { RootState, store } from "../redux/model/store";
+import { store } from "../redux/model/store";
 
 const WebSocketContext = createContext(null);
 
@@ -26,8 +26,9 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
             if (payload.hasOwnProperty(routingKey)) {
                 const orderBookMatchSnap = routingKey.match(/([^.]*)\.ob-snap/);
                 const orderBookMatchInc = routingKey.match(/([^.]*)\.ob-inc/);
+                const tradesMatch = String(routingKey).match(/([^.]*)\.trades/);
 
-                // public
+                // public - orderbook snapshot
                 if (orderBookMatchSnap) {
                     if (orderBookMatchSnap[1] === currentMarket?.id) {
                         dispatch(saveOrderbookSnapshot(payload[routingKey]));
@@ -36,16 +37,16 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
                     return;
                 }
 
-                // public
+                // public - orderbook inc update
                 if (orderBookMatchInc) {
                     if (orderBookMatchInc[1] === currentMarket?.id) {
                         if (previousSequence === null) {
-                            window.console.log("OrderBook increment received before snapshot");
+                            console.log("OrderBook increment received before snapshot");
 
                             return;
                         }
                         if (previousSequence + 1 !== payload[routingKey].sequence) {
-                            window.console.log(
+                            console.log(
                                 `Bad sequence detected in incremental orderbook previous: ${previousSequence}, event: ${payload.sequence}`
                             );
 
@@ -56,6 +57,19 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
                     return;
                 }
+
+                // public - trades
+                if (tradesMatch) {
+                    dispatch(
+                        updateTrades({
+                            trades: payload[routingKey]?.trades,
+                            market: tradesMatch[1],
+                        })
+                    );
+
+                    return;
+                }
+
                 switch (routingKey) {
                     case "global.tickers":
                         dispatch(saveTickers(payload["global.tickers"]));

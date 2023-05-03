@@ -8,6 +8,7 @@ import { markets } from "../../../../services/markets/model/marketsSlice";
 import { currencies } from "../../../../services/currencies/model/currenciesSlice";
 import { tickers } from "../../../../services/tickers/model/tickersSlice";
 import { orderbook } from "../../../../services/orderbook/model/orderbookSlice";
+import { trades } from "../../../../services/trades/model/tradesSlice";
 
 export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
     configureStore({
@@ -20,6 +21,7 @@ export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | 
             currency: currencies.reducer,
             tickers: tickers.reducer,
             orderbook: orderbook.reducer,
+            trades: trades.reducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
         ...options,

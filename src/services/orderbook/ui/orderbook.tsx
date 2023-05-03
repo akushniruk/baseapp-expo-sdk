@@ -42,7 +42,7 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
                 );
             }
         };
-    }, [currentMarket]);
+    }, [ws, currentMarket]);
 
     const resultData = mapValues(maxVolume, orderBookEntry);
 

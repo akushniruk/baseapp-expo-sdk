@@ -3,7 +3,7 @@ import { saveCurrencies } from "../../currencies/model/currenciesSlice";
 import { saveMarkets } from "../../markets/model/marketsSlice";
 // import { dispatchAlert } from "../../../shared/ui/alerts";
 
-export const apiKeysApi = api.injectEndpoints({
+export const configApi = api.injectEndpoints({
     endpoints: (build) => ({
         config: build.query<any, void>({
             query: () => ({
@@ -23,4 +23,4 @@ export const apiKeysApi = api.injectEndpoints({
     }),
 });
 
-export const { useConfigQuery } = apiKeysApi;
+export const { useConfigQuery } = configApi;
