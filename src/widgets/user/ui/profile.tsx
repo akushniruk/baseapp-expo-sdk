@@ -14,21 +14,18 @@ export const ProfileWidget: FC = () => {
     }, []);
 
     const renderList = (item: ProfileNavigationOption) => {
-        return <ProfileNavigation option={item} />;
+        return (
+            <View style={{ paddingBottom: 12 }}>
+                <ProfileNavigation option={item} />
+            </View>
+        );
     };
 
     return (
         <View>
-            <ScrollView
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
-            >
+            <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 <Profile />
-                {profileNavigationOptions.map(renderList)}
+                <View style={{ marginTop: 48 }}>{profileNavigationOptions.map(renderList)}</View>
             </ScrollView>
         </View>
     );

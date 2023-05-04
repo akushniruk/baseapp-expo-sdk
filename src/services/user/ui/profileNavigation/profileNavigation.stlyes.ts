@@ -6,10 +6,10 @@ export const profileNavigationStyles = (theme: string) => {
 
     return StyleSheet.create({
         block: {
-            marginTop: 24,
             flexDirection: "row",
             alignItems: "center",
             textTransform: "Capitalize",
+            justifyContent: "center",
         },
         blockIcon: {
             paddingRight: 12,
@@ -21,6 +21,7 @@ export const profileNavigationStyles = (theme: string) => {
             fontSize: 14,
         },
         secondaryBlock: {
+            height: 36,
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",

@@ -2,11 +2,13 @@ import React, { FC, useCallback, useContext, useEffect, useMemo } from "react";
 import { View, VirtualizedList, Text } from "react-native";
 import { useAppDispatch, useAppSelector } from "../../../shared";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
+import { format } from "../../../shared/libs/format";
 import { RootState } from "../../../shared/providers/redux/model/store";
 import { WebSocketContext } from "../../../shared/providers/websocket";
 import { Market } from "../../markets/model/type";
 import { useTradesMutation } from "../api/trades";
 import { Trade } from "../api/types";
+import { convertDateFromTimestamp, getHHMMSSFromDate } from "../libs/convertDateFromTimestamp";
 import { saveTrades } from "../model/tradesSlice";
 import { tradesStyles } from "./trades.styles";
 
@@ -57,12 +59,21 @@ export const Trades: FC = () => {
         return trades[index];
     };
 
+    const priceFixed = currentMarket ? currentMarket.price_precision : 0;
+    const amountFixed = currentMarket ? currentMarket.amount_precision : 0;
+
     const renderRow = useCallback((trade: Trade) => {
+        const rowHighlighted = trade.taker_type === "buy" ? styles.rowBid : styles.rowAsk;
+
         return (
             <View style={styles.row} key={`${trade.id}`}>
-                <Text>{trade.created_at}</Text>
-                <Text>{trade.amount}</Text>
-                <Text style={{ width: "120px", textAlign: "right" }}>{trade.price}</Text>
+                <Text style={[styles.rowText, rowHighlighted]}>
+                    {getHHMMSSFromDate(convertDateFromTimestamp(trade.created_at))}
+                </Text>
+                <Text style={[styles.rowText, rowHighlighted]}>{format(trade.amount, amountFixed)}</Text>
+                <Text style={[{ width: "120px", textAlign: "right" }, styles.rowText, rowHighlighted]}>
+                    {format(trade.price, priceFixed)}
+                </Text>
             </View>
         );
     }, []);

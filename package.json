@@ -1,10 +1,10 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
-    "version": "0.0.67",
+    "version": "0.0.68",
     "main": "lib/commonjs/index.js",
     "license": "MIT",
     "scripts": {
-        "start": "expo start --dev-client",
+        "start": "expo start",
         "android": "expo run:android",
         "ios": "expo run:ios",
         "web": "expo start --web",
@@ -34,6 +34,7 @@
         "i18n-js": "3.8",
         "react-hook-form": "7.43.1",
         "react-native-safe-area-context": "^4.4.1",
+        "react-native-swipe-modal-up-down": "^1.1.0",
         "react-native-tab-view": "3.5.1",
         "react-native-web": "^0.18.10",
         "react-redux": "8.0.5",

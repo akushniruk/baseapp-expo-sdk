@@ -14,8 +14,12 @@ export const tradesStyles = (theme: string) => {
             alignItems: "center",
             flexDirection: "row",
             justifyContent: "space-between",
+            paddingVertical: 12,
         },
-        headContainerText: {},
+        headContainerText: {
+            fontSize: 12,
+            color: palette["text-color"][50].value
+        },
         bodyContainer: {
             height: "100%",
         },
@@ -24,6 +28,16 @@ export const tradesStyles = (theme: string) => {
             alignItems: "center",
             flexDirection: "row",
             justifyContent: "space-between",
+            paddingVertical: 3,
         },
+        rowText: {
+            color: palette["text-color"][100].value
+        },
+        rowAsk: {
+            color: palette.System.ask[40].value
+        },
+        rowBid: {
+            color: palette.System.bid[40].value
+        }
     });
 };
