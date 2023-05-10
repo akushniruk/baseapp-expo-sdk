@@ -5,6 +5,12 @@ export const orderFormStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
- 
+        headerContainer: {},
+        orderTypeButton: {},
+        typeButtons: {},
+        buttonBuy: {},
+        buttonSell: {},
+        bodyContainer: {},
+        balanceLabel: {},
     });
 };
