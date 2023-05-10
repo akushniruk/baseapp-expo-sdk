@@ -71,7 +71,7 @@ export const Trades: FC = () => {
                     {getHHMMSSFromDate(convertDateFromTimestamp(trade.created_at))}
                 </Text>
                 <Text style={[styles.rowText, rowHighlighted]}>{format(trade.amount, amountFixed)}</Text>
-                <Text style={[{ width: "120px", textAlign: "right" }, styles.rowText, rowHighlighted]}>
+                <Text style={[{ width: 120, textAlign: "right" }, styles.rowText, rowHighlighted]}>
                     {format(trade.price, priceFixed)}
                 </Text>
             </View>

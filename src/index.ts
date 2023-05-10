@@ -15,6 +15,9 @@ import { MarketsV1 } from "./services/markets/ui/marketsV1";
 // Services - Ticker - V1
 import { TickerV1 } from "./services/tickers/ui/ticker";
 
+// Services - Trades
+import { Trades } from "./services/trades/ui/trades";
+
 // Widgets - Orderbook
 import { OrderbookWidget } from "./widgets/orderbook/ui/orderbook";
 
@@ -47,6 +50,7 @@ import { OTPInput } from "./shared/ui/otpInput";
 import { TabPanel } from "./shared/ui/tabPanel";
 
 export {
+    Trades,
     TabPanel,
     Button,
     SecondaryButton,
