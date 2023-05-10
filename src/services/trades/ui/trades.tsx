@@ -9,7 +9,6 @@ import { Market } from "../../markets/model/type";
 import { useTradesMutation } from "../api/trades";
 import { Trade } from "../api/types";
 import { convertDateFromTimestamp, getHHMMSSFromDate } from "../libs/convertDateFromTimestamp";
-import { saveTrades } from "../model/tradesSlice";
 import { tradesStyles } from "./trades.styles";
 
 const TABLE_HEAD: string[] = ["Name", "Last price", "24h change"];
@@ -20,7 +19,6 @@ export const Trades: FC = () => {
 
     const ws: any = useContext(WebSocketContext);
 
-    const dispatch = useAppDispatch();
     const [getTradesList] = useTradesMutation();
 
     const currentMarket: Market | undefined = useAppSelector((state: RootState) => state.markets.currentMarket);
@@ -28,7 +26,6 @@ export const Trades: FC = () => {
 
     useEffect(() => {
         if (ws && currentMarket) {
-            dispatch(saveTrades([]));
             getTradesList({ marketId: currentMarket.id });
 
             ws?.send(
@@ -40,8 +37,6 @@ export const Trades: FC = () => {
         }
 
         return () => {
-            dispatch(saveTrades([]));
-
             if (ws && currentMarket) {
                 ws?.send(
                     JSON.stringify({
@@ -56,31 +51,34 @@ export const Trades: FC = () => {
     const getItemCount = (_data: unknown) => trades?.length;
 
     const getItem = (_data: unknown, index: number) => {
+        console.log("tesst", index, trades[index]);
         return trades[index];
     };
 
     const priceFixed = currentMarket ? currentMarket.price_precision : 0;
     const amountFixed = currentMarket ? currentMarket.amount_precision : 0;
 
-    const renderRow = useCallback((trade: Trade) => {
+    const renderRow = (trade: Trade) => {
         const rowHighlighted = trade.taker_type === "buy" ? styles.rowBid : styles.rowAsk;
 
         return (
             <View style={styles.row} key={`${trade.id}`}>
-                <Text style={[styles.rowText, rowHighlighted]}>
+                <Text style={[styles.rowText, rowHighlighted, { width: 80 }]}>
                     {getHHMMSSFromDate(convertDateFromTimestamp(trade.created_at))}
                 </Text>
-                <Text style={[styles.rowText, rowHighlighted]}>{format(trade.amount, amountFixed)}</Text>
-                <Text style={[{ width: 120, textAlign: "right" }, styles.rowText, rowHighlighted]}>
+                <Text style={[styles.rowText, rowHighlighted, { textAlign: "left" }]}>
+                    {format(trade.amount, amountFixed)}
+                </Text>
+                <Text style={[{ textAlign: "right" }, styles.rowText, rowHighlighted]}>
                     {format(trade.price, priceFixed)}
                 </Text>
             </View>
         );
-    }, []);
+    };
 
     const renderTableHead = (headText: string, index: number) => {
         return (
-            <Text key={index} style={styles.headContainerText}>
+            <Text key={index} style={[{ width: index === 0 ? 80 : "auto" }, styles.headContainerText]}>
                 {headText}
             </Text>
         );

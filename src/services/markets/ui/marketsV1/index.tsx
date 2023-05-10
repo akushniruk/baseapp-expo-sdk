@@ -43,7 +43,6 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
     };
 
     const handleUpdateCurrentMarket = (market: Market) => {
-        console.log("setMarket", market);
         dispatch(setCurrentMarket(market));
         navigation?.navigate("Trading", { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit });
     };
