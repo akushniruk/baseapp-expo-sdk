@@ -86,7 +86,9 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     useEffect(() => {
         // TODO: add support for private
         const newWs = new WebSocket(
-            `${process.env.REACT_APP_WS_API || "ws://192.168.0.102:9003"}/api/v2/ranger/public?stream=global.tickers`
+            `${
+                process.env.REACT_APP_WS_API || "wss://aurora-master.uat.opendax.app"
+            }/api/v2/ranger/public?stream=global.tickers`
         );
 
         newWs.onopen = () => {
