@@ -26,10 +26,8 @@ export const Modal: FC<ModalProps> = ({
     const styles = useMemo(() => modalStyles(theme), [theme]);
 
     useEffect(() => {
-        console.log("isOpen", isOpen);
         if (isOpen) {
             bottomSheetRef?.current?.snapToIndex(0);
-            setIsOpen(true);
         }
     }, [isOpen, setIsOpen]);
 

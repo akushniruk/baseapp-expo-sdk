@@ -1,6 +1,6 @@
-export interface ApiKeysCreateModalProps {
+export interface IApiKeysCreateModal {
     isLoading: boolean;
     buttonTitle: string;
     isOpen: boolean;
-    handleClose: () => void;
+    setIsOpen: (isOpen: boolean) => void;
 }

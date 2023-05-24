@@ -7,9 +7,8 @@ export const apiKeysCreateModalStyles = (theme: string) => {
     return StyleSheet.create({
         modalContainer: {
             height: "100%",
+            marginTop: 24,
             backgroundColor: palette.Background["body-background-color"].value,
-            flex: 1,
-            justifyContent: "center",
             paddingHorizontal: 12,
         },
         title: {
@@ -33,7 +32,7 @@ export const apiKeysCreateModalStyles = (theme: string) => {
             paddingRight: 12,
         },
         textContainer: {
-            flex: 1,
+            height: "100%",
             flexWrap: "wrap",
             width: "100%",
         },

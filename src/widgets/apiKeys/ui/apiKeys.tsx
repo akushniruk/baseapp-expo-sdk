@@ -64,9 +64,9 @@ export const ApiKeysWidget: FC = () => {
                 />
                 <ApiKeysCreateModal
                     isOpen={isOpenCreateModal}
-                    buttonTitle="close"
+                    setIsOpen={setIsOpenCreateModal}
+                    buttonTitle="Close"
                     isLoading={false}
-                    handleClose={handleClose}
                 />
             </ScrollView>
         </View>
