@@ -1,5 +1,5 @@
-import React, { createRef, useState, FC, useCallback, useMemo } from "react";
-import { View, TextInput, Text, Pressable } from "react-native";
+import React, { createRef, useState, FC, useCallback, useMemo, useEffect } from "react";
+import { View, TextInput, Text, Pressable, ScrollView } from "react-native";
 import * as Clipboard from "expo-clipboard";
 import { SecondaryButton } from "../secondaryButton";
 import { useThemeContext } from "../../hooks/useThemeContext";
@@ -32,6 +32,12 @@ export const OTPInput: FC<OTPInputProps> = ({
         setCode(text);
     }, []);
 
+    useEffect(() => {
+        if (!code) {
+            inputRef?.current?.blur();
+        }
+    }, [code]);
+
     const handleOnPress = useCallback(() => {
         setIsInputBoxFocused(true);
 
@@ -50,8 +56,7 @@ export const OTPInput: FC<OTPInputProps> = ({
             const isLastValue = index === maximumLength - 1;
             const isCodeComplete = code.length === maximumLength;
 
-            const isValueFocused =
-                isCurrentValue || (isLastValue && isCodeComplete);
+            const isValueFocused = isCurrentValue || (isLastValue && isCodeComplete);
 
             return (
                 <View
@@ -70,12 +75,9 @@ export const OTPInput: FC<OTPInputProps> = ({
     );
 
     return (
-        <View style={styles.otpInputContainer}>
+        <ScrollView style={styles.otpInputContainer}>
             <View style={styles.boxAndPastContainer}>
-                <Pressable
-                    style={styles.splitOTPBoxesContainer}
-                    onPress={handleOnPress}
-                >
+                <Pressable style={styles.splitOTPBoxesContainer} onPress={handleOnPress}>
                     {boxArray.map(boxDigit)}
                 </Pressable>
                 <SecondaryButton title="Paste" onPress={fetchCopiedText} />
@@ -89,6 +91,6 @@ export const OTPInput: FC<OTPInputProps> = ({
                 keyboardType="number-pad"
                 onBlur={handleOnBlur}
             />
-        </View>
+        </ScrollView>
     );
 };

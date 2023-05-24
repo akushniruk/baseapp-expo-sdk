@@ -10,9 +10,8 @@ export const apiKeys2FAModalStyles = (theme: string) => {
             marginBottom: 6,
         },
         container: {
-            height: "100%",
+            marginTop: 24,
             backgroundColor: palette.Background["body-background-color"].value,
-            flex: 1,
             justifyContent: "center",
             paddingHorizontal: 12,
         },

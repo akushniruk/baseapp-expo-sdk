@@ -14,9 +14,7 @@ export const ApiKeysWidget: FC = () => {
 
     const [refreshing, setRefreshing] = useState(false);
 
-    const profile: User | null = useAppSelector(
-        (state: RootState) => state.user.profile
-    );
+    const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
 
     const onRefresh = useCallback(() => {
         setRefreshing(true);
@@ -50,14 +48,7 @@ export const ApiKeysWidget: FC = () => {
 
     return (
         <View>
-            <ScrollView
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                    />
-                }
-            >
+            <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 {!profile?.otp ? <ApiKeysActivate2FA /> : null}
                 <ApiKeysTable
                     createRequest={sendCreateRequest}
@@ -66,6 +57,7 @@ export const ApiKeysWidget: FC = () => {
                 />
                 <ApiKeys2FAModal
                     isOpen={isOpen2FAModal}
+                    setIsOpen={setIsOpen2FAModal}
                     buttonTitle="create"
                     isLoading={false}
                     sendRequest={sendRequest}
