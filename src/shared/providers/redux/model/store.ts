@@ -9,12 +9,14 @@ import { currencies } from "../../../../services/currencies/model/currenciesSlic
 import { tickers } from "../../../../services/tickers/model/tickersSlice";
 import { orderbook } from "../../../../services/orderbook/model/orderbookSlice";
 import { trades } from "../../../../services/trades/model/tradesSlice";
+import { accountActivity } from "../../../../services/accountActivity/model/accountActivitySlice";
 
 export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
     configureStore({
         reducer: {
             [api.reducerPath]: api.reducer,
             user: user.reducer,
+            accountActivity: accountActivity.reducer,
             alerts: alerts.reducer,
             apiKey: apiKey.reducer,
             markets: markets.reducer,

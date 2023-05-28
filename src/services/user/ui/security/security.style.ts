@@ -5,11 +5,6 @@ export const securityStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
-        totpContainer: {},
-        totpContainerBlock: {},
-        totpContainerTitle: {},
-        totpContainerSubTitle: {},
-        totpContainerBlocks: {},
         block: {
             marginTop: 24,
             flexDirection: "row",

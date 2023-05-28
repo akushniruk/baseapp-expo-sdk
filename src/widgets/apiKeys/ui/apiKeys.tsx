@@ -1,5 +1,5 @@
 import React, { FC, useCallback, useState } from "react";
-import { ScrollView, View, RefreshControl } from "react-native";
+import { ScrollView, View, RefreshControl, Text } from "react-native";
 import { ApiKeysTable } from "../../../services/apiKeys/ui/apiKeysTable/index";
 import { ApiKeysActivate2FA } from "../../../services/apiKeys/ui/apiKeysActivate2FA/index";
 import { ApiKeys2FAModal } from "../../../services/apiKeys/ui/apiKeys2FAModal/index";
@@ -93,30 +93,30 @@ export const ApiKeysWidget: FC = () => {
     );
 
     return (
-        <View>
+        <View style={{ height: "100%" }}>
             <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 {!profile?.otp ? <ApiKeysActivate2FA /> : null}
-                {profile ? (
+                {profile && profile?.otp ? (
                     <ApiKeysTable
                         createRequest={sendCreateRequest}
                         updateRequest={sendUpdateRequest}
                         deleteRequest={sendDeleteRequest}
                     />
                 ) : null}
-                <ApiKeys2FAModal
-                    isOpen={isOpen2FAModal}
-                    setIsOpen={setIsOpen2FAModal}
-                    buttonTitle={action}
-                    isLoading={false}
-                    sendRequest={sendRequest}
-                />
-                <ApiKeysCreateModal
-                    isOpen={isOpenCreateModal}
-                    setIsOpen={setIsOpenCreateModal}
-                    buttonTitle="Close"
-                    isLoading={false}
-                />
             </ScrollView>
+            <ApiKeys2FAModal
+                isOpen={isOpen2FAModal}
+                setIsOpen={setIsOpen2FAModal}
+                buttonTitle={action}
+                isLoading={false}
+                sendRequest={sendRequest}
+            />
+            <ApiKeysCreateModal
+                isOpen={isOpenCreateModal}
+                setIsOpen={setIsOpenCreateModal}
+                buttonTitle="Close"
+                isLoading={false}
+            />
         </View>
     );
 };

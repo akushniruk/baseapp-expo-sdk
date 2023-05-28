@@ -5,6 +5,10 @@ export const apiKeysTableStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
+        rootContainer: {
+            paddingHorizontal: 12,
+            paddingBottom: 48,
+        },
         createButton: {
             flexDirection: "row",
             justifyContent: "flex-end",
@@ -60,12 +64,14 @@ export const apiKeysTableStyles = (theme: string) => {
             color: palette.Controls["neutral-control-color"][10].value,
         },
         noData: {
+            height: "100%",
+            flex: 1,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
         },
         noDataText: {
-            marginBottom: 24,
+            paddingBottom: 24,
         },
     });
 };

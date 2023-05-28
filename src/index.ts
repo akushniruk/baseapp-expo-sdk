@@ -5,6 +5,18 @@ import { ForgotPasswordForm } from "./services/iam/authentication/forgotPassword
 import { ResetPasswordForm } from "./services/iam/authentication/resetPasswordForm/ui/resetPasswordForm";
 import { VerifyEmailForm } from "./services/iam/authentication/verifyEmailForm/ui/verifyEmailForm";
 
+// Services - User - Profile - ChangePasswordForm
+import { ChangePasswordForm } from "./services/iam/authentication/changePasswordForm/ui/changePasswordForm";
+
+// Services - User - Profile - Security
+import { Security } from "./services/user/ui/security";
+
+// Services - User - Profile - AccountActivity
+import { AccountActivity } from "./services/accountActivity/ui";
+
+// Services - User - Profile - Referral
+import { Referral } from "./services/user/ui/referral";
+
 // Services - User - Profile
 import { Profile } from "./services/user/ui/profile/profile";
 import { ProfileDetails } from "./services/user/ui/profile/profileDetails";
@@ -30,6 +42,9 @@ import { VerifyEmail } from "./widgets/iam/authentication/verifyEmail/ui/verifyE
 
 // Widgets - User - Profile
 import { ProfileWidget } from "./widgets/user/ui/profile";
+
+// Widgets - User - Profile - ApiKeys
+import { ApiKeysWidget } from "./widgets/apiKeys/ui/apiKeys";
 
 // Shared providers
 import { ReduxProvider } from "./shared/providers/redux/redux";
@@ -67,6 +82,10 @@ export {
     ForgotPasswordForm,
     ResetPasswordForm,
     VerifyEmailForm,
+    ChangePasswordForm,
+    AccountActivity,
+    Referral,
+    Security,
     CoreProvider,
     Profile,
     ProfileDetails,
@@ -74,6 +93,7 @@ export {
     MarketsV1,
     TickerV1,
     OrderbookWidget,
+    ApiKeysWidget,
     withAuth,
 };
 

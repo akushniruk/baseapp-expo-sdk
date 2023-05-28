@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useCallback, useMemo } from "react";
-import { View, ScrollView, Switch, Text, Platform, Pressable } from "react-native";
+import { View, Switch, Text, Platform, Pressable } from "react-native";
 import { apiKeysTableStyles } from "./apiKeysTable.styles";
 import { Button, useAppSelector } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
@@ -117,12 +117,12 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
     }
 
     return (
-        <ScrollView>
+        <View style={styles.rootContainer}>
             <View style={styles.createButton}>
                 <Button onPress={handleCreateRequest} title="Create +" isLoading={false} />
             </View>
 
             {apiKeyList?.map(renderTableBlock)}
-        </ScrollView>
+        </View>
     );
 };
