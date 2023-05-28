@@ -7,13 +7,30 @@ import { ApiKeysCreateModal } from "../../../services/apiKeys/ui/apiKeysCreateMo
 import { useAppSelector } from "../../../shared";
 import { User } from "../../../services/user";
 import { RootState } from "../../../shared/providers/redux/model/store";
+import {
+    useCreateApiKeyMutation,
+    useUpdateApiKeyMutation,
+    useDeleteApiKeyMutation,
+} from "../../../services/apiKeys/api/apiKeyApi";
+
+type ISelectedApiKey = {
+    kid: string;
+    state: "active" | "disabled" | "";
+};
 
 export const ApiKeysWidget: FC = () => {
+    const [createApiKey, { isLoading, isSuccess }] = useCreateApiKeyMutation();
+    const [updateApiKey] = useUpdateApiKeyMutation();
+    const [deleteApiKey] = useDeleteApiKeyMutation();
+
     const [isOpen2FAModal, setIsOpen2FAModal] = useState(false);
     const [isOpenCreateModal, setIsOpenCreateModal] = useState(false);
-
+    const [action, setAction] = useState<"" | "create" | "update" | "delete">("create");
+    const [selectedApiKey, setSelectedApiKey] = useState<ISelectedApiKey>({
+        kid: "",
+        state: "",
+    });
     const [refreshing, setRefreshing] = useState(false);
-
     const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
 
     const onRefresh = useCallback(() => {
@@ -25,40 +42,71 @@ export const ApiKeysWidget: FC = () => {
 
     const sendCreateRequest = useCallback(() => {
         setIsOpen2FAModal(true);
-    }, []);
+        setAction("create");
+    }, [setAction, setIsOpen2FAModal]);
 
-    const sendUpdateRequest = useCallback((kid: string, state: string) => {
-        console.log(kid, state);
-    }, []);
+    const sendUpdateRequest = useCallback(
+        (kid: string, state: "active" | "disabled") => {
+            setSelectedApiKey({ kid, state });
+            setAction("update");
+            setIsOpen2FAModal(true);
+        },
+        [setAction, setSelectedApiKey, setIsOpen2FAModal]
+    );
 
-    const sendDeleteRequest = useCallback((kid: string) => {
-        console.log(kid);
-    }, []);
+    const sendDeleteRequest = useCallback(
+        (kid: string) => {
+            setSelectedApiKey({ kid, state: "" });
+            setAction("delete");
+            setIsOpen2FAModal(true);
+        },
+        [setAction, setSelectedApiKey, setIsOpen2FAModal]
+    );
 
-    const sendRequest = useCallback(() => {
-        setIsOpen2FAModal(false);
-        setIsOpenCreateModal(true);
+    const sendRequest = useCallback(
+        (totp_code?: string) => {
+            const { kid, state } = selectedApiKey;
 
-        // TODO: handle delete, create, update
-    }, []);
+            switch (action) {
+                case "create":
+                    setIsOpen2FAModal(false);
+                    totp_code && createApiKey({ algorithm: "HS256", totp_code });
+                    setIsOpenCreateModal(true);
+                    break;
+                case "update":
+                    setIsOpen2FAModal(false);
+                    totp_code &&
+                        kid &&
+                        state &&
+                        updateApiKey({ kid, totp_code, state: state === "active" ? "disabled" : "active" });
 
-    const handleClose = useCallback(() => {
-        setIsOpenCreateModal(false);
-    }, []);
+                    break;
+                case "delete":
+                    setIsOpen2FAModal(false);
+                    totp_code && kid && deleteApiKey({ totp_code, kid });
+                    break;
+                default:
+                    break;
+            }
+        },
+        [action, selectedApiKey]
+    );
 
     return (
         <View>
             <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
                 {!profile?.otp ? <ApiKeysActivate2FA /> : null}
-                <ApiKeysTable
-                    createRequest={sendCreateRequest}
-                    updateRequest={sendUpdateRequest}
-                    deleteRequest={sendDeleteRequest}
-                />
+                {profile ? (
+                    <ApiKeysTable
+                        createRequest={sendCreateRequest}
+                        updateRequest={sendUpdateRequest}
+                        deleteRequest={sendDeleteRequest}
+                    />
+                ) : null}
                 <ApiKeys2FAModal
                     isOpen={isOpen2FAModal}
                     setIsOpen={setIsOpen2FAModal}
-                    buttonTitle="create"
+                    buttonTitle={action}
                     isLoading={false}
                     sendRequest={sendRequest}
                 />

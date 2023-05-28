@@ -16,7 +16,7 @@ export const ApiKeys2FAModal: FC<IApiKeys2FAModal> = ({ isOpen, buttonTitle, isL
     const [otp, setOtp] = useState<string>("");
 
     const handleSendRequest = () => {
-        sendRequest();
+        sendRequest(otp);
         setOtp("");
         bottomSheetRef?.current?.forceClose();
         setIsOpen(false);
@@ -34,7 +34,7 @@ export const ApiKeys2FAModal: FC<IApiKeys2FAModal> = ({ isOpen, buttonTitle, isL
                 <Text style={styles.label}>Enter 2fa code from the Google Authenticator app</Text>
                 <OTPInput code={otp} setCode={setOtp} maximumLength={6} emptyInputSymbol="*" />
 
-                <Button onPress={handleSendRequest} title={buttonTitle} isLoading={isLoading} />
+                <Button onPress={handleSendRequest} title={buttonTitle} isLoading={isLoading} disabled={!otp} />
             </View>
         </Modal>
     );

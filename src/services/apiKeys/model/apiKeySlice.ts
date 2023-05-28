@@ -13,16 +13,11 @@ export const apiKey = createSlice({
     initialState,
     name: "apiKey",
     reducers: {
-        setApiKeyList: (
-            state: ApiKeyState,
-            action: PayloadAction<ApiKey[]>
-        ) => {
+        setApiKeyList: (state: ApiKeyState, action: PayloadAction<ApiKey[]>) => {
             state.list = action.payload;
         },
         createApiKey: (state: ApiKeyState, action: PayloadAction<ApiKey>) => {
-            state.list = state.list
-                ? state.list.concat(action.payload)
-                : [action.payload];
+            state.list = state.list ? state.list.concat(action.payload) : [action.payload];
         },
         updateApiKey: (state: ApiKeyState, action: PayloadAction<ApiKey>) => {
             state.list =
@@ -34,7 +29,10 @@ export const apiKey = createSlice({
                     return apiKey;
                 }) || null;
         },
+        deleteApiKey: (state: ApiKeyState, action: PayloadAction<ApiKey>) => {
+            state.list = state.list.filter((apiKey: ApiKey) => apiKey.kid !== action.payload.kid);
+        },
     },
 });
 
-export const { setApiKeyList, createApiKey, updateApiKey } = apiKey.actions;
+export const { setApiKeyList, createApiKey, updateApiKey, deleteApiKey } = apiKey.actions;

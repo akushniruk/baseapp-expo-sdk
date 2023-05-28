@@ -1,16 +1,7 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import {
-    createApiKey,
-    setApiKeyList,
-    updateApiKey,
-} from "../model/apiKeySlice";
-import {
-    ApiKey,
-    ApiKeyCreateRequest,
-    ApiKeyListRequest,
-    ApiKeyUpdateRequest,
-} from "./types";
+import { createApiKey, setApiKeyList, updateApiKey, deleteApiKey } from "../model/apiKeySlice";
+import { ApiKey, ApiKeyCreateRequest, ApiKeyListRequest, ApiKeyUpdateRequest, ApiKeyDeleteRequest } from "./types";
 
 // delete no response
 //https://yellowsoftwareexchange.uat.opendax.app/api/v2/barong/resource/api_keys/a36d3e949608c426?totp_code=311274
@@ -99,11 +90,35 @@ export const apiKeysApi = api.injectEndpoints({
                 }
             },
         }),
+        deleteApiKey: build.mutation<ApiKey, ApiKeyDeleteRequest>({
+            query(data) {
+                return {
+                    url: `api/v2/barong/resource/api_keys/${data.kid}?totp_code=${data.totp_code}`,
+                    method: "DELETE",
+                };
+            },
+            async onQueryStarted(args, { dispatch, queryFulfilled }) {
+                try {
+                    const response = await queryFulfilled;
+                    dispatch(deleteApiKey(response.data));
+                    dispatchAlert({
+                        type: "success",
+                        messageType: "success",
+                        messageText: `API key ${response.data.kid} deleted`,
+                    });
+                } catch (error: any) {
+                    dispatch(
+                        dispatchAlert({
+                            type: "error",
+                            messageType: "error",
+                            messageText: error.error.data.errors[0],
+                        })
+                    );
+                }
+            },
+        }),
     }),
 });
 
-export const {
-    useCreateApiKeyMutation,
-    useUpdateApiKeyMutation,
-    useGetApiKeyListMutation,
-} = apiKeysApi;
+export const { useCreateApiKeyMutation, useUpdateApiKeyMutation, useDeleteApiKeyMutation, useGetApiKeyListMutation } =
+    apiKeysApi;

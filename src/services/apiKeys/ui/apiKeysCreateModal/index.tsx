@@ -1,4 +1,4 @@
-import React, { FC, useMemo, useRef } from "react";
+import React, { FC, useCallback, useMemo, useRef } from "react";
 import { View, Text } from "react-native";
 import { Warning } from "../../../../assets/system/warning";
 import { Button } from "../../../../shared";
@@ -27,8 +27,13 @@ export const ApiKeysCreateModal: FC<IApiKeysCreateModal> = ({
 
     const bottomSheetRef = useRef<BottomSheet>(null);
 
+    const handleCloseModal = useCallback(() => {
+        bottomSheetRef?.current?.close();
+        setIsOpen(false);
+    }, [setIsOpen]);
+
     return (
-        <Modal snapPoints={["80%"]} bottomSheetRef={bottomSheetRef} isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Modal snapPoints={["70%"]} bottomSheetRef={bottomSheetRef} isOpen={isOpen} setIsOpen={setIsOpen}>
             <View style={styles.modalContainer}>
                 <Text style={styles.title}>NOTE</Text>
                 <Text style={styles.subtitle}>
@@ -52,7 +57,7 @@ export const ApiKeysCreateModal: FC<IApiKeysCreateModal> = ({
                         </Text>
                     </View>
                 </View>
-                <Button onPress={() => setIsOpen(false)} title={buttonTitle} isLoading={isLoading} />
+                <Button onPress={handleCloseModal} title={buttonTitle} isLoading={isLoading} />
             </View>
         </Modal>
     );

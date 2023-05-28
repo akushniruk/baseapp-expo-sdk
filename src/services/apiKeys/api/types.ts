@@ -2,7 +2,7 @@ export interface ApiKey {
     kid: string;
     algorithm: string;
     scope?: typeof Array;
-    state: string;
+    state: "active" | "disabled";
     secret?: string;
     created_at: string;
     updated_at: string;
@@ -21,5 +21,10 @@ export interface ApiKeyCreateRequest {
 export interface ApiKeyUpdateRequest {
     kid: string;
     totp_code: string;
-    state: "disabled" | "active";
+    state: "active" | "disabled";
+}
+
+export interface ApiKeyDeleteRequest {
+    kid: string;
+    totp_code: string;
 }

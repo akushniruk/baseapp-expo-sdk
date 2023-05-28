@@ -4,5 +4,5 @@ export interface IApiKeys2FAModal {
     isOpen: boolean;
     snapPoints?: string[];
     setIsOpen: (isOpen: boolean) => void;
-    sendRequest: () => void;
+    sendRequest: (otp: string) => void;
 }

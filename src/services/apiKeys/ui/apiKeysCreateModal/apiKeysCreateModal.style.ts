@@ -32,8 +32,6 @@ export const apiKeysCreateModalStyles = (theme: string) => {
             paddingRight: 12,
         },
         textContainer: {
-            height: "100%",
-            flexWrap: "wrap",
             width: "100%",
         },
     });

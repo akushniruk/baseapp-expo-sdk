@@ -56,9 +56,16 @@ export const apiKeysTableStyles = (theme: string) => {
             color: palette.Controls["primary-cta-color"][60].value,
         },
         switchInactive: {
-            backgroundColor:
-                palette.Controls["neutral-control-layer-color"][20].value,
+            backgroundColor: palette.Controls["neutral-control-layer-color"][20].value,
             color: palette.Controls["neutral-control-color"][10].value,
+        },
+        noData: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        noDataText: {
+            marginBottom: 24,
         },
     });
 };

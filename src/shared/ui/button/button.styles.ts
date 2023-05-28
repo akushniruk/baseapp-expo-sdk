@@ -20,10 +20,7 @@ export type ICustomButtonStyles = {
     };
 };
 
-export const buttonStyles = (
-    theme: string,
-    customStyles?: ICustomButtonStyles
-) => {
+export const buttonStyles = (theme: string, customStyles?: ICustomButtonStyles) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
@@ -44,13 +41,13 @@ export const buttonStyles = (
             ...customStyles?.active,
         },
         disabled: {
-            backgroundColor:
-                palette.Controls["neutral-control-color"][20].value,
+            backgroundColor: palette.Controls["neutral-control-color"][20].value,
             color: palette.Controls["neutral-control-layer-color"][20].value,
             ...customStyles?.disabled,
         },
         title: {
             fontSize: 14,
+            textTransform: "capitalize",
             ...customStyles?.title,
         },
     });
