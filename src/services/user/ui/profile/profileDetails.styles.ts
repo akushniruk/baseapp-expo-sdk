@@ -35,11 +35,11 @@ export const profileDetailsStyles = (theme: string) => {
         },
         verificationContainerTitle: {
             color: palette["text-color"][100].value,
-            fontSize: 14,
+            fontSize: 18,
         },
         verificationContainerSubTitle: {
             color: palette["text-color"][60].value,
-            fontSize: 12,
+            fontSize: 18,
         },
         verificationContainerBlocks: {
             flexDirection: "row",
@@ -60,11 +60,11 @@ export const profileDetailsStyles = (theme: string) => {
         blockTitle: {
             marginLeft: 12,
             color: palette["text-color"][100].value,
-            fontSize: 14,
+            fontSize: 18,
         },
         blockSubTitle: {
             color: palette["text-color"][60].value,
-            fontSize: 12,
+            fontSize: 14,
             marginLeft: 12,
         },
         secondaryBlock: {

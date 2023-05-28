@@ -22,8 +22,11 @@ export const ProfileWidget: FC = () => {
     };
 
     return (
-        <View>
-            <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
+        <View style={{ height: "100%" }}>
+            <ScrollView
+                style={{ height: "100%" }}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+            >
                 <Profile />
                 <View style={{ marginTop: 48 }}>{profileNavigationOptions.map(renderList)}</View>
             </ScrollView>
