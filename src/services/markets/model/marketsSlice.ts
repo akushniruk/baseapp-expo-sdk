@@ -22,9 +22,7 @@ export const markets = createSlice({
         setCurrentMarket(state, action: PayloadAction<Market>) {
             state.currentMarket = action.payload;
         },
-        initializeCurrentMarket(state, action: PayloadAction<Market>) {
-            console.log("InitCurrentMarket");
-        },
+        initializeCurrentMarket(state, action: PayloadAction<Market>) {},
     },
 });
 

@@ -51,7 +51,6 @@ export const Trades: FC = () => {
     const getItemCount = (_data: unknown) => trades?.length;
 
     const getItem = (_data: unknown, index: number) => {
-        console.log("tesst", index, trades[index]);
         return trades[index];
     };
 

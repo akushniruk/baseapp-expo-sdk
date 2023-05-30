@@ -5,21 +5,15 @@ import { ForgotPasswordForm } from "./services/iam/authentication/forgotPassword
 import { ResetPasswordForm } from "./services/iam/authentication/resetPasswordForm/ui/resetPasswordForm";
 import { VerifyEmailForm } from "./services/iam/authentication/verifyEmailForm/ui/verifyEmailForm";
 
-// Services - User - Profile - ChangePasswordForm
-import { ChangePasswordForm } from "./services/iam/authentication/changePasswordForm/ui/changePasswordForm";
-
-// Services - User - Profile - Security
-import { Security } from "./services/user/ui/security";
-
-// Services - User - Profile - AccountActivity
-import { AccountActivity } from "./services/accountActivity/ui";
-
-// Services - User - Profile - Referral
-import { Referral } from "./services/user/ui/referral";
-
 // Services - User - Profile
 import { Profile } from "./services/user/ui/profile/profile";
 import { ProfileDetails } from "./services/user/ui/profile/profileDetails";
+import { Referral } from "./services/user/ui/referral";
+import { Security } from "./services/user/ui/security";
+import { AccountActivity } from "./services/accountActivity/ui";
+import { TwoFactorAuthForm } from "./services/user/ui/security/twoFactorAuthForm";
+import { BackupKeyForm } from "./services/user/ui/security/backupKeyForm";
+import { ChangePasswordForm } from "./services/iam/authentication/changePasswordForm/ui/changePasswordForm";
 
 // Services - Markets - V1
 import { MarketsV1 } from "./services/markets/ui/marketsV1";
@@ -86,6 +80,8 @@ export {
     AccountActivity,
     Referral,
     Security,
+    TwoFactorAuthForm,
+    BackupKeyForm,
     CoreProvider,
     Profile,
     ProfileDetails,

@@ -50,3 +50,8 @@ export interface Member {
     group: string;
     beneficiaries_whitelisting: boolean;
 }
+
+export interface IMFA {
+    barcode: string;
+    url: string;
+}

@@ -11,28 +11,20 @@ export const Referral: FC = () => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => referralStyles(theme), [theme]);
 
-    const profile: User | null = useAppSelector(
-        (state: RootState) => state.user.profile
-    );
-
-    console.log(profile);
+    const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
 
     return (
         <View>
             <Text style={styles.title}>Inivte Friends.</Text>
             <Text style={styles.title}>Earn Crypto Together</Text>
-            <Text style={styles.subtitle}>
-                Earn up to 40% commission every time your friends make a trade
-            </Text>
+            <Text style={styles.subtitle}>Earn up to 40% commission every time your friends make a trade</Text>
             <View>
                 <View style={styles.copyFieldContainer}>
                     <CopyField title="Referral ID" value={profile?.uid || ""} />
                 </View>
                 <CopyField
                     title="Referral Link"
-                    value={`https://${
-                        process.env.REACT_APP_DOMAIN_NAME
-                    }/signup?refid=${profile?.uid || ""}`}
+                    value={`https://${process.env.REACT_APP_DOMAIN_NAME}/signup?refid=${profile?.uid || ""}`}
                 />
             </View>
         </View>
