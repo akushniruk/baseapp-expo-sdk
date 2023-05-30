@@ -1,23 +1,19 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-// import { RootState } from '../model/store'
+import { getValueStorage } from "../../../hooks/useMMKVStorage";
 
 // Create our baseQuery instance
-const baseQuery = fetchBaseQuery({
-    baseUrl: process.env.REACT_APP_REST_API || "http://localhost:9002",
-    prepareHeaders: (headers: Headers) => {
-        // By default, if we have a token in the store, let's use that for authenticated requests
-        // headers.set(
-        //     "cookie",
-        //     `_barong_session=b1b87ee4023b3c5d3972f3739a7eb2ec`
-        // );
-        // console.log("headers", headers);
+const baseQuery = (withCSRF?: boolean) => {
+    return fetchBaseQuery({
+        baseUrl: process.env.REACT_APP_REST_API || "https://aurora-master.uat.opendax.app",
+        prepareHeaders: async (headers: Headers) => {
+            headers.set("X-CSRF-Token", (await getValueStorage("csrfToken")) || "");
+            return headers;
+        },
+        credentials: "include",
+    });
+};
 
-        return headers;
-    },
-    // credentials: "include",
-});
-
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 0 });
+const baseQueryWithRetry = retry(baseQuery(), { maxRetries: 0 });
 
 /**
  * Create a base API to inject endpoints into elsewhere.

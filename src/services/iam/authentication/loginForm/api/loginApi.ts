@@ -1,3 +1,4 @@
+import { setValueStorage } from "../../../../../shared/hooks/useMMKVStorage";
 import { api } from "../../../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../../../shared/ui/alerts";
 import { User } from "../../../../user";
@@ -19,13 +20,12 @@ export const loginApi = api.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
+                    response?.data?.csrf_token && setValueStorage("csrfToken", response?.data?.csrf_token);
                     dispatch(setProfile(response.data));
                 } catch (error: any) {
                     if (
                         error.error.status === 401 &&
-                        error.error.data.errors[0].indexOf(
-                            "identity.session.missing_otp"
-                        ) > -1
+                        error.error.data.errors[0].indexOf("identity.session.missing_otp") > -1
                     ) {
                         dispatch(setRequire2FA(true));
                     } else {
