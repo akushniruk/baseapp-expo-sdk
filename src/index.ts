@@ -14,6 +14,8 @@ import { AccountActivity } from "./services/accountActivity/ui";
 import { TwoFactorAuthForm } from "./services/user/ui/security/twoFactorAuthForm";
 import { BackupKeyForm } from "./services/user/ui/security/backupKeyForm";
 import { ChangePasswordForm } from "./services/iam/authentication/changePasswordForm/ui/changePasswordForm";
+import { Settings } from "./services/user/ui/settings";
+import { Help } from "./services/user/ui/help";
 
 // Services - Markets - V1
 import { MarketsV1 } from "./services/markets/ui/marketsV1";
@@ -80,6 +82,8 @@ export {
     AccountActivity,
     Referral,
     Security,
+    Settings,
+    Help,
     TwoFactorAuthForm,
     BackupKeyForm,
     CoreProvider,

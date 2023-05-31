@@ -1,10 +1,4 @@
-import {
-    createContext,
-    useCallback,
-    useEffect,
-    useMemo,
-    useState,
-} from "react";
+import { createContext, useCallback, useEffect, useMemo, useState } from "react";
 import { Appearance } from "react-native";
 import { getValueStorage, setValueStorage } from "../../hooks/useMMKVStorage";
 
@@ -18,12 +12,12 @@ const ThemeContext = createContext<ThemeContextType | null>(null);
 const ThemeProvider = ({ children }: any) => {
     const colorScheme = Appearance.getColorScheme();
 
-    const [theme, setTheme] = useState<any>("light");
+    const [theme, setTheme] = useState<any>(colorScheme);
 
     const getValue = useCallback(async () => {
         const themeFromStorage = await getValueStorage("theme");
 
-        setTheme("light");
+        setTheme(themeFromStorage);
     }, []);
 
     useEffect(() => {
@@ -42,11 +36,7 @@ const ThemeProvider = ({ children }: any) => {
         [theme, setTheme]
     );
 
-    return (
-        <ThemeContext.Provider value={contextValue}>
-            {children}
-        </ThemeContext.Provider>
-    );
+    return <ThemeContext.Provider value={contextValue}>{children}</ThemeContext.Provider>;
 };
 
 export { ThemeContext, ThemeProvider };

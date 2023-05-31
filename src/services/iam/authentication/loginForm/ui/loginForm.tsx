@@ -1,13 +1,7 @@
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text } from "react-native";
 import { useLoginUserMutation } from "../api/loginApi";
-import {
-    Controller,
-    FieldValues,
-    SubmitHandler,
-    UseControllerReturn,
-    useForm,
-} from "react-hook-form";
+import { Controller, FieldValues, SubmitHandler, UseControllerReturn, useForm } from "react-hook-form";
 import { LoginType, LoginResolver, loginSchema } from "../libs/schema";
 import { Input, Button } from "../../../../../shared";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
@@ -19,18 +13,14 @@ import { LoginFormProps } from "./interface";
 import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
 import { loginFormStyles } from "./loginForm.styles";
 
-export const LoginForm: FC<LoginFormProps> = ({
-    redirectToOnLogin = "/Home",
-}) => {
+export const LoginForm: FC<LoginFormProps> = ({ redirectToOnLogin = "/Home" }) => {
     const linkTo = useLinkTo();
 
     const { theme } = useThemeContext();
     const styles = useMemo(() => loginFormStyles(theme), [theme]);
 
     const schemaInputFields: string[] = loginSchema.keyof()._def.values;
-    const require2FA: boolean = useAppSelector(
-        (state: RootState) => state.user.require2FA
-    );
+    const require2FA: boolean = useAppSelector((state: RootState) => state.user.require2FA);
 
     // Should be only numbers, length <= 6
     const [otp, setOtp] = useState<string>("");
@@ -53,14 +43,11 @@ export const LoginForm: FC<LoginFormProps> = ({
         if (isSuccess) {
             reset({ email: "", password: "" });
             // TODO: handle Storybook
-            process.env.REACT_APP_MODE !== "storybook" &&
-                linkTo(redirectToOnLogin);
+            process.env.REACT_APP_MODE !== "storybook" && linkTo(redirectToOnLogin);
         }
     }, [isSuccess]);
 
-    const buttonDisabled = () =>
-        (!watch("email")?.length && !watch("password")?.length) ||
-        Object.keys(errors).length;
+    const buttonDisabled = () => (!watch("email")?.length && !watch("password")?.length) || Object.keys(errors).length;
 
     const onSubmitHandler: SubmitHandler<LoginType> = (data) => loginUser(data);
 
@@ -76,10 +63,7 @@ export const LoginForm: FC<LoginFormProps> = ({
     const renderForgotPasswordLink = useMemo(
         () => (
             <View style={styles.forgotPasswordLinkWrapper}>
-                <Link
-                    style={styles.forgotPasswordLink}
-                    to={{ screen: "ForgotPassword" }}
-                >
+                <Link style={styles.forgotPasswordLink} to={{ screen: "ForgotPassword" }}>
                     {i18n.t("loginFormForgotPasswordLink")}
                 </Link>
             </View>
@@ -97,17 +81,11 @@ export const LoginForm: FC<LoginFormProps> = ({
                     placeholder={field.name}
                     label={field.name}
                     testID={field.name}
-                    keyboardType={
-                        field.name === "email" ? "email-address" : "default"
-                    }
+                    keyboardType={field.name === "email" ? "email-address" : "default"}
                     secureTextEntry={field.name === "password"}
                 />
                 {field.name === "password" && renderForgotPasswordLink}
-                {errors && (
-                    <Text style={styles.error}>
-                        {errors[`${field.name}`]?.message as string}
-                    </Text>
-                )}
+                {errors && <Text style={styles.error}>{errors[`${field.name}`]?.message as string}</Text>}
             </View>
         ),
         [schemaInputFields, control]
@@ -116,13 +94,7 @@ export const LoginForm: FC<LoginFormProps> = ({
     const renderInputFields = useMemo(() => {
         return schemaInputFields.map((name: string) => {
             return (
-                <Controller
-                    key={name}
-                    control={control}
-                    rules={{ required: true }}
-                    name={name}
-                    render={renderInput}
-                />
+                <Controller key={name} control={control} rules={{ required: true }} name={name} render={renderInput} />
             );
         });
     }, [schemaInputFields, control]);
@@ -135,15 +107,10 @@ export const LoginForm: FC<LoginFormProps> = ({
                     isLoading={isLoading}
                     disabled={!!buttonDisabled()}
                     title={i18n.t("loginFormCreateNewAccountButton")}
-                    onPress={handleSubmit(
-                        onSubmitHandler as SubmitHandler<FieldValues>
-                    )}
+                    onPress={handleSubmit(onSubmitHandler as SubmitHandler<FieldValues>)}
                 />
                 <View style={styles.registerLinkWrapper}>
-                    <Link
-                        style={styles.registerLink}
-                        to={{ screen: "Register" }}
-                    >
+                    <Link style={styles.registerLink} to={{ screen: "Register" }}>
                         {i18n.t("loginFormCreateAccount")}
                     </Link>
                 </View>
@@ -161,9 +128,7 @@ export const LoginForm: FC<LoginFormProps> = ({
                     isLoading={isLoading}
                     disabled={false}
                     onChange={setOtp}
-                    onSubmit={handleSubmit(
-                        onSubmitHandlerWith2FA as SubmitHandler<FieldValues>
-                    )}
+                    onSubmit={handleSubmit(onSubmitHandlerWith2FA as SubmitHandler<FieldValues>)}
                 />
             )}
         </>
