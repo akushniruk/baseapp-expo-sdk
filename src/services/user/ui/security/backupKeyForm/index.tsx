@@ -11,7 +11,7 @@ import { IMFA } from "../../../api/types";
 import { CopyField } from "../../../../../shared/ui/copyField";
 
 interface IBackupKeyForm {
-    navigation: any;
+    navigation?: any;
 }
 
 export const BackupKeyForm: FC<IBackupKeyForm> = ({ navigation }) => {
