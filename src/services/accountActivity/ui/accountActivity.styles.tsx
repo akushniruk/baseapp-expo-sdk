@@ -7,7 +7,6 @@ export const accountActivityStyles = (theme: string) => {
     return StyleSheet.create({
         container: {
             height: "100%",
-            paddingHorizontal: 12,
         },
         containerTable: {},
         table: {},

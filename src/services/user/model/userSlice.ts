@@ -29,6 +29,14 @@ export const user = createSlice({
         setProfile: (state: UserState, action: PayloadAction<User>) => {
             state.profile = action.payload;
         },
+        setUpdateProfileOTP: (state: UserState, action: PayloadAction<boolean>) => {
+            if (state.profile) {
+                state.profile = {
+                    ...state.profile,
+                    otp: action.payload,
+                }
+            }
+        },
         setRequire2FA: (state: UserState, action: PayloadAction<boolean>) => {
             state.require2FA = action.payload;
         },
@@ -38,4 +46,4 @@ export const user = createSlice({
     },
 });
 
-export const { logout, setProfile, setRequire2FA, setPeatioMember, setMFA } = user.actions;
+export const { logout, setProfile, setUpdateProfileOTP, setRequire2FA, setPeatioMember, setMFA } = user.actions;

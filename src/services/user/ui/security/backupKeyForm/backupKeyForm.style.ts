@@ -7,6 +7,7 @@ export const backupKeyFormStyles = (theme: string) => {
     return StyleSheet.create({
         textContainer: {
             marginTop: 24,
+            paddingHorizontal: 12,
         },
         text: {
             fontSize: 16,

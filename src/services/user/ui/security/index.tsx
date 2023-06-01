@@ -1,19 +1,24 @@
 import { useLinkTo } from "@react-navigation/native";
-import React, { FC, useCallback, useMemo, useRef, useState } from "react";
+import React, { FC, useCallback, useMemo, useRef, useState, useEffect } from "react";
 import { View, Text, Pressable, Switch, Platform } from "react-native";
 import { ArrowRightIcon } from "../../../../assets/profile";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { securityStyles } from "./security.style";
-import { Button, OTPInput, useAppSelector } from "../../../../shared";
+import { Button, OTPInput, useAppSelector, useAppDispatch } from "../../../../shared";
 import { User } from "../../api/types";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { Modal } from "../../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { useToggle2FAMutation } from "../../api/twoFactorAuth";
+import { setUpdateProfileOTP } from "../../model/userSlice";
+import { useUserMeQuery } from "../../api/user";
 
 export const Security: FC = () => {
+    useUserMeQuery();
+
     const [toggle2FA, { isLoading, isSuccess }] = useToggle2FAMutation();
 
+    const dispatch = useAppDispatch();
     const linkTo = useLinkTo();
     const { theme } = useThemeContext();
     const styles = useMemo(() => securityStyles(theme), [theme]);
@@ -39,6 +44,10 @@ export const Security: FC = () => {
         bottomSheetRef?.current?.forceClose();
         setIsOpen2FAModal(false);
     }, [otp]);
+
+    useEffect(() => {
+        dispatch(setUpdateProfileOTP(false));
+    }, [isSuccess]);
 
     return (
         <View style={{ height: "100%" }}>

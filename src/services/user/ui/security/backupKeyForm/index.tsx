@@ -16,7 +16,7 @@ interface IBackupKeyForm {
 
 export const BackupKeyForm: FC<IBackupKeyForm> = ({ navigation }) => {
     const [getMFA] = useGetMFAMutation();
-    const [toggle2FA, { isLoading }] = useToggle2FAMutation();
+    const [toggle2FA, { isLoading, isSuccess }] = useToggle2FAMutation();
 
     const { theme } = useThemeContext();
     const styles = useMemo(() => backupKeyFormStyles(theme), [theme]);
@@ -36,12 +36,19 @@ export const BackupKeyForm: FC<IBackupKeyForm> = ({ navigation }) => {
         setOtp("");
         bottomSheetRef?.current?.forceClose();
         setIsOpen2FAModal(false);
-        navigation?.navigate("Profile");
     }, [otp]);
 
     useEffect(() => {
         getMFA();
     }, []);
+
+    useEffect(() => {
+        if (isSuccess) {
+            navigation?.navigate("Profile");
+            bottomSheetRef?.current?.forceClose();
+            setIsOpen2FAModal(false);
+        }
+    }, [isSuccess]);
 
     return (
         <View style={{ height: "100%" }}>
