@@ -31,19 +31,31 @@ export const Settings: FC = () => {
         setIsOpenLangSelector(false);
     };
 
+    const renderLang = (langCode: string) => {
+        switch (langCode) {
+            case "en":
+            case "uk-Us":
+                return "English";
+            case "es":
+                return "Español (España)";
+            default:
+                break;
+        }
+    };
+
     return (
         <View style={{ height: "100%" }}>
             <Pressable onPress={() => setIsOpenLangSelector(true)} style={styles.block}>
                 <Text style={styles.blockTitle}>Language</Text>
-                <View>
-                    <Text>{i18n.locale}</Text>
+                <View style={styles.blockContent}>
+                    <Text style={styles.blockContentText}>{renderLang(i18n.locale)}</Text>
                     <ArrowRightIcon color="#090909" />
                 </View>
             </Pressable>
             <Pressable onPress={() => setIsOpenAppearance(true)} style={styles.block}>
                 <Text style={styles.blockTitle}>Appearance</Text>
-                <View>
-                    <Text>{theme}</Text>
+                <View style={styles.blockContent}>
+                    <Text style={styles.blockContentText}>{theme}</Text>
                     <ArrowRightIcon color="#090909" />
                 </View>
             </Pressable>
@@ -60,11 +72,11 @@ export const Settings: FC = () => {
                     3. add Search */}
                 <View style={styles.container}>
                     <Text style={styles.label}>Language</Text>
-                    <Pressable onPress={() => handleChangeLocale("en")}>
-                        <Text>English</Text>
+                    <Pressable style={styles.languageContainer} onPress={() => handleChangeLocale("en")}>
+                        <Text style={styles.languageText}>English</Text>
                     </Pressable>
-                    <Pressable onPress={() => handleChangeLocale("es")}>
-                        <Text>Español (España)</Text>
+                    <Pressable style={styles.languageContainer} onPress={() => handleChangeLocale("es")}>
+                        <Text style={styles.languageText}>Español (España)</Text>
                     </Pressable>
                 </View>
             </Modal>
@@ -77,11 +89,11 @@ export const Settings: FC = () => {
                 <View style={styles.container}>
                     <View style={styles.container}>
                         <Text style={styles.label}>Appearance</Text>
-                        <Pressable onPress={() => handleChangeAppearance("light")}>
-                            <Text>Light</Text>
+                        <Pressable style={styles.languageContainer} onPress={() => handleChangeAppearance("light")}>
+                            <Text style={styles.languageText}>Light</Text>
                         </Pressable>
-                        <Pressable onPress={() => handleChangeAppearance("dark")}>
-                            <Text>Dark</Text>
+                        <Pressable style={styles.languageContainer} onPress={() => handleChangeAppearance("dark")}>
+                            <Text style={styles.languageText}>Dark</Text>
                         </Pressable>
                     </View>
                 </View>
