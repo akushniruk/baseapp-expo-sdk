@@ -25,5 +25,7 @@ export type Currency = {
     type: string; // currency type coin | fiat
     precision: number; // currency precision
     position: number; // currency position in the list
+    status: string; // currency status
+    icon_url: string;
     networks: Networks[] | null; // list of available blockchains for currency;
 };
