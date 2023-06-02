@@ -10,6 +10,7 @@ import { getUserAgent } from "../libs/userAgend";
 import { formatDate } from "../../../shared/libs/formatDate";
 import { ArrowRightIcon } from "../../../assets/profile/arrowRight";
 import { ArrowLeftIcon } from "../../../assets/profile";
+import i18n from "../../../shared/libs/i18n/supportedLanguages";
 
 const DEFAULT_LIMIT = 10;
 
@@ -56,11 +57,11 @@ export const AccountActivity: FC = () => {
                 <View style={styles.tableSplittedRow}>
                     <View style={styles.tableRow}>
                         <Text style={styles.tableText}>{item.user_ip}</Text>
-                        <Text style={styles.tableSubText}>IP address</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("accountActivityIpAddress")}</Text>
                     </View>
                     <View style={[styles.tableRow, { marginLeft: 100 }]}>
                         <Text style={styles.tableText}>{getUserAgent(item.user_agent)}</Text>
-                        <Text style={styles.tableSubText}>User Agent</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("accountActivityUserAgent")}</Text>
                     </View>
                 </View>
                 <View style={styles.tableRowSeparatorWrapper}>

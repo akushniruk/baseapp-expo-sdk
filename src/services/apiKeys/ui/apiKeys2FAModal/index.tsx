@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, useMemo, useRef, useState } from "react";
 import { View, Text } from "react-native";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { apiKeys2FAModalStyles } from "./apiKeys2FAModal.styles";
@@ -6,6 +6,7 @@ import { IApiKeys2FAModal } from "./interface";
 import { OTPInput, Button } from "../../../../shared";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { Modal } from "../../../../shared/ui/modal";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 
 export const ApiKeys2FAModal: FC<IApiKeys2FAModal> = ({ isOpen, buttonTitle, isLoading, setIsOpen, sendRequest }) => {
     const { theme } = useThemeContext();
@@ -31,7 +32,7 @@ export const ApiKeys2FAModal: FC<IApiKeys2FAModal> = ({ isOpen, buttonTitle, isL
             resetValue={() => setOtp("")}
         >
             <View style={styles.container}>
-                <Text style={styles.label}>Enter 2fa code from the Google Authenticator app</Text>
+                <Text style={styles.label}>{i18n.t("apiKeys2FAModalTitle")}</Text>
                 <OTPInput code={otp} setCode={setOtp} maximumLength={6} emptyInputSymbol="*" />
 
                 <Button onPress={handleSendRequest} title={buttonTitle} isLoading={isLoading} disabled={!otp} />

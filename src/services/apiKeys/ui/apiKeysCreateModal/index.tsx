@@ -11,6 +11,7 @@ import { ApiKey } from "../../api/types";
 import { IApiKeysCreateModal } from "./interface";
 import { Modal } from "../../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 
 export const ApiKeysCreateModal: FC<IApiKeysCreateModal> = ({
     isOpen,
@@ -35,26 +36,20 @@ export const ApiKeysCreateModal: FC<IApiKeysCreateModal> = ({
     return (
         <Modal snapPoints={["70%"]} bottomSheetRef={bottomSheetRef} isOpen={isOpen} setIsOpen={setIsOpen}>
             <View style={styles.modalContainer}>
-                <Text style={styles.title}>NOTE</Text>
-                <Text style={styles.subtitle}>
-                    To avoid asset loss, please do not tell your Secret Key and Private Key to others. If you forget
-                    your Secret Key, please delete it and apply for a new Secret Kay pair.
-                </Text>
+                <Text style={styles.title}>{i18n.t("apiKeysCreateModalNote")}</Text>
+                <Text style={styles.subtitle}>{i18n.t("apiKeysCreateModalNoteContent")}</Text>
                 <View style={styles.copyFieldContainer}>
-                    <CopyField title="Access key" value={newApiKey?.kid || ""} />
+                    <CopyField title={i18n.t("apiKeysCreateModalAccessKey")} value={newApiKey?.kid || ""} />
                 </View>
 
-                <CopyField title="Secret key" value={newApiKey?.secret || ""} />
+                <CopyField title={i18n.t("apiKeysCreateModalSecretKey")} value={newApiKey?.secret || ""} />
                 <View style={styles.container}>
                     <View style={styles.warningIcon}>
                         <Warning />
                     </View>
                     <View style={styles.textContainer}>
-                        <Text style={styles.title}>SECRET KEY</Text>
-                        <Text style={styles.subtitle}>
-                            This information will be shown only once and can not be retrieved once lost. Please store it
-                            properly.
-                        </Text>
+                        <Text style={styles.title}>{i18n.t("apiKeysCreateModalSecretKeyInfo")}</Text>
+                        <Text style={styles.subtitle}>{i18n.t("apiKeysCreateModalSecretKeyInfoDetails")}</Text>
                     </View>
                 </View>
                 <Button onPress={handleCloseModal} title={buttonTitle} isLoading={isLoading} />

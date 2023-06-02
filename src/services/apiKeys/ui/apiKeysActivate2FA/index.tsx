@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import { Button } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { apiKeysActivate2FAStyles } from "./apiKeysActivate2FA.styles";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 
 export const ApiKeysActivate2FA: FC = () => {
     const linkTo = useLinkTo();
@@ -17,22 +18,15 @@ export const ApiKeysActivate2FA: FC = () => {
 
     return (
         <View>
-            <Text style={styles.title}>
-                2-Step Verification is required for API Keys
-            </Text>
+            <Text style={styles.title}>{i18n.t("apiKeysActivate2FATitle")}</Text>
             <Text style={styles.subtitle}>
-                2FA, is a substantial layer of additional security that is
-                collectively known as “multi factor authentication”. It’s
-                necessary when you{" "}
-                <Text style={styles.bold}>withdraw your funds</Text>. Also with
-                2FA you’re able to <Text style={styles.bold}>trade</Text> with
-                big amount
+                {i18n.t("apiKeysActivate2FASubTitle")}
+                <Text style={styles.bold}>{i18n.t("apiKeysActivate2FASubTitle2")}</Text>
+                {i18n.t("apiKeysActivate2FASubTitle3")}
+                <Text style={styles.bold}>{i18n.t("apiKeysActivate2FASubTitle4")}</Text>
+                {i18n.t("apiKeysActivate2FASubTitle5")}
             </Text>
-            <Button
-                onPress={handleRedirectToActivate}
-                title="Activate"
-                isLoading={false}
-            />
+            <Button onPress={handleRedirectToActivate} title={i18n.t("apiKeysActivate2FAButton")} isLoading={false} />
         </View>
     );
 };

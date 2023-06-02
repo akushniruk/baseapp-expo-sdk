@@ -9,6 +9,7 @@ import { NoDataIcon } from "../../../../assets/system/noDataIcon";
 import { useGetApiKeyListMutation } from "../../api/apiKeyApi";
 import { ApiKeysTableProps } from "./interface";
 import { CancelIcon } from "../../../../assets/system/cancel";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 
 const DEFAULT_LIMIT = 10;
 
@@ -87,15 +88,15 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
                         />
                     </View>
                     <View style={styles.row}>
-                        {renderTableBlockHead("Algorithm", apiKey.algorithm)}
-                        {renderTableBlockHead("State", apiKey.state, false, true)}
+                        {renderTableBlockHead(i18n.t("apiKeysTableAlgorithm"), apiKey.algorithm)}
+                        {renderTableBlockHead(i18n.t("apiKeysTableState"), apiKey.state, false, true)}
                         <Pressable style={styles.cancelIcon} onPress={() => handleDeleteRequest(apiKey.kid)}>
                             <CancelIcon />
                         </Pressable>
                     </View>
                     <View style={styles.row}>
-                        {renderTableBlockHead("Created", apiKey.created_at)}
-                        {renderTableBlockHead("Updated", apiKey.updated_at)}
+                        {renderTableBlockHead(i18n.t("apiKeysTableCreated"), apiKey.created_at)}
+                        {renderTableBlockHead(i18n.t("apiKeysTableUpdated"), apiKey.updated_at)}
                         <View style={[styles.hide, styles.cancelIcon]}>
                             <CancelIcon />
                         </View>
@@ -111,7 +112,7 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
             <View style={styles.noData}>
                 <NoDataIcon />
                 <Text style={styles.noDataText}>Add your first API key</Text>
-                <Button onPress={handleCreateRequest} title="Create +" isLoading={false} />
+                <Button onPress={handleCreateRequest} title={i18n.t("apiKeysTableCreateButton")} isLoading={false} />
             </View>
         );
     }
@@ -119,7 +120,7 @@ export const ApiKeysTable: FC<ApiKeysTableProps> = ({
     return (
         <View style={styles.rootContainer}>
             <View style={styles.createButton}>
-                <Button onPress={handleCreateRequest} title="Create +" isLoading={false} />
+                <Button onPress={handleCreateRequest} title={i18n.t("apiKeysTableCreateButton")} isLoading={false} />
             </View>
 
             {apiKeyList?.map(renderTableBlock)}
