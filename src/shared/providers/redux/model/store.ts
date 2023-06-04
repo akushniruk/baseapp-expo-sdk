@@ -10,7 +10,7 @@ import { tickers } from "../../../../services/tickers/model/tickersSlice";
 import { orderbook } from "../../../../services/orderbook/model/orderbookSlice";
 import { trades } from "../../../../services/trades/model/tradesSlice";
 import { accountActivity } from "../../../../services/accountActivity/model/accountActivitySlice";
-import { wallets } from "../../../../services/wallets/model/walletsSlice";
+import { accounts } from "../../../../services/wallets/model/accountsSlice";
 
 export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
     configureStore({
@@ -25,7 +25,7 @@ export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | 
             tickers: tickers.reducer,
             orderbook: orderbook.reducer,
             trades: trades.reducer,
-            wallets: wallets.reducer,
+            accounts: accounts.reducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
         ...options,
