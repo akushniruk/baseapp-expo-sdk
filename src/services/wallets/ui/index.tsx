@@ -112,7 +112,7 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
     };
 
     const redirectToWalletDetails = (wallet: IWallet) => {
-        // TODO: setup navigation for deposit and withdrawal
+        // TODO: store to Redux selected wallet
         navigation?.navigate("WalletDetails", { id: wallet?.currency });
     };
 

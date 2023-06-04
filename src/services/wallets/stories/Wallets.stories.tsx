@@ -4,7 +4,7 @@ import { Wallets } from "../ui";
 import { CoreProvider } from "../../..";
 
 const MyButtonMeta: ComponentMeta<typeof Wallets> = {
-    title: "Services/Wallets",
+    title: "Services/Wallets/Spot",
     component: Wallets,
 };
 

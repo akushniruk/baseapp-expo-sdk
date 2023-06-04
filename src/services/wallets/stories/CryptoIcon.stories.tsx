@@ -4,7 +4,7 @@ import { CryptoIcon } from "../ui/cryptoIcon";
 import { CoreProvider } from "../../..";
 
 const MyButtonMeta: ComponentMeta<typeof CryptoIcon> = {
-    title: "Services/CryptoIcon",
+    title: "Services/Wallets/CryptoIcon",
     component: CryptoIcon,
 };
 
