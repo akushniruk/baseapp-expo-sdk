@@ -79,21 +79,17 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                 : format(0, wallet.fixed);
 
         return (
-            <Pressable
-                key={`${wallet.currency}`}
-                // style={styles.row}
-                onPress={() => redirectToWalletDetails(wallet)}
-            >
-                <View>
+            <Pressable key={`${wallet.currency}`} style={styles.row} onPress={() => redirectToWalletDetails(wallet)}>
+                <View style={styles.rowLeft}>
                     <CryptoIcon code={wallet.currency} />
-                    <View>
-                        <Text>{wallet.name}</Text>
-                        <Text>{wallet.currency}</Text>
+                    <View style={styles.rowLeftTextContainer}>
+                        <Text style={styles.rowLeftTextName}>{wallet.name}</Text>
+                        <Text style={styles.rowLeftTextCurrency}>{wallet.currency}</Text>
                     </View>
                 </View>
-                <View>
-                    <Text>{wallet.balance}</Text>
-                    <Text>
+                <View style={styles.rowRight}>
+                    <Text style={styles.rowRightBalance}>{wallet.balance}</Text>
+                    <Text style={styles.rowRightEstimatedBalance}>
                         {estimatedValueForWallet} {VALUATION_PRIMARY_CURRENCY}
                     </Text>
                 </View>
@@ -133,17 +129,17 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
     }, [estimatedValuePrimary, currencies, wallets, markets, tickers]);
 
     return (
-        <ScrollView>
-            <View>
-                <Text>
+        <ScrollView style={styles.scrollViewContainer}>
+            <View style={styles.headerContainer}>
+                <Text style={styles.totalBalance}>
                     Total balance: {estimatedValuePrimary} {VALUATION_PRIMARY_CURRENCY}
                 </Text>
-                <Text>
+                <Text style={styles.secondaryTotalBalance}>
                     ≈{estimatedValueSecondary} {VALUATION_SECONDARY_CURRENCY}
                 </Text>
-                <Text>history icon</Text>
+                <Text style={styles.historyIcon}>history icon</Text>
             </View>
-            <View>
+            <View style={styles.buttonsContainer}>
                 <Button title="Deposit" isLoading={false} />
                 <Button title="Withdraw" isLoading={false} />
                 <Button title="Transfer" isLoading={false} />
@@ -156,7 +152,7 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                 getItemCount={getItemCount}
                 getItem={getItem}
                 maxToRenderPerBatch={14}
-                // style={styles.bodyContainer}
+                style={styles.listContainer}
             />
         </ScrollView>
     );
