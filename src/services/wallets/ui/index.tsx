@@ -1,11 +1,10 @@
 import { useLinkTo } from "@react-navigation/native";
 import React, { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { View, Text, Pressable, VirtualizedList, ScrollView } from "react-native";
-import { ArrowRightIcon } from "../../../assets/profile";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
 import { walletsStyles } from "./wallets.style";
 import { IAccount, IWallet } from "../api/types";
-import { Button, useAppSelector } from "../../../shared";
+import { Button, Input, useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
 import { useGetAccountsQuery } from "../api/accountApi";
 import { Currency } from "../../currencies/model/type";
@@ -25,8 +24,11 @@ const VALUATION_SECONDARY_CURRENCY = "USDT";
 
 export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
     const [wallets, setWallets] = useState<IWallet[]>([]);
+    const [hideZeroBalance, setHideZeroBalance] = useState<boolean>(false);
+    const [search, setSearch] = useState<string>("");
 
     useGetAccountsQuery();
+    const linkTo = useLinkTo();
     const { theme } = useThemeContext();
     const styles = useMemo(() => walletsStyles(theme), [theme]);
 
@@ -62,8 +64,14 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
         });
 
         const wallets: IWallet | any = accountsByCurrencies.filter((item) => item && item.currency);
-        setWallets(wallets);
-    }, [accounts, currencies, userProfile, setWallets]);
+
+        // zero balance filter
+        const filteredWallets = hideZeroBalance
+            ? wallets.filter((wallet: IWallet) => wallet.balance && Number(wallet.balance) > 0)
+            : wallets;
+
+        setWallets(filteredWallets);
+    }, [accounts, currencies, userProfile, setWallets, hideZeroBalance]);
 
     const renderWalletRow = useCallback((wallet: IWallet) => {
         const estimatedValueForWallet =
@@ -83,14 +91,14 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                 <View style={styles.rowLeft}>
                     <CryptoIcon code={wallet.currency} />
                     <View style={styles.rowLeftTextContainer}>
-                        <Text style={styles.rowLeftTextName}>{wallet.name}</Text>
-                        <Text style={styles.rowLeftTextCurrency}>{wallet.currency}</Text>
+                        <Text style={styles.rowLeftTextCurrency}>{wallet?.currency?.toUpperCase()}</Text>
+                        <Text style={styles.rowLeftTextName}>{wallet?.name}</Text>
                     </View>
                 </View>
                 <View style={styles.rowRight}>
                     <Text style={styles.rowRightBalance}>{wallet.balance}</Text>
                     <Text style={styles.rowRightEstimatedBalance}>
-                        {estimatedValueForWallet} {VALUATION_PRIMARY_CURRENCY}
+                        ≈{estimatedValueForWallet} {VALUATION_PRIMARY_CURRENCY}
                     </Text>
                 </View>
             </Pressable>
@@ -128,22 +136,56 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
         );
     }, [estimatedValuePrimary, currencies, wallets, markets, tickers]);
 
+    const handleSearchByNameAndCode = useCallback(
+        (text: string) => {
+            // TODO: need add reset logic
+            const filteredWalletsBySearch = wallets?.filter(
+                (wallet: IWallet) =>
+                    wallet?.currency?.toLowerCase().includes(search?.toLowerCase()) ||
+                    wallet?.name?.toLowerCase().includes(search?.toLowerCase())
+            );
+
+            setWallets(filteredWalletsBySearch);
+            setSearch(text);
+        },
+        [setSearch, setWallets, wallets]
+    );
+
     return (
         <ScrollView style={styles.scrollViewContainer}>
             <View style={styles.headerContainer}>
-                <Text style={styles.totalBalance}>
-                    Total balance: {estimatedValuePrimary} {VALUATION_PRIMARY_CURRENCY}
-                </Text>
-                <Text style={styles.secondaryTotalBalance}>
-                    ≈{estimatedValueSecondary} {VALUATION_SECONDARY_CURRENCY}
-                </Text>
+                <View>
+                    <Text style={styles.totalBalance}>
+                        Total balance: {estimatedValuePrimary} {VALUATION_PRIMARY_CURRENCY}
+                    </Text>
+                    <Text style={styles.secondaryTotalBalance}>
+                        ≈{estimatedValueSecondary} {VALUATION_SECONDARY_CURRENCY}
+                    </Text>
+                </View>
+
                 <Text style={styles.historyIcon}>history icon</Text>
             </View>
             <View style={styles.buttonsContainer}>
-                <Button title="Deposit" isLoading={false} />
-                <Button title="Withdraw" isLoading={false} />
-                <Button title="Transfer" isLoading={false} />
+                <Button title="Deposit" onPress={() => linkTo("/Deposit")} isLoading={false} />
+                <Button title="Withdrawal" onPress={() => linkTo("/Withdrawal")} isLoading={false} />
+                <Button title="Transfer" onPress={() => linkTo("/Transfer")} isLoading={false} />
             </View>
+            <View style={styles.searchContainer}>
+                <Text style={styles.title}>Balances</Text>
+                <View style={styles.inputWrapper}>
+                    <Input
+                        onChangeText={handleSearchByNameAndCode}
+                        value={search}
+                        placeholder={"Search"}
+                        label={""}
+                        testID={"search"}
+                        keyboardType="default"
+                    />
+                </View>
+            </View>
+            <Pressable style={styles.hideZero} onPress={() => setHideZeroBalance(!hideZeroBalance)}>
+                <Text>{!hideZeroBalance ? "Hide 0 balances" : "Show 0 balances"}</Text>
+            </Pressable>
             {/* TODO: replace it with something else. */}
             <VirtualizedList
                 initialNumToRender={14}

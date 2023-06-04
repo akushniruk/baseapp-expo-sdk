@@ -14,8 +14,8 @@ export const CryptoIcon: FC<ICryptoIcon> = ({ code }) => {
     // TODO: handle all icon from assets/crypto-icons
     switch (code) {
         case "usdt":
-            return <Image source={require(`../../../../assets/crypto-icons/usdt.png`)} />;
+            return <Image style={styles.icon} source={require(`../../../../assets/crypto-icons/usdt.png`)} />;
         default:
-            return <Image source={require(`../../../../assets/crypto-icons/generic.png`)} />;
+            return <Image style={styles.icon} source={require(`../../../../assets/crypto-icons/generic.png`)} />;
     }
 };
