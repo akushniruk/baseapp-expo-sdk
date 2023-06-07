@@ -1,5 +1,5 @@
-import React, { FC, useMemo } from "react";
-import { ScrollView, View, Text, Pressable } from "react-native";
+import React, { FC, useEffect, useMemo, useState } from "react";
+import { ScrollView, View, Text, Pressable, Dimensions } from "react-native";
 import { useAppSelector } from "../../../../shared";
 import { format } from "../../../../shared/libs/format";
 import { RootState } from "../../../../shared/providers/redux/model/store";
@@ -8,15 +8,33 @@ import { Market } from "../../../markets/model/type";
 import { Tickers } from "../../../tickers/model/type";
 import { IWallet } from "../../api/types";
 import { estimateUnitValue } from "../../libs/helpers/estimateValue";
+import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
+import { walletDetailsStyles } from "./walletDetails.style";
+import Carousel from "react-native-reanimated-carousel";
 
 const VALUATION_CURRENCY = "USDT";
+const COUNT = 3;
+const WIDTH = Dimensions.get("window").width;
 
 export const WalletDetails: FC = () => {
-    const wallet: IWallet | null = useAppSelector((state: RootState) => state.wallet.wallet);
+    const [marketsBySelectedWallet, setMarketsBySelectedWallet] = useState<Market[]>([]);
 
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => walletDetailsStyles(theme), [theme]);
+
+    const wallet: IWallet | null = useAppSelector((state: RootState) => state.wallet.wallet);
     const currencies: Currency[] = useAppSelector((state: RootState) => state.currency.list);
     const markets: Market[] = useAppSelector((state: RootState) => state.markets.markets);
     const tickers: Tickers | null = useAppSelector((state: RootState) => state.tickers.tickers);
+
+    useEffect(() => {
+        if (markets && wallet) {
+            const marketsBySelectedWallet = markets.filter((market: Market) => {
+                return market.base_unit === wallet.currency || market.quote_unit === wallet.currency;
+            });
+            setMarketsBySelectedWallet(marketsBySelectedWallet);
+        }
+    }, [wallet, markets]);
 
     const estimatedValuePrimary = useMemo(() => {
         const estimatedValue =
@@ -34,7 +52,7 @@ export const WalletDetails: FC = () => {
     }, [currencies, wallet, markets, tickers]);
 
     return (
-        <ScrollView>
+        <View>
             <View>
                 <Text>
                     Total: {format(wallet?.balance, wallet?.fixed || 2)}
@@ -46,33 +64,32 @@ export const WalletDetails: FC = () => {
                 <Text>Unavailable: {format(wallet?.locked, wallet?.fixed || 2)}</Text>
             </View>
             <View>
-                <Text>Trade</Text>
-                <Text>Buy Crypto</Text>
-                <Text>Sell Crypto</Text>
+                <Text>Markets</Text>
+                <Text>{JSON.stringify(marketsBySelectedWallet)}</Text>
+                <Carousel
+                    loop
+                    autoPlay={false}
+                    vertical={false}
+                    width={WIDTH / COUNT}
+                    height={WIDTH / 2}
+                    style={{
+                        width: WIDTH,
+                    }}
+                    data={[...new Array(6).keys()]}
+                    scrollAnimationDuration={1000}
+                    renderItem={({ index }) => (
+                        <View
+                            style={{
+                                flex: 1,
+                                borderWidth: 1,
+                                justifyContent: "center",
+                            }}
+                        >
+                            <Text style={{ textAlign: "center", fontSize: 30 }}>{index}</Text>
+                        </View>
+                    )}
+                />
             </View>
-            <View>
-                {/* TODO: Markets by selected currency (wallet) */}
-                <View>
-                    <Text>Spot</Text>
-                    <Pressable>
-                        <Text>More</Text>
-                    </Pressable>
-                </View>
-
-                <View>{/* Slider with markets as a card  */}</View>
-            </View>
-            <View>
-                <View>
-                    <Text>History</Text>
-                    <Pressable>
-                        <Text>More</Text>
-                    </Pressable>
-                </View>
-                <Text>Tab panel with: All, deposit, withdrawal</Text>
-                <View>
-                    <Text>Table</Text>
-                </View>
-            </View>
-        </ScrollView>
+        </View>
     );
 };
