@@ -11,6 +11,7 @@ import { orderbook } from "../../../../services/orderbook/model/orderbookSlice";
 import { trades } from "../../../../services/trades/model/tradesSlice";
 import { accountActivity } from "../../../../services/accountActivity/model/accountActivitySlice";
 import { accounts } from "../../../../services/wallets/model/accountsSlice";
+import { wallet } from "../../../../services/wallets/model/walletSlice";
 
 export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
     configureStore({
@@ -26,6 +27,7 @@ export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | 
             orderbook: orderbook.reducer,
             trades: trades.reducer,
             accounts: accounts.reducer,
+            wallet: wallet.reducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
         ...options,

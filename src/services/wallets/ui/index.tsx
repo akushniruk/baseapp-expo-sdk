@@ -4,7 +4,7 @@ import { View, Text, Pressable, VirtualizedList, ScrollView } from "react-native
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
 import { walletsStyles } from "./wallets.style";
 import { IAccount, IWallet } from "../api/types";
-import { Button, Input, useAppSelector } from "../../../shared";
+import { Button, Input, useAppDispatch, useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
 import { useGetAccountsQuery } from "../api/accountApi";
 import { Currency } from "../../currencies/model/type";
@@ -14,15 +14,18 @@ import { estimateUnitValue, estimateValue } from "../libs/helpers/estimateValue"
 import { format } from "../../../shared/libs/format";
 import { Market } from "../../markets/model/type";
 import { Tickers } from "../../tickers/model/type";
+import { setCurrentWallet } from "../model/walletSlice";
 
 interface IWallets {
     navigation?: any;
 }
 
-const VALUATION_PRIMARY_CURRENCY = "BTC";
-const VALUATION_SECONDARY_CURRENCY = "USDT";
+const VALUATION_PRIMARY_CURRENCY = "USDT";
+const VALUATION_SECONDARY_CURRENCY = "BTC";
 
 export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
+    const dispatch = useAppDispatch();
+
     const [wallets, setWallets] = useState<IWallet[]>([]);
     const [hideZeroBalance, setHideZeroBalance] = useState<boolean>(false);
     const [search, setSearch] = useState<string>("");
@@ -78,7 +81,7 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
             tickers && wallet.balance
                 ? estimateUnitValue(
                       wallet.currency.toUpperCase(),
-                      VALUATION_PRIMARY_CURRENCY,
+                      VALUATION_SECONDARY_CURRENCY,
                       +wallet.balance,
                       currencies,
                       markets,
@@ -96,9 +99,9 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                     </View>
                 </View>
                 <View style={styles.rowRight}>
-                    <Text style={styles.rowRightBalance}>{wallet.balance}</Text>
+                    <Text style={styles.rowRightBalance}>{format(wallet.balance, wallet.fixed)}</Text>
                     <Text style={styles.rowRightEstimatedBalance}>
-                        ≈{estimatedValueForWallet} {VALUATION_PRIMARY_CURRENCY}
+                        ≈{estimatedValueForWallet} {VALUATION_SECONDARY_CURRENCY}
                     </Text>
                 </View>
             </Pressable>
@@ -112,8 +115,8 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
     };
 
     const redirectToWalletDetails = (wallet: IWallet) => {
-        // TODO: store to Redux selected wallet
-        navigation?.navigate("WalletDetails", { id: wallet?.currency });
+        dispatch(setCurrentWallet(wallet));
+        linkTo("/WalletDetails");
     };
 
     const estimatedValuePrimary = useMemo(() => {
