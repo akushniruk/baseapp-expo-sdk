@@ -37,6 +37,7 @@ export const depositHistoryStyles = (theme: string) => {
             width: "100%",
             alignItems: "baseline",
         },
+        tableTextTid: {},
         tableDateWrapper: {
             backgroundColor: palette.Controls["divider-color"][10].value,
             marginTop: 12,

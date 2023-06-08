@@ -13,6 +13,8 @@ import { es as resetPasswordEs } from "../../../widgets/iam/authentication/reset
 import { es as verifyEmailFormEs } from "../../../services/iam/authentication/verifyEmailForm";
 import { es as verifyEmailEs } from "../../../widgets/iam/authentication/verifyEmail";
 
+import { es as depositHistoryEs } from "../../../services/deposit/libs/i18n/es";
+
 const es = {
     ...loginFormEs,
     ...loginEs,
@@ -24,6 +26,7 @@ const es = {
     ...resetPasswordEs,
     ...verifyEmailFormEs,
     ...verifyEmailEs,
+    ...depositHistoryEs,
 };
 
 export { es };

@@ -13,6 +13,8 @@ import { en as resetPasswordEn } from "../../../widgets/iam/authentication/reset
 import { en as verifyEmailFormEn } from "../../../services/iam/authentication/verifyEmailForm";
 import { en as verifyEmailEn } from "../../../widgets/iam/authentication/verifyEmail";
 
+import { en as depositHistoryEn } from "../../../services/deposit/libs/i18n/en";
+
 const en = {
     ...loginFormEn,
     ...loginEn,
@@ -24,6 +26,7 @@ const en = {
     ...resetPasswordEn,
     ...verifyEmailFormEn,
     ...verifyEmailEn,
+    ...depositHistoryEn,
 };
 
 export { en };

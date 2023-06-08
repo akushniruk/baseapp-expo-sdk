@@ -1,4 +1,6 @@
 export const en = {
-    accountActivityIpAddress: "IP address",
-    accountActivityUserAgent: "User Agent",
+    depositHistoryNetwork: "Network",
+    depositHistoryAmount: "Amount",
+    depositHistoryCurrency: "Currency",
+    depositHistoryFee: "Fee",
 };

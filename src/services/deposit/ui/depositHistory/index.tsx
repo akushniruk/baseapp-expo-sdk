@@ -9,6 +9,8 @@ import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
 import { ArrowLeftIcon } from "../../../../assets/profile";
 import { useGetDepositHistoryMutation } from "../../api/depositApi";
 import { IDepositHistory } from "../../api/types";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
+import { truncateMiddle } from "../../../../shared/libs/truncateMiddle";
 
 const DEFAULT_LIMIT = 10;
 
@@ -46,25 +48,33 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
     };
 
     const renderTable = (item: IDepositHistory) => {
-        // const isSuccessful = item.result === "succeed";
-
         return (
             <View style={styles.table}>
-                <Text>{JSON.stringify(item)}</Text>
-                {/* <View style={styles.tableRow}>
-                    <Text style={styles.tableTextAction}>{item.action}</Text>
-                    <Text style={isSuccessful ? styles.tableTextStatusSuccess : styles.tableTextStatusFail}>
-                        {item.result}
-                    </Text>
+                <View style={styles.tableRow}>
+                    <Text style={styles.tableTextAction}>{item.state}</Text>
                 </View>
+                <View style={styles.tableRow}>
+                    <Text style={styles.tableTextTid}>{truncateMiddle(item.txid, 30)}</Text>
+                </View>
+
                 <View style={styles.tableSplittedRow}>
                     <View style={styles.tableRow}>
-                        <Text style={styles.tableText}>{item.user_ip}</Text>
-                        <Text style={styles.tableSubText}>{i18n.t("accountActivityIpAddress")}</Text>
+                        <Text style={styles.tableText}>{item.protocol?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("depositHistoryNetwork")}</Text>
                     </View>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableText}>{item.currency?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("depositHistoryCurrency")}</Text>
+                    </View>
+                </View>
+                <View style={styles.tableSplittedRow}>
                     <View style={[styles.tableRow, { marginLeft: 100 }]}>
-                        <Text style={styles.tableText}>{getUserAgent(item.user_agent)}</Text>
-                        <Text style={styles.tableSubText}>{i18n.t("accountActivityUserAgent")}</Text>
+                        <Text style={styles.tableText}>{item.amount}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("depositHistoryAmount")}</Text>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableText}>{item.fee?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("depositHistoryFee")}</Text>
                     </View>
                 </View>
                 <View style={styles.tableRowSeparatorWrapper}>
@@ -72,7 +82,7 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
                         <Text style={styles.tableDate}>{formatDate(item.created_at)}</Text>
                         <View style={styles.tableRowSeparator} />
                     </View>
-                </View> */}
+                </View>
             </View>
         );
     };
