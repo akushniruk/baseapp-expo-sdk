@@ -1,5 +1,6 @@
-// TODO: translate to spanish
 export const es = {
-    accountActivityIpAddress: "IP address",
-    accountActivityUserAgent: "User Agent",
+    transferHistoryDirection: "Direction",
+    transferHistoryAmount: "Amount",
+    transferHistoryCurrency: "Currency",
+    transferHistoryToAccount: "To account",
 };

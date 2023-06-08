@@ -1,4 +1,6 @@
 export const en = {
-    accountActivityIpAddress: "IP address",
-    accountActivityUserAgent: "User Agent",
+    transferHistoryDirection: "Direction",
+    transferHistoryAmount: "Amount",
+    transferHistoryCurrency: "Currency",
+    transferHistoryToAccount: "To account",
 };

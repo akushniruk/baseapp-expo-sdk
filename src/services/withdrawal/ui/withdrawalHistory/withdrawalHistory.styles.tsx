@@ -50,6 +50,7 @@ export const withdrawalHistoryStyles = (theme: string) => {
             backgroundColor: palette.Controls["divider-color"][10].value,
             color: palette["text-color"][50].value,
         },
+        tableTextTid: {},
         tableRowSeparator: {
             position: "absolute",
             backgroundColor: palette.Controls["divider-color"][10].value,

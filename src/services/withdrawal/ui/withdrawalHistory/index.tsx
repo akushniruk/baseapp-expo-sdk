@@ -9,6 +9,8 @@ import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
 import { ArrowLeftIcon } from "../../../../assets/profile";
 import { useGetWithdrawalHistoryMutation } from "../../api/withdrawalApi";
 import { IWithdrawalHistory } from "../../api/types";
+import { truncateMiddle } from "../../../../shared/libs/truncateMiddle";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 
 const DEFAULT_LIMIT = 10;
 
@@ -46,25 +48,33 @@ export const WithdrawalHistory: FC<IWithdrawalHistoryProps> = ({ currency }: IWi
     };
 
     const renderTable = (item: IWithdrawalHistory) => {
-        // const isSuccessful = item.result === "succeed";
-
         return (
             <View style={styles.table}>
-                <Text>{JSON.stringify(item)}</Text>
-                {/* <View style={styles.tableRow}>
-                    <Text style={styles.tableTextAction}>{item.action}</Text>
-                    <Text style={isSuccessful ? styles.tableTextStatusSuccess : styles.tableTextStatusFail}>
-                        {item.result}
-                    </Text>
+                <View style={styles.tableRow}>
+                    <Text style={styles.tableTextAction}>{item.state}</Text>
+                </View>
+                <View style={styles.tableRow}>
+                    <Text style={styles.tableTextTid}>{truncateMiddle(item?.blockchain_txid || "", 30)}</Text>
+                </View>
+
+                <View style={styles.tableSplittedRow}>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
+                        <Text style={styles.tableText}>{item.protocol?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("withdrawalHistoryNetwork")}</Text>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableText}>{item.currency?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("withdrawalHistoryCurrency")}</Text>
+                    </View>
                 </View>
                 <View style={styles.tableSplittedRow}>
-                    <View style={styles.tableRow}>
-                        <Text style={styles.tableText}>{item.user_ip}</Text>
-                        <Text style={styles.tableSubText}>{i18n.t("accountActivityIpAddress")}</Text>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
+                        <Text style={styles.tableText}>{item.amount}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("withdrawalHistoryAmount")}</Text>
                     </View>
-                    <View style={[styles.tableRow, { marginLeft: 100 }]}>
-                        <Text style={styles.tableText}>{getUserAgent(item.user_agent)}</Text>
-                        <Text style={styles.tableSubText}>{i18n.t("accountActivityUserAgent")}</Text>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableText}>{item.fee?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("withdrawalHistoryFee")}</Text>
                     </View>
                 </View>
                 <View style={styles.tableRowSeparatorWrapper}>
@@ -72,7 +82,7 @@ export const WithdrawalHistory: FC<IWithdrawalHistoryProps> = ({ currency }: IWi
                         <Text style={styles.tableDate}>{formatDate(item.created_at)}</Text>
                         <View style={styles.tableRowSeparator} />
                     </View>
-                </View> */}
+                </View>
             </View>
         );
     };

@@ -14,6 +14,8 @@ import { es as verifyEmailFormEs } from "../../../services/iam/authentication/ve
 import { es as verifyEmailEs } from "../../../widgets/iam/authentication/verifyEmail";
 
 import { es as depositHistoryEs } from "../../../services/deposit/libs/i18n/es";
+import { es as withdrawalHistoryEs } from "../../../services/withdrawal/libs/i18n/es";
+import { es as transferHistoryEs } from "../../../services/transfer/libs/i18n/es";
 
 const es = {
     ...loginFormEs,
@@ -27,6 +29,8 @@ const es = {
     ...verifyEmailFormEs,
     ...verifyEmailEs,
     ...depositHistoryEs,
+    ...withdrawalHistoryEs,
+    ...transferHistoryEs,
 };
 
 export { es };

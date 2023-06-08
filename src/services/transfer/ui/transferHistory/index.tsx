@@ -9,6 +9,7 @@ import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
 import { ArrowLeftIcon } from "../../../../assets/profile";
 import { useGetTransferHistoryMutation } from "../../api/transferApi";
 import { ITransferHistory } from "../../api/types";
+import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 
 const DEFAULT_LIMIT = 10;
 
@@ -46,25 +47,33 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency }: ITransf
     };
 
     const renderTable = (item: ITransferHistory) => {
-        // const isSuccessful = item.result === "succeed";
+        const toAccount = item.receiver_username?.toUpperCase() || item.receiver_uid?.toUpperCase();
 
         return (
             <View style={styles.table}>
-                <Text>{JSON.stringify(item)}</Text>
-                {/* <View style={styles.tableRow}>
-                    <Text style={styles.tableTextAction}>{item.action}</Text>
-                    <Text style={isSuccessful ? styles.tableTextStatusSuccess : styles.tableTextStatusFail}>
-                        {item.result}
-                    </Text>
+                <View style={styles.tableRow}>
+                    <Text style={styles.tableTextAction}>{item.status}</Text>
                 </View>
                 <View style={styles.tableSplittedRow}>
-                    <View style={styles.tableRow}>
-                        <Text style={styles.tableText}>{item.user_ip}</Text>
-                        <Text style={styles.tableSubText}>{i18n.t("accountActivityIpAddress")}</Text>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
+                        <Text style={styles.tableText}>{item.amount}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("transferHistoryAmount")}</Text>
                     </View>
-                    <View style={[styles.tableRow, { marginLeft: 100 }]}>
-                        <Text style={styles.tableText}>{getUserAgent(item.user_agent)}</Text>
-                        <Text style={styles.tableSubText}>{i18n.t("accountActivityUserAgent")}</Text>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableText}>{item.currency?.toUpperCase()}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("transferHistoryCurrency")}</Text>
+                    </View>
+                </View>
+                <View style={styles.tableSplittedRow}>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
+                        <Text style={styles.tableText}>
+                            {item.direction && item.direction.replace(/^./, item.direction[0].toUpperCase())}
+                        </Text>
+                        <Text style={styles.tableSubText}>{i18n.t("transferHistoryDirection")}</Text>
+                    </View>
+                    <View style={styles.tableRow}>
+                        <Text style={styles.tableText}>{toAccount}</Text>
+                        <Text style={styles.tableSubText}>{i18n.t("transferHistoryToAccount")}</Text>
                     </View>
                 </View>
                 <View style={styles.tableRowSeparatorWrapper}>
@@ -72,7 +81,7 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency }: ITransf
                         <Text style={styles.tableDate}>{formatDate(item.created_at)}</Text>
                         <View style={styles.tableRowSeparator} />
                     </View>
-                </View> */}
+                </View>
             </View>
         );
     };

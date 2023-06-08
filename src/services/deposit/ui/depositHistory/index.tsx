@@ -58,7 +58,7 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
                 </View>
 
                 <View style={styles.tableSplittedRow}>
-                    <View style={styles.tableRow}>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
                         <Text style={styles.tableText}>{item.protocol?.toUpperCase()}</Text>
                         <Text style={styles.tableSubText}>{i18n.t("depositHistoryNetwork")}</Text>
                     </View>
@@ -68,7 +68,7 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
                     </View>
                 </View>
                 <View style={styles.tableSplittedRow}>
-                    <View style={[styles.tableRow, { marginLeft: 100 }]}>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
                         <Text style={styles.tableText}>{item.amount}</Text>
                         <Text style={styles.tableSubText}>{i18n.t("depositHistoryAmount")}</Text>
                     </View>
