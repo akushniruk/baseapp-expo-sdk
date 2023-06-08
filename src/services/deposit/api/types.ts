@@ -1,16 +1,22 @@
-export interface IDeposit {
+export interface IDepositHistory {
     id: number;
-    user_ip: string;
-    user_ip_country: string;
-    user_agent: "active" | "disabled";
-    topic: string;
-    action: string;
-    result: string;
-    data: any;
-    created_at: string;
+    currency: string;
+    blockchain_key: string;
+    protocol: string;
+    warning: string;
+    amount: string;
+    fee: string;
+    txid: string;
+    confirmations: string;
+    state: string;
+    transfer_type: string;
+    created_at: string; // 2023-04-19T11:44:32Z
+    completed_at: string; // 2023-04-19T11:44:32Z
+    tid: string;
 }
 
-export interface DepositRequest {
+export interface DepositHistoryRequest {
     page: number;
     limit: number;
+    currency?: string;
 }

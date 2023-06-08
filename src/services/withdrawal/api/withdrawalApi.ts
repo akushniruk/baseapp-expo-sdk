@@ -1,21 +1,22 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import { setAccountActivityList, setTotal } from "../model/withdrawalSlice";
-import { IWithdrawal, WithdrawalRequest } from "./types";
+import { setWithdrawalHistoryList, setTotal } from "../model/withdrawalSlice";
+import { IWithdrawalHistory, WithdrawalHistoryRequest } from "./types";
 
 export const withdrawalApi = api.injectEndpoints({
     endpoints: (build) => ({
-        getWithdrawalHistory: build.mutation<IWithdrawal[], WithdrawalRequest>({
+        getWithdrawalHistory: build.mutation<IWithdrawalHistory[], WithdrawalHistoryRequest>({
             query(data) {
+                const currencyQuery = data.currency ? `&currency=${data.currency}` : "";
                 return {
-                    url: `api/v2/barong/resource/users/activity/all?limit=${data.limit}&page=${data.page}`,
+                    url: `api/v2/peatio/account/withdraws?limit=${data.limit}&page=${data.page}${currencyQuery}`,
                     method: "GET",
                 };
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
-                    dispatch(setAccountActivityList(response.data));
+                    dispatch(setWithdrawalHistoryList(response.data));
                     // @ts-ignore
                     dispatch(setTotal(response?.meta?.response.headers.get("total")));
                 } catch (error: any) {

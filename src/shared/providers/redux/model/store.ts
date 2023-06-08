@@ -12,6 +12,9 @@ import { trades } from "../../../../services/trades/model/tradesSlice";
 import { accountActivity } from "../../../../services/accountActivity/model/accountActivitySlice";
 import { accounts } from "../../../../services/wallets/model/accountsSlice";
 import { wallet } from "../../../../services/wallets/model/walletSlice";
+import { deposit } from "../../../../services/deposit/model/depositSlice";
+import { withdrawal } from "../../../../services/withdrawal/model/withdrawalSlice";
+import { transfer } from "../../../../services/transfer/model/transferSlice";
 
 export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
     configureStore({
@@ -28,6 +31,9 @@ export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | 
             trades: trades.reducer,
             accounts: accounts.reducer,
             wallet: wallet.reducer,
+            deposit: deposit.reducer,
+            withdrawal: withdrawal.reducer,
+            transfer: transfer.reducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
         ...options,

@@ -1,21 +1,22 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import { setAccountActivityList, setTotal } from "../model/depositSlice";
-import { IDeposit, DepositRequest } from "./types";
+import { setDepositHistoryList, setTotal } from "../model/depositSlice";
+import { IDepositHistory, DepositHistoryRequest } from "./types";
 
 export const depositApi = api.injectEndpoints({
     endpoints: (build) => ({
-        getDepositHistory: build.mutation<IDeposit[], DepositRequest>({
+        getDepositHistory: build.mutation<IDepositHistory[], DepositHistoryRequest>({
             query(data) {
+                const currencyQuery = data.currency ? `&currency=${data.currency}` : "";
                 return {
-                    url: `api/v2/barong/resource/users/activity/all?limit=${data.limit}&page=${data.page}`,
+                    url: `api/v2/peatio/account/deposits?limit=${data.limit}&page=${data.page}${currencyQuery}`,
                     method: "GET",
                 };
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
-                    dispatch(setAccountActivityList(response.data));
+                    dispatch(setDepositHistoryList(response.data));
                     // @ts-ignore
                     dispatch(setTotal(response?.meta?.response.headers.get("total")));
                 } catch (error: any) {

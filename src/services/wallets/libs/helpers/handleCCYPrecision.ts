@@ -1,4 +1,4 @@
-import { Currency } from '../modules';
+import { Currency } from "../../../currencies/model/type";
 
 export const handleCCYPrecision = (currencies: Currency[], currency: string, defaultPrecision: number): number => {
     const precisableCCY =

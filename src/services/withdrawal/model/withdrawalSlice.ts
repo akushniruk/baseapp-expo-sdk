@@ -1,27 +1,27 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAccountActivity } from "../api/types";
+import { IWithdrawalHistory } from "../api/types";
 
-export interface AccountActivityState {
-    list: IAccountActivity[];
+export interface WithdrawalState {
+    list: IWithdrawalHistory[];
     total: string | null;
 }
 
-export const initialState: AccountActivityState = {
+export const initialState: WithdrawalState = {
     list: [],
     total: "0",
 };
 
-export const accountActivity = createSlice({
+export const withdrawal = createSlice({
     initialState,
-    name: "accountActivity",
+    name: "withdrawal",
     reducers: {
-        setAccountActivityList: (state: AccountActivityState, action: PayloadAction<IAccountActivity[]>) => {
+        setWithdrawalHistoryList: (state: WithdrawalState, action: PayloadAction<IWithdrawalHistory[]>) => {
             state.list = action.payload;
         },
-        setTotal: (state: AccountActivityState, action: PayloadAction<string | null>) => {
+        setTotal: (state: WithdrawalState, action: PayloadAction<string | null>) => {
             state.total = action.payload;
         },
     },
 });
 
-export const { setAccountActivityList, setTotal } = accountActivity.actions;
+export const { setWithdrawalHistoryList, setTotal } = withdrawal.actions;

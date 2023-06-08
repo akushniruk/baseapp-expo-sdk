@@ -1,16 +1,24 @@
-export interface IWithdrawal {
+export interface IWithdrawalHistory {
     id: number;
-    user_ip: string;
-    user_ip_country: string;
-    user_agent: "active" | "disabled";
-    topic: string;
-    action: string;
-    result: string;
-    data: any;
-    created_at: string;
+    currency: string;
+    type: string;
+    blockchain_key: string;
+    amount: string;
+    fee: string;
+    blockchain_txid: string | null;
+    rid: string;
+    protocol: string;
+    state: string;
+    confirmations: number;
+    note: string | null;
+    transfer_type: string;
+    created_at: string; // 2023-06-08T09:49:48Z
+    updated_at: string; // 2023-06-08T09:49:48Z
+    done_at: string | null;
 }
 
-export interface WithdrawalRequest {
+export interface WithdrawalHistoryRequest {
     page: number;
     limit: number;
+    currency?: string;
 }
