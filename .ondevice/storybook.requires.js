@@ -157,6 +157,7 @@ const getStories = () => {
     "./src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx": require("../src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx"),
     "./src/widgets/orderbook/stories/Orderbook.stories.tsx": require("../src/widgets/orderbook/stories/Orderbook.stories.tsx"),
     "./src/widgets/user/stories/User.stories.tsx": require("../src/widgets/user/stories/User.stories.tsx"),
+    "./src/widgets/wallets/stories/WalletDetails.stories.tsx": require("../src/widgets/wallets/stories/WalletDetails.stories.tsx"),
     "./src/widgets/apiKeys/stories/ApiKeys.stories.tsx": require("../src/widgets/apiKeys/stories/ApiKeys.stories.tsx"),
     "./src/widgets/iam/authentication/forgotPassword/stories/ForgotPassword.stories.tsx": require("../src/widgets/iam/authentication/forgotPassword/stories/ForgotPassword.stories.tsx"),
     "./src/widgets/iam/authentication/login/stories/Login.stories.tsx": require("../src/widgets/iam/authentication/login/stories/Login.stories.tsx"),
@@ -165,6 +166,7 @@ const getStories = () => {
     "./src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx": require("../src/widgets/iam/authentication/verifyEmail/stories/VerifyEmail.stories.tsx"),
     "./src/widgets/orderbook/stories/Orderbook.stories.tsx": require("../src/widgets/orderbook/stories/Orderbook.stories.tsx"),
     "./src/widgets/user/stories/User.stories.tsx": require("../src/widgets/user/stories/User.stories.tsx"),
+    "./src/widgets/wallets/stories/WalletDetails.stories.tsx": require("../src/widgets/wallets/stories/WalletDetails.stories.tsx"),
   };
 };
 

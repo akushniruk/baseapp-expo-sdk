@@ -14,6 +14,6 @@ type WalletDetailsStory = ComponentStory<typeof WalletDetails>;
 
 export const Basic: WalletDetailsStory = (args) => (
     <CoreProvider>
-        <WalletDetails code="usdt" />
+        <WalletDetails />
     </CoreProvider>
 );

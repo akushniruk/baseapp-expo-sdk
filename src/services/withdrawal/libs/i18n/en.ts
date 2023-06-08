@@ -1,6 +1,6 @@
 export const en = {
-    transferHistoryNetwork: "Network",
-    transferHistoryAmount: "Amount",
-    transferHistoryCurrency: "Currency",
-    transferHistoryFee: "Fee",
+    withdrawalHistoryNetwork: "Network",
+    withdrawalHistoryAmount: "Amount",
+    withdrawalHistoryCurrency: "Currency",
+    withdrawalHistoryFee: "Fee",
 };

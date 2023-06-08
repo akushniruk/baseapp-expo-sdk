@@ -26,7 +26,7 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
 
     const [getDepositHistory, { isLoading, isSuccess }] = useGetDepositHistoryMutation();
 
-    const DepositHistory: IDepositHistory[] | null = useAppSelector((state: RootState) => state.deposit.list);
+    const depositHistory: IDepositHistory[] | null = useAppSelector((state: RootState) => state.deposit.list);
     const total: string | null | undefined = useAppSelector((state: RootState) => state.deposit.total);
 
     const onRefresh = useCallback(() => {
@@ -92,7 +92,7 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
             style={styles.container}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
-            <View style={styles.containerTable}>{DepositHistory?.map(renderTable)}</View>
+            <View style={styles.containerTable}>{depositHistory?.map(renderTable)}</View>
             <View style={styles.containerPagination}>
                 {/* TODO: move to pagination component  */}
                 <Pressable style={styles.paginationButton} onPress={handleFetchPrevPage} disabled={currentPage === 1}>

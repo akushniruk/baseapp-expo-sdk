@@ -7,15 +7,13 @@ import { RootState } from "../../../../shared/providers/redux/model/store";
 import { Ticker, Tickers } from "../../../tickers/model/type";
 import { setCurrentMarket } from "../../model/marketsSlice";
 import { Market } from "../../model/type";
-import { marketsV1Styles } from "./marketsV1.styles";
+import { marketsCarouselStyles } from "./marketsCarousel.styles";
 import Carousel from "react-native-reanimated-carousel";
 
-const VALUATION_CURRENCY = "USDT";
 const COUNT = 3;
 const WIDTH = Dimensions.get("window").width;
 const SYMBOL = "$";
 const DEFAULT_PERCENTAGE_PRECISION = 2;
-const FIXED_VOL_PRECISION = 2;
 
 interface IMarketsCarousel {
     navigation?: any;
@@ -25,7 +23,7 @@ interface IMarketsCarousel {
 export const MarketsCarousel: FC<IMarketsCarousel> = ({ navigation, code }: IMarketsCarousel) => {
     const dispatch = useAppDispatch();
     const { theme } = useThemeContext();
-    const styles = useMemo(() => marketsV1Styles(theme), [theme]);
+    const styles = useMemo(() => marketsCarouselStyles(theme), [theme]);
 
     const [marketsBySelectedWallet, setMarketsBySelectedWallet] = useState<Market[]>([]);
 
@@ -82,15 +80,15 @@ export const MarketsCarousel: FC<IMarketsCarousel> = ({ navigation, code }: IMar
 
     return (
         <Carousel
-            loop
+            loop={false}
             autoPlay={false}
             vertical={false}
             width={WIDTH / COUNT}
-            height={WIDTH / 2}
+            height={80}
             style={{
                 width: WIDTH,
             }}
-            data={[...new Array(6).keys()]}
+            data={marketsBySelectedWallet}
             scrollAnimationDuration={1000}
             renderItem={({ index }) => marketsBySelectedWallet.map(renderMarketRow)[index]}
         />
