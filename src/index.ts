@@ -26,6 +26,9 @@ import { TickerV1 } from "./services/tickers/ui/ticker";
 // Services - Trades
 import { Trades } from "./services/trades/ui/trades";
 
+// Services - Wallets
+import { Wallets } from "./services/wallets/ui";
+
 // Widgets - Orderbook
 import { OrderbookWidget } from "./widgets/orderbook/ui/orderbook";
 
@@ -41,6 +44,9 @@ import { ProfileWidget } from "./widgets/user/ui/profile";
 
 // Widgets - User - Profile - ApiKeys
 import { ApiKeysWidget } from "./widgets/apiKeys/ui/apiKeys";
+
+// Widgets - Wallets
+import { WalletDetailsWidget } from "./widgets/wallets/ui/walletDetails";
 
 // Shared providers
 import { ReduxProvider } from "./shared/providers/redux/redux";
@@ -94,6 +100,8 @@ export {
     TickerV1,
     OrderbookWidget,
     ApiKeysWidget,
+    WalletDetailsWidget,
+    Wallets,
     withAuth,
 };
 
