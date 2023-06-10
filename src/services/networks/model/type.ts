@@ -21,7 +21,7 @@
 //  created_at           :datetime         not null
 //  updated_at           :datetime         not null
 
-export type Networks = {
+export type Network = {
     id: number; // blockchain id;
     status: string; // blockchain status: enabled | disabled
     blockchain_key: string; // blockchain key

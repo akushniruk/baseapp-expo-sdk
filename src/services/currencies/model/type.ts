@@ -14,7 +14,7 @@
 //  created_at         :datetime         not null
 //  updated_at         :datetime         not null
 
-import { Networks } from "../../networks/model/type";
+import { Network } from "../../networks/model/type";
 
 export type Currency = {
     id: string; // currency code
@@ -27,5 +27,5 @@ export type Currency = {
     position: number; // currency position in the list
     status: string; // currency status
     icon_url: string;
-    networks: Networks[] | null; // list of available blockchains for currency;
+    networks: Network[] | null; // list of available blockchains for currency;
 };
