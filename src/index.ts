@@ -68,6 +68,12 @@ import { OTPInput } from "./shared/ui/otpInput";
 // Shared UI - TabPanel
 import { TabPanel } from "./shared/ui/tabPanel";
 
+import { Beneficiaries } from "./services/withdrawal/ui/beneficiaries";
+import { CreateCryptoBeneficiary } from "./services/withdrawal/ui/createCryptoBeneficiary";
+import { ConfirmBeneficiary } from "./services/withdrawal/ui/confirmBeneficiary";
+import { Deposit } from "./services/deposit/ui";
+import { Withdrawal } from "./services/withdrawal/ui";
+
 export {
     Trades,
     TabPanel,
@@ -102,8 +108,13 @@ export {
     TickerV1,
     OrderbookWidget,
     ApiKeysWidget,
-    WalletDetailsWidget,
     Wallets,
+    WalletDetailsWidget,
+    Beneficiaries,
+    CreateCryptoBeneficiary,
+    ConfirmBeneficiary,
+    Deposit,
+    Withdrawal,
     withAuth,
 };
 

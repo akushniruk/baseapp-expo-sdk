@@ -19,7 +19,7 @@ export const Withdrawal: FC = () => {
     const handleRedirect = () => {
         if (wallet?.type === "coin") {
             console.log("redirect");
-            linkTo("/CreateCryptoBeneficiary");
+            linkTo("/Beneficiaries");
         } else {
             dispatch(
                 dispatchAlert({
