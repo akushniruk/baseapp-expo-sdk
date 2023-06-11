@@ -14,971 +14,971 @@ export const CryptoIcon: FC<ICryptoIcon> = ({ code }) => {
     switch (code) {
         case "usdt":
             return <Image style={styles.icon} source={require(`../../../../assets/crypto-icons/usdt.png`)} />;
-        case "$pac.png":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pac.png")} />;
-        case "amp.png":
+        case "$pac":
+            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/$pac.png")} />;
+        case "amp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/amp.png")} />;
-        case "auto.png":
+        case "auto":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/auto.png")} />;
-        case "bix.png":
+        case "bix":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bix.png")} />;
-        case "btcz.png":
+        case "btcz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btcz.png")} />;
-        case "cix.png":
+        case "cix":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cix.png")} />;
-        case "cvc.png":
+        case "cvc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cvc.png")} />;
-        case "drgn.png":
+        case "drgn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/drgn.png")} />;
-        case "enj.png":
+        case "enj":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/enj.png")} />;
-        case "fil.png":
+        case "fil":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fil.png")} />;
-        case "gno.png":
+        case "gno":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gno.png")} />;
-        case "hsr.png":
+        case "hsr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hsr.png")} />;
-        case "jnt.png":
+        case "jnt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/jnt.png")} />;
-        case "lun.png":
+        case "lun":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lun.png")} />;
-        case "mod.png":
+        case "mod":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mod.png")} />;
-        case "nkn.png":
+        case "nkn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nkn.png")} />;
-        case "ox.png":
+        case "ox":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ox.png")} />;
-        case "powr.png":
+        case "powr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/powr.png")} />;
-        case "rcn.png":
+        case "rcn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rcn.png")} />;
-        case "san.png":
+        case "san":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/san.png")} />;
-        case "sol.png":
+        case "sol":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sol.png")} />;
-        case "tau.png":
+        case "tau":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tau.png")} />;
-        case "tzc.png":
+        case "tzc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tzc.png")} />;
-        case "wabi.png":
+        case "wabi":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wabi.png")} />;
-        case "xlm.png":
+        case "xlm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xlm.png")} />;
-        case "zcl.png":
+        case "zcl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zcl.png")} />;
-        case "0xbtc.png":
+        case "0xbtc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/0xbtc.png")} />;
-        case "ampl.png":
+        case "ampl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ampl.png")} />;
-        case "avax.png":
+        case "avax":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/avax.png")} />;
-        case "blcn.png":
+        case "blcn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/blcn.png")} />;
-        case "btdx.png":
+        case "btdx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btdx.png")} />;
-        case "clam.png":
+        case "clam":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/clam.png")} />;
-        case "d.png":
+        case "d":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/d.png")} />;
-        case "drop.png":
+        case "drop":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/drop.png")} />;
-        case "entrp.png":
+        case "entrp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/entrp.png")} />;
-        case "fjc.png":
+        case "fjc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fjc.png")} />;
-        case "gnt.png":
+        case "gnt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gnt.png")} />;
-        case "ht.png":
+        case "ht":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ht.png")} />;
-        case "jpy.png":
+        case "jpy":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/jpy.png")} />;
-        case "maid.png":
+        case "maid":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/maid.png")} />;
-        case "mona.png":
+        case "mona":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mona.png")} />;
-        case "nlc2.png":
+        case "nlc2":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nlc2.png")} />;
-        case "oxt.png":
+        case "oxt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oxt.png")} />;
-        case "ppc.png":
+        case "ppc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ppc.png")} />;
-        case "rdd.png":
+        case "rdd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rdd.png")} />;
-        case "sand.png":
+        case "sand":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sand.png")} />;
-        case "spacehbit.png":
+        case "spacehbit":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/spacehbit.png")} />;
-        case "tbx.png":
+        case "tbx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tbx.png")} />;
-        case "ubq.png":
+        case "ubq":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ubq.png")} />;
-        case "wan.png":
+        case "wan":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wan.png")} />;
-        case "xmcc.png":
+        case "xmcc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmcc.png")} />;
-        case "zec.png":
+        case "zec":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zec.png")} />;
-        case "1inch.png":
+        case "1inch":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/1inch.png")} />;
-        case "ankr.png":
+        case "ankr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ankr.png")} />;
-        case "aywa.png":
+        case "aywa":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aywa.png")} />;
-        case "blk.png":
+        case "blk":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/blk.png")} />;
-        case "btg.png":
+        case "btg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btg.png")} />;
-        case "cloak.png":
+        case "cloak":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cloak.png")} />;
-        case "dai.png":
+        case "dai":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dai.png")} />;
-        case "dta.png":
+        case "dta":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dta.png")} />;
-        case "eon.png":
+        case "eon":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eon.png")} />;
-        case "fldc.png":
+        case "fldc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fldc.png")} />;
-        case "gold.png":
+        case "gold":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gold.png")} />;
-        case "html.png":
+        case "html":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/html.png")} />;
-        case "kcs.png":
+        case "kcs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/kcs.png")} />;
-        case "mana.png":
+        case "mana":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mana.png")} />;
-        case "msr.png":
+        case "msr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/msr.png")} />;
-        case "nlg.png":
+        case "nlg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nlg.png")} />;
-        case "oxy.png":
+        case "oxy":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oxy.png")} />;
-        case "ppp.png":
+        case "ppp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ppp.png")} />;
-        case "rdn.png":
+        case "rdn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rdn.png")} />;
-        case "sbd.png":
+        case "sbd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sbd.png")} />;
-        case "spank.png":
+        case "spank":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/spank.png")} />;
-        case "tel.png":
+        case "tel":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tel.png")} />;
-        case "uma.png":
+        case "uma":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/uma.png")} />;
-        case "waves.png":
+        case "waves":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/waves.png")} />;
-        case "xmg.png":
+        case "xmg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmg.png")} />;
-        case "zel.png":
+        case "zel":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zel.png")} />;
-        case "2give.png":
+        case "2give":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/2give.png")} />;
-        case "ant.png":
+        case "ant":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ant.png")} />;
-        case "bab.png":
+        case "bab":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bab.png")} />;
-        case "block.png":
+        case "block":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/block.png")} />;
-        case "btm.png":
+        case "btm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btm.png")} />;
-        case "cmm.png":
+        case "cmm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cmm.png")} />;
-        case "dash.png":
+        case "dash":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dash.png")} />;
-        case "dth.png":
+        case "dth":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dth.png")} />;
-        case "eop.png":
+        case "eop":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eop.png")} />;
-        case "flo.png":
+        case "flo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/flo.png")} />;
-        case "grc.png":
+        case "grc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grc.png")} />;
-        case "huc.png":
+        case "huc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/huc.png")} />;
-        case "kin.png":
+        case "kin":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/kin.png")} />;
-        case "matic.png":
+        case "matic":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/matic.png")} />;
-        case "mth.png":
+        case "mth":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mth.png")} />;
-        case "nmc.png":
+        case "nmc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nmc.png")} />;
-        case "part.png":
+        case "part":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/part.png")} />;
-        case "ppt.png":
+        case "ppt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ppt.png")} />;
-        case "ren.png":
+        case "ren":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ren.png")} />;
-        case "sberbank.png":
+        case "sberbank":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sberbank.png")} />;
-        case "sphtx.png":
+        case "sphtx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sphtx.png")} />;
-        case "ten.png":
+        case "ten":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ten.png")} />;
-        case "uni.png":
+        case "uni":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/uni.png")} />;
-        case "wax.png":
+        case "wax":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wax.png")} />;
-        case "xmo.png":
+        case "xmo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmo.png")} />;
-        case "zen.png":
+        case "zen":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zen.png")} />;
-        case "aave.png":
+        case "aave":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aave.png")} />;
-        case "ape.png":
+        case "ape":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ape.png")} />;
-        case "bal.png":
+        case "bal":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bal.png")} />;
-        case "blz.png":
+        case "blz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/blz.png")} />;
-        case "bts.png":
+        case "bts":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bts.png")} />;
-        case "cmt.png":
+        case "cmt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cmt.png")} />;
-        case "dat.png":
+        case "dat":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dat.png")} />;
-        case "dtr.png":
+        case "dtr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dtr.png")} />;
-        case "eos.png":
+        case "eos":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eos.png")} />;
-        case "flux.png":
+        case "flux":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/flux.png")} />;
-        case "grin.png":
+        case "grin":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grin.png")} />;
-        case "husd.png":
+        case "husd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/husd.png")} />;
-        case "klown.png":
+        case "klown":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/klown.png")} />;
-        case "max.png":
+        case "max":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/max.png")} />;
-        case "mtl.png":
+        case "mtl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mtl.png")} />;
-        case "nmr.png":
+        case "nmr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nmr.png")} />;
-        case "pasc.png":
+        case "pasc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pasc.png")} />;
-        case "pre.png":
+        case "pre":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pre.png")} />;
-        case "rep.png":
+        case "rep":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rep.png")} />;
-        case "sc.png":
+        case "sc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sc.png")} />;
-        case "srn.png":
+        case "srn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/srn.png")} />;
-        case "tern.png":
+        case "tern":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tern.png")} />;
-        case "unity.png":
+        case "unity":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/unity.png")} />;
-        case "wbtc.png":
+        case "wbtc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wbtc.png")} />;
-        case "xmr.png":
+        case "xmr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmr.png")} />;
-        case "zest.png":
+        case "zest":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zest.png")} />;
-        case "abt.png":
+        case "abt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/abt.png")} />;
-        case "apex.png":
+        case "apex":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/apex.png")} />;
-        case "band.png":
+        case "band":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/band.png")} />;
-        case "bnb.png":
+        case "bnb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bnb.png")} />;
-        case "btt.png":
+        case "btt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btt.png")} />;
-        case "cnd.png":
+        case "cnd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cnd.png")} />;
-        case "data.png":
+        case "data":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/data.png")} />;
-        case "ebst.png":
+        case "ebst":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ebst.png")} />;
-        case "eqli.png":
+        case "eqli":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eqli.png")} />;
-        case "fsn.png":
+        case "fsn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fsn.png")} />;
-        case "grs.png":
+        case "grs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grs.png")} />;
-        case "hush.png":
+        case "hush":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hush.png")} />;
-        case "kmd.png":
+        case "kmd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/kmd.png")} />;
-        case "mcap.png":
+        case "mcap":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mcap.png")} />;
-        case "music.png":
+        case "music":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/music.png")} />;
-        case "npxs.png":
+        case "npxs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/npxs.png")} />;
-        case "pasl.png":
+        case "pasl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pasl.png")} />;
-        case "prl.png":
+        case "prl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/prl.png")} />;
-        case "repv2.png":
+        case "repv2":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/repv2.png")} />;
-        case "ser.png":
+        case "ser":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ser.png")} />;
-        case "stak.png":
+        case "stak":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stak.png")} />;
-        case "tgch.png":
+        case "tgch":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tgch.png")} />;
-        case "usd.png":
+        case "usd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/usd.png")} />;
-        case "wgr.png":
+        case "wgr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wgr.png")} />;
-        case "xmy.png":
+        case "xmy":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmy.png")} />;
-        case "zil.png":
+        case "zil":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zil.png")} />;
-        case "act.png":
+        case "act":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/act.png")} />;
-        case "appc.png":
+        case "appc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/appc.png")} />;
-        case "bat.png":
+        case "bat":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bat.png")} />;
-        case "bnt.png":
+        case "bnt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bnt.png")} />;
-        case "btx.png":
+        case "btx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btx.png")} />;
-        case "cnx.png":
+        case "cnx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cnx.png")} />;
-        case "dbc.png":
+        case "dbc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dbc.png")} />;
-        case "eca.png":
+        case "eca":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eca.png")} />;
-        case "equa.png":
+        case "equa":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/equa.png")} />;
-        case "ftc.png":
+        case "ftc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ftc.png")} />;
-        case "grt.png":
+        case "grt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grt.png")} />;
-        case "icn.png":
+        case "icn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/icn.png")} />;
-        case "knc.png":
+        case "knc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/knc.png")} />;
-        case "mco.png":
+        case "mco":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mco.png")} />;
-        case "mzc.png":
+        case "mzc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mzc.png")} />;
-        case "ntbc.png":
+        case "ntbc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ntbc.png")} />;
-        case "pax.png":
+        case "pax":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pax.png")} />;
-        case "pungo.png":
+        case "pungo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pungo.png")} />;
-        case "req.png":
+        case "req":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/req.png")} />;
-        case "shift.png":
+        case "shift":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/shift.png")} />;
-        case "start.png":
+        case "start":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/start.png")} />;
-        case "theta.png":
+        case "theta":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/theta.png")} />;
-        case "usdc.png":
+        case "usdc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/usdc.png")} />;
-        case "wicc.png":
+        case "wicc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wicc.png")} />;
-        case "xp.png":
+        case "xp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xp.png")} />;
-        case "zilla.png":
+        case "zilla":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zilla.png")} />;
-        case "actn.png":
+        case "actn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/actn.png")} />;
-        case "ardr.png":
+        case "ardr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ardr.png")} />;
-        case "bay.png":
+        case "bay":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bay.png")} />;
-        case "bnty.png":
+        case "bnty":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bnty.png")} />;
-        case "burst.png":
+        case "burst":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/burst.png")} />;
-        case "cny.png":
+        case "cny":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cny.png")} />;
-        case "dcn.png":
+        case "dcn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dcn.png")} />;
-        case "edg.png":
+        case "edg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/edg.png")} />;
-        case "etc.png":
+        case "etc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/etc.png")} />;
-        case "fuel.png":
+        case "fuel":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fuel.png")} />;
-        case "gsc.png":
+        case "gsc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gsc.png")} />;
-        case "icp.png":
+        case "icp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/icp.png")} />;
-        case "krb.png":
+        case "krb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/krb.png")} />;
-        case "mda.png":
+        case "mda":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mda.png")} />;
-        case "nano.png":
+        case "nano":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nano.png")} />;
-        case "nuls.png":
+        case "nuls":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nuls.png")} />;
-        case "paxg.png":
+        case "paxg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/paxg.png")} />;
-        case "pura.png":
+        case "pura":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pura.png")} />;
-        case "rhoc.png":
+        case "rhoc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rhoc.png")} />;
-        case "sib.png":
+        case "sib":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sib.png")} />;
-        case "steem.png":
+        case "steem":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/steem.png")} />;
-        case "tix.png":
+        case "tix":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tix.png")} />;
-        case "usdt.png":
+        case "usdt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/usdt.png")} />;
-        case "wings.png":
+        case "wings":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wings.png")} />;
-        case "xpa.png":
+        case "xpa":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xpa.png")} />;
-        case "zrx.png":
+        case "zrx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zrx.png")} />;
-        case "ada.png":
+        case "ada":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ada.png")} />;
-        case "arg.png":
+        case "arg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/arg.png")} />;
-        case "bcbc.png":
+        case "bcbc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcbc.png")} />;
-        case "booty.png":
+        case "booty":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/booty.png")} />;
-        case "bze.png":
+        case "bze":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bze.png")} />;
-        case "cob.png":
+        case "cob":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cob.png")} />;
-        case "dcr.png":
+        case "dcr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dcr.png")} />;
-        case "edo.png":
+        case "edo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/edo.png")} />;
-        case "eth.png":
+        case "eth":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eth.png")} />;
-        case "fun.png":
+        case "fun":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fun.png")} />;
-        case "gto.png":
+        case "gto":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gto.png")} />;
-        case "icx.png":
+        case "icx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/icx.png")} />;
-        case "ksm.png":
+        case "ksm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ksm.png")} />;
-        case "mds.png":
+        case "mds":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mds.png")} />;
-        case "nas.png":
+        case "nas":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nas.png")} />;
-        case "nxs.png":
+        case "nxs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nxs.png")} />;
-        case "pay.png":
+        case "pay":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pay.png")} />;
-        case "qash.png":
+        case "qash":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qash.png")} />;
-        case "ric.png":
+        case "ric":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ric.png")} />;
-        case "sin.png":
+        case "sin":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sin.png")} />;
-        case "storj.png":
+        case "storj":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/storj.png")} />;
-        case "tkn.png":
+        case "tkn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tkn.png")} />;
-        case "utk.png":
+        case "utk":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/utk.png")} />;
-        case "wpr.png":
+        case "wpr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wpr.png")} />;
-        case "xpm.png":
+        case "xpm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xpm.png")} />;
-        case "add.png":
+        case "add":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/add.png")} />;
-        case "ark.png":
+        case "ark":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ark.png")} />;
-        case "bcc.png":
+        case "bcc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcc.png")} />;
-        case "bos.png":
+        case "bos":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bos.png")} />;
-        case "call.png":
+        case "call":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/call.png")} />;
-        case "colx.png":
+        case "colx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/colx.png")} />;
-        case "deez.png":
+        case "deez":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/deez.png")} />;
-        case "edoge.png":
+        case "edoge":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/edoge.png")} />;
-        case "ethos.png":
+        case "ethos":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ethos.png")} />;
-        case "game.png":
+        case "game":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/game.png")} />;
-        case "gup.png":
+        case "gup":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gup.png")} />;
-        case "ignis.png":
+        case "ignis":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ignis.png")} />;
-        case "lbc.png":
+        case "lbc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lbc.png")} />;
-        case "med.png":
+        case "med":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/med.png")} />;
-        case "nav.png":
+        case "nav":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nav.png")} />;
-        case "nxt.png":
+        case "nxt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nxt.png")} />;
-        case "payx.png":
+        case "payx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/payx.png")} />;
-        case "qiwi.png":
+        case "qiwi":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qiwi.png")} />;
-        case "rise.png":
+        case "rise":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rise.png")} />;
-        case "skl.png":
+        case "skl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/skl.png")} />;
-        case "storm.png":
+        case "storm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/storm.png")} />;
-        case "tks.png":
+        case "tks":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tks.png")} />;
-        case "veri.png":
+        case "veri":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/veri.png")} />;
-        case "wtc.png":
+        case "wtc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wtc.png")} />;
-        case "xpr.png":
+        case "xpr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xpr.png")} />;
-        case "adx.png":
+        case "adx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/adx.png")} />;
-        case "arn.png":
+        case "arn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/arn.png")} />;
-        case "bcd.png":
+        case "bcd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcd.png")} />;
-        case "bpt.png":
+        case "bpt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bpt.png")} />;
-        case "cc.png":
+        case "cc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cc.png")} />;
-        case "comp.png":
+        case "comp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/comp.png")} />;
-        case "dent.png":
+        case "dent":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dent.png")} />;
-        case "ela.png":
+        case "ela":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ela.png")} />;
-        case "etn.png":
+        case "etn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/etn.png")} />;
-        case "gas.png":
+        case "gas":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gas.png")} />;
-        case "gusd.png":
+        case "gusd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gusd.png")} />;
-        case "ilk.png":
+        case "ilk":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ilk.png")} />;
-        case "lend.png":
+        case "lend":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lend.png")} />;
-        case "meetone.png":
+        case "meetone":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/meetone.png")} />;
-        case "ncash.png":
+        case "ncash":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ncash.png")} />;
-        case "oax.png":
+        case "oax":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oax.png")} />;
-        case "pink.png":
+        case "pink":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pink.png")} />;
-        case "qlc.png":
+        case "qlc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qlc.png")} />;
-        case "rlc.png":
+        case "rlc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rlc.png")} />;
-        case "sky.png":
+        case "sky":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sky.png")} />;
-        case "stox.png":
+        case "stox":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stox.png")} />;
-        case "tnb.png":
+        case "tnb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tnb.png")} />;
-        case "vet.png":
+        case "vet":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vet.png")} />;
-        case "x.png":
+        case "x":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/x.png")} />;
-        case "xrp.png":
+        case "xrp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xrp.png")} />;
-        case "ae.png":
+        case "ae":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ae.png")} />;
-        case "arnx.png":
+        case "arnx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/arnx.png")} />;
-        case "bch.png":
+        case "bch":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bch.png")} />;
-        case "bq.png":
+        case "bq":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bq.png")} />;
-        case "cdn.png":
+        case "cdn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cdn.png")} />;
-        case "coqui.png":
+        case "coqui":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/coqui.png")} />;
-        case "dew.png":
+        case "dew":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dew.png")} />;
-        case "elec.png":
+        case "elec":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/elec.png")} />;
-        case "etp.png":
+        case "etp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/etp.png")} />;
-        case "gbp.png":
+        case "gbp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gbp.png")} />;
-        case "gvt.png":
+        case "gvt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gvt.png")} />;
-        case "ink.png":
+        case "ink":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ink.png")} />;
-        case "leo.png":
+        case "leo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/leo.png")} />;
-        case "mft.png":
+        case "mft":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mft.png")} />;
-        case "ndz.png":
+        case "ndz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ndz.png")} />;
-        case "ok.png":
+        case "ok":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ok.png")} />;
-        case "pirl.png":
+        case "pirl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pirl.png")} />;
-        case "qnt.png":
+        case "qnt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qnt.png")} />;
-        case "rpx.png":
+        case "rpx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rpx.png")} />;
-        case "slr.png":
+        case "slr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/slr.png")} />;
-        case "stq.png":
+        case "stq":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stq.png")} />;
-        case "tnc.png":
+        case "tnc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tnc.png")} />;
-        case "via.png":
+        case "via":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/via.png")} />;
-        case "xas.png":
+        case "xas":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xas.png")} />;
-        case "xsg.png":
+        case "xsg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xsg.png")} />;
-        case "aeon.png":
+        case "aeon":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aeon.png")} />;
-        case "ary.png":
+        case "ary":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ary.png")} />;
-        case "bcio.png":
+        case "bcio":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcio.png")} />;
-        case "brd.png":
+        case "brd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/brd.png")} />;
-        case "cdt.png":
+        case "cdt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cdt.png")} />;
-        case "cred.png":
+        case "cred":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cred.png")} />;
-        case "dgb.png":
+        case "dgb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dgb.png")} />;
-        case "elf.png":
+        case "elf":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/elf.png")} />;
-        case "eur.png":
+        case "eur":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eur.png")} />;
-        case "gbx.png":
+        case "gbx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gbx.png")} />;
-        case "gxs.png":
+        case "gxs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gxs.png")} />;
-        case "ins.png":
+        case "ins":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ins.png")} />;
-        case "link.png":
+        case "link":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/link.png")} />;
-        case "miota.png":
+        case "miota":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/miota.png")} />;
-        case "nebl.png":
+        case "nebl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nebl.png")} />;
-        case "omg.png":
+        case "omg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/omg.png")} />;
-        case "pivx.png":
+        case "pivx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pivx.png")} />;
-        case "qrl.png":
+        case "qrl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qrl.png")} />;
-        case "rub.png":
+        case "rub":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rub.png")} />;
-        case "sls.png":
+        case "sls":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sls.png")} />;
-        case "strat.png":
+        case "strat":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/strat.png")} />;
-        case "tnt.png":
+        case "tnt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tnt.png")} />;
-        case "vib.png":
+        case "vib":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vib.png")} />;
-        case "xbc.png":
+        case "xbc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xbc.png")} />;
-        case "xtz.png":
+        case "xtz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xtz.png")} />;
-        case "aeur.png":
+        case "aeur":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aeur.png")} />;
-        case "ast.png":
+        case "ast":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ast.png")} />;
-        case "bcn.png":
+        case "bcn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcn.png")} />;
-        case "bsd.png":
+        case "bsd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bsd.png")} />;
-        case "cenz.png":
+        case "cenz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cenz.png")} />;
-        case "crpt.png":
+        case "crpt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/crpt.png")} />;
-        case "dgd.png":
+        case "dgd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dgd.png")} />;
-        case "elix.png":
+        case "elix":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/elix.png")} />;
-        case "evx.png":
+        case "evx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/evx.png")} />;
-        case "gbyte.png":
+        case "gbyte":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gbyte.png")} />;
-        case "gzr.png":
+        case "gzr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gzr.png")} />;
-        case "ion.png":
+        case "ion":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ion.png")} />;
-        case "lkk.png":
+        case "lkk":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lkk.png")} />;
-        case "mith.png":
+        case "mith":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mith.png")} />;
-        case "neo.png":
+        case "neo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/neo.png")} />;
-        case "omni.png":
+        case "omni":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/omni.png")} />;
-        case "plr.png":
+        case "plr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/plr.png")} />;
-        case "qsp.png":
+        case "qsp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qsp.png")} />;
-        case "rvn.png":
+        case "rvn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rvn.png")} />;
-        case "smart.png":
+        case "smart":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/smart.png")} />;
-        case "stx.png":
+        case "stx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stx.png")} />;
-        case "tomo.png":
+        case "tomo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tomo.png")} />;
-        case "vibe.png":
+        case "vibe":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vibe.png")} />;
-        case "xbp.png":
+        case "xbp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xbp.png")} />;
-        case "xuc.png":
+        case "xuc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xuc.png")} />;
-        case "agi.png":
+        case "agi":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/agi.png")} />;
-        case "atlas.png":
+        case "atlas":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/atlas.png")} />;
-        case "bco.png":
+        case "bco":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bco.png")} />;
-        case "bsv.png":
+        case "bsv":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bsv.png")} />;
-        case "chain.png":
+        case "chain":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chain.png")} />;
-        case "crv.png":
+        case "crv":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/crv.png")} />;
-        case "dlt.png":
+        case "dlt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dlt.png")} />;
-        case "ella.png":
+        case "ella":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ella.png")} />;
-        case "exmo.png":
+        case "exmo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/exmo.png")} />;
-        case "generic.png":
+        case "generic":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/generic.png")} />;
-        case "hight.png":
+        case "hight":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hight.png")} />;
-        case "iop.png":
+        case "iop":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iop.png")} />;
-        case "loom.png":
+        case "loom":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/loom.png")} />;
-        case "mkr.png":
+        case "mkr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mkr.png")} />;
-        case "neos.png":
+        case "neos":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/neos.png")} />;
-        case "one.png":
+        case "one":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/one.png")} />;
-        case "poa.png":
+        case "poa":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/poa.png")} />;
-        case "qtum.png":
+        case "qtum":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qtum.png")} />;
-        case "ryo.png":
+        case "ryo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ryo.png")} />;
-        case "sngls.png":
+        case "sngls":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sngls.png")} />;
-        case "sub.png":
+        case "sub":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sub.png")} />;
-        case "tpay.png":
+        case "tpay":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tpay.png")} />;
-        case "vivo.png":
+        case "vivo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vivo.png")} />;
-        case "xby.png":
+        case "xby":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xby.png")} />;
-        case "xvc.png":
+        case "xvc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xvc.png")} />;
-        case "agrs.png":
+        case "agrs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/agrs.png")} />;
-        case "atm.png":
+        case "atm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/atm.png")} />;
-        case "bcpt.png":
+        case "bcpt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcpt.png")} />;
-        case "btc.png":
+        case "btc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btc.png")} />;
-        case "chat.png":
+        case "chat":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chat.png")} />;
-        case "crw.png":
+        case "crw":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/crw.png")} />;
-        case "dnt.png":
+        case "dnt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dnt.png")} />;
-        case "emb.png":
+        case "emb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/emb.png")} />;
-        case "exp.png":
+        case "exp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/exp.png")} />;
-        case "gin.png":
+        case "gin":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gin.png")} />;
-        case "hns.png":
+        case "hns":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hns.png")} />;
-        case "iost.png":
+        case "iost":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iost.png")} />;
-        case "lpt.png":
+        case "lpt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lpt.png")} />;
-        case "mln.png":
+        case "mln":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mln.png")} />;
-        case "neu.png":
+        case "neu":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/neu.png")} />;
-        case "ong.png":
+        case "ong":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ong.png")} />;
-        case "poe.png":
+        case "poe":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/poe.png")} />;
-        case "r.png":
+        case "r":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/r.png")} />;
-        case "safe.png":
+        case "safe":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/safe.png")} />;
-        case "snm.png":
+        case "snm":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/snm.png")} />;
-        case "sumo.png":
+        case "sumo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sumo.png")} />;
-        case "trig.png":
+        case "trig":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/trig.png")} />;
-        case "vrc.png":
+        case "vrc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vrc.png")} />;
-        case "xcp.png":
+        case "xcp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xcp.png")} />;
-        case "xvg.png":
+        case "xvg":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xvg.png")} />;
-        case "aion.png":
+        case "aion":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aion.png")} />;
-        case "atom.png":
+        case "atom":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/atom.png")} />;
-        case "bdl.png":
+        case "bdl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bdl.png")} />;
-        case "btcd.png":
+        case "btcd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btcd.png")} />;
-        case "chips.png":
+        case "chips":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chips.png")} />;
-        case "cs.png":
+        case "cs":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cs.png")} />;
-        case "dock.png":
+        case "dock":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dock.png")} />;
-        case "emc.png":
+        case "emc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/emc.png")} />;
-        case "fair.png":
+        case "fair":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fair.png")} />;
-        case "glxt.png":
+        case "glxt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/glxt.png")} />;
-        case "hodl.png":
+        case "hodl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hodl.png")} />;
-        case "iotx.png":
+        case "iotx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iotx.png")} />;
-        case "lrc.png":
+        case "lrc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lrc.png")} />;
-        case "mnx.png":
+        case "mnx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mnx.png")} />;
-        case "nexo.png":
+        case "nexo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nexo.png")} />;
-        case "ont.png":
+        case "ont":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ont.png")} />;
-        case "polis.png":
+        case "polis":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/polis.png")} />;
-        case "rads.png":
+        case "rads":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rads.png")} />;
-        case "safemoon.png":
+        case "safemoon":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/safemoon.png")} />;
-        case "snt.png":
+        case "snt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/snt.png")} />;
-        case "sushi.png":
+        case "sushi":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sushi.png")} />;
-        case "trtl.png":
+        case "trtl":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/trtl.png")} />;
-        case "vrsc.png":
+        case "vrsc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vrsc.png")} />;
-        case "xdn.png":
+        case "xdn":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xdn.png")} />;
-        case "xzc.png":
+        case "xzc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xzc.png")} />;
-        case "algo.png":
+        case "algo":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/algo.png")} />;
-        case "audr.png":
+        case "audr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/audr.png")} />;
-        case "beam.png":
+        case "beam":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/beam.png")} />;
-        case "btch.png":
+        case "btch":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btch.png")} />;
-        case "chsb.png":
+        case "chsb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chsb.png")} />;
-        case "ctr.png":
+        case "ctr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ctr.png")} />;
-        case "doge.png":
+        case "doge":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/doge.png")} />;
-        case "emc2.png":
+        case "emc2":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/emc2.png")} />;
-        case "fct.png":
+        case "fct":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fct.png")} />;
-        case "gmr.png":
+        case "gmr":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gmr.png")} />;
-        case "hot.png":
+        case "hot":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hot.png")} />;
-        case "iq.png":
+        case "iq":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iq.png")} />;
-        case "lsk.png":
+        case "lsk":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lsk.png")} />;
-        case "mnz.png":
+        case "mnz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mnz.png")} />;
-        case "ngc.png":
+        case "ngc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ngc.png")} />;
-        case "oot.png":
+        case "oot":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oot.png")} />;
-        case "poly.png":
+        case "poly":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/poly.png")} />;
-        case "rap.png":
+        case "rap":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rap.png")} />;
-        case "sai.png":
+        case "sai":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sai.png")} />;
-        case "snx.png":
+        case "snx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/snx.png")} />;
-        case "sys.png":
+        case "sys":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sys.png")} />;
-        case "trx.png":
+        case "trx":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/trx.png")} />;
-        case "vtc.png":
+        case "vtc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vtc.png")} />;
-        case "xem.png":
+        case "xem":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xem.png")} />;
-        case "yfi.png":
+        case "yfi":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/yfi.png")} />;
-        case "amb.png":
+        case "amb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/amb.png")} />;
-        case "aury.png":
+        case "aury":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aury.png")} />;
-        case "bela.png":
+        case "bela":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bela.png")} />;
-        case "btcp.png":
+        case "btcp":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btcp.png")} />;
-        case "chz.png":
+        case "chz":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chz.png")} />;
-        case "ctxc.png":
+        case "ctxc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ctxc.png")} />;
-        case "dot.png":
+        case "dot":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dot.png")} />;
-        case "eng.png":
+        case "eng":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eng.png")} />;
-        case "fida.png":
+        case "fida":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fida.png")} />;
-        case "gmt.png":
+        case "gmt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gmt.png")} />;
-        case "hpb.png":
+        case "hpb":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hpb.png")} />;
-        case "itc.png":
+        case "itc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/itc.png")} />;
-        case "ltc.png":
+        case "ltc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ltc.png")} />;
-        case "moac.png":
+        case "moac":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/moac.png")} />;
-        case "nio.png":
+        case "nio":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nio.png")} />;
-        case "ost.png":
+        case "ost":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ost.png")} />;
-        case "pot.png":
+        case "pot":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pot.png")} />;
-        case "ray.png":
+        case "ray":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ray.png")} />;
-        case "salt.png":
+        case "salt":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/salt.png")} />;
-        case "soc.png":
+        case "soc":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/soc.png")} />;
-        case "taas.png":
+        case "taas":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/taas.png")} />;
-        case "tusd.png":
+        case "tusd":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tusd.png")} />;
-        case "vtho.png":
+        case "vtho":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vtho.png")} />;
-        case "xin.png":
+        case "xin":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xin.png")} />;
-        case "yoyow.png":
+        case "yoyow":
             return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/yoyow.png")} />;
 
         default:
