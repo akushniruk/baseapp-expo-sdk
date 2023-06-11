@@ -4,12 +4,12 @@ import { getValueStorage } from "../../../hooks/useMMKVStorage";
 // Create our baseQuery instance
 const baseQuery = (withCSRF?: boolean) => {
     return fetchBaseQuery({
-        baseUrl: process.env.REACT_APP_REST_API || "http://localhost:9002/",
-        // prepareHeaders: async (headers: Headers) => {
-        //     headers.set("X-CSRF-Token", (await getValueStorage("csrfToken")) || "");
-        //     return headers;
-        // },
-        // credentials: "include",
+        baseUrl: process.env.REACT_APP_REST_API || "http://aurora-master.uat.opendax.app/",
+        prepareHeaders: async (headers: Headers) => {
+            headers.set("X-CSRF-Token", (await getValueStorage("csrfToken")) || "");
+            return headers;
+        },
+        credentials: "include",
     });
 };
 
