@@ -8,6 +8,10 @@ export const cryptoIconStyles = (theme: string) => {
         icon: {
             width: 48,
             height: 48,
-        }
+        },
+        iconSM: {
+            width: 28,
+            height: 28,
+        },
     });
 };

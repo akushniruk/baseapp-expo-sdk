@@ -5,983 +5,3409 @@ import { cryptoIconStyles } from "./cryptoIcon.style";
 
 export interface ICryptoIcon {
     code: string;
+    size?: "sm" | "md" | "lg";
 }
 
-export const CryptoIcon: FC<ICryptoIcon> = ({ code }) => {
+export const CryptoIcon: FC<ICryptoIcon> = ({ code, size }) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => cryptoIconStyles(theme), [theme]);
 
     switch (code) {
         case "usdt":
-            return <Image style={styles.icon} source={require(`../../../../assets/crypto-icons/usdt.png`)} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require(`../../../../assets/crypto-icons/usdt.png`)}
+                />
+            );
         case "$pac":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/$pac.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/$pac.png")}
+                />
+            );
         case "amp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/amp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/amp.png")}
+                />
+            );
         case "auto":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/auto.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/auto.png")}
+                />
+            );
         case "bix":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bix.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bix.png")}
+                />
+            );
         case "btcz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btcz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btcz.png")}
+                />
+            );
         case "cix":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cix.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cix.png")}
+                />
+            );
         case "cvc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cvc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cvc.png")}
+                />
+            );
         case "drgn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/drgn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/drgn.png")}
+                />
+            );
         case "enj":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/enj.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/enj.png")}
+                />
+            );
         case "fil":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fil.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fil.png")}
+                />
+            );
         case "gno":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gno.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gno.png")}
+                />
+            );
         case "hsr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hsr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hsr.png")}
+                />
+            );
         case "jnt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/jnt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/jnt.png")}
+                />
+            );
         case "lun":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lun.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lun.png")}
+                />
+            );
         case "mod":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mod.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mod.png")}
+                />
+            );
         case "nkn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nkn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nkn.png")}
+                />
+            );
         case "ox":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ox.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ox.png")}
+                />
+            );
         case "powr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/powr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/powr.png")}
+                />
+            );
         case "rcn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rcn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rcn.png")}
+                />
+            );
         case "san":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/san.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/san.png")}
+                />
+            );
         case "sol":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sol.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sol.png")}
+                />
+            );
         case "tau":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tau.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tau.png")}
+                />
+            );
         case "tzc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tzc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tzc.png")}
+                />
+            );
         case "wabi":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wabi.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wabi.png")}
+                />
+            );
         case "xlm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xlm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xlm.png")}
+                />
+            );
         case "zcl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zcl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zcl.png")}
+                />
+            );
         case "0xbtc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/0xbtc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/0xbtc.png")}
+                />
+            );
         case "ampl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ampl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ampl.png")}
+                />
+            );
         case "avax":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/avax.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/avax.png")}
+                />
+            );
         case "blcn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/blcn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/blcn.png")}
+                />
+            );
         case "btdx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btdx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btdx.png")}
+                />
+            );
         case "clam":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/clam.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/clam.png")}
+                />
+            );
         case "d":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/d.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/d.png")}
+                />
+            );
         case "drop":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/drop.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/drop.png")}
+                />
+            );
         case "entrp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/entrp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/entrp.png")}
+                />
+            );
         case "fjc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fjc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fjc.png")}
+                />
+            );
         case "gnt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gnt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gnt.png")}
+                />
+            );
         case "ht":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ht.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ht.png")}
+                />
+            );
         case "jpy":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/jpy.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/jpy.png")}
+                />
+            );
         case "maid":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/maid.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/maid.png")}
+                />
+            );
         case "mona":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mona.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mona.png")}
+                />
+            );
         case "nlc2":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nlc2.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nlc2.png")}
+                />
+            );
         case "oxt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oxt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/oxt.png")}
+                />
+            );
         case "ppc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ppc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ppc.png")}
+                />
+            );
         case "rdd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rdd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rdd.png")}
+                />
+            );
         case "sand":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sand.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sand.png")}
+                />
+            );
         case "spacehbit":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/spacehbit.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/spacehbit.png")}
+                />
+            );
         case "tbx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tbx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tbx.png")}
+                />
+            );
         case "ubq":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ubq.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ubq.png")}
+                />
+            );
         case "wan":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wan.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wan.png")}
+                />
+            );
         case "xmcc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmcc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xmcc.png")}
+                />
+            );
         case "zec":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zec.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zec.png")}
+                />
+            );
         case "1inch":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/1inch.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/1inch.png")}
+                />
+            );
         case "ankr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ankr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ankr.png")}
+                />
+            );
         case "aywa":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aywa.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/aywa.png")}
+                />
+            );
         case "blk":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/blk.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/blk.png")}
+                />
+            );
         case "btg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btg.png")}
+                />
+            );
         case "cloak":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cloak.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cloak.png")}
+                />
+            );
         case "dai":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dai.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dai.png")}
+                />
+            );
         case "dta":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dta.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dta.png")}
+                />
+            );
         case "eon":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eon.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eon.png")}
+                />
+            );
         case "fldc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fldc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fldc.png")}
+                />
+            );
         case "gold":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gold.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gold.png")}
+                />
+            );
         case "html":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/html.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/html.png")}
+                />
+            );
         case "kcs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/kcs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/kcs.png")}
+                />
+            );
         case "mana":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mana.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mana.png")}
+                />
+            );
         case "msr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/msr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/msr.png")}
+                />
+            );
         case "nlg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nlg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nlg.png")}
+                />
+            );
         case "oxy":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oxy.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/oxy.png")}
+                />
+            );
         case "ppp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ppp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ppp.png")}
+                />
+            );
         case "rdn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rdn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rdn.png")}
+                />
+            );
         case "sbd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sbd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sbd.png")}
+                />
+            );
         case "spank":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/spank.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/spank.png")}
+                />
+            );
         case "tel":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tel.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tel.png")}
+                />
+            );
         case "uma":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/uma.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/uma.png")}
+                />
+            );
         case "waves":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/waves.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/waves.png")}
+                />
+            );
         case "xmg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xmg.png")}
+                />
+            );
         case "zel":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zel.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zel.png")}
+                />
+            );
         case "2give":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/2give.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/2give.png")}
+                />
+            );
         case "ant":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ant.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ant.png")}
+                />
+            );
         case "bab":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bab.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bab.png")}
+                />
+            );
         case "block":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/block.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/block.png")}
+                />
+            );
         case "btm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btm.png")}
+                />
+            );
         case "cmm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cmm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cmm.png")}
+                />
+            );
         case "dash":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dash.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dash.png")}
+                />
+            );
         case "dth":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dth.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dth.png")}
+                />
+            );
         case "eop":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eop.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eop.png")}
+                />
+            );
         case "flo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/flo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/flo.png")}
+                />
+            );
         case "grc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/grc.png")}
+                />
+            );
         case "huc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/huc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/huc.png")}
+                />
+            );
         case "kin":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/kin.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/kin.png")}
+                />
+            );
         case "matic":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/matic.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/matic.png")}
+                />
+            );
         case "mth":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mth.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mth.png")}
+                />
+            );
         case "nmc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nmc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nmc.png")}
+                />
+            );
         case "part":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/part.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/part.png")}
+                />
+            );
         case "ppt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ppt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ppt.png")}
+                />
+            );
         case "ren":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ren.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ren.png")}
+                />
+            );
         case "sberbank":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sberbank.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sberbank.png")}
+                />
+            );
         case "sphtx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sphtx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sphtx.png")}
+                />
+            );
         case "ten":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ten.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ten.png")}
+                />
+            );
         case "uni":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/uni.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/uni.png")}
+                />
+            );
         case "wax":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wax.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wax.png")}
+                />
+            );
         case "xmo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xmo.png")}
+                />
+            );
         case "zen":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zen.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zen.png")}
+                />
+            );
         case "aave":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aave.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/aave.png")}
+                />
+            );
         case "ape":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ape.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ape.png")}
+                />
+            );
         case "bal":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bal.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bal.png")}
+                />
+            );
         case "blz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/blz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/blz.png")}
+                />
+            );
         case "bts":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bts.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bts.png")}
+                />
+            );
         case "cmt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cmt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cmt.png")}
+                />
+            );
         case "dat":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dat.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dat.png")}
+                />
+            );
         case "dtr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dtr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dtr.png")}
+                />
+            );
         case "eos":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eos.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eos.png")}
+                />
+            );
         case "flux":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/flux.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/flux.png")}
+                />
+            );
         case "grin":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grin.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/grin.png")}
+                />
+            );
         case "husd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/husd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/husd.png")}
+                />
+            );
         case "klown":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/klown.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/klown.png")}
+                />
+            );
         case "max":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/max.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/max.png")}
+                />
+            );
         case "mtl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mtl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mtl.png")}
+                />
+            );
         case "nmr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nmr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nmr.png")}
+                />
+            );
         case "pasc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pasc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pasc.png")}
+                />
+            );
         case "pre":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pre.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pre.png")}
+                />
+            );
         case "rep":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rep.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rep.png")}
+                />
+            );
         case "sc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sc.png")}
+                />
+            );
         case "srn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/srn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/srn.png")}
+                />
+            );
         case "tern":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tern.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tern.png")}
+                />
+            );
         case "unity":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/unity.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/unity.png")}
+                />
+            );
         case "wbtc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wbtc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wbtc.png")}
+                />
+            );
         case "xmr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xmr.png")}
+                />
+            );
         case "zest":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zest.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zest.png")}
+                />
+            );
         case "abt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/abt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/abt.png")}
+                />
+            );
         case "apex":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/apex.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/apex.png")}
+                />
+            );
         case "band":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/band.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/band.png")}
+                />
+            );
         case "bnb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bnb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bnb.png")}
+                />
+            );
         case "btt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btt.png")}
+                />
+            );
         case "cnd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cnd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cnd.png")}
+                />
+            );
         case "data":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/data.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/data.png")}
+                />
+            );
         case "ebst":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ebst.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ebst.png")}
+                />
+            );
         case "eqli":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eqli.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eqli.png")}
+                />
+            );
         case "fsn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fsn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fsn.png")}
+                />
+            );
         case "grs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/grs.png")}
+                />
+            );
         case "hush":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hush.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hush.png")}
+                />
+            );
         case "kmd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/kmd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/kmd.png")}
+                />
+            );
         case "mcap":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mcap.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mcap.png")}
+                />
+            );
         case "music":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/music.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/music.png")}
+                />
+            );
         case "npxs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/npxs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/npxs.png")}
+                />
+            );
         case "pasl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pasl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pasl.png")}
+                />
+            );
         case "prl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/prl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/prl.png")}
+                />
+            );
         case "repv2":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/repv2.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/repv2.png")}
+                />
+            );
         case "ser":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ser.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ser.png")}
+                />
+            );
         case "stak":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stak.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/stak.png")}
+                />
+            );
         case "tgch":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tgch.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tgch.png")}
+                />
+            );
         case "usd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/usd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/usd.png")}
+                />
+            );
         case "wgr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wgr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wgr.png")}
+                />
+            );
         case "xmy":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xmy.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xmy.png")}
+                />
+            );
         case "zil":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zil.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zil.png")}
+                />
+            );
         case "act":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/act.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/act.png")}
+                />
+            );
         case "appc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/appc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/appc.png")}
+                />
+            );
         case "bat":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bat.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bat.png")}
+                />
+            );
         case "bnt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bnt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bnt.png")}
+                />
+            );
         case "btx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btx.png")}
+                />
+            );
         case "cnx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cnx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cnx.png")}
+                />
+            );
         case "dbc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dbc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dbc.png")}
+                />
+            );
         case "eca":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eca.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eca.png")}
+                />
+            );
         case "equa":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/equa.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/equa.png")}
+                />
+            );
         case "ftc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ftc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ftc.png")}
+                />
+            );
         case "grt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/grt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/grt.png")}
+                />
+            );
         case "icn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/icn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/icn.png")}
+                />
+            );
         case "knc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/knc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/knc.png")}
+                />
+            );
         case "mco":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mco.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mco.png")}
+                />
+            );
         case "mzc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mzc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mzc.png")}
+                />
+            );
         case "ntbc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ntbc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ntbc.png")}
+                />
+            );
         case "pax":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pax.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pax.png")}
+                />
+            );
         case "pungo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pungo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pungo.png")}
+                />
+            );
         case "req":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/req.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/req.png")}
+                />
+            );
         case "shift":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/shift.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/shift.png")}
+                />
+            );
         case "start":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/start.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/start.png")}
+                />
+            );
         case "theta":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/theta.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/theta.png")}
+                />
+            );
         case "usdc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/usdc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/usdc.png")}
+                />
+            );
         case "wicc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wicc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wicc.png")}
+                />
+            );
         case "xp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xp.png")}
+                />
+            );
         case "zilla":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zilla.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zilla.png")}
+                />
+            );
         case "actn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/actn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/actn.png")}
+                />
+            );
         case "ardr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ardr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ardr.png")}
+                />
+            );
         case "bay":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bay.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bay.png")}
+                />
+            );
         case "bnty":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bnty.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bnty.png")}
+                />
+            );
         case "burst":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/burst.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/burst.png")}
+                />
+            );
         case "cny":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cny.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cny.png")}
+                />
+            );
         case "dcn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dcn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dcn.png")}
+                />
+            );
         case "edg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/edg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/edg.png")}
+                />
+            );
         case "etc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/etc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/etc.png")}
+                />
+            );
         case "fuel":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fuel.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fuel.png")}
+                />
+            );
         case "gsc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gsc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gsc.png")}
+                />
+            );
         case "icp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/icp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/icp.png")}
+                />
+            );
         case "krb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/krb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/krb.png")}
+                />
+            );
         case "mda":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mda.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mda.png")}
+                />
+            );
         case "nano":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nano.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nano.png")}
+                />
+            );
         case "nuls":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nuls.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nuls.png")}
+                />
+            );
         case "paxg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/paxg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/paxg.png")}
+                />
+            );
         case "pura":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pura.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pura.png")}
+                />
+            );
         case "rhoc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rhoc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rhoc.png")}
+                />
+            );
         case "sib":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sib.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sib.png")}
+                />
+            );
         case "steem":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/steem.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/steem.png")}
+                />
+            );
         case "tix":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tix.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tix.png")}
+                />
+            );
         case "usdt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/usdt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/usdt.png")}
+                />
+            );
         case "wings":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wings.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wings.png")}
+                />
+            );
         case "xpa":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xpa.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xpa.png")}
+                />
+            );
         case "zrx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/zrx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/zrx.png")}
+                />
+            );
         case "ada":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ada.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ada.png")}
+                />
+            );
         case "arg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/arg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/arg.png")}
+                />
+            );
         case "bcbc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcbc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bcbc.png")}
+                />
+            );
         case "booty":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/booty.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/booty.png")}
+                />
+            );
         case "bze":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bze.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bze.png")}
+                />
+            );
         case "cob":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cob.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cob.png")}
+                />
+            );
         case "dcr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dcr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dcr.png")}
+                />
+            );
         case "edo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/edo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/edo.png")}
+                />
+            );
         case "eth":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eth.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eth.png")}
+                />
+            );
         case "fun":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fun.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fun.png")}
+                />
+            );
         case "gto":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gto.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gto.png")}
+                />
+            );
         case "icx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/icx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/icx.png")}
+                />
+            );
         case "ksm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ksm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ksm.png")}
+                />
+            );
         case "mds":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mds.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mds.png")}
+                />
+            );
         case "nas":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nas.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nas.png")}
+                />
+            );
         case "nxs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nxs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nxs.png")}
+                />
+            );
         case "pay":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pay.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pay.png")}
+                />
+            );
         case "qash":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qash.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qash.png")}
+                />
+            );
         case "ric":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ric.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ric.png")}
+                />
+            );
         case "sin":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sin.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sin.png")}
+                />
+            );
         case "storj":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/storj.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/storj.png")}
+                />
+            );
         case "tkn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tkn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tkn.png")}
+                />
+            );
         case "utk":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/utk.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/utk.png")}
+                />
+            );
         case "wpr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wpr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wpr.png")}
+                />
+            );
         case "xpm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xpm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xpm.png")}
+                />
+            );
         case "add":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/add.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/add.png")}
+                />
+            );
         case "ark":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ark.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ark.png")}
+                />
+            );
         case "bcc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bcc.png")}
+                />
+            );
         case "bos":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bos.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bos.png")}
+                />
+            );
         case "call":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/call.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/call.png")}
+                />
+            );
         case "colx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/colx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/colx.png")}
+                />
+            );
         case "deez":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/deez.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/deez.png")}
+                />
+            );
         case "edoge":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/edoge.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/edoge.png")}
+                />
+            );
         case "ethos":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ethos.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ethos.png")}
+                />
+            );
         case "game":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/game.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/game.png")}
+                />
+            );
         case "gup":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gup.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gup.png")}
+                />
+            );
         case "ignis":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ignis.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ignis.png")}
+                />
+            );
         case "lbc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lbc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lbc.png")}
+                />
+            );
         case "med":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/med.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/med.png")}
+                />
+            );
         case "nav":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nav.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nav.png")}
+                />
+            );
         case "nxt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nxt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nxt.png")}
+                />
+            );
         case "payx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/payx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/payx.png")}
+                />
+            );
         case "qiwi":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qiwi.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qiwi.png")}
+                />
+            );
         case "rise":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rise.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rise.png")}
+                />
+            );
         case "skl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/skl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/skl.png")}
+                />
+            );
         case "storm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/storm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/storm.png")}
+                />
+            );
         case "tks":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tks.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tks.png")}
+                />
+            );
         case "veri":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/veri.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/veri.png")}
+                />
+            );
         case "wtc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/wtc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/wtc.png")}
+                />
+            );
         case "xpr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xpr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xpr.png")}
+                />
+            );
         case "adx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/adx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/adx.png")}
+                />
+            );
         case "arn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/arn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/arn.png")}
+                />
+            );
         case "bcd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bcd.png")}
+                />
+            );
         case "bpt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bpt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bpt.png")}
+                />
+            );
         case "cc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cc.png")}
+                />
+            );
         case "comp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/comp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/comp.png")}
+                />
+            );
         case "dent":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dent.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dent.png")}
+                />
+            );
         case "ela":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ela.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ela.png")}
+                />
+            );
         case "etn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/etn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/etn.png")}
+                />
+            );
         case "gas":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gas.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gas.png")}
+                />
+            );
         case "gusd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gusd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gusd.png")}
+                />
+            );
         case "ilk":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ilk.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ilk.png")}
+                />
+            );
         case "lend":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lend.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lend.png")}
+                />
+            );
         case "meetone":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/meetone.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/meetone.png")}
+                />
+            );
         case "ncash":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ncash.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ncash.png")}
+                />
+            );
         case "oax":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oax.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/oax.png")}
+                />
+            );
         case "pink":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pink.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pink.png")}
+                />
+            );
         case "qlc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qlc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qlc.png")}
+                />
+            );
         case "rlc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rlc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rlc.png")}
+                />
+            );
         case "sky":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sky.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sky.png")}
+                />
+            );
         case "stox":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stox.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/stox.png")}
+                />
+            );
         case "tnb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tnb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tnb.png")}
+                />
+            );
         case "vet":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vet.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vet.png")}
+                />
+            );
         case "x":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/x.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/x.png")}
+                />
+            );
         case "xrp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xrp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xrp.png")}
+                />
+            );
         case "ae":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ae.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ae.png")}
+                />
+            );
         case "arnx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/arnx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/arnx.png")}
+                />
+            );
         case "bch":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bch.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bch.png")}
+                />
+            );
         case "bq":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bq.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bq.png")}
+                />
+            );
         case "cdn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cdn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cdn.png")}
+                />
+            );
         case "coqui":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/coqui.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/coqui.png")}
+                />
+            );
         case "dew":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dew.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dew.png")}
+                />
+            );
         case "elec":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/elec.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/elec.png")}
+                />
+            );
         case "etp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/etp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/etp.png")}
+                />
+            );
         case "gbp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gbp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gbp.png")}
+                />
+            );
         case "gvt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gvt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gvt.png")}
+                />
+            );
         case "ink":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ink.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ink.png")}
+                />
+            );
         case "leo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/leo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/leo.png")}
+                />
+            );
         case "mft":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mft.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mft.png")}
+                />
+            );
         case "ndz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ndz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ndz.png")}
+                />
+            );
         case "ok":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ok.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ok.png")}
+                />
+            );
         case "pirl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pirl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pirl.png")}
+                />
+            );
         case "qnt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qnt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qnt.png")}
+                />
+            );
         case "rpx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rpx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rpx.png")}
+                />
+            );
         case "slr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/slr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/slr.png")}
+                />
+            );
         case "stq":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stq.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/stq.png")}
+                />
+            );
         case "tnc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tnc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tnc.png")}
+                />
+            );
         case "via":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/via.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/via.png")}
+                />
+            );
         case "xas":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xas.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xas.png")}
+                />
+            );
         case "xsg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xsg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xsg.png")}
+                />
+            );
         case "aeon":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aeon.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/aeon.png")}
+                />
+            );
         case "ary":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ary.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ary.png")}
+                />
+            );
         case "bcio":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcio.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bcio.png")}
+                />
+            );
         case "brd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/brd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/brd.png")}
+                />
+            );
         case "cdt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cdt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cdt.png")}
+                />
+            );
         case "cred":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cred.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cred.png")}
+                />
+            );
         case "dgb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dgb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dgb.png")}
+                />
+            );
         case "elf":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/elf.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/elf.png")}
+                />
+            );
         case "eur":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eur.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eur.png")}
+                />
+            );
         case "gbx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gbx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gbx.png")}
+                />
+            );
         case "gxs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gxs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gxs.png")}
+                />
+            );
         case "ins":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ins.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ins.png")}
+                />
+            );
         case "link":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/link.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/link.png")}
+                />
+            );
         case "miota":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/miota.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/miota.png")}
+                />
+            );
         case "nebl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nebl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nebl.png")}
+                />
+            );
         case "omg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/omg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/omg.png")}
+                />
+            );
         case "pivx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pivx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pivx.png")}
+                />
+            );
         case "qrl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qrl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qrl.png")}
+                />
+            );
         case "rub":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rub.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rub.png")}
+                />
+            );
         case "sls":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sls.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sls.png")}
+                />
+            );
         case "strat":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/strat.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/strat.png")}
+                />
+            );
         case "tnt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tnt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tnt.png")}
+                />
+            );
         case "vib":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vib.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vib.png")}
+                />
+            );
         case "xbc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xbc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xbc.png")}
+                />
+            );
         case "xtz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xtz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xtz.png")}
+                />
+            );
         case "aeur":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aeur.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/aeur.png")}
+                />
+            );
         case "ast":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ast.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ast.png")}
+                />
+            );
         case "bcn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bcn.png")}
+                />
+            );
         case "bsd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bsd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bsd.png")}
+                />
+            );
         case "cenz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cenz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cenz.png")}
+                />
+            );
         case "crpt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/crpt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/crpt.png")}
+                />
+            );
         case "dgd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dgd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dgd.png")}
+                />
+            );
         case "elix":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/elix.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/elix.png")}
+                />
+            );
         case "evx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/evx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/evx.png")}
+                />
+            );
         case "gbyte":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gbyte.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gbyte.png")}
+                />
+            );
         case "gzr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gzr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gzr.png")}
+                />
+            );
         case "ion":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ion.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ion.png")}
+                />
+            );
         case "lkk":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lkk.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lkk.png")}
+                />
+            );
         case "mith":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mith.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mith.png")}
+                />
+            );
         case "neo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/neo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/neo.png")}
+                />
+            );
         case "omni":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/omni.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/omni.png")}
+                />
+            );
         case "plr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/plr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/plr.png")}
+                />
+            );
         case "qsp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qsp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qsp.png")}
+                />
+            );
         case "rvn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rvn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rvn.png")}
+                />
+            );
         case "smart":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/smart.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/smart.png")}
+                />
+            );
         case "stx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/stx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/stx.png")}
+                />
+            );
         case "tomo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tomo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tomo.png")}
+                />
+            );
         case "vibe":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vibe.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vibe.png")}
+                />
+            );
         case "xbp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xbp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xbp.png")}
+                />
+            );
         case "xuc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xuc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xuc.png")}
+                />
+            );
         case "agi":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/agi.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/agi.png")}
+                />
+            );
         case "atlas":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/atlas.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/atlas.png")}
+                />
+            );
         case "bco":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bco.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bco.png")}
+                />
+            );
         case "bsv":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bsv.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bsv.png")}
+                />
+            );
         case "chain":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chain.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/chain.png")}
+                />
+            );
         case "crv":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/crv.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/crv.png")}
+                />
+            );
         case "dlt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dlt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dlt.png")}
+                />
+            );
         case "ella":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ella.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ella.png")}
+                />
+            );
         case "exmo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/exmo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/exmo.png")}
+                />
+            );
         case "generic":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/generic.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/generic.png")}
+                />
+            );
         case "hight":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hight.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hight.png")}
+                />
+            );
         case "iop":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iop.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/iop.png")}
+                />
+            );
         case "loom":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/loom.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/loom.png")}
+                />
+            );
         case "mkr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mkr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mkr.png")}
+                />
+            );
         case "neos":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/neos.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/neos.png")}
+                />
+            );
         case "one":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/one.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/one.png")}
+                />
+            );
         case "poa":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/poa.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/poa.png")}
+                />
+            );
         case "qtum":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/qtum.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/qtum.png")}
+                />
+            );
         case "ryo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ryo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ryo.png")}
+                />
+            );
         case "sngls":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sngls.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sngls.png")}
+                />
+            );
         case "sub":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sub.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sub.png")}
+                />
+            );
         case "tpay":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tpay.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tpay.png")}
+                />
+            );
         case "vivo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vivo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vivo.png")}
+                />
+            );
         case "xby":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xby.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xby.png")}
+                />
+            );
         case "xvc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xvc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xvc.png")}
+                />
+            );
         case "agrs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/agrs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/agrs.png")}
+                />
+            );
         case "atm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/atm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/atm.png")}
+                />
+            );
         case "bcpt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bcpt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bcpt.png")}
+                />
+            );
         case "btc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btc.png")}
+                />
+            );
         case "chat":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chat.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/chat.png")}
+                />
+            );
         case "crw":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/crw.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/crw.png")}
+                />
+            );
         case "dnt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dnt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dnt.png")}
+                />
+            );
         case "emb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/emb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/emb.png")}
+                />
+            );
         case "exp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/exp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/exp.png")}
+                />
+            );
         case "gin":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gin.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gin.png")}
+                />
+            );
         case "hns":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hns.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hns.png")}
+                />
+            );
         case "iost":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iost.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/iost.png")}
+                />
+            );
         case "lpt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lpt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lpt.png")}
+                />
+            );
         case "mln":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mln.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mln.png")}
+                />
+            );
         case "neu":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/neu.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/neu.png")}
+                />
+            );
         case "ong":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ong.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ong.png")}
+                />
+            );
         case "poe":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/poe.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/poe.png")}
+                />
+            );
         case "r":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/r.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/r.png")}
+                />
+            );
         case "safe":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/safe.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/safe.png")}
+                />
+            );
         case "snm":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/snm.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/snm.png")}
+                />
+            );
         case "sumo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sumo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sumo.png")}
+                />
+            );
         case "trig":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/trig.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/trig.png")}
+                />
+            );
         case "vrc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vrc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vrc.png")}
+                />
+            );
         case "xcp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xcp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xcp.png")}
+                />
+            );
         case "xvg":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xvg.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xvg.png")}
+                />
+            );
         case "aion":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aion.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/aion.png")}
+                />
+            );
         case "atom":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/atom.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/atom.png")}
+                />
+            );
         case "bdl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bdl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bdl.png")}
+                />
+            );
         case "btcd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btcd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btcd.png")}
+                />
+            );
         case "chips":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chips.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/chips.png")}
+                />
+            );
         case "cs":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/cs.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/cs.png")}
+                />
+            );
         case "dock":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dock.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dock.png")}
+                />
+            );
         case "emc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/emc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/emc.png")}
+                />
+            );
         case "fair":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fair.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fair.png")}
+                />
+            );
         case "glxt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/glxt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/glxt.png")}
+                />
+            );
         case "hodl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hodl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hodl.png")}
+                />
+            );
         case "iotx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iotx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/iotx.png")}
+                />
+            );
         case "lrc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lrc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lrc.png")}
+                />
+            );
         case "mnx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mnx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mnx.png")}
+                />
+            );
         case "nexo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nexo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nexo.png")}
+                />
+            );
         case "ont":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ont.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ont.png")}
+                />
+            );
         case "polis":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/polis.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/polis.png")}
+                />
+            );
         case "rads":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rads.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rads.png")}
+                />
+            );
         case "safemoon":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/safemoon.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/safemoon.png")}
+                />
+            );
         case "snt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/snt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/snt.png")}
+                />
+            );
         case "sushi":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sushi.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sushi.png")}
+                />
+            );
         case "trtl":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/trtl.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/trtl.png")}
+                />
+            );
         case "vrsc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vrsc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vrsc.png")}
+                />
+            );
         case "xdn":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xdn.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xdn.png")}
+                />
+            );
         case "xzc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xzc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xzc.png")}
+                />
+            );
         case "algo":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/algo.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/algo.png")}
+                />
+            );
         case "audr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/audr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/audr.png")}
+                />
+            );
         case "beam":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/beam.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/beam.png")}
+                />
+            );
         case "btch":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btch.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btch.png")}
+                />
+            );
         case "chsb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chsb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/chsb.png")}
+                />
+            );
         case "ctr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ctr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ctr.png")}
+                />
+            );
         case "doge":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/doge.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/doge.png")}
+                />
+            );
         case "emc2":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/emc2.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/emc2.png")}
+                />
+            );
         case "fct":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fct.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fct.png")}
+                />
+            );
         case "gmr":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gmr.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gmr.png")}
+                />
+            );
         case "hot":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hot.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hot.png")}
+                />
+            );
         case "iq":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/iq.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/iq.png")}
+                />
+            );
         case "lsk":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/lsk.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/lsk.png")}
+                />
+            );
         case "mnz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/mnz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/mnz.png")}
+                />
+            );
         case "ngc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ngc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ngc.png")}
+                />
+            );
         case "oot":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/oot.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/oot.png")}
+                />
+            );
         case "poly":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/poly.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/poly.png")}
+                />
+            );
         case "rap":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/rap.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/rap.png")}
+                />
+            );
         case "sai":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sai.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sai.png")}
+                />
+            );
         case "snx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/snx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/snx.png")}
+                />
+            );
         case "sys":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/sys.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/sys.png")}
+                />
+            );
         case "trx":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/trx.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/trx.png")}
+                />
+            );
         case "vtc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vtc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vtc.png")}
+                />
+            );
         case "xem":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xem.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xem.png")}
+                />
+            );
         case "yfi":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/yfi.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/yfi.png")}
+                />
+            );
         case "amb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/amb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/amb.png")}
+                />
+            );
         case "aury":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/aury.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/aury.png")}
+                />
+            );
         case "bela":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/bela.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/bela.png")}
+                />
+            );
         case "btcp":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/btcp.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/btcp.png")}
+                />
+            );
         case "chz":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/chz.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/chz.png")}
+                />
+            );
         case "ctxc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ctxc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ctxc.png")}
+                />
+            );
         case "dot":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/dot.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/dot.png")}
+                />
+            );
         case "eng":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/eng.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/eng.png")}
+                />
+            );
         case "fida":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/fida.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/fida.png")}
+                />
+            );
         case "gmt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/gmt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/gmt.png")}
+                />
+            );
         case "hpb":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/hpb.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/hpb.png")}
+                />
+            );
         case "itc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/itc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/itc.png")}
+                />
+            );
         case "ltc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ltc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ltc.png")}
+                />
+            );
         case "moac":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/moac.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/moac.png")}
+                />
+            );
         case "nio":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/nio.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/nio.png")}
+                />
+            );
         case "ost":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ost.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ost.png")}
+                />
+            );
         case "pot":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/pot.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/pot.png")}
+                />
+            );
         case "ray":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/ray.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/ray.png")}
+                />
+            );
         case "salt":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/salt.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/salt.png")}
+                />
+            );
         case "soc":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/soc.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/soc.png")}
+                />
+            );
         case "taas":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/taas.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/taas.png")}
+                />
+            );
         case "tusd":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/tusd.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/tusd.png")}
+                />
+            );
         case "vtho":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/vtho.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/vtho.png")}
+                />
+            );
         case "xin":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/xin.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/xin.png")}
+                />
+            );
         case "yoyow":
-            return <Image style={styles.icon} source={require("../../../../assets/crypto-icons/yoyow.png")} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require("../../../../assets/crypto-icons/yoyow.png")}
+                />
+            );
 
         default:
-            return <Image style={styles.icon} source={require(`../../../../assets/crypto-icons/generic.png`)} />;
+            return (
+                <Image
+                    style={size === "sm" ? styles.iconSM : styles.icon}
+                    source={require(`../../../../assets/crypto-icons/generic.png`)}
+                />
+            );
     }
 };
