@@ -16,9 +16,10 @@ const DEFAULT_LIMIT = 10;
 
 interface IDepositHistoryProps {
     currency?: string;
+    limit?: number;
 }
 
-export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositHistoryProps) => {
+export const DepositHistory: FC<IDepositHistoryProps> = ({ currency, limit }: IDepositHistoryProps) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => depositHistoryStyles(theme), [theme]);
 
@@ -30,12 +31,12 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
     const total: string | null | undefined = useAppSelector((state: RootState) => state.deposit.total);
 
     const onRefresh = useCallback(() => {
-        getDepositHistory({ page: 1, limit: DEFAULT_LIMIT, currency: currency });
-    }, []);
+        getDepositHistory({ page: 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
+    }, [limit]);
 
     useEffect(() => {
-        getDepositHistory({ page: 1, limit: DEFAULT_LIMIT, currency: currency });
-    }, []);
+        getDepositHistory({ page: 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
+    }, [limit]);
 
     const handleFetchNextPage = () => {
         // TODO: handle last page
@@ -48,10 +49,14 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
     };
 
     const renderTable = (item: IDepositHistory) => {
+        const statusColor = ["collected", "accepted", "submitted"].includes(item.state)
+            ? styles.accepted.color
+            : styles.rejected.color;
+
         return (
             <View style={styles.table}>
                 <View style={styles.tableRow}>
-                    <Text style={styles.tableTextAction}>{item.state}</Text>
+                    <Text style={[styles.tableTextAction, { color: statusColor }]}>{item.state}</Text>
                 </View>
                 <View style={styles.tableRow}>
                     <Text style={styles.tableTextTid}>{truncateMiddle(item.txid, 30)}</Text>
@@ -93,22 +98,28 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency }: IDepositH
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
             <View style={styles.containerTable}>{depositHistory?.map(renderTable)}</View>
-            <View style={styles.containerPagination}>
-                {/* TODO: move to pagination component  */}
-                <Pressable style={styles.paginationButton} onPress={handleFetchPrevPage} disabled={currentPage === 1}>
-                    <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
-                </Pressable>
-                <Text style={styles.paginationCounter}>
-                    {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
-                </Text>
-                <Pressable
-                    style={styles.paginationButton}
-                    onPress={handleFetchNextPage}
-                    disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
-                >
-                    <ArrowRightIcon color={total && currentPage * DEFAULT_LIMIT >= +total ? "" : "#000"} />
-                </Pressable>
-            </View>
+            {!limit ? (
+                <View style={styles.containerPagination}>
+                    {/* TODO: move to pagination component  */}
+                    <Pressable
+                        style={styles.paginationButton}
+                        onPress={handleFetchPrevPage}
+                        disabled={currentPage === 1}
+                    >
+                        <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
+                    </Pressable>
+                    <Text style={styles.paginationCounter}>
+                        {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
+                    </Text>
+                    <Pressable
+                        style={styles.paginationButton}
+                        onPress={handleFetchNextPage}
+                        disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
+                    >
+                        <ArrowRightIcon color={total && currentPage * DEFAULT_LIMIT >= +total ? "" : "#000"} />
+                    </Pressable>
+                </View>
+            ) : null}
         </ScrollView>
     );
 };

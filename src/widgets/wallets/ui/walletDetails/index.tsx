@@ -12,21 +12,28 @@ import { IRoute, TabPanel, useAppSelector } from "../../../../shared";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { walletDetailsStyles } from "./walletDetails.styles";
+import { useLinkTo } from "@react-navigation/native";
 
 const renderScene = (props: SceneRendererProps & { route: any }, currency: string) => {
     switch (props.route.key) {
         case "deposit":
-            return <DepositHistory currency={currency} />;
+            return <DepositHistory currency={currency} limit={5} />;
         case "withdrawal":
-            return <WithdrawalHistory currency={currency} />;
+            return <WithdrawalHistory currency={currency} limit={5} />;
         case "transfer":
-            return <TransferHistory currency={currency} />;
+            return <TransferHistory currency={currency} limit={5} />;
         default:
             return null;
     }
 };
 
-export const WalletDetailsWidget: FC = () => {
+interface IWalletDetailsWidgetProps {
+    navigation?: any;
+}
+
+export const WalletDetailsWidget: FC<IWalletDetailsWidgetProps> = ({ navigation }: IWalletDetailsWidgetProps) => {
+    const linkTo = useLinkTo();
+
     const { theme } = useThemeContext();
     const styles = useMemo(() => walletDetailsStyles(theme), [theme]);
 
@@ -46,16 +53,18 @@ export const WalletDetailsWidget: FC = () => {
             <View style={styles.marketsContainer}>
                 <View style={styles.marketsHeaderContainer}>
                     <Text style={styles.marketsText}>Spot</Text>
-                    <Pressable>
+                    <Pressable onPress={() => linkTo("/MarketsStack")}>
                         <Text style={styles.marketsMore}>More</Text>
                     </Pressable>
                 </View>
-                {wallet?.currency && markets?.length ? <MarketsCarousel code={wallet.currency} /> : null}
+                {wallet?.currency && markets?.length ? (
+                    <MarketsCarousel code={wallet.currency} navigation={navigation} />
+                ) : null}
             </View>
             <View style={styles.historyContainer}>
                 <View style={styles.historyHeaderContainer}>
                     <Text style={styles.historyText}>History</Text>
-                    <Pressable>
+                    <Pressable onPress={() => linkTo("/History")}>
                         <Text style={styles.historyMore}>More</Text>
                     </Pressable>
                 </View>

@@ -19,11 +19,9 @@ export const transferHistoryStyles = (theme: string) => {
             fontWeight: "700",
         },
         tableTextStatusSuccess: {
-            textTransform: "capitalize",
             color: palette.System["system-green"][60].value,
         },
         tableTextStatusFail: {
-            textTransform: "capitalize",
             color: palette.System["system-red"][60].value,
         },
         tableSplittedRow: {
@@ -78,6 +76,12 @@ export const transferHistoryStyles = (theme: string) => {
             width: 36,
             height: 36,
             borderColor: palette.Controls["divider-color"][80].value,
+        },
+        accepted: {
+            color: palette.System["system-green"][60].value,
+        },
+        default: {
+            color: palette["text-color"][70].value,
         },
     });
 };

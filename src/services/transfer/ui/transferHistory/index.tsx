@@ -15,9 +15,10 @@ const DEFAULT_LIMIT = 10;
 
 interface ITransferHistoryProps {
     currency?: string;
+    limit?: number;
 }
 
-export const TransferHistory: FC<ITransferHistoryProps> = ({ currency }: ITransferHistoryProps) => {
+export const TransferHistory: FC<ITransferHistoryProps> = ({ currency, limit }: ITransferHistoryProps) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => transferHistoryStyles(theme), [theme]);
 
@@ -29,12 +30,12 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency }: ITransf
     const total: string | null | undefined = useAppSelector((state: RootState) => state.deposit.total);
 
     const onRefresh = useCallback(() => {
-        getTransferHistory({ page: 1, limit: DEFAULT_LIMIT, currency: currency });
-    }, []);
+        getTransferHistory({ page: 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
+    }, [limit]);
 
     useEffect(() => {
-        getTransferHistory({ page: 1, limit: DEFAULT_LIMIT, currency: currency });
-    }, []);
+        getTransferHistory({ page: 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
+    }, [limit]);
 
     const handleFetchNextPage = () => {
         // TODO: handle last page
@@ -47,12 +48,14 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency }: ITransf
     };
 
     const renderTable = (item: ITransferHistory) => {
+        const statusColor = ["completed", "done"].includes(item.status) ? styles.accepted.color : styles.default.color;
+
         const toAccount = item.receiver_username?.toUpperCase() || item.receiver_uid?.toUpperCase();
 
         return (
             <View style={styles.table}>
                 <View style={styles.tableRow}>
-                    <Text style={styles.tableTextAction}>{item.status}</Text>
+                    <Text style={[styles.tableTextAction, { color: statusColor }]}>{item.status}</Text>
                 </View>
                 <View style={styles.tableSplittedRow}>
                     <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
@@ -92,22 +95,28 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency }: ITransf
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
             <View style={styles.containerTable}>{transferHistory?.map(renderTable)}</View>
-            <View style={styles.containerPagination}>
-                {/* TODO: move to pagination component  */}
-                <Pressable style={styles.paginationButton} onPress={handleFetchPrevPage} disabled={currentPage === 1}>
-                    <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
-                </Pressable>
-                <Text style={styles.paginationCounter}>
-                    {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
-                </Text>
-                <Pressable
-                    style={styles.paginationButton}
-                    onPress={handleFetchNextPage}
-                    disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
-                >
-                    <ArrowRightIcon color={total && currentPage * DEFAULT_LIMIT >= +total ? "" : "#000"} />
-                </Pressable>
-            </View>
+            {!limit ? (
+                <View style={styles.containerPagination}>
+                    {/* TODO: move to pagination component  */}
+                    <Pressable
+                        style={styles.paginationButton}
+                        onPress={handleFetchPrevPage}
+                        disabled={currentPage === 1}
+                    >
+                        <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
+                    </Pressable>
+                    <Text style={styles.paginationCounter}>
+                        {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
+                    </Text>
+                    <Pressable
+                        style={styles.paginationButton}
+                        onPress={handleFetchNextPage}
+                        disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
+                    >
+                        <ArrowRightIcon color={total && currentPage * DEFAULT_LIMIT >= +total ? "" : "#000"} />
+                    </Pressable>
+                </View>
+            ) : null}
         </ScrollView>
     );
 };
