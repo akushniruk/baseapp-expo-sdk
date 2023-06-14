@@ -57,7 +57,14 @@ export const MarketsCarousel: FC<IMarketsCarousel> = ({ navigation, code }: IMar
 
             return (
                 <Pressable
-                    style={styles.card}
+                    style={({ pressed }) => [
+                        styles.card,
+                        {
+                            backgroundColor: pressed
+                                ? styles.cardPressedColor.backgroundColor
+                                : styles.card.backgroundColor,
+                        },
+                    ]}
                     key={`${market.id}-${market.base_unit}`}
                     onPress={() => handleUpdateCurrentMarket(market)}
                 >
@@ -84,7 +91,7 @@ export const MarketsCarousel: FC<IMarketsCarousel> = ({ navigation, code }: IMar
             autoPlay={false}
             vertical={false}
             width={WIDTH / COUNT}
-            height={80}
+            height={100}
             style={{
                 width: WIDTH,
             }}

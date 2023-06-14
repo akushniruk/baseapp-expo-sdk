@@ -6,6 +6,7 @@ export const marketsCarouselStyles = (theme: string) => {
 
     return StyleSheet.create({
         card: {
+            height: 100,
             borderWidth: 1,
             padding: 6,
             marginRight: 12,
@@ -24,6 +25,9 @@ export const marketsCarouselStyles = (theme: string) => {
         },
         priceChangeNegative: {
             color: palette.System.ask[40].value,
+        },
+        cardPressedColor: {
+            backgroundColor: palette.Controls["primary-cta-color"][60].value,
         },
     });
 };

@@ -1,6 +1,6 @@
-import React, { FC, useEffect, useMemo, useState } from "react";
-import { View, Text } from "react-native";
-import { SceneMap, SceneRendererProps } from "react-native-tab-view";
+import React, { FC, useMemo, useState } from "react";
+import { View, Text, Pressable } from "react-native";
+import { SceneRendererProps } from "react-native-tab-view";
 import { DepositHistory } from "../../../../services/deposit/ui/depositHistory";
 import { Market } from "../../../../services/markets/model/type";
 import { MarketsCarousel } from "../../../../services/markets/ui/marketsCarousel";
@@ -10,6 +10,8 @@ import { WalletDetails } from "../../../../services/wallets/ui/walletDetails";
 import { WithdrawalHistory } from "../../../../services/withdrawal/ui/withdrawalHistory";
 import { IRoute, TabPanel, useAppSelector } from "../../../../shared";
 import { RootState } from "../../../../shared/providers/redux/model/store";
+import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
+import { walletDetailsStyles } from "./walletDetails.styles";
 
 const renderScene = (props: SceneRendererProps & { route: any }, currency: string) => {
     switch (props.route.key) {
@@ -25,6 +27,9 @@ const renderScene = (props: SceneRendererProps & { route: any }, currency: strin
 };
 
 export const WalletDetailsWidget: FC = () => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => walletDetailsStyles(theme), [theme]);
+
     const [tabIndex, setTabIndex] = useState<number>(0);
     const [routes] = useState<IRoute[]>([
         { key: "deposit", title: "Deposit" },
@@ -36,18 +41,24 @@ export const WalletDetailsWidget: FC = () => {
     const markets: Market[] = useAppSelector((state: RootState) => state.markets.markets);
 
     return (
-        <View>
+        <View style={styles.container}>
             <WalletDetails />
-            <View>
-                <Text>Markets</Text>
-                {wallet?.currency && markets?.length ? (
-                    <MarketsCarousel code={wallet.currency} />
-                ) : (
-                    <Text>No markets</Text>
-                )}
+            <View style={styles.marketsContainer}>
+                <View style={styles.marketsHeaderContainer}>
+                    <Text style={styles.marketsText}>Spot</Text>
+                    <Pressable>
+                        <Text style={styles.marketsMore}>More</Text>
+                    </Pressable>
+                </View>
+                {wallet?.currency && markets?.length ? <MarketsCarousel code={wallet.currency} /> : null}
             </View>
-            <View>
-                <Text>History</Text>
+            <View style={styles.historyContainer}>
+                <View style={styles.historyHeaderContainer}>
+                    <Text style={styles.historyText}>History</Text>
+                    <Pressable>
+                        <Text style={styles.historyMore}>More</Text>
+                    </Pressable>
+                </View>
                 <TabPanel
                     currentTabIndex={tabIndex}
                     renderScene={(props: SceneRendererProps & { route: any }) =>
