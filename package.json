@@ -1,7 +1,7 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
     "version": "0.0.91",
-    "main": "lib/commonjs/index.js",
+    "main": "node_modules/expo/AppEntry.js",
     "license": "MIT",
     "scripts": {
         "start": "expo start",
@@ -71,6 +71,7 @@
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-native": "0.71.8",
+        "react-native-bouncy-checkbox": "3.0.7",
         "react-native-builder-bob": "^0.20.4",
         "react-native-svg": "^13.8.0",
         "storybook-dark-mode": "2.1.1",

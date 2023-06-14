@@ -22,7 +22,7 @@ export const Input: FC<InputProps> = ({
 
     return (
         <View style={styles.fieldWrapper}>
-            <Text style={styles.label}>{label}</Text>
+            {label ? <Text style={styles.label}>{label}</Text> : null}
             <TextInput
                 style={styles.input}
                 onBlur={onBlur}
