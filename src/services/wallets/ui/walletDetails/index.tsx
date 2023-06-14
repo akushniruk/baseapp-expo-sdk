@@ -38,16 +38,25 @@ export const WalletDetails: FC = () => {
     }, [currencies, wallet, markets, tickers]);
 
     return (
-        <View>
-            <View>
-                <Text>
-                    Total: {format(wallet?.balance, wallet?.fixed || 2)}
-                    <Text>
-                        ≈{estimatedValuePrimary} {VALUATION_CURRENCY}
+        <View style={styles.container}>
+            <View style={styles.balanceContainer}>
+                <Text style={styles.totalText}>
+                    Total: {format(wallet?.balance, wallet?.fixed || 2)} {wallet?.currency?.toUpperCase()}
+                    <Text style={styles.subTotalText}>
+                        {" "}
+                        ≈ {estimatedValuePrimary} {VALUATION_CURRENCY}
                     </Text>
                 </Text>
-                <Text>Available: {format(wallet?.balance, wallet?.fixed || 2)}</Text>
-                <Text>Unavailable: {format(wallet?.locked, wallet?.fixed || 2)}</Text>
+                <View style={styles.totalDetailsContainer}>
+                    <View style={styles.totalDetailsItemContainer}>
+                        <Text style={styles.availableText}>Available</Text>
+                        <Text style={styles.availableValueText}>{format(wallet?.balance, wallet?.fixed || 2)}</Text>
+                    </View>
+                    <View style={styles.totalDetailsItemContainer}>
+                        <Text style={styles.unavailableText}>Unavailable </Text>
+                        <Text style={styles.unavailableValueText}>{format(wallet?.locked, wallet?.fixed || 2)}</Text>
+                    </View>
+                </View>
             </View>
         </View>
     );
