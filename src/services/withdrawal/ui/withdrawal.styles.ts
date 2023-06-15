@@ -101,7 +101,6 @@ export const withdrawalStyles = (theme: string) => {
             color: palette["text-color"][70].value,
         },
         totalFee: {
-            textTransform: "capitalize",
             color: palette["text-color"][50].value,
         },
         totalButtonContainer: {},

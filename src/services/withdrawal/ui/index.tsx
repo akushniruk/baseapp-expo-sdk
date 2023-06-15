@@ -17,6 +17,7 @@ import { User } from "../../user";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { Modal } from "../../../shared/ui/modal";
 import { truncateMiddle } from "../../../shared/libs/truncateMiddle";
+import { Receipt } from "./receipt";
 
 export const Withdrawal: FC = () => {
     const [getBeneficiaries, { isLoading, isSuccess }] = useGetBeneficiariesMutation();
@@ -61,6 +62,9 @@ export const Withdrawal: FC = () => {
             dispatch(setBeneficiary(beneficiaries[0]));
         }
     }, [beneficiaries]);
+
+    const buttonDisabled =
+        !amount || +amount < (selectedNetwork?.min_withdraw_amount ? +selectedNetwork?.min_withdraw_amount : 0);
 
     const handleRedirect = (path: string) => {
         if (wallet?.type === "coin") {
@@ -138,6 +142,9 @@ export const Withdrawal: FC = () => {
         );
     };
 
+    console.log(
+        !amount || +amount < (selectedNetwork?.min_withdraw_amount ? +selectedNetwork?.min_withdraw_amount : 0)
+    );
     return (
         <View>
             <View style={styles.container}>
@@ -163,7 +170,9 @@ export const Withdrawal: FC = () => {
                     <View>
                         <Text style={styles.totalLabel}>Receive amount</Text>
                         <Text style={styles.total}>
-                            {amount + (selectedNetwork?.withdraw_fee ? +selectedNetwork?.withdraw_fee : 0)}{" "}
+                            {amount
+                                ? +amount - (selectedNetwork?.withdraw_fee ? +selectedNetwork?.withdraw_fee : 0)
+                                : 0}{" "}
                             {wallet?.currency.toUpperCase()}
                         </Text>
                         <Text style={styles.totalFee}>
@@ -171,18 +180,31 @@ export const Withdrawal: FC = () => {
                         </Text>
                     </View>
                     <View style={styles.totalButtonContainer}>
-                        <Button onPress={() => setIsReceiptOpen(true)} title="Withdraw" isLoading={false} />
+                        <Button
+                            disabled={buttonDisabled}
+                            onPress={() => setIsReceiptOpen(true)}
+                            title="Withdraw"
+                            isLoading={false}
+                        />
                     </View>
                 </View>
             </View>
             <Modal
-                snapPoints={["60%", "80%"]}
+                snapPoints={["80%"]}
                 bottomSheetRef={bottomSheetRef}
                 isOpen={isReceiptOpen}
                 setIsOpen={setIsReceiptOpen}
             >
                 <View style={styles.receiptContainer}>
-                    <Text>Receipt</Text>
+                    <Receipt
+                        currency={wallet?.currency || ""}
+                        address={beneficiary?.data.address || ""}
+                        network={selectedNetwork?.protocol || ""}
+                        beneficiaryName={beneficiary?.name || ""}
+                        beneficiaryId={String(beneficiary?.id) || ""}
+                        amount={amount}
+                        fee={selectedNetwork?.withdraw_fee ? +selectedNetwork?.withdraw_fee : 0}
+                    />
                 </View>
             </Modal>
         </View>

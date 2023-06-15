@@ -61,4 +61,4 @@ export const withdrawalApi = api.injectEndpoints({
     }),
 });
 
-export const { useGetWithdrawalHistoryMutation } = withdrawalApi;
+export const { useGetWithdrawalHistoryMutation, useCreateWithdrawalMutation } = withdrawalApi;
