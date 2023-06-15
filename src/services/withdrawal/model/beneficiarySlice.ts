@@ -25,7 +25,7 @@ export const beneficiary = createSlice({
             state.createdBeneficiary = action.payload;
         },
         setBeneficiary: (state: BeneficiaryState, action: PayloadAction<IBeneficiary | null>) => {
-            state.createdBeneficiary = action.payload;
+            state.beneficiary = action.payload;
         },
     },
 });
