@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useMemo, useState, useCallback, useRef } from "react";
 import { View, Text, Pressable, ScrollView } from "react-native";
 import { depositStyles } from "./deposit.styles";
-import { useAppSelector } from "../../../shared";
+import { Button, useAppSelector } from "../../../shared";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
 import { RootState } from "../../../shared/providers/redux/model/store";
 import { IWallet, IWalletAddress } from "../../wallets/api/types";
@@ -14,9 +14,12 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { SelectIcon } from "../../../assets/system/selector";
 import { Copy } from "../../../assets/system/copy";
 import * as Clipboard from "expo-clipboard";
+import { useCreateWalletAddressMutation } from "../../wallets/api/accountApi";
 
 // TODO: add support for memo and destination tag
 export const Deposit: FC = () => {
+    const [createWalletAddress, { isLoading, isSuccess }] = useCreateWalletAddressMutation();
+
     const { theme } = useThemeContext();
     const styles = useMemo(() => depositStyles(theme), [theme]);
 
@@ -91,6 +94,24 @@ export const Deposit: FC = () => {
         );
     };
 
+    const createAddress = () => {
+        if (wallet?.currency && selectedNetwork?.blockchain_key) {
+            createWalletAddress({ currency: wallet?.currency, blockchain_key: selectedNetwork?.blockchain_key });
+        }
+    };
+
+    const renderDepositAddress = () => {
+        return (
+            <Pressable onPress={handlePress} style={styles.depositAddressContainer}>
+                <View>
+                    <Text style={styles.depositAddressLabel}>{wallet?.currency.toUpperCase()} Deposit Address</Text>
+                    <Text style={styles.depositAddress}>{depositAddress?.address}</Text>
+                </View>
+                <Copy width={12} color={styles.copyColor.color} />
+            </Pressable>
+        );
+    };
+
     const renderDepositInfo = () => {
         return (
             <View style={styles.depositInfoContainer}>
@@ -106,13 +127,16 @@ export const Deposit: FC = () => {
                         </Text>
                     </View>
                 </View>
-                <Pressable onPress={handlePress} style={styles.depositAddressContainer}>
-                    <View>
-                        <Text style={styles.depositAddressLabel}>{wallet?.currency.toUpperCase()} Deposit Address</Text>
-                        <Text style={styles.depositAddress}>{depositAddress?.address}</Text>
-                    </View>
-                    <Copy width={12} color={styles.copyColor.color} />
-                </Pressable>
+                {depositAddress?.address ? (
+                    renderDepositAddress()
+                ) : (
+                    <Button
+                        onPress={createAddress}
+                        isLoading={isLoading}
+                        title="Generate Address"
+                        disabled={!selectedNetwork}
+                    />
+                )}
                 {renderNetworkSelector()}
                 <View style={styles.minimumDepositContainer}>
                     <Text style={styles.minimumDepositLabel}>Minimum deposit</Text>

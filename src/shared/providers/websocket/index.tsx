@@ -5,6 +5,7 @@ import { saveTickers } from "../../../services/tickers/model/tickersSlice";
 import { updateTrades } from "../../../services/trades/model/tradesSlice";
 import { useAppDispatch } from "../redux";
 import { store } from "../redux/model/store";
+import { setWalletAddress } from "../../../services/wallets/model/accountsSlice";
 
 const WebSocketContext = createContext(null);
 
@@ -75,6 +76,17 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
                         dispatch(saveTickers(payload["global.tickers"]));
 
                         return;
+                    case "balances":
+                        // TODO
+                        // dispatch(updateWalletsDataByRanger({ ws: true, balances: event }));
+
+                        return;
+
+                    // private
+                    case "deposit_address":
+                        dispatch(setWalletAddress(payload[routingKey]));
+
+                        return;
                     default:
                         console.log(`Unhandled websocket channel: ${routingKey}`);
                         return;
@@ -86,7 +98,9 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     useEffect(() => {
         // TODO: add support for private
         const newWs = new WebSocket(
-            `${process.env.REACT_APP_WS_API || "ws://localhost:9003"}/api/v2/ranger/public?stream=global.tickers`
+            `${
+                process.env.REACT_APP_WS_API || "wsw://https://aurora-master.uat.opendax.app"
+            }/api/v2/ranger/public?stream=global.tickers`
         );
 
         newWs.onopen = () => {

@@ -1,7 +1,7 @@
 export interface IWallet {
     currency: string;
     name: string;
-    type: 'fiat' | 'coin';
+    type: "fiat" | "coin";
     fixed: number;
     account_type: string;
     balance?: string;
@@ -48,5 +48,5 @@ export interface IAccount {
     account_type: string;
     balance?: string;
     locked?: string;
-    deposit_address?: IWalletAddress;
+    deposit_addresses?: IWalletAddress[];
 }
