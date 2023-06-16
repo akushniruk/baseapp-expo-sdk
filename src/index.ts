@@ -74,6 +74,10 @@ import { ConfirmBeneficiary } from "./services/withdrawal/ui/confirmBeneficiary"
 import { Deposit } from "./services/deposit/ui";
 import { Withdrawal } from "./services/withdrawal/ui";
 
+import { DepositHistory } from "./services/deposit/ui/depositHistory";
+import { WithdrawalHistory } from "./services/withdrawal/ui/withdrawalHistory";
+import { TransferHistory } from "./services/transfer/ui/transferHistory";
+
 export {
     Trades,
     TabPanel,
@@ -115,6 +119,9 @@ export {
     ConfirmBeneficiary,
     Deposit,
     Withdrawal,
+    DepositHistory,
+    WithdrawalHistory,
+    TransferHistory,
     withAuth,
 };
 
