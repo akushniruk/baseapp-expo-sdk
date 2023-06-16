@@ -11,6 +11,7 @@ import { useGetDepositHistoryMutation } from "../../api/depositApi";
 import { IDepositHistory } from "../../api/types";
 import i18n from "../../../../shared/libs/i18n/supportedLanguages";
 import { truncateMiddle } from "../../../../shared/libs/truncateMiddle";
+import { NoDataIcon } from "../../../../assets/system/noDataIcon";
 
 const DEFAULT_LIMIT = 10;
 
@@ -92,13 +93,22 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency, limit }: ID
         );
     };
 
+    if (!depositHistory?.length) {
+        return (
+            <View style={styles.noData}>
+                <NoDataIcon />
+                <Text style={styles.noDataText}>There is no data to show</Text>
+            </View>
+        );
+    }
+
     return (
         <ScrollView
             style={styles.container}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
             <View style={styles.containerTable}>{depositHistory?.map(renderTable)}</View>
-            {!limit ? (
+            {!limit && depositHistory?.length > DEFAULT_LIMIT ? (
                 <View style={styles.containerPagination}>
                     {/* TODO: move to pagination component  */}
                     <Pressable

@@ -14,10 +14,11 @@ import { estimateUnitValue, estimateValue } from "../libs/helpers/estimateValue"
 import { format } from "../../../shared/libs/format";
 import { Market } from "../../markets/model/type";
 import { Tickers } from "../../tickers/model/type";
-import { setCurrentWallet } from "../model/walletSlice";
+import { setCurrentWallet, wallet } from "../model/walletSlice";
 import { SearchIcon } from "../../../assets/system/search";
 import { HistoryIcon } from "../../../assets/system/history";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import { NoDataIcon } from "../../../assets/system/noDataIcon";
 
 interface IWallets {
     navigation?: any;
@@ -168,6 +169,32 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
         [setSearch, setWallets, wallets]
     );
 
+    const renderWallets = () => {
+        {
+            /* TODO: replace it with something else. */
+        }
+        return (
+            <VirtualizedList
+                initialNumToRender={14}
+                renderItem={({ item }) => renderWalletRow(item)}
+                keyExtractor={(item) => item.currency}
+                getItemCount={getItemCount}
+                getItem={getItem}
+                maxToRenderPerBatch={14}
+                style={styles.listContainer}
+            />
+        );
+    };
+
+    const returnNoData = () => {
+        return (
+            <View style={styles.noData}>
+                <NoDataIcon />
+                <Text style={styles.noDataText}>There is no data to show</Text>
+            </View>
+        );
+    };
+
     // TODO: REFACTOR
     return (
         <ScrollView style={styles.scrollViewContainer}>
@@ -240,16 +267,7 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                     setHideZeroBalance(isChecked);
                 }}
             />
-            {/* TODO: replace it with something else. */}
-            <VirtualizedList
-                initialNumToRender={14}
-                renderItem={({ item }) => renderWalletRow(item)}
-                keyExtractor={(item) => item.currency}
-                getItemCount={getItemCount}
-                getItem={getItem}
-                maxToRenderPerBatch={14}
-                style={styles.listContainer}
-            />
+            {wallets?.length ? renderWallets() : returnNoData()}
         </ScrollView>
     );
 };

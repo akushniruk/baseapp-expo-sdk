@@ -13,6 +13,7 @@ import { RootState } from "../../../../shared/providers/redux/model/store";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { walletDetailsStyles } from "./walletDetails.styles";
 import { useLinkTo } from "@react-navigation/native";
+import { NoDataIcon } from "../../../../assets/system/noDataIcon";
 
 const renderScene = (props: SceneRendererProps & { route: any }, currency: string) => {
     switch (props.route.key) {
@@ -47,6 +48,15 @@ export const WalletDetailsWidget: FC<IWalletDetailsWidgetProps> = ({ navigation 
     const wallet: IWallet | null = useAppSelector((state: RootState) => state.wallet.wallet);
     const markets: Market[] = useAppSelector((state: RootState) => state.markets.markets);
 
+    const renderNoData = () => {
+        return (
+            <View style={styles.noData}>
+                <NoDataIcon />
+                <Text style={styles.noDataText}>There is no data to show</Text>
+            </View>
+        );
+    };
+
     return (
         <View style={styles.container}>
             <WalletDetails />
@@ -59,7 +69,9 @@ export const WalletDetailsWidget: FC<IWalletDetailsWidgetProps> = ({ navigation 
                 </View>
                 {wallet?.currency && markets?.length ? (
                     <MarketsCarousel code={wallet.currency} navigation={navigation} />
-                ) : null}
+                ) : (
+                    renderNoData()
+                )}
             </View>
             <View style={styles.historyContainer}>
                 <View style={styles.historyHeaderContainer}>

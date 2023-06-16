@@ -130,5 +130,14 @@ export const walletsStyles = (theme: string) => {
             textDecorationLine: "none",
             color: palette["text-color"][50].value,
         },
+        noData: {
+            marginTop: 48,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        noDataText: {
+            marginTop: 12,
+        },
     });
 };

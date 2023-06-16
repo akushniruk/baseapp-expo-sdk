@@ -84,5 +84,14 @@ export const withdrawalHistoryStyles = (theme: string) => {
         rejected: {
             color: palette.System["system-red"][60].value,
         },
+        noData: {
+            marginTop: 48,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        noDataText: {
+            marginTop: 12,
+        },
     });
 };

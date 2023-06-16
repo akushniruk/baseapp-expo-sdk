@@ -11,6 +11,7 @@ import { useGetWithdrawalHistoryMutation } from "../../api/withdrawalApi";
 import { IWithdrawalHistory } from "../../api/types";
 import { truncateMiddle } from "../../../../shared/libs/truncateMiddle";
 import i18n from "../../../../shared/libs/i18n/supportedLanguages";
+import { NoDataIcon } from "../../../../assets/system/noDataIcon";
 
 const DEFAULT_LIMIT = 10;
 
@@ -92,13 +93,22 @@ export const WithdrawalHistory: FC<IWithdrawalHistoryProps> = ({ currency, limit
         );
     };
 
+    if (!withdrawalHistory?.length) {
+        return (
+            <View style={styles.noData}>
+                <NoDataIcon />
+                <Text style={styles.noDataText}>There is no data to show</Text>
+            </View>
+        );
+    }
+
     return (
         <ScrollView
             style={styles.container}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
             <View style={styles.containerTable}>{withdrawalHistory?.map(renderTable)}</View>
-            {!limit ? (
+            {!limit && withdrawalHistory?.length > DEFAULT_LIMIT ? (
                 <View style={styles.containerPagination}>
                     {/* TODO: move to pagination component  */}
                     <Pressable

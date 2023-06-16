@@ -10,6 +10,7 @@ import { ArrowLeftIcon } from "../../../../assets/profile";
 import { useGetTransferHistoryMutation } from "../../api/transferApi";
 import { ITransferHistory } from "../../api/types";
 import i18n from "../../../../shared/libs/i18n/supportedLanguages";
+import { NoDataIcon } from "../../../../assets/system/noDataIcon";
 
 const DEFAULT_LIMIT = 10;
 
@@ -89,13 +90,22 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency, limit }: 
         );
     };
 
+    if (!transferHistory?.length) {
+        return (
+            <View style={styles.noData}>
+                <NoDataIcon />
+                <Text style={styles.noDataText}>There is no data to show</Text>
+            </View>
+        );
+    }
+
     return (
         <ScrollView
             style={styles.container}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
             <View style={styles.containerTable}>{transferHistory?.map(renderTable)}</View>
-            {!limit ? (
+            {!limit && transferHistory?.length > DEFAULT_LIMIT ? (
                 <View style={styles.containerPagination}>
                     {/* TODO: move to pagination component  */}
                     <Pressable

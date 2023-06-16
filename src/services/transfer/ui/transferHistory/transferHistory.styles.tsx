@@ -83,5 +83,14 @@ export const transferHistoryStyles = (theme: string) => {
         default: {
             color: palette["text-color"][70].value,
         },
+        noData: {
+            marginTop: 48,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        noDataText: {
+            marginTop: 12,
+        },
     });
 };

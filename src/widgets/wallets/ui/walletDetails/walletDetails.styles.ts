@@ -42,5 +42,14 @@ export const walletDetailsStyles = (theme: string) => {
             color: palette.Controls["primary-cta-color"][60].value,
             fontWeight: "600",
         },
+        noData: {
+            marginTop: 12,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        noDataText: {
+            marginTop: 12,
+        },
     });
 };
