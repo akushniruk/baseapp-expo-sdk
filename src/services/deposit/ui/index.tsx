@@ -114,7 +114,7 @@ export const Deposit: FC = () => {
 
     const renderDepositAddressPending = () => {
         if (!depositAddress?.address && depositAddress?.state === "pending") {
-            <Text>Generating deposit address</Text>;
+            return <Text>Generating deposit address</Text>;
         }
 
         return (
@@ -131,7 +131,7 @@ export const Deposit: FC = () => {
         return (
             <View style={styles.depositInfoContainer}>
                 <View style={styles.QRCode}>
-                    <QRCode size={200} value={depositAddress?.address} />
+                    {depositAddress?.address ? <QRCode size={200} value={depositAddress?.address} /> : null}
                     <View style={styles.QRCodeTextContainer}>
                         <Text style={styles.QRCodeText}>
                             Send only {wallet?.currency?.toUpperCase()} to this deposit address.

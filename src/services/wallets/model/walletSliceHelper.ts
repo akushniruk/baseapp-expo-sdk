@@ -13,6 +13,7 @@ export const updateWallet = (wallet: IWallet, payload: IWalletAddress) => {
             address: payload.address,
             currencies: payload.currencies,
             blockchain_key: payload.blockchain_key,
+            state: payload.state,
         };
 
         depositAddresses = [...(wallet.deposit_addresses || []), newDepositAddress];
@@ -23,6 +24,7 @@ export const updateWallet = (wallet: IWallet, payload: IWalletAddress) => {
                     address: payload.address,
                     currencies: payload.currencies,
                     blockchain_key: payload.blockchain_key,
+                    state: payload.state,
                 };
 
                 if (payload.state) {
@@ -43,6 +45,7 @@ export const updateWallet = (wallet: IWallet, payload: IWalletAddress) => {
                 address: payload.address,
                 currencies: payload.currencies,
                 blockchain_key: payload.blockchain_key,
+                state: payload.state || "",
             },
         ];
     }
@@ -75,6 +78,5 @@ export const updateWalletBalanceWS = (wallet: IWallet, updatedAccounts: IAccount
         });
     }
 
-    console.log("new", newWallet);
     return newWallet;
 };

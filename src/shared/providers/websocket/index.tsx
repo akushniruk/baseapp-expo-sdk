@@ -22,15 +22,12 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
     useEffect(() => {
         const userLoggedIn = !!profile?.uid;
-
-        if (!socketUrl) {
+        if (!socketUrl || profile) {
             const streams = getStreams(userLoggedIn, selectedMarket);
 
             if (streams.length) {
                 setSocketUrl(generateSocketURI(userLoggedIn, streams));
             }
-
-            console.log(streams);
         }
     }, [profile, selectedMarket, socketUrl]);
 
@@ -98,7 +95,6 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
                         return;
                     case "balances":
-                        console.log("balances");
                         dispatch(updateAccountsBalance(payload[routingKey]));
                         dispatch(updateWalletBalance(payload[routingKey]));
 
@@ -106,6 +102,7 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
                     // private
                     case "deposit_address":
+                        console.log("address", payload[routingKey]);
                         dispatch(setWalletAddress(payload[routingKey]));
 
                         return;
