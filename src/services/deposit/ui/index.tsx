@@ -112,6 +112,21 @@ export const Deposit: FC = () => {
         );
     };
 
+    const renderDepositAddressPending = () => {
+        if (!depositAddress?.address && depositAddress?.state === "pending") {
+            <Text>Generating deposit address</Text>;
+        }
+
+        return (
+            <Button
+                onPress={createAddress}
+                isLoading={isLoading}
+                title="Generate Address"
+                disabled={!selectedNetwork}
+            />
+        );
+    };
+
     const renderDepositInfo = () => {
         return (
             <View style={styles.depositInfoContainer}>
@@ -127,16 +142,7 @@ export const Deposit: FC = () => {
                         </Text>
                     </View>
                 </View>
-                {depositAddress?.address ? (
-                    renderDepositAddress()
-                ) : (
-                    <Button
-                        onPress={createAddress}
-                        isLoading={isLoading}
-                        title="Generate Address"
-                        disabled={!selectedNetwork}
-                    />
-                )}
+                {depositAddress?.address ? renderDepositAddress() : renderDepositAddressPending()}
                 {renderNetworkSelector()}
                 <View style={styles.minimumDepositContainer}>
                     <Text style={styles.minimumDepositLabel}>Minimum deposit</Text>

@@ -3,16 +3,37 @@ import { Market } from "../../../services/markets/model/type";
 import { saveOrderbookSnapshot, updateOrderbook } from "../../../services/orderbook/model/orderbookSlice";
 import { saveTickers } from "../../../services/tickers/model/tickersSlice";
 import { updateTrades } from "../../../services/trades/model/tradesSlice";
-import { useAppDispatch } from "../redux";
-import { store } from "../redux/model/store";
-import { setWalletAddress } from "../../../services/wallets/model/accountsSlice";
+import { useAppDispatch, useAppSelector } from "../redux";
+import { RootState, store } from "../redux/model/store";
+import { setWalletAddress, updateWalletBalance } from "../../../services/wallets/model/walletSlice";
+import { generateSocketURI, getStreams } from "./helpers";
+import { User } from "../../../services/user";
+import { updateAccountsBalance } from "../../../services/wallets/model/accountsSlice";
 
 const WebSocketContext = createContext(null);
 
 const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
-    const [ws, setWs] = useState<any>(null);
     const dispatch = useAppDispatch();
-    // TODO: define type for message
+
+    const [ws, setWs] = useState<any>(null);
+    const [socketUrl, setSocketUrl] = useState<string | null>(null);
+    const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
+    const selectedMarket: Market | undefined = useAppSelector((state: RootState) => state.markets.currentMarket);
+
+    useEffect(() => {
+        const userLoggedIn = !!profile?.uid;
+
+        if (!socketUrl) {
+            const streams = getStreams(userLoggedIn, selectedMarket);
+
+            if (streams.length) {
+                setSocketUrl(generateSocketURI(userLoggedIn, streams));
+            }
+
+            console.log(streams);
+        }
+    }, [profile, selectedMarket, socketUrl]);
+
     const handleOnMessage = (message: any) => {
         const currentMarket: Market | undefined = store.getState().markets.currentMarket;
         const previousSequence = store.getState().orderbook.sequence;
@@ -77,8 +98,9 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
                         return;
                     case "balances":
-                        // TODO
-                        // dispatch(updateWalletsDataByRanger({ ws: true, balances: event }));
+                        console.log("balances");
+                        dispatch(updateAccountsBalance(payload[routingKey]));
+                        dispatch(updateWalletBalance(payload[routingKey]));
 
                         return;
 
@@ -97,37 +119,35 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
     useEffect(() => {
         // TODO: add support for private
-        const newWs = new WebSocket(
-            `${
-                process.env.REACT_APP_WS_API || "wsw://https://aurora-master.uat.opendax.app"
-            }/api/v2/ranger/public?stream=global.tickers`
-        );
+        if (socketUrl) {
+            const newWs = new WebSocket(socketUrl);
 
-        newWs.onopen = () => {
-            console.log("WebSocket connection opened");
-            setWs(newWs);
-        };
+            newWs.onopen = () => {
+                console.log("WebSocket connection opened");
+                setWs(newWs);
+            };
 
-        newWs.onclose = () => {
-            console.log("WebSocket connection closed");
-            setWs(null);
-        };
+            newWs.onclose = () => {
+                console.log("WebSocket connection closed");
+                setWs(null);
+            };
 
-        newWs.onerror = (error) => {
-            // console.log(`WebSocket error: ${error}`);
-        };
+            newWs.onerror = (error) => {
+                // console.log(`WebSocket error: ${error}`);
+            };
 
-        newWs.onmessage = (message) => {
-            // console.log(`Received message: ${message.data}`);
-            handleOnMessage(message);
-        };
+            newWs.onmessage = (message) => {
+                // console.log(`Received message: ${message.data}`);
+                handleOnMessage(message);
+            };
 
-        return () => {
-            if (newWs.readyState === WebSocket.OPEN) {
-                newWs.close();
-            }
-        };
-    }, []);
+            return () => {
+                if (newWs.readyState === WebSocket.OPEN) {
+                    newWs.close();
+                }
+            };
+        }
+    }, [socketUrl]);
 
     return <WebSocketContext.Provider value={ws}>{children}</WebSocketContext.Provider>;
 };

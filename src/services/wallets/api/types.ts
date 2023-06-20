@@ -50,3 +50,7 @@ export interface IAccount {
     locked?: string;
     deposit_addresses?: IWalletAddress[];
 }
+
+export interface IAccountWS {
+    [key: string]: [string, string, string];
+}

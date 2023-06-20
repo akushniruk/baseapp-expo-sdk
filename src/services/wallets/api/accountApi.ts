@@ -1,6 +1,7 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import { setAccounts, setWalletAddress } from "../model/accountsSlice";
+import { setAccounts } from "../model/accountsSlice";
+import { setWalletAddress } from "../model/walletSlice";
 import { IAccount, IWalletAddress } from "./types";
 
 // TODO: add type for error
