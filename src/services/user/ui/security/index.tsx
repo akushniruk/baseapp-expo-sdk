@@ -10,11 +10,11 @@ import { RootState } from "../../../../shared/providers/redux/model/store";
 import { Modal } from "../../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { useToggle2FAMutation } from "../../api/twoFactorAuth";
-import { setUpdateProfileOTP } from "../../model/userSlice";
+import { setProfile, setUpdateProfileOTP } from "../../model/userSlice";
 import { useUserMeQuery } from "../../api/user";
 
 export const Security: FC = () => {
-    useUserMeQuery();
+    const { data } = useUserMeQuery();
 
     const [toggle2FA, { isLoading, isSuccess }] = useToggle2FAMutation();
 
@@ -46,11 +46,19 @@ export const Security: FC = () => {
     }, [otp]);
 
     useEffect(() => {
-        dispatch(setUpdateProfileOTP(false));
+        if (data) {
+            dispatch(setProfile(data));
+        }
+    }, [data]);
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(setUpdateProfileOTP(false));
+        }
     }, [isSuccess]);
 
     return (
-        <View style={{ height: "100%" }}>
+        <View style={{ height: "100%", paddingHorizontal: 12 }}>
             <Pressable onPress={handleActiveOtp} style={styles.block}>
                 <Text style={styles.blockTitle}>Two-Factor Authentication (2FA)</Text>
                 <Switch

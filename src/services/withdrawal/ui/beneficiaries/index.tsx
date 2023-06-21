@@ -66,10 +66,10 @@ export const Beneficiaries: FC = () => {
     }, [wallet]);
 
     useEffect(() => {
-        if (isResendPinSuccess) {
-            linkTo("/ConfirmBeneficiary");
+        if (isDeleteSuccess && wallet?.currency) {
+            getBeneficiaries({ currency: wallet.currency.toLowerCase() });
         }
-    }, [isResendPinSuccess]);
+    }, [isDeleteSuccess, wallet]);
 
     const handleRedirect = () => {
         if (wallet?.type === "coin") {
@@ -89,6 +89,7 @@ export const Beneficiaries: FC = () => {
         if (beneficiary.state === "pending") {
             rensendPinBeneficiary({ id: beneficiary.id });
             dispatch(setBeneficiary(beneficiary));
+            linkTo("/ConfirmBeneficiary");
         } else {
             dispatch(setBeneficiary(beneficiary));
             linkTo("/Withdrawal");
@@ -209,7 +210,12 @@ export const Beneficiaries: FC = () => {
     return (
         <View>
             <View style={styles.container}>{Array.from(uniqueBlockchainKeys).map(renderUniqueBlockchainKeys)}</View>
-            <Modal snapPoints={["80%"]} bottomSheetRef={bottomSheetRef} isOpen={isModalOpen} setIsOpen={setIsModalOpen}>
+            <Modal
+                snapPoints={["40%", "60%"]}
+                bottomSheetRef={bottomSheetRef}
+                isOpen={isModalOpen}
+                setIsOpen={setIsModalOpen}
+            >
                 <View style={styles.modalContainer}>
                     <Text style={styles.label}>Enter 2fa code from the Google Authenticator app</Text>
                     <OTPInput code={otp} setCode={setOtp} maximumLength={6} emptyInputSymbol="*" />

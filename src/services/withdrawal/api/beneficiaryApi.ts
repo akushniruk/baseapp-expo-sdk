@@ -1,6 +1,6 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import { setBeneficiaryList, setCreatedBeneficiary } from "../model/beneficiarySlice";
+import { addBeneficiary, setBeneficiaryList, updateBeneficiary } from "../model/beneficiarySlice";
 import { IBeneficiary } from "./types";
 
 export type CreateBeneficiaryRequest = {
@@ -55,7 +55,7 @@ export const beneficiaryApi = api.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
-                    dispatch(setCreatedBeneficiary(response.data));
+                    dispatch(addBeneficiary(response.data));
                     dispatch(
                         dispatchAlert({
                             type: "success",
@@ -74,7 +74,7 @@ export const beneficiaryApi = api.injectEndpoints({
                 }
             },
         }),
-        activateBeneficiary: build.mutation<IBeneficiary[], { id: string | number; pin: string }>({
+        activateBeneficiary: build.mutation<IBeneficiary, { id: string | number; pin: string }>({
             query(data) {
                 return {
                     url: `api/v2/peatio//account/beneficiaries/${data.id}/activate`,
@@ -84,13 +84,8 @@ export const beneficiaryApi = api.injectEndpoints({
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-                    dispatch(
-                        dispatchAlert({
-                            type: "success",
-                            messageType: "success",
-                            messageText: "success.beneficiaries.activated",
-                        })
-                    );
+                    const response = await queryFulfilled;
+                    dispatch(updateBeneficiary(response.data));
                 } catch (error: any) {
                     dispatch(
                         dispatchAlert({
@@ -102,7 +97,7 @@ export const beneficiaryApi = api.injectEndpoints({
                 }
             },
         }),
-        deleteBeneficiary: build.mutation<IBeneficiary[], { id: string | number; otp: string }>({
+        deleteBeneficiary: build.mutation<IBeneficiary, { id: string | number; otp: string }>({
             query(data) {
                 return {
                     url: `api/v2/peatio/account/beneficiaries/${data.id}`,
@@ -112,13 +107,17 @@ export const beneficiaryApi = api.injectEndpoints({
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-                    dispatch(
-                        dispatchAlert({
-                            type: "success",
-                            messageType: "success",
-                            messageText: "success.beneficiaries.deleted",
-                        })
-                    );
+                    const response = await queryFulfilled;
+
+                    if (response?.data) {
+                        dispatch(
+                            dispatchAlert({
+                                type: "success",
+                                messageType: "success",
+                                messageText: "success.beneficiaries.deleted",
+                            })
+                        );
+                    }
                 } catch (error: any) {
                     dispatch(
                         dispatchAlert({
@@ -130,7 +129,7 @@ export const beneficiaryApi = api.injectEndpoints({
                 }
             },
         }),
-        resendPinBeneficiary: build.mutation<IBeneficiary[], { id: string | number }>({
+        resendPinBeneficiary: build.mutation<IBeneficiary, { id: string | number }>({
             query(data) {
                 return {
                     url: `api/v2/peatio/account/beneficiaries/${data.id}/resend_pin`,
