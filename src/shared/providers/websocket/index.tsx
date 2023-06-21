@@ -115,17 +115,14 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     };
 
     useEffect(() => {
-        // TODO: add support for private
         if (socketUrl) {
             const newWs = new WebSocket(socketUrl);
 
             newWs.onopen = () => {
-                console.log("WebSocket connection opened");
                 setWs(newWs);
             };
 
             newWs.onclose = () => {
-                console.log("WebSocket connection closed");
                 setWs(null);
             };
 

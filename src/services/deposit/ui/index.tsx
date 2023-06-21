@@ -113,16 +113,12 @@ export const Deposit: FC = () => {
     };
 
     const renderDepositAddressPending = () => {
-        if (!depositAddress?.address && depositAddress?.state === "pending") {
-            return <Text>Generating deposit address</Text>;
-        }
-
         return (
             <Button
                 onPress={createAddress}
-                isLoading={isLoading}
+                isLoading={isLoading || (!depositAddress?.address && depositAddress?.state === "pending")}
                 title="Generate Address"
-                disabled={!selectedNetwork}
+                disabled={!selectedNetwork || (!depositAddress?.address && depositAddress?.state === "pending")}
             />
         );
     };
