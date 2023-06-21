@@ -86,7 +86,7 @@ export const Receipt: FC<IReceiptProps> = ({
                 </Text>
             </View>
             <View style={styles.otpInputContainer}>
-                <Text>Enter 2fa code from the Google Authenticator app</Text>
+                <Text style={styles.otpInputContainerText}>Enter 2fa code from the Google Authenticator app</Text>
                 <OTPInput code={otp} setCode={setOtp} maximumLength={6} />
             </View>
             <View style={styles.buttonContainer}></View>

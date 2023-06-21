@@ -77,6 +77,7 @@ try {
 
 const getStories = () => {
   return {
+    "./src/shared/ui/activate2FA/stories/Activate2FA.stories.tsx": require("../src/shared/ui/activate2FA/stories/Activate2FA.stories.tsx"),
     "./src/shared/ui/alerts/ui/stories/AlertComponent.stories.tsx": require("../src/shared/ui/alerts/ui/stories/AlertComponent.stories.tsx"),
     "./src/shared/ui/button/stories/Button.stories.tsx": require("../src/shared/ui/button/stories/Button.stories.tsx"),
     "./src/shared/ui/copyField/stories/CopyField.stories.tsx": require("../src/shared/ui/copyField/stories/CopyField.stories.tsx"),
@@ -89,7 +90,6 @@ const getStories = () => {
     "./src/shared/ui/themeSwitcher/stories/ThemeSwitcher.stories.tsx": require("../src/shared/ui/themeSwitcher/stories/ThemeSwitcher.stories.tsx"),
     "./src/services/accountActivity/stories/AccountActivity.stories.tsx": require("../src/services/accountActivity/stories/AccountActivity.stories.tsx"),
     "./src/services/apiKeys/stories/ApiKeys2FAModal.stories.tsx": require("../src/services/apiKeys/stories/ApiKeys2FAModal.stories.tsx"),
-    "./src/services/apiKeys/stories/ApiKeysActivate2FA.stories.tsx": require("../src/services/apiKeys/stories/ApiKeysActivate2FA.stories.tsx"),
     "./src/services/apiKeys/stories/ApiKeysCreateModal.stories.tsx": require("../src/services/apiKeys/stories/ApiKeysCreateModal.stories.tsx"),
     "./src/services/apiKeys/stories/ApiKeysTable.stories.tsx": require("../src/services/apiKeys/stories/ApiKeysTable.stories.tsx"),
     "./src/services/deposit/stories/Deposit.stories.tsx": require("../src/services/deposit/stories/Deposit.stories.tsx"),
@@ -124,7 +124,6 @@ const getStories = () => {
     "./src/services/withdrawal/stories/WithdrawalHistory.stories.tsx": require("../src/services/withdrawal/stories/WithdrawalHistory.stories.tsx"),
     "./src/services/accountActivity/stories/AccountActivity.stories.tsx": require("../src/services/accountActivity/stories/AccountActivity.stories.tsx"),
     "./src/services/apiKeys/stories/ApiKeys2FAModal.stories.tsx": require("../src/services/apiKeys/stories/ApiKeys2FAModal.stories.tsx"),
-    "./src/services/apiKeys/stories/ApiKeysActivate2FA.stories.tsx": require("../src/services/apiKeys/stories/ApiKeysActivate2FA.stories.tsx"),
     "./src/services/apiKeys/stories/ApiKeysCreateModal.stories.tsx": require("../src/services/apiKeys/stories/ApiKeysCreateModal.stories.tsx"),
     "./src/services/apiKeys/stories/ApiKeysTable.stories.tsx": require("../src/services/apiKeys/stories/ApiKeysTable.stories.tsx"),
     "./src/services/deposit/stories/Deposit.stories.tsx": require("../src/services/deposit/stories/Deposit.stories.tsx"),

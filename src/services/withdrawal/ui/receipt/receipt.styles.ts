@@ -62,6 +62,9 @@ export const receiptStyles = (theme: string) => {
         otpInputContainer: {
             marginTop: 24,
         },
+        otpInputContainerText: {
+            marginBottom: 4,
+        },
         buttonContainer: {},
     });
 };

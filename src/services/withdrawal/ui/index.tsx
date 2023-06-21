@@ -18,6 +18,7 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { Modal } from "../../../shared/ui/modal";
 import { truncateMiddle } from "../../../shared/libs/truncateMiddle";
 import { Receipt } from "./receipt";
+import { Activate2FA } from "../../../shared/ui/activate2FA/ui";
 
 export const Withdrawal: FC = () => {
     const [getBeneficiaries, { isLoading, isSuccess }] = useGetBeneficiariesMutation();
@@ -45,6 +46,10 @@ export const Withdrawal: FC = () => {
         [currencies, wallet]
     );
 
+    const withdrawalAmount = amount
+        ? Number(amount) - (selectedNetwork?.withdraw_fee ? Number(selectedNetwork.withdraw_fee) : 0)
+        : 0;
+
     useEffect(() => {
         if (wallet?.currency) {
             getBeneficiaries({ currency: wallet.currency.toLowerCase() });
@@ -64,7 +69,9 @@ export const Withdrawal: FC = () => {
     }, [beneficiaries]);
 
     const buttonDisabled =
-        !amount || +amount < (selectedNetwork?.min_withdraw_amount ? +selectedNetwork?.min_withdraw_amount : 0);
+        !amount ||
+        +amount < (selectedNetwork?.min_withdraw_amount ? +selectedNetwork?.min_withdraw_amount : 0) ||
+        +amount > +(wallet?.balance ? wallet.balance : 0);
 
     const handleRedirect = (path: string) => {
         if (wallet?.type === "coin") {
@@ -78,6 +85,10 @@ export const Withdrawal: FC = () => {
                 })
             );
         }
+    };
+
+    const handleSetMaxAmount = () => {
+        wallet?.balance && setAmount(wallet.balance);
     };
 
     const renderBeneficiarySelector = () => {
@@ -117,7 +128,7 @@ export const Withdrawal: FC = () => {
                         </Text>
                     </View>
                     <View>
-                        <Text>{selectedNetwork?.protocol}</Text>
+                        <Text>{selectedNetwork?.protocol?.toUpperCase()}</Text>
                     </View>
                 </View>
             </View>
@@ -142,6 +153,14 @@ export const Withdrawal: FC = () => {
         );
     };
 
+    if (profile && !profile?.otp) {
+        return (
+            <View style={styles.container}>
+                <Activate2FA />
+            </View>
+        );
+    }
+
     return (
         <View>
             <View style={styles.container}>
@@ -160,17 +179,14 @@ export const Withdrawal: FC = () => {
                     </View>
 
                     <View style={styles.buttonWrapper}>
-                        <Button title="Max" isLoading={false} />
+                        <Button onPress={handleSetMaxAmount} title="Max" isLoading={false} />
                     </View>
                 </View>
                 <View style={styles.totalContainer}>
                     <View>
                         <Text style={styles.totalLabel}>Receive amount</Text>
                         <Text style={styles.total}>
-                            {amount
-                                ? +amount - (selectedNetwork?.withdraw_fee ? +selectedNetwork?.withdraw_fee : 0)
-                                : 0}{" "}
-                            {wallet?.currency.toUpperCase()}
+                            {withdrawalAmount} {wallet?.currency.toUpperCase()}
                         </Text>
                         <Text style={styles.totalFee}>
                             Fee: {selectedNetwork?.withdraw_fee} {wallet?.currency?.toUpperCase()}

@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
-import { getPalette } from "../../../../shared/libs/getPalette";
+import { getPalette } from "../../../libs/getPalette";
 
-export const apiKeysActivate2FAStyles = (theme: string) => {
+export const activate2FAStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({

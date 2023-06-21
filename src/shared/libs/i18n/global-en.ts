@@ -13,9 +13,16 @@ import { en as resetPasswordEn } from "../../../widgets/iam/authentication/reset
 import { en as verifyEmailFormEn } from "../../../services/iam/authentication/verifyEmailForm";
 import { en as verifyEmailEn } from "../../../widgets/iam/authentication/verifyEmail";
 
+import { en as changePasswordFormEn } from "../../../services/iam/authentication/changePasswordForm";
+
+import { en as accountActivityEn } from "../../../services/accountActivity/libs/i18n/en";
+import { en as apiKeysEn } from "../../../services/apiKeys/libs/i18n/en";
+
 import { en as depositHistoryEn } from "../../../services/deposit/libs/i18n/en";
 import { en as withdrawalHistoryEn } from "../../../services/withdrawal/libs/i18n/en";
 import { en as transferHistoryEn } from "../../../services/transfer/libs/i18n/en";
+
+import { en as active2FAEn } from "../../ui/activate2FA/libs/i18n/en";
 
 const en = {
     ...loginFormEn,
@@ -31,6 +38,10 @@ const en = {
     ...depositHistoryEn,
     ...withdrawalHistoryEn,
     ...transferHistoryEn,
+    ...active2FAEn,
+    ...changePasswordFormEn,
+    ...accountActivityEn,
+    ...apiKeysEn,
 };
 
 export { en };

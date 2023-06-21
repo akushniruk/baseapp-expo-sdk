@@ -13,9 +13,16 @@ import { es as resetPasswordEs } from "../../../widgets/iam/authentication/reset
 import { es as verifyEmailFormEs } from "../../../services/iam/authentication/verifyEmailForm";
 import { es as verifyEmailEs } from "../../../widgets/iam/authentication/verifyEmail";
 
+import { es as changePasswordFormEs } from "../../../services/iam/authentication/changePasswordForm";
+
+import { es as accountActivityEs } from "../../../services/accountActivity/libs/i18n/es";
+import { es as apiKeysEs } from "../../../services/apiKeys/libs/i18n/es";
+
 import { es as depositHistoryEs } from "../../../services/deposit/libs/i18n/es";
 import { es as withdrawalHistoryEs } from "../../../services/withdrawal/libs/i18n/es";
 import { es as transferHistoryEs } from "../../../services/transfer/libs/i18n/es";
+
+import { es as active2FAEs } from "../../ui/activate2FA/libs/i18n/es";
 
 const es = {
     ...loginFormEs,
@@ -31,6 +38,10 @@ const es = {
     ...depositHistoryEs,
     ...withdrawalHistoryEs,
     ...transferHistoryEs,
+    ...active2FAEs,
+    ...changePasswordFormEs,
+    ...accountActivityEs,
+    ...apiKeysEs,
 };
 
 export { es };

@@ -1,7 +1,6 @@
 import React, { FC, useCallback, useState } from "react";
 import { ScrollView, View, RefreshControl, Text } from "react-native";
 import { ApiKeysTable } from "../../../services/apiKeys/ui/apiKeysTable/index";
-import { ApiKeysActivate2FA } from "../../../services/apiKeys/ui/apiKeysActivate2FA/index";
 import { ApiKeys2FAModal } from "../../../services/apiKeys/ui/apiKeys2FAModal/index";
 import { ApiKeysCreateModal } from "../../../services/apiKeys/ui/apiKeysCreateModal/index";
 import { useAppSelector } from "../../../shared";
@@ -12,6 +11,7 @@ import {
     useUpdateApiKeyMutation,
     useDeleteApiKeyMutation,
 } from "../../../services/apiKeys/api/apiKeyApi";
+import { Activate2FA } from "../../../shared/ui/activate2FA/ui";
 
 type ISelectedApiKey = {
     kid: string;
@@ -95,7 +95,7 @@ export const ApiKeysWidget: FC = () => {
     return (
         <View style={{ height: "100%" }}>
             <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-                {!profile?.otp ? <ApiKeysActivate2FA /> : null}
+                {!profile?.otp ? <Activate2FA /> : null}
                 {profile && profile?.otp ? (
                     <ApiKeysTable
                         createRequest={sendCreateRequest}
