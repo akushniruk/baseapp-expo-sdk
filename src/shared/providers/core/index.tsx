@@ -5,6 +5,7 @@ import { ConfigProvider } from "../config";
 import { ReduxProvider } from "../redux/redux";
 import { ThemeProvider } from "../theme";
 import WebSocketProvider from "../websocket";
+import { DismissKeyboard } from "../../ui/dismissKeyboard";
 
 export const CoreProvider: React.FC<{ children?: any }> = ({ children }) => {
     return (
@@ -13,10 +14,12 @@ export const CoreProvider: React.FC<{ children?: any }> = ({ children }) => {
                 <ConfigProvider>
                     <WebSocketProvider>
                         <UserProvider>
-                            <ThemeProvider>
-                                {children}
-                                <Alerts />
-                            </ThemeProvider>
+                            <DismissKeyboard>
+                                <ThemeProvider>
+                                    {children}
+                                    <Alerts />
+                                </ThemeProvider>
+                            </DismissKeyboard>
                         </UserProvider>
                     </WebSocketProvider>
                 </ConfigProvider>

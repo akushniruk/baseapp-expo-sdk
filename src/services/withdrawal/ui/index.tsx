@@ -142,9 +142,6 @@ export const Withdrawal: FC = () => {
         );
     };
 
-    console.log(
-        !amount || +amount < (selectedNetwork?.min_withdraw_amount ? +selectedNetwork?.min_withdraw_amount : 0)
-    );
     return (
         <View>
             <View style={styles.container}>
