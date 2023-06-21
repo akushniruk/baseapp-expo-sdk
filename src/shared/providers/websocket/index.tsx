@@ -23,10 +23,10 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     useEffect(() => {
         const userLoggedIn = !!profile?.uid;
         if (!socketUrl || profile) {
-            const streams = getStreams(userLoggedIn, selectedMarket);
+            const streams = getStreams(false, selectedMarket);
 
             if (streams.length) {
-                setSocketUrl(generateSocketURI(userLoggedIn, streams));
+                setSocketUrl(generateSocketURI(false, streams));
             }
         }
     }, [profile, selectedMarket, socketUrl]);
@@ -60,14 +60,14 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
                 if (orderBookMatchInc) {
                     if (orderBookMatchInc[1] === currentMarket?.id) {
                         if (previousSequence === null) {
-                            console.log("OrderBook increment received before snapshot");
+                            // console.log("OrderBook increment received before snapshot");
 
                             return;
                         }
                         if (previousSequence + 1 !== payload[routingKey].sequence) {
-                            console.log(
-                                `Bad sequence detected in incremental orderbook previous: ${previousSequence}, event: ${payload.sequence}`
-                            );
+                            // console.log(
+                            //     `Bad sequence detected in incremental orderbook previous: ${previousSequence}, event: ${payload.sequence}`
+                            // );
 
                             return;
                         }
@@ -102,12 +102,11 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
                     // private
                     case "deposit_address":
-                        console.log("address", payload[routingKey]);
                         dispatch(setWalletAddress(payload[routingKey]));
 
                         return;
                     default:
-                        console.log(`Unhandled websocket channel: ${routingKey}`);
+                        // console.log(`Unhandled websocket channel: ${routingKey}`);
                         return;
                 }
             }
