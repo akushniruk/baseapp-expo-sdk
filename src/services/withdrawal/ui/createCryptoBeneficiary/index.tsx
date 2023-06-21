@@ -15,6 +15,8 @@ import { createBeneciarySchema, CreateBeneficiaryResolver, CreateBeneficiaryType
 import { createBeneficiaryStyles } from "./createCryptoBeneficiary.styles";
 
 export const CreateCryptoBeneficiary: FC = () => {
+    const [createBeneficiary, { isLoading, isSuccess }] = useCreateBeneficiaryMutation();
+
     const linkTo = useLinkTo();
 
     const { theme } = useThemeContext();
@@ -46,8 +48,6 @@ export const CreateCryptoBeneficiary: FC = () => {
         mode: "onChange",
         resolver: CreateBeneficiaryResolver,
     });
-
-    const [createBeneficiary, { isLoading, isSuccess }] = useCreateBeneficiaryMutation();
 
     useEffect(() => {
         if (isSuccess) {
