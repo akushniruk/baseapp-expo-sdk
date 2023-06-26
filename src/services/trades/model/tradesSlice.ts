@@ -1,17 +1,19 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { sliceArray } from "../../orderbook/libs/sliceArray";
-import { EventTrade, Trade } from "../api/types";
+import { EventTrade, ITradesHistory, Trade } from "../api/types";
 import { convertTradeEventList } from "../libs/convertTradeEvent";
 
 const DEFAULT_STORAGE_LIMIT = 30;
 
 export interface TradeState {
     list: Trade[];
+    historyList: ITradesHistory[];
     loading: boolean;
 }
 
 export const initialTradeState: TradeState = {
     list: [],
+    historyList: [],
     loading: false,
 };
 
@@ -27,7 +29,10 @@ export const trades = createSlice({
 
             state.list = sliceArray([...lastTrades, ...state.list], DEFAULT_STORAGE_LIMIT);
         },
+        historyList(state, action: PayloadAction<ITradesHistory[]>) {
+            state.historyList = action.payload;
+        },
     },
 });
 
-export const { saveTrades, updateTrades } = trades.actions;
+export const { saveTrades, updateTrades, historyList } = trades.actions;

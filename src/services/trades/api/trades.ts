@@ -1,6 +1,6 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
-import { saveTrades } from "../model/tradesSlice";
-import { Trade } from "./types";
+import { historyList, saveTrades } from "../model/tradesSlice";
+import { Trade, ITradesHistory, ITradesHistoryRequest } from "./types";
 // import { dispatchAlert } from "../../../shared/ui/alerts";
 
 export const tradesApi = api.injectEndpoints({
@@ -16,6 +16,31 @@ export const tradesApi = api.injectEndpoints({
                 try {
                     const response = await queryFulfilled;
                     dispatch(saveTrades(response.data));
+                } catch (error: any) {
+                    // TODO: handle errors;
+                    // dispatch(
+                    //     dispatchAlert({
+                    //         type: "error",
+                    //         messageType: "error",
+                    //         messageText: error.error.data.errors[0],
+                    //     })
+                    // );
+                }
+            },
+        }),
+        getUserTradesHistory: build.mutation<ITradesHistory[], ITradesHistoryRequest>({
+            query(data) {
+                const queryParams = `limit=${data.limit}&page=${data.page}&market=${data.market}&type=${data.type}&time_from=${data.time_from}&time_to=${data.time_to}`;
+
+                return {
+                    url: `api/v2/private/peatio/market/trades?${queryParams}`,
+                    method: "GET",
+                };
+            },
+            async onQueryStarted(args, { dispatch, queryFulfilled }) {
+                try {
+                    const response = await queryFulfilled;
+                    dispatch(historyList(response.data));
                 } catch (error: any) {
                     // TODO: handle errors;
                     // dispatch(
