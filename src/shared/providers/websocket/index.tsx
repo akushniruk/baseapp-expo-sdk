@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 import { Market } from "../../../services/markets/model/type";
 import { saveOrderbookSnapshot, updateOrderbook } from "../../../services/orderbook/model/orderbookSlice";
 import { saveTickers } from "../../../services/tickers/model/tickersSlice";
@@ -9,6 +9,8 @@ import { setWalletAddress, updateWalletBalance } from "../../../services/wallets
 import { generateSocketURI, getStreams } from "./helpers";
 import { User } from "../../../services/user";
 import { updateAccountsBalance } from "../../../services/wallets/model/accountsSlice";
+import { IOpenOrder } from "../../../services/order/api/types";
+import { dispatchAlert } from "../../ui/alerts";
 
 const WebSocketContext = createContext(null);
 
@@ -21,6 +23,7 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     const selectedMarket: Market | undefined = useAppSelector((state: RootState) => state.markets.currentMarket);
 
     useEffect(() => {
+        // TODO: rewrite it should't update socketUrl on profile change. We should change message to the server to subscribe/unsubscribe
         const userLoggedIn = !!profile?.uid;
         if (!socketUrl || profile) {
             const streams = getStreams(false, selectedMarket);
@@ -31,8 +34,17 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
         }
     }, [profile, selectedMarket, socketUrl]);
 
+    const updateOpenOrdersState = useCallback((newOrder: IOpenOrder, market?: string) => {
+        if (market && newOrder?.market === market) {
+            // dispatch(userOpenOrdersUpdate(payload));
+        }
+    }, []);
+
     const handleOnMessage = (message: any) => {
+        // TODO: move outside
         const currentMarket: Market | undefined = store.getState().markets.currentMarket;
+        const openOrders: IOpenOrder[] = store.getState().order.openOrders;
+
         const previousSequence = store.getState().orderbook.sequence;
 
         const payload = JSON.parse(message.data);
@@ -94,6 +106,60 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
                         dispatch(saveTickers(payload["global.tickers"]));
 
                         return;
+
+                    // private
+                    case "order":
+                        const newOrder = payload[routingKey];
+
+                        if (newOrder) {
+                            switch (newOrder) {
+                                case "wait":
+                                case "pending":
+                                    const updatedOrder =
+                                        openOrders.length &&
+                                        openOrders.find(
+                                            (order: IOpenOrder) => payload.uuid && newOrder.id === payload.uuid
+                                        );
+
+                                    if (!updatedOrder) {
+                                        dispatch(
+                                            dispatchAlert({
+                                                type: "success",
+                                                messageType: "success",
+                                                messageText: `success.order.created`,
+                                            })
+                                        );
+                                    }
+                                    break;
+                                case "done":
+                                    dispatch(
+                                        dispatchAlert({
+                                            type: "success",
+                                            messageType: "success",
+                                            messageText: `success.order.done`,
+                                        })
+                                    );
+                                    break;
+                                case "reject":
+                                case "execution_reject":
+                                    dispatch(
+                                        dispatchAlert({
+                                            type: "error",
+                                            messageType: "error",
+                                            messageText: `error.order.rejected`,
+                                        })
+                                    );
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+
+                        updateOpenOrdersState(newOrder, currentMarket?.id);
+                        // dispatch(userOrdersHistoryRangerData(event));
+
+                        return;
+
                     case "balances":
                         dispatch(updateAccountsBalance(payload[routingKey]));
                         dispatch(updateWalletBalance(payload[routingKey]));

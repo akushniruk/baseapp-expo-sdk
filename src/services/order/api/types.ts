@@ -2,7 +2,7 @@ export type IOrderStatus = "wait" | "done" | "cancel" | "pending" | "reject" | "
 export type IOrderSide = "buy" | "sell";
 export type IOrderType = "limit" | "market" | "stop_loss" | "stop_limit" | "take_profit" | "take_limit";
 
-export type IOpenOrderHistory = {
+export type IOpenOrder = {
     id: number;
     side: IOrderSide;
     ord_type: IOrderType;

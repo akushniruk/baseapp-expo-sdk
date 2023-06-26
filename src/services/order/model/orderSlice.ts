@@ -1,14 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IOrderHistory, IOpenOrderHistory } from "../api/types";
+import { IOrderHistory, IOpenOrder } from "../api/types";
 
 export interface OrderState {
     historyList: IOrderHistory[];
-    openOrdersList: IOpenOrderHistory[];
+    openOrders: IOpenOrder[];
 }
 
 export const initialOrderState: OrderState = {
     historyList: [],
-    openOrdersList: [],
+    openOrders: [],
 };
 
 export const order = createSlice({
@@ -18,8 +18,8 @@ export const order = createSlice({
         saveHistoryList(state, action: PayloadAction<IOrderHistory[]>) {
             state.historyList = action.payload;
         },
-        saveOpenOrders(state, action: PayloadAction<IOpenOrderHistory[]>) {
-            state.openOrdersList = action.payload;
+        saveOpenOrders(state, action: PayloadAction<IOpenOrder[]>) {
+            state.openOrders = action.payload;
         },
     },
 });

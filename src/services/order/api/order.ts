@@ -1,7 +1,7 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
 import { saveHistoryList, saveOpenOrders } from "../model/orderSlice";
-import { IOpenOrderHistory, IOrderHistory, IOrderHistoryRequest } from "./types";
+import { IOpenOrder, IOrderHistory, IOrderHistoryRequest } from "./types";
 
 export const orderApi = api.injectEndpoints({
     endpoints: (build) => ({
@@ -14,17 +14,7 @@ export const orderApi = api.injectEndpoints({
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-                    const response = await queryFulfilled;
-
-                    if (response) {
-                        dispatch(
-                            dispatchAlert({
-                                type: "success",
-                                messageType: "success",
-                                messageText: "Order created successfully",
-                            })
-                        );
-                    }
+                    await queryFulfilled;
                 } catch (error: any) {
                     dispatch(
                         dispatchAlert({
@@ -101,7 +91,7 @@ export const orderApi = api.injectEndpoints({
                 }
             },
         }),
-        getUserOpenOrders: build.mutation<IOpenOrderHistory[], { market: string }>({
+        getUserOpenOrders: build.mutation<IOpenOrder[], { market: string }>({
             query(data) {
                 return {
                     url: `api/v2/finex/market/orders?state[]=wait&state[]=trigger_wait&market=${data.market}`,
