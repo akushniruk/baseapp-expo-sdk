@@ -29,10 +29,10 @@ export const trades = createSlice({
 
             state.list = sliceArray([...lastTrades, ...state.list], DEFAULT_STORAGE_LIMIT);
         },
-        historyList(state, action: PayloadAction<ITradesHistory[]>) {
+        saveHistoryList(state, action: PayloadAction<ITradesHistory[]>) {
             state.historyList = action.payload;
         },
     },
 });
 
-export const { saveTrades, updateTrades, historyList } = trades.actions;
+export const { saveTrades, updateTrades, saveHistoryList } = trades.actions;

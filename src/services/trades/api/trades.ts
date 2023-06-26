@@ -1,5 +1,5 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
-import { historyList, saveTrades } from "../model/tradesSlice";
+import { saveHistoryList, saveTrades } from "../model/tradesSlice";
 import { Trade, ITradesHistory, ITradesHistoryRequest } from "./types";
 // import { dispatchAlert } from "../../../shared/ui/alerts";
 
@@ -40,7 +40,7 @@ export const tradesApi = api.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
-                    dispatch(historyList(response.data));
+                    dispatch(saveHistoryList(response.data));
                 } catch (error: any) {
                     // TODO: handle errors;
                     // dispatch(
@@ -56,4 +56,4 @@ export const tradesApi = api.injectEndpoints({
     }),
 });
 
-export const { useTradesMutation } = tradesApi;
+export const { useTradesMutation, useGetUserTradesHistoryMutation } = tradesApi;
