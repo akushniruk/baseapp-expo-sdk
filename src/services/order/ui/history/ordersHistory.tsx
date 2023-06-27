@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useEffect, useState } from "react";
 import { OrderHistoryComponent } from ".";
 import { View } from "react-native";
-import { useGetUserOrdersHistoryMutation } from "../../api/order";
+import { useCancelOrderMutation, useGetUserOrdersHistoryMutation } from "../../api/order";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { useAppSelector } from "../../../../shared";
 import { IOrderHistory } from "../../api/types";
@@ -17,8 +17,11 @@ export const OrdersHistory: FC<IOrdersHistoryProps> = ({ limit, type }: IOrdersH
     const [currentPage, setCurrentPage] = useState<number>(1);
 
     const [getOrderHistory, { isLoading, isSuccess }] = useGetUserOrdersHistoryMutation();
+    const [cancelOrder, { isLoading: cancelIsLoading, isSuccess: cancelIsSuccess }] = useCancelOrderMutation();
 
-    const orderHistory: IOrderHistory[] | null = useAppSelector((state: RootState) => state.order.historyList);
+    const orderHistory: IOrderHistory[] | null = useAppSelector((state: RootState) =>
+        type === "all" ? state.order.historyList : state.order.openOrders
+    );
 
     const onRefresh = useCallback(() => {
         getOrderHistory({ page: 1, limit: limit ? limit : DEFAULT_LIMIT, historyType: type });
@@ -38,8 +41,8 @@ export const OrdersHistory: FC<IOrdersHistoryProps> = ({ limit, type }: IOrdersH
         setCurrentPage(currentPage - 1);
     };
 
-    const handleDelete = (uuid: string) => {
-        console.log("delete", uuid);
+    const handleDelete = (id: number) => {
+        cancelOrder({ id });
     };
 
     return (

@@ -1,7 +1,7 @@
-import { Keyboard, Pressable } from "react-native";
+import { Keyboard, TouchableWithoutFeedback, View } from "react-native";
 
 export const DismissKeyboard: React.FC<{ children?: any }> = ({ children }) => (
-    <Pressable style={{ height: "100%" }} onPress={() => Keyboard.dismiss()}>
-        {children}
-    </Pressable>
+    <TouchableWithoutFeedback style={{ height: "100%" }} onPress={() => Keyboard.dismiss()}>
+        <View>{children}</View>
+    </TouchableWithoutFeedback>
 );

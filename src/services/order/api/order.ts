@@ -1,6 +1,6 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import { saveHistoryList } from "../model/orderSlice";
+import { saveHistoryList, saveOpenOrders } from "../model/orderSlice";
 import { IOrderHistory, IOrderHistoryRequest } from "./types";
 
 const queryBuild = <T extends Record<string, unknown>>(params: T): string => {
@@ -132,10 +132,14 @@ export const orderApi = api.injectEndpoints({
                     market: data.market,
                 };
 
-                const query =
-                    data.historyType === "open"
-                        ? `${queryBuild(queryParams)}&state=wait&state=trigger_wait`
-                        : `${queryBuild(queryParams)}&state=${data.state}`;
+                let stateParam: string;
+                if (data.historyType === "open") {
+                    stateParam = "&state=wait&state=trigger_wait";
+                } else {
+                    stateParam = data.state ? `&state=${data.state}` : "";
+                }
+
+                const query = `${queryBuild(queryParams)}${stateParam}`;
 
                 return {
                     url: `api/v2/finex/market/orders?${query}`,
@@ -145,7 +149,12 @@ export const orderApi = api.injectEndpoints({
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
-                    dispatch(saveHistoryList(response.data));
+
+                    if (args.historyType === "open") {
+                        dispatch(saveOpenOrders(response.data));
+                    } else {
+                        dispatch(saveHistoryList(response.data));
+                    }
                 } catch (error: any) {
                     dispatch(
                         dispatchAlert({

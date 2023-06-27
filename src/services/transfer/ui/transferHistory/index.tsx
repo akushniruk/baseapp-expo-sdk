@@ -104,29 +104,31 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency, limit }: 
             style={styles.container}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
-            <View style={styles.containerTable}>{transferHistory?.map(renderTable)}</View>
-            {!limit && transferHistory?.length > DEFAULT_LIMIT ? (
-                <View style={styles.containerPagination}>
-                    {/* TODO: move to pagination component  */}
-                    <Pressable
-                        style={styles.paginationButton}
-                        onPress={handleFetchPrevPage}
-                        disabled={currentPage === 1}
-                    >
-                        <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
-                    </Pressable>
-                    <Text style={styles.paginationCounter}>
-                        {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
-                    </Text>
-                    <Pressable
-                        style={styles.paginationButton}
-                        onPress={handleFetchNextPage}
-                        disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
-                    >
-                        <ArrowRightIcon color={total && currentPage * DEFAULT_LIMIT >= +total ? "" : "#000"} />
-                    </Pressable>
-                </View>
-            ) : null}
+            <View onStartShouldSetResponder={() => true}>
+                <View style={styles.containerTable}>{transferHistory?.map(renderTable)}</View>
+                {!limit && transferHistory?.length > DEFAULT_LIMIT ? (
+                    <View style={styles.containerPagination}>
+                        {/* TODO: move to pagination component  */}
+                        <Pressable
+                            style={styles.paginationButton}
+                            onPress={handleFetchPrevPage}
+                            disabled={currentPage === 1}
+                        >
+                            <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
+                        </Pressable>
+                        <Text style={styles.paginationCounter}>
+                            {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
+                        </Text>
+                        <Pressable
+                            style={styles.paginationButton}
+                            onPress={handleFetchNextPage}
+                            disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
+                        >
+                            <ArrowRightIcon color={total && currentPage * DEFAULT_LIMIT >= +total ? "" : "#000"} />
+                        </Pressable>
+                    </View>
+                ) : null}
+            </View>
         </ScrollView>
     );
 };

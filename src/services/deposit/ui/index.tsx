@@ -177,7 +177,9 @@ export const Deposit: FC = () => {
     return (
         <View style={styles.container}>
             <ScrollView style={styles.depositContainer}>
-                {selectedNetwork?.status === "disabled" ? renderNetworkSuspended() : renderDepositInfo()}
+                <View onStartShouldSetResponder={() => true}>
+                    {selectedNetwork?.status === "disabled" ? renderNetworkSuspended() : renderDepositInfo()}
+                </View>
             </ScrollView>
             <Modal
                 snapPoints={["60%", "80%"]}

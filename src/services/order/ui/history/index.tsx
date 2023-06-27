@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from "react";
 import { View, ScrollView, Text, Pressable, RefreshControl } from "react-native";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
-import { formatDate } from "../../../../shared/libs/formatDate";
+import { convertTimestampToDate } from "../../../../shared/libs/formatDate";
 import { ArrowRightIcon } from "../../../../assets/profile/arrowRight";
 import { ArrowLeftIcon } from "../../../../assets/profile";
 import { IOrderHistory } from "../../api/types";
@@ -17,7 +17,7 @@ interface IOrderHistoryComponentProps {
     isLoading: boolean;
     currentPage: number;
     limit?: number;
-    handleDeleteRequest: (uuid: string) => void;
+    handleDeleteRequest: (id: number) => void;
     onRefresh: () => void;
     nextPage: () => void;
     prevPage: () => void;
@@ -51,7 +51,7 @@ export const OrderHistoryComponent: FC<IOrderHistoryComponentProps> = ({
             <>
                 <Text>lastPrice</Text>
                 &nbsp;{getTriggerSign(order.ord_type, order.side)}&nbsp;&nbsp;
-                <span>{order.trigger_price}</span>
+                <Text>{order.trigger_price}</Text>
             </>
         ) : (
             "-"
@@ -71,11 +71,11 @@ export const OrderHistoryComponent: FC<IOrderHistoryComponentProps> = ({
 
         return (
             <View style={styles.table}>
-                <View style={styles.tableRow}>
+                <View style={styles.tableFirstRow}>
                     <Text style={[styles.tableTextAction, { color: statusColor }]}>
                         {order.side} / {order.ord_type}
                     </Text>
-                    <Pressable style={styles.cancelIcon} onPress={() => handleDeleteRequest(order.uuid)}>
+                    <Pressable style={styles.cancelIcon} onPress={() => handleDeleteRequest(order.id)}>
                         <CancelIcon />
                     </Pressable>
                 </View>
@@ -83,12 +83,12 @@ export const OrderHistoryComponent: FC<IOrderHistoryComponentProps> = ({
                     <Text style={styles.tableText}>{order.market}</Text>
                 </View>
                 <View style={styles.tableSplittedRow}>
-                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 50 }]}>
                         <Text style={styles.tableText}>{order.price}</Text>
                         <Text style={styles.tableSubText}>Price</Text>
                     </View>
                     <View style={styles.tableRow}>
-                        <Text style={styles.tableText}>{order.origin_volume}</Text>
+                        <Text style={[styles.tableText, { marginRight: 60, width: 50 }]}>{order.origin_volume}</Text>
                         <Text style={styles.tableSubText}>Amount</Text>
                     </View>
                     <View style={styles.tableRow}>
@@ -97,22 +97,24 @@ export const OrderHistoryComponent: FC<IOrderHistoryComponentProps> = ({
                     </View>
                 </View>
                 <View style={styles.tableSplittedRow}>
-                    <View style={[styles.tableRow, { marginRight: 60, width: 120 }]}>
+                    <View style={[styles.tableRow, { marginRight: 60, width: 50 }]}>
                         <Text style={styles.tableText}>{getTrigger(order)}</Text>
                         <Text style={styles.tableSubText}>Trigger </Text>
                     </View>
                     <View style={styles.tableRow}>
-                        <Text style={[styles.tableText, { color: statusColor }]}>{filled}</Text>
+                        <Text style={[styles.tableText, { marginRight: 60, width: 50 }, { color: statusColor }]}>
+                            {filled}
+                        </Text>
                         <Text style={styles.tableSubText}>Filled</Text>
                     </View>
                     <View style={styles.tableRow}>
                         <Text style={[styles.tableText, { color: statusColor }]}>{order.state}</Text>
-                        <Text style={styles.tableSubText}>Filled</Text>
+                        <Text style={styles.tableSubText}>Status</Text>
                     </View>
                 </View>
                 <View style={styles.tableRowSeparatorWrapper}>
                     <View style={styles.tableDateWrapper}>
-                        <Text style={styles.tableDate}>{formatDate(String(order.created_at))}</Text>
+                        <Text style={styles.tableDate}>{convertTimestampToDate(order.created_at)}</Text>
                         <View style={styles.tableRowSeparator} />
                     </View>
                 </View>
@@ -134,25 +136,27 @@ export const OrderHistoryComponent: FC<IOrderHistoryComponentProps> = ({
             style={styles.container}
             refreshControl={<RefreshControl refreshing={isLoading} onRefresh={onRefresh} />}
         >
-            <View style={styles.containerTable}>{data?.map(renderTable)}</View>
-            {!limit && data?.length > DEFAULT_LIMIT ? (
-                <View style={styles.containerPagination}>
-                    {/* TODO: move to pagination component  */}
-                    <Pressable style={styles.paginationButton} onPress={prevPage} disabled={currentPage === 1}>
-                        <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
-                    </Pressable>
-                    <Text style={styles.paginationCounter}>
-                        {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
-                    </Text>
-                    <Pressable
-                        style={styles.paginationButton}
-                        onPress={nextPage}
-                        // disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
-                    >
-                        <ArrowRightIcon color="#000" />
-                    </Pressable>
-                </View>
-            ) : null}
+            <View onStartShouldSetResponder={() => true}>
+                <View style={styles.containerTable}>{data?.map(renderTable)}</View>
+                {!limit && data?.length > DEFAULT_LIMIT ? (
+                    <View style={styles.containerPagination}>
+                        {/* TODO: move to pagination component  */}
+                        <Pressable style={styles.paginationButton} onPress={prevPage} disabled={currentPage === 1}>
+                            <ArrowLeftIcon color={currentPage === 1 ? "" : "#000"} />
+                        </Pressable>
+                        <Text style={styles.paginationCounter}>
+                            {(currentPage - 1) * DEFAULT_LIMIT + 1} - {currentPage * DEFAULT_LIMIT}
+                        </Text>
+                        <Pressable
+                            style={styles.paginationButton}
+                            onPress={nextPage}
+                            // disabled={total ? currentPage * DEFAULT_LIMIT >= +total : false}
+                        >
+                            <ArrowRightIcon color="#000" />
+                        </Pressable>
+                    </View>
+                ) : null}
+            </View>
         </ScrollView>
     );
 };

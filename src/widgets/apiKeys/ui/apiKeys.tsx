@@ -95,14 +95,16 @@ export const ApiKeysWidget: FC = () => {
     return (
         <View style={{ height: "100%" }}>
             <ScrollView refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}>
-                {!profile?.otp ? <Activate2FA /> : null}
-                {profile && profile?.otp ? (
-                    <ApiKeysTable
-                        createRequest={sendCreateRequest}
-                        updateRequest={sendUpdateRequest}
-                        deleteRequest={sendDeleteRequest}
-                    />
-                ) : null}
+                <View onStartShouldSetResponder={() => true}>
+                    {!profile?.otp ? <Activate2FA /> : null}
+                    {profile && profile?.otp ? (
+                        <ApiKeysTable
+                            createRequest={sendCreateRequest}
+                            updateRequest={sendUpdateRequest}
+                            deleteRequest={sendDeleteRequest}
+                        />
+                    ) : null}
+                </View>
             </ScrollView>
             <ApiKeys2FAModal
                 isOpen={isOpen2FAModal}

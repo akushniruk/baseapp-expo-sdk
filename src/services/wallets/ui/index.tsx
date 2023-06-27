@@ -198,76 +198,82 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
     // TODO: REFACTOR
     return (
         <ScrollView style={styles.scrollViewContainer}>
-            <View style={styles.headerContainer}>
-                <View>
-                    <Text style={styles.totalBalance}>
-                        Total balance: {estimatedValuePrimary} {VALUATION_PRIMARY_CURRENCY}
-                    </Text>
-                    <Text style={styles.secondaryTotalBalance}>
-                        ≈{estimatedValueSecondary} {VALUATION_SECONDARY_CURRENCY}
-                    </Text>
-                </View>
+            <View onStartShouldSetResponder={() => true}>
+                <View style={styles.headerContainer}>
+                    <View>
+                        <Text style={styles.totalBalance}>
+                            Total balance: {estimatedValuePrimary} {VALUATION_PRIMARY_CURRENCY}
+                        </Text>
+                        <Text style={styles.secondaryTotalBalance}>
+                            ≈{estimatedValueSecondary} {VALUATION_SECONDARY_CURRENCY}
+                        </Text>
+                    </View>
 
-                <Pressable onPress={() => linkTo("/History")} style={styles.historyIcon}>
-                    <HistoryIcon />
-                </Pressable>
-            </View>
-            <View style={styles.buttonsContainer}>
-                <View style={styles.buttonContainer}>
-                    <Button title="Deposit" onPress={() => linkTo("/DepositCurrencyList")} isLoading={false} />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Button title="Withdrawal" onPress={() => linkTo("/WithdrawalCurrencyList")} isLoading={false} />
-                </View>
-                <View style={styles.buttonContainer}>
-                    <Button title="Transfer" onPress={() => linkTo("/Transfer")} isLoading={false} />
-                </View>
-            </View>
-            <View style={styles.searchContainer}>
-                <Text style={styles.title}>Balances</Text>
-                <View style={styles.searchWrapper}>
-                    <Pressable
-                        style={({ pressed }) => [
-                            styles.searchIcon,
-                            {
-                                backgroundColor: pressed
-                                    ? styles.searchIconPressed.backgroundColor
-                                    : isOpenSearch
-                                    ? styles.searchIconActive.backgroundColor
-                                    : styles.searchIcon.backgroundColor,
-                            },
-                        ]}
-                        onPress={() => setIsOpenSearch(!isOpenSearch)}
-                    >
-                        <SearchIcon width={10} />
+                    <Pressable onPress={() => linkTo("/History")} style={styles.historyIcon}>
+                        <HistoryIcon />
                     </Pressable>
-                    {isOpenSearch ? (
-                        <View style={styles.inputWrapper}>
-                            <Input
-                                onChangeText={handleSearchByNameAndCode}
-                                value={search}
-                                placeholder={"Search"}
-                                label={""}
-                                testID={"search"}
-                                keyboardType="default"
-                            />
-                        </View>
-                    ) : null}
                 </View>
+                <View style={styles.buttonsContainer}>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Deposit" onPress={() => linkTo("/DepositCurrencyList")} isLoading={false} />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button
+                            title="Withdrawal"
+                            onPress={() => linkTo("/WithdrawalCurrencyList")}
+                            isLoading={false}
+                        />
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <Button title="Transfer" onPress={() => linkTo("/Transfer")} isLoading={false} />
+                    </View>
+                </View>
+                <View style={styles.searchContainer}>
+                    <Text style={styles.title}>Balances</Text>
+                    <View style={styles.searchWrapper}>
+                        <Pressable
+                            style={({ pressed }) => [
+                                styles.searchIcon,
+                                {
+                                    backgroundColor: pressed
+                                        ? styles.searchIconPressed.backgroundColor
+                                        : isOpenSearch
+                                        ? styles.searchIconActive.backgroundColor
+                                        : styles.searchIcon.backgroundColor,
+                                },
+                            ]}
+                            onPress={() => setIsOpenSearch(!isOpenSearch)}
+                        >
+                            <SearchIcon width={10} />
+                        </Pressable>
+                        {isOpenSearch ? (
+                            <View style={styles.inputWrapper}>
+                                <Input
+                                    onChangeText={handleSearchByNameAndCode}
+                                    value={search}
+                                    placeholder={"Search"}
+                                    label={""}
+                                    testID={"search"}
+                                    keyboardType="default"
+                                />
+                            </View>
+                        ) : null}
+                    </View>
+                </View>
+                <BouncyCheckbox
+                    size={24}
+                    style={{ marginBottom: 6 }}
+                    fillColor={styles.checkbox.color}
+                    unfillColor={styles.checkbox.backgroundColor}
+                    text="Hide 0 balances"
+                    textStyle={styles.checkboxText}
+                    innerIconStyle={{ borderWidth: 1 }}
+                    onPress={(isChecked: boolean) => {
+                        setHideZeroBalance(isChecked);
+                    }}
+                />
+                {wallets?.length ? renderWallets() : returnNoData()}
             </View>
-            <BouncyCheckbox
-                size={24}
-                style={{ marginBottom: 6 }}
-                fillColor={styles.checkbox.color}
-                unfillColor={styles.checkbox.backgroundColor}
-                text="Hide 0 balances"
-                textStyle={styles.checkboxText}
-                innerIconStyle={{ borderWidth: 1 }}
-                onPress={(isChecked: boolean) => {
-                    setHideZeroBalance(isChecked);
-                }}
-            />
-            {wallets?.length ? renderWallets() : returnNoData()}
         </ScrollView>
     );
 };

@@ -7,9 +7,17 @@ export const historyStyles = (theme: string) => {
     return StyleSheet.create({
         container: {
             height: "100%",
+            paddingHorizontal: 12,
         },
         containerTable: {},
         table: {},
+        tableFirstRow: {
+            marginTop: 12,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+        },
         tableRow: {
             marginTop: 12,
             flexDirection: "column",
@@ -52,10 +60,10 @@ export const historyStyles = (theme: string) => {
         tableRowSeparator: {
             position: "absolute",
             backgroundColor: palette.Controls["divider-color"][10].value,
-            width: "65%",
+            width: "50%",
             height: 1,
             top: 12,
-            left: 150,
+            left: 170,
         },
         containerPagination: {
             marginTop: 24,

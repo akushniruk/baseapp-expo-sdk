@@ -1,10 +1,10 @@
 import React, { FC, useMemo, useState } from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { SceneRendererProps } from "react-native-tab-view";
 import { IRoute, TabPanel } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
-import { historyStyles } from "../../../../services/order/ui/history/history.styles";
 import { OrdersHistory } from "../../../../services/order/ui/history/ordersHistory";
+import { historyStyles } from "./history.styles";
 
 const renderScene = (props: SceneRendererProps & { route: any }) => {
     switch (props.route.key) {
@@ -12,6 +12,8 @@ const renderScene = (props: SceneRendererProps & { route: any }) => {
             return <OrdersHistory type="open" />;
         case "all":
             return <OrdersHistory type="all" />;
+        case "trades":
+            return <Text>Trades</Text>;
         default:
             return null;
     }
@@ -25,6 +27,7 @@ export const OrdersHistoryWidget: FC = () => {
     const [routes] = useState<IRoute[]>([
         { key: "open", title: "Open" },
         { key: "all", title: "All" },
+        { key: "trades", title: "Trades" },
     ]);
 
     return (

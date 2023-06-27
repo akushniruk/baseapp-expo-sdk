@@ -75,7 +75,7 @@ export const OTPInput: FC<OTPInputProps> = ({
     );
 
     return (
-        <ScrollView style={styles.otpInputContainer}>
+        <View style={styles.otpInputContainer}>
             <View style={styles.boxAndPastContainer}>
                 <Pressable style={styles.splitOTPBoxesContainer} onPress={handleOnPress}>
                     {boxArray.map(boxDigit)}
@@ -91,6 +91,6 @@ export const OTPInput: FC<OTPInputProps> = ({
                 keyboardType="number-pad"
                 onBlur={handleOnBlur}
             />
-        </ScrollView>
+        </View>
     );
 };

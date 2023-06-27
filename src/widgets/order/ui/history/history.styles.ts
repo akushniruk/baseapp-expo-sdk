@@ -5,6 +5,8 @@ export const historyStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
-        container: {},
+        container: {
+            height: "100%",
+        },
     });
 };
