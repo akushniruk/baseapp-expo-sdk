@@ -1,7 +1,16 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
-import { saveHistoryList, saveOpenOrders } from "../model/orderSlice";
-import { IOpenOrder, IOrderHistory, IOrderHistoryRequest } from "./types";
+import { saveHistoryList } from "../model/orderSlice";
+import { IOrderHistory, IOrderHistoryRequest } from "./types";
+
+const queryBuild = <T extends Record<string, unknown>>(params: T): string => {
+    const queryParameters = Object.entries(params)
+        .filter(([_, value]) => value !== undefined) // Exclude undefined values
+        .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
+        .join("&");
+
+    return queryParameters;
+};
 
 export const orderApi = api.injectEndpoints({
     endpoints: (build) => ({
@@ -91,17 +100,17 @@ export const orderApi = api.injectEndpoints({
                 }
             },
         }),
-        getUserOpenOrders: build.mutation<IOpenOrder[], { market: string }>({
+        getUserOpenOrders: build.mutation<IOrderHistory[], { market: string }>({
             query(data) {
                 return {
-                    url: `api/v2/finex/market/orders?state[]=wait&state[]=trigger_wait&market=${data.market}`,
+                    url: `api/v2/finex/market/orders?state[]=wait&state[]=trigger_wait`,
                     method: "GET",
                 };
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
                     const response = await queryFulfilled;
-                    dispatch(saveOpenOrders(response.data));
+                    dispatch(saveHistoryList(response.data));
                 } catch (error: any) {
                     dispatch(
                         dispatchAlert({
@@ -115,10 +124,21 @@ export const orderApi = api.injectEndpoints({
         }),
         getUserOrdersHistory: build.mutation<IOrderHistory[], IOrderHistoryRequest>({
             query(data) {
-                const queryParams = `page=${data.page}&limit=${data.limit}&state[]=wait&state[]=trigger_wait&ord_type=limit&type=${data.type}&market=${data.market}&time_from=${data.time_from}&time_to=${data.time_to}`;
+                const queryParams = {
+                    page: data.page,
+                    limit: data.limit,
+                    type: data.type,
+                    ord_type: data.ord_type,
+                    market: data.market,
+                };
+
+                const query =
+                    data.historyType === "open"
+                        ? `${queryBuild(queryParams)}&state=wait&state=trigger_wait`
+                        : `${queryBuild(queryParams)}&state=${data.state}`;
 
                 return {
-                    url: `api/v2/finex/market/orders?${queryParams}`,
+                    url: `api/v2/finex/market/orders?${query}`,
                     method: "GET",
                 };
             },

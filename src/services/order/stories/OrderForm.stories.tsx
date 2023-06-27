@@ -4,7 +4,7 @@ import { OrderForm } from "../ui/form";
 import { CoreProvider } from "../../..";
 
 const MyButtonMeta: ComponentMeta<typeof OrderForm> = {
-    title: "Services/OrderForm",
+    title: "Services/Order/Order",
     component: OrderForm,
 };
 

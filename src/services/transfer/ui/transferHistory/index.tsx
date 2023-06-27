@@ -40,11 +40,11 @@ export const TransferHistory: FC<ITransferHistoryProps> = ({ currency, limit }: 
 
     const handleFetchNextPage = () => {
         // TODO: handle last page
-        getTransferHistory({ page: currentPage + 1, limit: DEFAULT_LIMIT, currency: currency });
+        getTransferHistory({ page: currentPage + 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
         setCurrentPage(currentPage + 1);
     };
     const handleFetchPrevPage = () => {
-        getTransferHistory({ page: currentPage - 1, limit: DEFAULT_LIMIT, currency: currency });
+        getTransferHistory({ page: currentPage - 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
         setCurrentPage(currentPage - 1);
     };
 

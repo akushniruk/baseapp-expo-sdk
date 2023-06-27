@@ -41,11 +41,11 @@ export const DepositHistory: FC<IDepositHistoryProps> = ({ currency, limit }: ID
 
     const handleFetchNextPage = () => {
         // TODO: handle last page
-        getDepositHistory({ page: currentPage + 1, limit: DEFAULT_LIMIT, currency: currency });
+        getDepositHistory({ page: currentPage + 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
         setCurrentPage(currentPage + 1);
     };
     const handleFetchPrevPage = () => {
-        getDepositHistory({ page: currentPage - 1, limit: DEFAULT_LIMIT, currency: currency });
+        getDepositHistory({ page: currentPage - 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
         setCurrentPage(currentPage - 1);
     };
 

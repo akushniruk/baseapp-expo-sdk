@@ -2,40 +2,34 @@ export type IOrderStatus = "wait" | "done" | "cancel" | "pending" | "reject" | "
 export type IOrderSide = "buy" | "sell";
 export type IOrderType = "limit" | "market" | "stop_loss" | "stop_limit" | "take_profit" | "take_limit";
 
-export type IOpenOrder = {
+export type IOrderHistory = {
     id: number;
+    uuid: string;
+    uid: string;
     side: IOrderSide;
     ord_type: IOrderType;
-    price: number;
-    avg_price: number;
-    state: IOrderStatus;
     market: string;
-    created_at: string; // 2018-11-29T16:54:46+01:00,
-    triggered_at: string; // 2018-11-29T16:54:46+01:00,
     origin_volume: string;
     remaining_volume: string;
     executed_volume: string;
+    price: string;
+    avg_price: string;
     trigger_price: string;
-    trades_count: string;
-};
-
-export type IOrderHistory = {
-    id: number;
-    price: number;
-    amount: number;
-    total: number;
-    market: string;
-    created_at: number; // convert to date
-    taker_type: IOrderSide;
+    state: string;
+    trades_count: number;
+    maker_fee: string;
+    taker_fee: string;
+    created_at: number;
 };
 
 export type IOrderHistoryRequest = {
     page: number;
     limit: number;
+    historyType: "open" | "all";
     type?: IOrderSide;
+    ord_type?: IOrderType;
     market?: string;
-    time_from?: number;
-    time_to?: number;
+    state?: string;
 };
 
 // Use ZOD;

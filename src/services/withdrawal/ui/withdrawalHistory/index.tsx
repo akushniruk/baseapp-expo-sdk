@@ -41,11 +41,11 @@ export const WithdrawalHistory: FC<IWithdrawalHistoryProps> = ({ currency, limit
 
     const handleFetchNextPage = () => {
         // TODO: handle last page
-        getWithdrawalHistory({ page: currentPage + 1, limit: DEFAULT_LIMIT, currency: currency });
+        getWithdrawalHistory({ page: currentPage + 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
         setCurrentPage(currentPage + 1);
     };
     const handleFetchPrevPage = () => {
-        getWithdrawalHistory({ page: currentPage - 1, limit: DEFAULT_LIMIT, currency: currency });
+        getWithdrawalHistory({ page: currentPage - 1, limit: limit ? limit : DEFAULT_LIMIT, currency: currency });
         setCurrentPage(currentPage - 1);
     };
 
