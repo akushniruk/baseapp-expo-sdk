@@ -2,15 +2,7 @@ import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
 import { saveHistoryList, saveOpenOrders } from "../model/orderSlice";
 import { IOrderHistory, IOrderHistoryRequest } from "./types";
-
-const queryBuild = <T extends Record<string, unknown>>(params: T): string => {
-    const queryParameters = Object.entries(params)
-        .filter(([_, value]) => value !== undefined) // Exclude undefined values
-        .map(([key, value]) => `${key}=${encodeURIComponent(String(value))}`)
-        .join("&");
-
-    return queryParameters;
-};
+import { queryBuild } from "../../../shared/libs/queryBuild";
 
 export const orderApi = api.injectEndpoints({
     endpoints: (build) => ({

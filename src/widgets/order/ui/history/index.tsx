@@ -5,6 +5,7 @@ import { IRoute, TabPanel } from "../../../../shared";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { OrdersHistory } from "../../../../services/order/ui/history/ordersHistory";
 import { historyStyles } from "./history.styles";
+import { TradesHistory } from "../../../../services/trades/ui/history/tradesHistory";
 
 const renderScene = (props: SceneRendererProps & { route: any }) => {
     switch (props.route.key) {
@@ -13,7 +14,7 @@ const renderScene = (props: SceneRendererProps & { route: any }) => {
         case "all":
             return <OrdersHistory type="all" />;
         case "trades":
-            return <Text>Trades</Text>;
+            return <TradesHistory />;
         default:
             return null;
     }

@@ -1,6 +1,7 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { saveHistoryList, saveTrades } from "../model/tradesSlice";
 import { Trade, ITradesHistory, ITradesHistoryRequest } from "./types";
+import { queryBuild } from "../../../shared/libs/queryBuild";
 // import { dispatchAlert } from "../../../shared/ui/alerts";
 
 export const tradesApi = api.injectEndpoints({
@@ -30,10 +31,8 @@ export const tradesApi = api.injectEndpoints({
         }),
         getUserTradesHistory: build.mutation<ITradesHistory[], ITradesHistoryRequest>({
             query(data) {
-                const queryParams = `limit=${data.limit}&page=${data.page}&market=${data.market}&type=${data.type}&time_from=${data.time_from}&time_to=${data.time_to}`;
-
                 return {
-                    url: `api/v2/private/peatio/market/trades?${queryParams}`,
+                    url: `api/v2/peatio/market/trades?${queryBuild(data)}`,
                     method: "GET",
                 };
             },

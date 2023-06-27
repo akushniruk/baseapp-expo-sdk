@@ -18,12 +18,18 @@ export type EventTrade = {
 
 export type ITradesHistory = {
     id: number;
-    price: number;
-    amount: number;
-    total: number;
+    price: string;
+    amount: string;
+    total: string;
+    fee_currency: string;
+    fee: string;
+    fee_amount: string;
     market: string;
-    created_at: number; // convert to date
-    taker_type: "buy" | "sell";
+    market_type: string;
+    created_at: string;
+    taker_type: string;
+    side: string;
+    orderId: number;
 };
 
 export type ITradesHistoryRequest = {
