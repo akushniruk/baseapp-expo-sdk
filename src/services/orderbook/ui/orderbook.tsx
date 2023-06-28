@@ -21,7 +21,6 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
     const styles = useMemo(() => orderBookTableStyles(theme), [theme]);
     const currentMarket = useAppSelector((state: RootState) => state.markets.currentMarket);
 
-    // FIX: ME double subscription
     useEffect(() => {
         if (ws && currentMarket) {
             ws.send(
@@ -44,14 +43,12 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
         };
     }, [ws, currentMarket]);
 
-    const resultData = mapValues(maxVolume, orderBookEntry);
+    const resultData = useMemo(() => mapValues(maxVolume, orderBookEntry), [maxVolume, orderBookEntry]);
 
     const getRowWidth = useCallback(
         (index: number) => {
             if (resultData && resultData.length) {
-                return {
-                    width: `${resultData[index].value}%`,
-                };
+                return resultData[index].value;
             }
         },
         [resultData]
@@ -59,36 +56,32 @@ export const OrderBookTable: FC<IOrderBookTable> = ({ data, maxVolume, orderBook
 
     const renderSide = useCallback(
         (item: any, index: number) => {
-            const width = getRowWidth(index)?.width;
+            const width = getRowWidth(index);
 
             if (side === "ask") {
                 return (
-                    <View style={styles.row}>
+                    <View style={styles.row} key={index}>
                         <Text style={[styles.rowText, styles.rowTextPriceAsks]}>
                             {format(item[0], currentMarket?.price_precision || 2)}
                         </Text>
                         <Text style={styles.rowText}>{format(item[1], currentMarket?.amount_precision || 2)}</Text>
-                        <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorAsks, { width: width }]} />
+                        <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorAsks, { width }]} />
                     </View>
                 );
             }
 
             return (
-                <View style={styles.row}>
+                <View style={styles.row} key={index}>
                     <Text style={styles.rowText}>{format(item[1], currentMarket?.amount_precision || 2)}</Text>
                     <Text style={[styles.rowText, styles.rowTextPriceBids]}>
                         {format(item[0], currentMarket?.price_precision || 2)}
                     </Text>
-                    <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorBids, { width: width }]} />
+                    <View style={[styles.rowBackgroundColor, styles.rowBackgroundColorBids, { width }]} />
                 </View>
             );
         },
-        [getRowWidth]
+        [getRowWidth, currentMarket]
     );
 
-    return (
-        <>
-            <View>{data.map(renderSide)}</View>
-        </>
-    );
+    return <>{data.map(renderSide)}</>;
 };

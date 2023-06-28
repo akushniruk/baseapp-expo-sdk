@@ -1,7 +1,7 @@
 import { Market } from "../../../services/markets/model/type";
 
 export const baseUrl = (withAuth: boolean): string =>
-    `wss://aurora-master.uat.opendax.app/api/v2/ranger/${withAuth ? "private" : "public"}`;
+    `ws://aurora-master.uat.opendax.app/api/v2/ranger/${withAuth ? "private" : "public"}`;
 
 export const generateSocketURI = (withAuth: boolean, s: string[]): string =>
     `${baseUrl(withAuth)}/?stream=${s.sort().join("&stream=")}`;

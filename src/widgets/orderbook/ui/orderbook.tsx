@@ -15,21 +15,33 @@ export const OrderbookWidget: FC = () => {
     const asks = useAppSelector((state: RootState) => state.orderbook.asks);
     const bids = useAppSelector((state: RootState) => state.orderbook.bids);
 
-    const sortedBids = sortBids(bids);
-    const sortedAsks = sortAsks(asks);
-    const orderBookEntryAsks = accumulateVolume(sortedAsks);
-    const orderBookEntryBids = accumulateVolume(sortedBids);
-    const maxVolume = calculateMaxVolume(sortedBids, sortedAsks);
+    const sortedBids = useMemo(() => sortBids(bids), [bids]);
+    const sortedAsks = useMemo(() => sortAsks(asks), [asks]);
+    const orderBookEntryAsks = useMemo(() => accumulateVolume(sortedAsks), [sortedAsks]);
+    const orderBookEntryBids = useMemo(() => accumulateVolume(sortedBids), [sortedBids]);
+    const maxVolume = useMemo(() => calculateMaxVolume(sortedBids, sortedAsks), [sortedBids, sortedAsks]);
 
     return (
         <View style={styles.container}>
             <View style={styles.orderbookTableWrapper}>
                 <Text>Bid</Text>
-                <OrderBookTable side="bid" data={bids} orderBookEntry={orderBookEntryBids} maxVolume={maxVolume} />
+                <OrderBookTable
+                    key="bids"
+                    side="bid"
+                    data={bids}
+                    orderBookEntry={orderBookEntryBids}
+                    maxVolume={maxVolume}
+                />
             </View>
             <View style={styles.orderbookTableWrapper}>
                 <Text>Ask</Text>
-                <OrderBookTable side="ask" data={asks} orderBookEntry={orderBookEntryAsks} maxVolume={maxVolume} />
+                <OrderBookTable
+                    key="asks"
+                    side="ask"
+                    data={asks}
+                    orderBookEntry={orderBookEntryAsks}
+                    maxVolume={maxVolume}
+                />
             </View>
         </View>
     );

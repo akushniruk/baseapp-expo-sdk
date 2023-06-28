@@ -24,42 +24,74 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
     const { theme } = useThemeContext();
     const styles = useMemo(() => marketsV1Styles(theme), [theme]);
 
-    const [topMarkets, setTopMarkets] = useState<Market[]>([]);
-
     const markets: Market[] = useAppSelector((state: RootState) => state.markets.markets);
-
     const tickers: Tickers | null = useAppSelector((state: RootState) => state.tickers.tickers);
 
-    useEffect(() => {
+    const topMarkets = useMemo(() => {
         if (limit && markets?.length > limit) {
-            setTopMarkets(markets.slice(0, limit));
+            return markets.slice(0, limit);
         } else {
-            setTopMarkets(markets);
+            return markets;
         }
-    }, [markets]);
+    }, [markets, limit]);
 
-    const renderTableHead = (headText: string, index: number) => {
-        return (
-            <Text key={headText} style={[{ width: index === 0 ? 120 : "auto" }, styles.headContainerText]}>
-                {headText}
-            </Text>
-        );
-    };
-
-    const handleUpdateCurrentMarket = (market: Market) => {
-        dispatch(setCurrentMarket(market));
-        navigation?.navigate("Trading", { id: market.id, base_unit: market.base_unit, quote_unit: market.quote_unit });
-    };
+    const handleUpdateCurrentMarket = useCallback(
+        (market: Market) => {
+            dispatch(setCurrentMarket(market));
+            navigation?.navigate("Trading", {
+                id: market.id,
+                base_unit: market.base_unit,
+                quote_unit: market.quote_unit,
+            });
+        },
+        [dispatch, navigation]
+    );
 
     const renderMarketRow = useCallback(
         (market: Market) => {
             const tickerForMarketById: Ticker | null = tickers ? tickers[market.id] : null;
-            const isPositive = /\+/.test(tickerForMarketById?.price_change_percent || "");
-            const priceChange = `${tickerForMarketById?.price_change_percent?.charAt(0)}${format(
-                tickerForMarketById?.price_change_percent?.slice(1, -1),
-                DEFAULT_PERCENTAGE_PRECISION,
-                ","
-            )}`;
+
+            const formatPriceChange = (priceChange: string) => {
+                const isPositive = /\+/.test(priceChange);
+                const formattedPriceChange = `${priceChange.charAt(0)}${format(
+                    priceChange.slice(1, -1),
+                    DEFAULT_PERCENTAGE_PRECISION,
+                    ","
+                )}`;
+                return (
+                    <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
+                        <Text style={styles.labelText}>{formattedPriceChange}%</Text>
+                    </View>
+                );
+            };
+
+            const formatVolume = (volume: string) => {
+                return format(Number(volume), FIXED_VOL_PRECISION, ",");
+            };
+
+            const renderTickerInfo = () => {
+                if (tickerForMarketById) {
+                    const { price_change_percent, last, volume } = tickerForMarketById;
+                    // const priceChange = `${price_change_percent.charAt(0)}${format(
+                    //     price_change_percent.slice(1, -1),
+                    //     DEFAULT_PERCENTAGE_PRECISION,
+                    //     ","
+                    // )}`;
+                    // const formattedLastPrice = `${SYMBOL}${format(Number(last), market.price_precision, ",")}`;
+                    const formattedVolume = formatVolume(volume);
+
+                    return (
+                        <View style={{ width: 120 }}>
+                            <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
+                                {market.base_unit?.toUpperCase()}/{market.quote_unit?.toUpperCase()}
+                            </Text>
+                            <Text style={styles.bodyContainerText}>Vol {formattedVolume}</Text>
+                        </View>
+                    );
+                }
+
+                return null;
+            };
 
             return (
                 <Pressable
@@ -67,36 +99,31 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
                     style={styles.row}
                     onPress={() => handleUpdateCurrentMarket(market)}
                 >
-                    <View style={{ width: 120 }}>
-                        <Text style={[styles.bodyContainerText, styles.rowMarketText]}>
-                            {market.base_unit?.toUpperCase()}/{market.quote_unit?.toUpperCase()}
-                        </Text>
-                        <Text style={styles.bodyContainerText}>
-                            Vol{" "}
-                            {tickerForMarketById
-                                ? format(Number(tickerForMarketById.volume), FIXED_VOL_PRECISION, ",")
-                                : "-"}
-                        </Text>
-                    </View>
-
+                    {renderTickerInfo()}
                     <Text style={[styles.bodyContainerText, styles.lastPrice]}>
                         {tickerForMarketById
                             ? `${SYMBOL}${format(Number(tickerForMarketById.last), market.price_precision, ",")}`
                             : "-"}
                     </Text>
-                    <View style={isPositive ? styles.priceChangePositive : styles.priceChangeNegative}>
-                        <Text style={styles.labelText}>{tickerForMarketById ? `${priceChange}%` : "-"}</Text>
-                    </View>
+                    {tickerForMarketById ? formatPriceChange(tickerForMarketById.price_change_percent) : null}
                 </Pressable>
             );
         },
-        [tickers, topMarkets]
+        [tickers, styles, handleUpdateCurrentMarket, SYMBOL, DEFAULT_PERCENTAGE_PRECISION, FIXED_VOL_PRECISION]
     );
 
-    const getItemCount = (_data: unknown) => topMarkets?.length;
+    const getItemCount = () => topMarkets.length;
 
     const getItem = (_data: unknown, index: number) => {
         return topMarkets[index];
+    };
+
+    const renderTableHead = (headText: string, index: number) => {
+        return (
+            <Text key={headText} style={[{ width: index === 0 ? 120 : "auto" }, styles.headContainerText]}>
+                {headText}
+            </Text>
+        );
     };
 
     return (

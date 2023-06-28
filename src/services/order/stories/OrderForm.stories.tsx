@@ -14,7 +14,7 @@ type OrderFormStory = ComponentStory<typeof OrderForm>;
 
 export const Basic: OrderFormStory = (args) => (
     <CoreProvider>
-        <OrderForm />
+        <OrderForm orderType="limit" setIsOpenOrderTypeSelector={() => console.log("open")} />
         <MarketsV1 limit={5} />
     </CoreProvider>
 );

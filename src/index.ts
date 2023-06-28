@@ -46,6 +46,7 @@ import { OrdersHistory } from "./services/order/ui/history/ordersHistory";
 
 // Widgets - Order
 import { OrdersHistoryWidget } from "./widgets/order/ui/history";
+import { OrderWidget } from "./widgets/order/ui";
 
 // Widgets - Orderbook
 import { OrderbookWidget } from "./widgets/orderbook/ui/orderbook";
@@ -132,6 +133,7 @@ export {
     OrderForm,
     OrdersHistoryWidget,
     OrdersHistory,
+    OrderWidget,
     withAuth,
 };
 
