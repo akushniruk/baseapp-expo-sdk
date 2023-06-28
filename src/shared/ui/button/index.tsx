@@ -12,7 +12,7 @@ export interface ButtonProps extends PressableProps {
 
 export const Button: FC<ButtonProps> = ({ title, isLoading, testID, disabled, customStyles, onPress }: ButtonProps) => {
     const { theme } = useThemeContext();
-    const styles = useMemo(() => buttonStyles(theme, customStyles), [theme]);
+    const styles = useMemo(() => buttonStyles(theme, customStyles), [theme, customStyles]);
 
     return (
         <Pressable

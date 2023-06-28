@@ -17,10 +17,6 @@ import { Modal } from "../../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { useCreateOrderMutation } from "../../api/order";
 
-interface IOrderForm {
-    marketId: string;
-}
-
 interface IOrderFormValues {
     amount: string;
     total: string;
@@ -56,7 +52,7 @@ const ORDER_TYPES = [
     },
 ];
 
-export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
+export const OrderForm: FC = () => {
     useGetAccountsQuery();
     const [createOrder, { isLoading, isSuccess }] = useCreateOrderMutation();
 
@@ -157,31 +153,35 @@ export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
         switch (orderType) {
             case "limit":
                 return (
-                    <InputV2
-                        value={newOrder?.price || ""}
-                        onChangeText={(text: string) => handleStateChange("price", text)}
-                        placeholder="Price"
-                        label="price"
-                        symbol={accountForQuote?.currency?.toUpperCase() || ""}
-                    />
+                    <View style={styles.inputWrapper}>
+                        <InputV2
+                            value={newOrder?.price || ""}
+                            onChangeText={(text: string) => handleStateChange("price", text)}
+                            placeholder="Price"
+                            label="price"
+                            symbol={accountForQuote?.currency?.toUpperCase() || ""}
+                        />
+                    </View>
                 );
             case "stop_loss":
             case "take_profit":
                 return (
-                    <InputV2
-                        value={newOrder?.trigger_price || ""}
-                        onChangeText={(text: string) => handleStateChange("trigger_price", text)}
-                        placeholder="trigger_price"
-                        label={orderType === "stop_loss" ? "Stop price" : "Take price"}
-                        symbol={accountForQuote?.currency?.toUpperCase() || ""}
-                        keyboardType="numeric"
-                    />
+                    <View style={styles.inputWrapper}>
+                        <InputV2
+                            value={newOrder?.trigger_price || ""}
+                            onChangeText={(text: string) => handleStateChange("trigger_price", text)}
+                            placeholder="trigger_price"
+                            label={orderType === "stop_loss" ? "Stop price" : "Take price"}
+                            symbol={accountForQuote?.currency?.toUpperCase() || ""}
+                            keyboardType="numeric"
+                        />
+                    </View>
                 );
             case "stop_limit":
             case "take_limit":
                 return (
                     <View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <InputV2
                                 value={newOrder?.trigger_price || ""}
                                 onChangeText={(text: string) => handleStateChange("trigger_price", text)}
@@ -191,7 +191,7 @@ export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
                                 keyboardType="numeric"
                             />
                         </View>
-                        <View>
+                        <View style={styles.inputWrapper}>
                             <InputV2
                                 value={newOrder?.price || ""}
                                 onChangeText={(text: string) => handleStateChange("price", text)}
@@ -225,13 +225,15 @@ export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
                 }
 
                 return (
-                    <InputV2
-                        value={`≈${newOrder?.price}`}
-                        editable={false}
-                        placeholder="Price"
-                        label="price"
-                        symbol={accountForQuote?.currency?.toUpperCase() || ""}
-                    />
+                    <View style={styles.inputWrapper}>
+                        <InputV2
+                            value={`≈${newOrder?.price}`}
+                            editable={false}
+                            placeholder="Price"
+                            label="price"
+                            symbol={accountForQuote?.currency?.toUpperCase() || ""}
+                        />
+                    </View>
                 );
             default:
                 return null;
@@ -298,6 +300,22 @@ export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
         }
     };
 
+    const customButtonBidStyles = {
+        button: { ...styles.button },
+        active: {
+            ...styles.buttonBidActive,
+        },
+        title: { ...styles.buttonTitle },
+    };
+
+    const customButtonAskStyles = {
+        button: { ...styles.button },
+        active: {
+            ...styles.buttonAskActive,
+        },
+        title: { ...styles.buttonTitle },
+    };
+
     if (!currentMarket) {
         return <Text>Please, select market</Text>;
     }
@@ -310,37 +328,59 @@ export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
         <View>
             <View style={styles.formContainer}>
                 <View style={styles.headerContainer}>
-                    <Pressable style={styles.orderTypeButton}>
-                        <Text>Spot</Text>
+                    <Pressable style={styles.marketTypeButton}>
+                        <Text style={styles.marketTypeButtonText}>Spot</Text>
                     </Pressable>
                     <View style={styles.typeButtons}>
-                        <Pressable style={styles.buttonBuy} onPress={() => setSide("buy")}>
-                            <Text>Buy</Text>
+                        <Pressable
+                            style={[styles.buttonBuy, side === "buy" && styles.buttonBuyActive]}
+                            onPress={() => setSide("buy")}
+                        >
+                            <Text
+                                style={{
+                                    color: side === "buy" ? styles.buttonBuyActive.color : styles.buttonBuy.color,
+                                }}
+                            >
+                                Buy
+                            </Text>
                         </Pressable>
-                        <Pressable style={styles.buttonSell} onPress={() => setSide("sell")}>
-                            <Text>Sell</Text>
+                        <Pressable
+                            style={[styles.buttonSell, side === "sell" && styles.buttonSellActive]}
+                            onPress={() => setSide("sell")}
+                        >
+                            <Text
+                                style={{
+                                    color: side === "sell" ? styles.buttonSellActive.color : styles.buttonSell.color,
+                                }}
+                            >
+                                Sell
+                            </Text>
                         </Pressable>
                     </View>
                 </View>
                 <View style={styles.bodyContainer}>
                     {renderOrderTypeSelector()}
                     {renderPriceInputByType()}
-                    <View>
+                    <View style={styles.bestPrices}>
                         <View>
-                            <Text>↑{bids.length ? bids[0][0] : 0}</Text>
+                            <Text style={styles.bestPriceBid}>↑{bids.length ? bids[0][0] : 0}</Text>
                         </View>
                         <View>
-                            <Text>↓{asks.length ? asks[0][0] : 0}</Text>
+                            <Text style={styles.bestPriceAsk}>↓{asks.length ? asks[0][0] : 0}</Text>
                         </View>
                     </View>
-                    <InputV2
-                        value={newOrder?.amount || ""}
-                        onChangeText={(text: string) => handleStateChange("amount", text)}
-                        keyboardType="numeric"
-                        placeholder="Amount"
-                        label="amount"
-                        symbol={accountForBase?.currency?.toUpperCase() || ""}
-                    />
+                    <View style={styles.inputWrapper}>
+                        <InputV2
+                            value={newOrder?.amount || ""}
+                            onChangeText={(text: string) => handleStateChange("amount", text)}
+                            keyboardType="numeric"
+                            placeholder="Amount"
+                            label="amount"
+                            symbol={accountForBase?.currency?.toUpperCase() || ""}
+                        />
+                    </View>
+
+                    <View></View>
                     {/* <InputV2
                         value={newOrder?.total || ""}
                         onChangeText={(text: string) => handleStateChange("total", text)}
@@ -349,27 +389,34 @@ export const OrderForm: FC<IOrderForm> = ({ marketId }: IOrderForm) => {
                         label="total"
                         symbol={accountForQuote?.currency?.toUpperCase() || ""}
                     /> */}
-                    <View>
-                        <Text>Total</Text>
-                        <Text>
-                            {getTotal()}{" "}
-                            {side === "buy" ? accountForQuote?.currency?.toUpperCase() : accountForBase?.currency}
-                        </Text>
+                    <View style={styles.totalContainer}>
+                        <Text style={styles.totalText}>Total</Text>
+                        <View style={styles.containerValues}>
+                            <Text style={styles.valueText}>{getTotal()} </Text>
+                            <Text style={styles.codeText}>
+                                {side === "buy"
+                                    ? accountForQuote?.currency?.toUpperCase()
+                                    : accountForBase?.currency?.toUpperCase()}
+                            </Text>
+                        </View>
                     </View>
-                    <View>
-                        <Text>Available</Text>
-                        <View>
-                            <Text>
+                    <View style={styles.availableContainer}>
+                        <Text style={styles.availableText}>Available</Text>
+                        <View style={styles.containerValues}>
+                            <Text style={styles.valueAvailableText}>
                                 {accountForBase && accountForQuote
                                     ? getAvailable(side === "buy" ? accountForQuote : accountForBase)
-                                    : 0}
+                                    : 0}{" "}
                             </Text>
-                            <Text>
-                                {side === "buy" ? accountForQuote?.currency?.toUpperCase() : accountForBase?.currency}
+                            <Text style={styles.codeAvailableText}>
+                                {side === "buy"
+                                    ? accountForQuote?.currency?.toUpperCase()
+                                    : accountForBase?.currency?.toUpperCase()}
                             </Text>
                         </View>
                     </View>
                     <Button
+                        customStyles={side === "buy" ? customButtonBidStyles : customButtonAskStyles}
                         onPress={handleCreateOrder}
                         title={side === "buy" ? "Buy" : "Sell"}
                         isLoading={isLoading}

@@ -14,7 +14,7 @@ type OrderFormStory = ComponentStory<typeof OrderForm>;
 
 export const Basic: OrderFormStory = (args) => (
     <CoreProvider>
-        <OrderForm marketId="btczar" />
+        <OrderForm />
         <MarketsV1 limit={5} />
     </CoreProvider>
 );

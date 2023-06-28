@@ -1,10 +1,10 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
-    "version": "0.0.113",
+    "version": "0.0.116",
     "main": "lib/commonjs/index.js",
     "license": "MIT",
     "scripts": {
-        "start": "expo start",
+        "start": "expo start --offline",
         "android": "expo run:android",
         "ios": "expo run:ios",
         "web": "expo start --web",
@@ -20,8 +20,7 @@
         "expo-prebuild": "npx expo prebuild --skip-dependency-update react-native,react"
     },
     "dependencies": {
-        "@gorhom/bottom-sheet": "4.4.6",
-        "react-native-bouncy-checkbox": "3.0.7",
+        "@gorhom/bottom-sheet": "4.4.7",
         "@hookform/resolvers": "2.9.11",
         "@react-native-community/datetimepicker": "6.5.2",
         "@react-native-community/slider": "4.2.4",
@@ -35,6 +34,7 @@
         "expo-status-bar": "~1.4.2",
         "i18n-js": "3.8",
         "react-hook-form": "7.43.1",
+        "react-native-bouncy-checkbox": "3.0.7",
         "react-native-gesture-handler": "2.9.0",
         "react-native-pager-view": "6.2.0",
         "react-native-qrcode-svg": "6.2.0",
@@ -46,7 +46,8 @@
         "react-native-web": "^0.18.10",
         "react-redux": "8.0.5",
         "redux": "4.2.1",
-        "zod": "3.20.6"
+        "zod": "3.20.6",
+        "expo-constants": "~14.2.1"
     },
     "devDependencies": {
         "@babel/core": "^7.19.3",

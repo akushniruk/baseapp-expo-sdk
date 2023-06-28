@@ -1,4 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
+import { Platform } from "react-native";
+import Constants from "expo-constants";
 import { Market } from "../../../services/markets/model/type";
 import { saveOrderbookSnapshot, updateOrderbook } from "../../../services/orderbook/model/orderbookSlice";
 import { saveTickers } from "../../../services/tickers/model/tickersSlice";
@@ -9,7 +11,7 @@ import { setWalletAddress, updateWalletBalance } from "../../../services/wallets
 import { generateSocketURI, getStreams } from "./helpers";
 import { User } from "../../../services/user";
 import { updateAccountsBalance } from "../../../services/wallets/model/accountsSlice";
-import { IOpenOrder } from "../../../services/order/api/types";
+import { IOrderHistory } from "../../../services/order/api/types";
 import { dispatchAlert } from "../../ui/alerts";
 
 const WebSocketContext = createContext(null);
@@ -23,18 +25,18 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     const selectedMarket: Market | undefined = useAppSelector((state: RootState) => state.markets.currentMarket);
 
     useEffect(() => {
-        // TODO: rewrite it should't update socketUrl on profile change. We should change message to the server to subscribe/unsubscribe
+        // TODO: rewrite it should't update socketUrl on profile change. We should send messages to the server to subscribe/unsubscribe
         const userLoggedIn = !!profile?.uid;
         if (!socketUrl || profile) {
-            const streams = getStreams(false, selectedMarket);
+            const streams = getStreams(userLoggedIn, selectedMarket);
 
             if (streams.length) {
-                setSocketUrl(generateSocketURI(false, streams));
+                setSocketUrl(generateSocketURI(userLoggedIn, streams));
             }
         }
     }, [profile, selectedMarket, socketUrl]);
 
-    const updateOpenOrdersState = useCallback((newOrder: IOpenOrder, market?: string) => {
+    const updateOpenOrdersState = useCallback((newOrder: IOrderHistory, market?: string) => {
         if (market && newOrder?.market === market) {
             // dispatch(userOpenOrdersUpdate(payload));
         }
@@ -43,7 +45,7 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     const handleOnMessage = (message: any) => {
         // TODO: move outside
         const currentMarket: Market | undefined = store.getState().markets.currentMarket;
-        const openOrders: IOpenOrder[] = store.getState().order.openOrders;
+        const openOrders: IOrderHistory[] = store.getState().order.openOrders;
 
         const previousSequence = store.getState().orderbook.sequence;
 
@@ -118,7 +120,7 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
                                     const updatedOrder =
                                         openOrders.length &&
                                         openOrders.find(
-                                            (order: IOpenOrder) => payload.uuid && newOrder.id === payload.uuid
+                                            (order: IOrderHistory) => payload.uuid && newOrder.id === payload.uuid
                                         );
 
                                     if (!updatedOrder) {
@@ -180,8 +182,16 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     };
 
     useEffect(() => {
+        // TODO: build user-agent
+        const agent = Platform.OS === "ios" ? "AuroraPro/20 CFNetwork/1408.0.4 Darwin/22.5.0" : "okhttp/4.9.2";
+
+        const headers = {
+            "User-Agent": agent,
+        };
+
         if (socketUrl) {
-            const newWs = new WebSocket(socketUrl);
+            // @ts-ignore
+            const newWs = new WebSocket(socketUrl, [], headers);
 
             newWs.onopen = () => {
                 setWs(newWs);

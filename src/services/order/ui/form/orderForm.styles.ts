@@ -9,15 +9,61 @@ export const orderFormStyles = (theme: string) => {
             height: "100%",
             padding: 12,
         },
-        headerContainer: {},
-        orderTypeButton: {},
-        typeButtons: {},
-        buttonBuy: {},
-        buttonSell: {},
+        headerContainer: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+        },
+        marketTypeButton: {
+            paddingVertical: 8,
+            paddingHorizontal: 32,
+            borderWidth: 1,
+            borderRadius: 2,
+            borderColor: palette.Controls["primary-cta-color"][40].value,
+            backgroundColor: palette.Controls["primary-cta-color"][10].value,
+        },
+        marketTypeButtonText: {
+            color: palette.Controls["primary-cta-color"][80].value,
+        },
+        typeButtons: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+        },
+        buttonBuy: {
+            paddingVertical: 8,
+            paddingHorizontal: 32,
+            borderWidth: 1,
+            borderColor: palette.Controls["divider-color"][20].value,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            color: palette["text-color"][70].value,
+        },
+        buttonBuyActive: {
+            backgroundColor: palette.System["system-green"][10].value,
+            borderColor: palette.System["system-green"][40].value,
+            color: palette.System["system-green"][60].value,
+        },
+        buttonSell: {
+            paddingVertical: 8,
+            paddingHorizontal: 32,
+            borderWidth: 1,
+            borderColor: palette.Controls["divider-color"][20].value,
+            borderRadius: 2,
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+            color: palette["text-color"][70].value,
+        },
+        buttonSellActive: {
+            backgroundColor: palette.System["system-red"][10].value,
+            borderColor: palette.System["system-red"][40].value,
+            color: palette.System["system-red"][60].value,
+        },
         bodyContainer: {
             width: "100%",
         },
-        balanceLabel: {},
         orderSelector: {
             display: "flex",
             flexDirection: "row",
@@ -28,7 +74,7 @@ export const orderFormStyles = (theme: string) => {
             fontSize: 16,
             borderColor: palette["text-color"][20].value,
             borderWidth: 1,
-            borderRadius: 4,
+            borderRadius: 2,
             backgroundColor: palette.Background["input-background-color"].value,
         },
         orderSelectorPressed: {
@@ -62,6 +108,81 @@ export const orderFormStyles = (theme: string) => {
             backgroundColor: palette.Background["body-background-color"].value,
             justifyContent: "center",
             paddingHorizontal: 12,
+        },
+        button: {
+            borderWidth: 0,
+            borderColor: "#FFFFFF",
+        },
+        buttonAskActive: {
+            backgroundColor: palette.System.ask[60].value,
+            color: palette["text-color"]["00"].value,
+            borderWidth: 0,
+        },
+        buttonBidActive: {
+            backgroundColor: palette.System.bid[40].value,
+            color: palette["text-color"]["00"].value,
+        },
+        buttonTitle: {
+            fontSize: 18,
+        },
+        bestPrices: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 6,
+        },
+        bestPriceBid: {
+            color: palette.System.bid[60].value,
+        },
+        bestPriceAsk: {
+            color: palette.System.ask[60].value,
+        },
+        inputWrapper: {
+            marginTop: 12,
+        },
+        totalContainer: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginTop: 12,
+        },
+        availableContainer: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: 12,
+        },
+        totalText: {
+            fontSize: 18,
+            color: palette["text-color"][70].value,
+        },
+        containerValues: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            alignItems: "center",
+        },
+        valueText: {
+            fontSize: 18,
+            color: palette["text-color"][70].value,
+        },
+        valueAvailableText: {
+            fontSize: 14,
+            color: palette["text-color"][70].value,
+        },
+        codeText: {
+            fontSize: 18,
+            color: palette["text-color"][70].value,
+        },
+        codeAvailableText: {
+            fontSize: 14,
+            color: palette["text-color"][70].value,
+        },
+        availableText: {
+            color: palette["text-color"][70].value,
         },
     });
 };

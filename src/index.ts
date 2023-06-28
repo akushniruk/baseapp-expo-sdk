@@ -27,9 +27,25 @@ import { TickerV1 } from "./services/tickers/ui/ticker";
 
 // Services - Trades
 import { Trades } from "./services/trades/ui/trades";
+import { TradesHistory } from "./services/trades/ui/history/tradesHistory";
 
 // Services - Wallets
 import { Wallets } from "./services/wallets/ui";
+import { Beneficiaries } from "./services/withdrawal/ui/beneficiaries";
+import { CreateCryptoBeneficiary } from "./services/withdrawal/ui/createCryptoBeneficiary";
+import { ConfirmBeneficiary } from "./services/withdrawal/ui/confirmBeneficiary";
+import { Deposit } from "./services/deposit/ui";
+import { Withdrawal } from "./services/withdrawal/ui";
+import { DepositHistory } from "./services/deposit/ui/depositHistory";
+import { WithdrawalHistory } from "./services/withdrawal/ui/withdrawalHistory";
+import { TransferHistory } from "./services/transfer/ui/transferHistory";
+
+// Services - Order
+import { OrderForm } from "./services/order/ui/form";
+import { OrdersHistory } from "./services/order/ui/history/ordersHistory";
+
+// Widgets - Order
+import { OrdersHistoryWidget } from "./widgets/order/ui/history";
 
 // Widgets - Orderbook
 import { OrderbookWidget } from "./widgets/orderbook/ui/orderbook";
@@ -67,16 +83,6 @@ import { OTPInput } from "./shared/ui/otpInput";
 
 // Shared UI - TabPanel
 import { TabPanel } from "./shared/ui/tabPanel";
-
-import { Beneficiaries } from "./services/withdrawal/ui/beneficiaries";
-import { CreateCryptoBeneficiary } from "./services/withdrawal/ui/createCryptoBeneficiary";
-import { ConfirmBeneficiary } from "./services/withdrawal/ui/confirmBeneficiary";
-import { Deposit } from "./services/deposit/ui";
-import { Withdrawal } from "./services/withdrawal/ui";
-
-import { DepositHistory } from "./services/deposit/ui/depositHistory";
-import { WithdrawalHistory } from "./services/withdrawal/ui/withdrawalHistory";
-import { TransferHistory } from "./services/transfer/ui/transferHistory";
 
 export {
     Trades,
@@ -122,6 +128,10 @@ export {
     DepositHistory,
     WithdrawalHistory,
     TransferHistory,
+    TradesHistory,
+    OrderForm,
+    OrdersHistoryWidget,
+    OrdersHistory,
     withAuth,
 };
 
