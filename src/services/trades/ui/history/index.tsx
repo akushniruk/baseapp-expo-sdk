@@ -36,7 +36,7 @@ export const TradesHistoryComponent: FC<ITradesHistoryComponentProps> = ({
         const statusColor = ["buy"].includes(trades.side) ? styles.accepted.color : styles.rejected.color;
 
         return (
-            <View style={styles.table}>
+            <View key={trades.id} style={styles.table}>
                 <View style={styles.tableSplittedRow}>
                     <View style={[styles.tableRow, { marginRight: 60, width: 80 }]}>
                         <Text style={[styles.tableTextAction, { color: statusColor }]}>{trades.side}</Text>

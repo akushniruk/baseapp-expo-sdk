@@ -5,13 +5,16 @@ export const inputV2Styles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
-        fieldWrapper: {},
+        fieldWrapper: {
+            width: "100%",
+        },
         label: {
             textTransform: "capitalize",
             marginBottom: 4,
             color: palette["text-color"][70].value,
         },
         input: {
+            flex: 1,
             color: palette["text-color"][90].value,
             padding: 12,
             fontSize: 16,
@@ -20,15 +23,15 @@ export const inputV2Styles = (theme: string) => {
             borderTopLeftRadius: 4,
             borderBottomLeftRadius: 4,
             backgroundColor: palette.Background["input-background-color"].value,
-            width: "100%",
         },
         inputWrapper: {
             display: "flex",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "center",
+            width: "100%",
         },
         symbol: {
+            width: 80,
             padding: 12,
             height: "100%",
             borderColor: palette["text-color"][20].value,
@@ -39,6 +42,7 @@ export const inputV2Styles = (theme: string) => {
         },
         symbolText: {
             fontSize: 16,
+            textAlign: "center",
         },
     });
 };

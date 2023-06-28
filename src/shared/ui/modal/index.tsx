@@ -1,8 +1,7 @@
-import React, { Children, FC, useCallback, useEffect, useMemo, useRef } from "react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { useThemeContext } from "../../hooks/useThemeContext";
 import { modalStyles } from "./modal.styles";
 import BottomSheet, { BottomSheetBackdrop, BottomSheetView } from "@gorhom/bottom-sheet";
-import { boolean } from "zod";
 import { BottomSheetMethods } from "@gorhom/bottom-sheet/lib/typescript/types";
 
 interface ModalProps {
@@ -53,7 +52,6 @@ export const Modal: FC<ModalProps> = ({
             index={-1}
             onChange={handleSheetChanges}
             enablePanDownToClose
-            style={styles.bottomSheet}
         >
             <BottomSheetView>{children}</BottomSheetView>
         </BottomSheet>

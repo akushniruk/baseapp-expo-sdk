@@ -2,6 +2,7 @@ export type IOrderStatus = "wait" | "done" | "cancel" | "pending" | "reject" | "
 export type IOrderSide = "buy" | "sell";
 export type IOrderType = "limit" | "market" | "stop_loss" | "stop_limit" | "take_profit" | "take_limit";
 
+// TODO: rename to IOrder
 export type IOrderHistory = {
     id: number;
     uuid: string;
@@ -32,20 +33,11 @@ export type IOrderHistoryRequest = {
     state?: string;
 };
 
-// Use ZOD;
-// {
-//     "market": "eurusd",
-//     "side": "buy",
-//     "amount": "1",
-//     "price": "1",
-//     "type": "limit"
-// }
-
-// advanced
-// {
-//     "market": "eurusd",
-//     "side": "buy",
-//     "amount": "12",
-//     "trigger_price": "12",
-//     "type": "take_profit"
-// }
+export type IOrderCreateRequest = {
+    market: string;
+    side: IOrderSide;
+    amount: string;
+    price?: string;
+    trigger_price?: string;
+    type?: IOrderType;
+};

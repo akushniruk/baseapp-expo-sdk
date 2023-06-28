@@ -39,7 +39,11 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
     }, [markets]);
 
     const renderTableHead = (headText: string, index: number) => {
-        return <Text style={[{ width: index === 0 ? 120 : "auto" }, styles.headContainerText]}>{headText}</Text>;
+        return (
+            <Text key={headText} style={[{ width: index === 0 ? 120 : "auto" }, styles.headContainerText]}>
+                {headText}
+            </Text>
+        );
     };
 
     const handleUpdateCurrentMarket = (market: Market) => {

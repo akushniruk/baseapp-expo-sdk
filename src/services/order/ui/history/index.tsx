@@ -70,7 +70,7 @@ export const OrderHistoryComponent: FC<IOrderHistoryComponentProps> = ({
             : styles.rejected.color;
 
         return (
-            <View style={styles.table}>
+            <View key={order.id} style={styles.table}>
                 <View style={styles.tableFirstRow}>
                     <Text style={[styles.tableTextAction, { color: statusColor }]}>
                         {order.side} / {order.ord_type}

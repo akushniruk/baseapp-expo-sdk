@@ -1,16 +1,17 @@
 import { api } from "../../../shared/providers/redux/lib/rtkApi";
 import { dispatchAlert } from "../../../shared/ui/alerts";
 import { saveHistoryList, saveOpenOrders } from "../model/orderSlice";
-import { IOrderHistory, IOrderHistoryRequest } from "./types";
+import { IOrderCreateRequest, IOrderHistory, IOrderHistoryRequest } from "./types";
 import { queryBuild } from "../../../shared/libs/queryBuild";
 
 export const orderApi = api.injectEndpoints({
     endpoints: (build) => ({
-        createOrder: build.mutation<void, {}>({
+        createOrder: build.mutation<void, IOrderCreateRequest>({
             query(data) {
                 return {
                     url: `api/v2/finex/market/orders`,
                     method: "POST",
+                    body: data,
                 };
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
