@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
 import { Platform } from "react-native";
-// import Constants from "expo-constants";
+import Constants from "expo-constants";
 import { Market } from "../../../services/markets/model/type";
 import { saveOrderbookSnapshot, updateOrderbook } from "../../../services/orderbook/model/orderbookSlice";
 import { saveTickers } from "../../../services/tickers/model/tickersSlice";
@@ -182,11 +182,8 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
     };
 
     useEffect(() => {
-        // TODO: build user-agent
-        const agent = Platform.OS === "ios" ? "AuroraPro/20 CFNetwork/1408.0.4 Darwin/22.5.0" : "okhttp/4.9.2";
-
         const headers = {
-            "User-Agent": agent,
+            "User-Agent": Constants?.expoConfig?.name || Constants?.manifest?.name,
         };
 
         if (socketUrl) {

@@ -1,12 +1,16 @@
 import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
 import { getValueStorage } from "../../../hooks/useMMKVStorage";
+import Constants from "expo-constants";
 
 // Create our baseQuery instance
 const baseQuery = (withCSRF?: boolean) => {
+    const userAgent = Constants?.expoConfig?.name || Constants?.manifest?.name;
+
     return fetchBaseQuery({
         baseUrl: process.env.REACT_APP_REST_API || "https://aurora-master.uat.opendax.app/",
         prepareHeaders: async (headers: Headers) => {
             headers.set("X-CSRF-Token", (await getValueStorage("csrfToken")) || "");
+            headers.set("User-Agent", userAgent || "");
             return headers;
         },
         credentials: "include",
