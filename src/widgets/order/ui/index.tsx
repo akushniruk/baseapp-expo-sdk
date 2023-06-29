@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useRef, useState } from "react";
-import { View } from "react-native";
+import { View, Pressable, Text } from "react-native";
 import { OrderForm } from "../../../services/order/ui/form";
 import { SceneRendererProps } from "react-native-tab-view";
 import { OrderbookWidget } from "../../orderbook/ui/orderbook";
@@ -8,16 +8,15 @@ import { IRoute, TabPanel } from "../../../shared";
 import { Modal } from "../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { IOrderType } from "../../../services/order/api/types";
-import { Pressable, Text } from "react-native";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
 import { orderFormStyles } from "../../../services/order/ui/form/orderForm.styles";
 
-const renderScene = (props: SceneRendererProps & { route: any }) => {
+const renderScene = (props: SceneRendererProps & { route: any }, tabIndex: number) => {
     switch (props.route.key) {
         case "orderbook":
-            return <OrderbookWidget />;
+            return tabIndex === 0 && <OrderbookWidget />;
         case "trades":
-            return <Trades />;
+            return tabIndex === 1 && <Trades />;
         default:
             return null;
     }
@@ -98,7 +97,7 @@ export const OrderWidget: FC = () => {
                 <View style={{ paddingHorizontal: 12 }}>
                     <TabPanel
                         currentTabIndex={tabIndex}
-                        renderScene={(props: SceneRendererProps & { route: any }) => renderScene(props)}
+                        renderScene={(props: SceneRendererProps & { route: any }) => renderScene(props, tabIndex)}
                         routes={routes}
                         onCurrentTabChange={setTabIndex}
                     />

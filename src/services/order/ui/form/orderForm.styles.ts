@@ -6,7 +6,6 @@ export const orderFormStyles = (theme: string) => {
 
     return StyleSheet.create({
         formContainer: {
-            height: "100%",
             padding: 12,
         },
         headerContainer: {
