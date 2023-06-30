@@ -16,7 +16,16 @@ export const orderApi = api.injectEndpoints({
             },
             async onQueryStarted(args, { dispatch, queryFulfilled }) {
                 try {
-                    await queryFulfilled;
+                    const response = await queryFulfilled;
+                    if (response) {
+                        dispatch(
+                            dispatchAlert({
+                                type: "success",
+                                messageType: "success",
+                                messageText: "Order created",
+                            })
+                        );
+                    }
                 } catch (error: any) {
                     dispatch(
                         dispatchAlert({

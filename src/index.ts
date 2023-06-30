@@ -44,6 +44,9 @@ import { TransferHistory } from "./services/transfer/ui/transferHistory";
 import { OrderForm } from "./services/order/ui/form";
 import { OrdersHistory } from "./services/order/ui/history/ordersHistory";
 
+// Widgets - Markets
+import { MarketsV1Widget } from "./widgets/markets/ui/marketsV1";
+
 // Widgets - Order
 import { OrdersHistoryWidget } from "./widgets/order/ui/history";
 import { OrderWidget } from "./widgets/order/ui";
@@ -132,6 +135,7 @@ export {
     TradesHistory,
     OrderForm,
     OrdersHistoryWidget,
+    MarketsV1Widget,
     OrdersHistory,
     OrderWidget,
     withAuth,

@@ -17,9 +17,10 @@ const FIXED_VOL_PRECISION = 2;
 interface IMarketsV1 {
     navigation?: any;
     limit?: number;
+    searchMarket?: string;
 }
 
-export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => {
+export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit, searchMarket }: IMarketsV1) => {
     const dispatch = useAppDispatch();
     const { theme } = useThemeContext();
     const styles = useMemo(() => marketsV1Styles(theme), [theme]);
@@ -34,6 +35,20 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
             return markets;
         }
     }, [markets, limit]);
+
+    const searchMarkets = useMemo(() => {
+        if (searchMarket) {
+            return markets.filter((market) => {
+                return (
+                    market.name?.toLowerCase().includes(searchMarket.toLowerCase()) ||
+                    market.base_unit?.toLowerCase().includes(searchMarket.toLowerCase()) ||
+                    market.quote_unit?.toLowerCase().includes(searchMarket.toLowerCase())
+                );
+            });
+        } else {
+            return markets;
+        }
+    }, [markets, searchMarket]);
 
     const handleUpdateCurrentMarket = useCallback(
         (market: Market) => {
@@ -112,10 +127,10 @@ export const MarketsV1: FC<IMarketsV1> = ({ navigation, limit }: IMarketsV1) => 
         [tickers, styles, handleUpdateCurrentMarket, SYMBOL, DEFAULT_PERCENTAGE_PRECISION, FIXED_VOL_PRECISION]
     );
 
-    const getItemCount = () => topMarkets.length;
+    const getItemCount = () => (searchMarket ? searchMarkets.length : topMarkets.length);
 
     const getItem = (_data: unknown, index: number) => {
-        return topMarkets[index];
+        return searchMarket ? searchMarkets[index] : topMarkets[index];
     };
 
     const renderTableHead = (headText: string, index: number) => {
