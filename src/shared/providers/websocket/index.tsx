@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useEffect, useState } from "react";
-import { Platform } from "react-native";
 import Constants from "expo-constants";
 import { Market } from "../../../services/markets/model/type";
 import { saveOrderbookSnapshot, updateOrderbook } from "../../../services/orderbook/model/orderbookSlice";

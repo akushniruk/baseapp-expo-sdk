@@ -19,6 +19,7 @@ import { Modal } from "../../../shared/ui/modal";
 import { truncateMiddle } from "../../../shared/libs/truncateMiddle";
 import { Receipt } from "./receipt";
 import { Activate2FA } from "../../../shared/ui/activate2FA/ui";
+import { DismissKeyboard } from "../../../shared/ui/dismissKeyboard";
 
 export const Withdrawal: FC = () => {
     const [getBeneficiaries, { isLoading, isSuccess }] = useGetBeneficiariesMutation();
@@ -163,45 +164,48 @@ export const Withdrawal: FC = () => {
 
     return (
         <View>
-            <View style={styles.container}>
-                {beneficiaries?.length ? renderBeneficiarySelector() : renderAddAddress()}
-                <View style={styles.inputContainer}>
-                    <View style={styles.inputWrapper}>
-                        <Input
-                            value={amount}
-                            keyboardType="numeric"
-                            label="Withdrawal amount"
-                            placeholder={`Minimum ${
-                                selectedNetwork?.min_withdraw_amount
-                            } ${wallet?.currency?.toUpperCase()}`}
-                            onChangeText={(text: string) => setAmount(text)}
-                        />
-                    </View>
+            <DismissKeyboard>
+                <View style={styles.container}>
+                    {beneficiaries?.length ? renderBeneficiarySelector() : renderAddAddress()}
+                    <View style={styles.inputContainer}>
+                        <View style={styles.inputWrapper}>
+                            <Input
+                                value={amount}
+                                keyboardType="numeric"
+                                label="Withdrawal amount"
+                                placeholder={`Minimum ${
+                                    selectedNetwork?.min_withdraw_amount
+                                } ${wallet?.currency?.toUpperCase()}`}
+                                onChangeText={(text: string) => setAmount(text)}
+                            />
+                        </View>
 
-                    <View style={styles.buttonWrapper}>
-                        <Button onPress={handleSetMaxAmount} title="Max" isLoading={false} />
+                        <View style={styles.buttonWrapper}>
+                            <Button onPress={handleSetMaxAmount} title="Max" isLoading={false} />
+                        </View>
+                    </View>
+                    <View style={styles.totalContainer}>
+                        <View>
+                            <Text style={styles.totalLabel}>Receive amount</Text>
+                            <Text style={styles.total}>
+                                {withdrawalAmount} {wallet?.currency.toUpperCase()}
+                            </Text>
+                            <Text style={styles.totalFee}>
+                                Fee: {selectedNetwork?.withdraw_fee} {wallet?.currency?.toUpperCase()}
+                            </Text>
+                        </View>
+                        <View style={styles.totalButtonContainer}>
+                            <Button
+                                disabled={buttonDisabled}
+                                onPress={() => setIsReceiptOpen(true)}
+                                title="Withdraw"
+                                isLoading={false}
+                            />
+                        </View>
                     </View>
                 </View>
-                <View style={styles.totalContainer}>
-                    <View>
-                        <Text style={styles.totalLabel}>Receive amount</Text>
-                        <Text style={styles.total}>
-                            {withdrawalAmount} {wallet?.currency.toUpperCase()}
-                        </Text>
-                        <Text style={styles.totalFee}>
-                            Fee: {selectedNetwork?.withdraw_fee} {wallet?.currency?.toUpperCase()}
-                        </Text>
-                    </View>
-                    <View style={styles.totalButtonContainer}>
-                        <Button
-                            disabled={buttonDisabled}
-                            onPress={() => setIsReceiptOpen(true)}
-                            title="Withdraw"
-                            isLoading={false}
-                        />
-                    </View>
-                </View>
-            </View>
+            </DismissKeyboard>
+
             <Modal
                 snapPoints={["80%"]}
                 bottomSheetRef={bottomSheetRef}
