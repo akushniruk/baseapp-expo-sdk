@@ -14,15 +14,15 @@ export const Help: FC = () => {
         <View style={{ height: "100%" }}>
             <Pressable style={styles.block}>
                 <Text style={styles.blockTitle}>Privacy policy</Text>
-                <ArrowRightIcon color="#090909" />
+                <ArrowRightIcon color={styles.arrowColor.color} />
             </Pressable>
             <Pressable style={styles.block}>
                 <Text style={styles.blockTitle}>Chat</Text>
-                <ArrowRightIcon color="#090909" />
+                <ArrowRightIcon color={styles.arrowColor.color} />
             </Pressable>
             <Pressable style={styles.block}>
                 <Text style={styles.blockTitle}>Help Center (FAQ)</Text>
-                <ArrowRightIcon color="#090909" />
+                <ArrowRightIcon color={styles.arrowColor.color} />
             </Pressable>
         </View>
     );

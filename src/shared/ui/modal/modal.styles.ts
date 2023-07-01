@@ -15,5 +15,9 @@ export const modalStyles = (theme: string) => {
         //     shadowRadius: 3.84,
         //     elevation: 5,
         // },
+        container: {
+            backgroundColor: palette.Background["body-background-color"].value,
+            color: palette["text-color"][70].value,
+        },
     });
 };

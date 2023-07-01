@@ -26,5 +26,8 @@ export const profileNavigationStyles = (theme: string) => {
             alignItems: "center",
             justifyContent: "space-between",
         },
+        arrowColor: {
+            color: palette["text-color"][70].value,
+        },
     });
 };

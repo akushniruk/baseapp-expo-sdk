@@ -18,7 +18,7 @@ export const profileDetailsStyles = (theme: string) => {
             marginBottom: 18,
         },
         username: {
-            color: palette["text-color"][100].value,
+            color: palette["text-color"][70].value,
             textAlign: "center",
             fontWeight: "bold",
             fontSize: 18,

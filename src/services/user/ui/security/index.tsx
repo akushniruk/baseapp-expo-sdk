@@ -79,11 +79,11 @@ export const Security: FC = () => {
             </Pressable>
             <Pressable onPress={() => linkTo("/AccountActivity")} style={styles.block}>
                 <Text style={styles.blockTitle}>Account Activities</Text>
-                <ArrowRightIcon color="#090909" />
+                <ArrowRightIcon color={styles.arrowColor.color} />
             </Pressable>
             <Pressable onPress={() => linkTo("/ChangePassword")} style={styles.block}>
                 <Text style={styles.blockTitle}>Change Password</Text>
-                <ArrowRightIcon color="#090909" />
+                <ArrowRightIcon color={styles.arrowColor.color} />
             </Pressable>
             <Modal
                 snapPoints={["40%", "60%"]}

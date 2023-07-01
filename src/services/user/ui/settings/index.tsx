@@ -44,19 +44,19 @@ export const Settings: FC = () => {
     };
 
     return (
-        <View style={{ height: "100%" }}>
+        <View style={{ height: "100%", paddingHorizontal: 12 }}>
             <Pressable onPress={() => setIsOpenLangSelector(true)} style={styles.block}>
                 <Text style={styles.blockTitle}>Language</Text>
                 <View style={styles.blockContent}>
                     <Text style={styles.blockContentText}>{renderLang(i18n.locale)}</Text>
-                    <ArrowRightIcon color="#090909" />
+                    <ArrowRightIcon color={styles.arrowColor.color} />
                 </View>
             </Pressable>
             <Pressable onPress={() => setIsOpenAppearance(true)} style={styles.block}>
                 <Text style={styles.blockTitle}>Appearance</Text>
                 <View style={styles.blockContent}>
                     <Text style={styles.blockContentText}>{theme}</Text>
-                    <ArrowRightIcon color="#090909" />
+                    <ArrowRightIcon color={styles.arrowColor.color} />
                 </View>
             </Pressable>
 

@@ -52,8 +52,10 @@ export const Modal: FC<ModalProps> = ({
             index={-1}
             onChange={handleSheetChanges}
             enablePanDownToClose
+            backgroundStyle={styles.container}
+            handleIndicatorStyle={{ backgroundColor: styles.container.color }}
         >
-            <BottomSheetView>{children}</BottomSheetView>
+            <BottomSheetView style={styles.container}>{children}</BottomSheetView>
         </BottomSheet>
     );
 };

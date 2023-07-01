@@ -9,7 +9,7 @@ export const profileStyles = (theme: string) => {
             width: "100%",
             flexDirection: "row",
             alignItems: "center",
-            justifyContent: "space-between"
+            justifyContent: "space-between",
         },
         infoWrapper: {
             flexDirection: "row",
@@ -22,6 +22,7 @@ export const profileStyles = (theme: string) => {
         username: {
             fontWeight: "bold",
             fontSize: 16,
+            color: palette["text-color"][70].value,
         },
         details: {
             marginTop: 4,
@@ -39,11 +40,11 @@ export const profileStyles = (theme: string) => {
             color: palette.System["system-green"][60].value,
         },
         labelIconUnverified: {
-            color: palette.Controls["neutral-control-layer-color"][80].value
+            color: palette.Controls["neutral-control-layer-color"][80].value,
         },
         labelIcon: {
             marginRight: 6,
-            justifyContent: "center"
+            justifyContent: "center",
         },
         unverified: {
             backgroundColor: palette.Controls["neutral-control-color"][60].value,
@@ -51,17 +52,17 @@ export const profileStyles = (theme: string) => {
         },
         verified: {
             backgroundColor: palette.System["system-green"][10].value,
-            color: palette.System["system-green"][60].value
+            color: palette.System["system-green"][60].value,
         },
         feeGroupBackground: {
             borderRadius: 4,
             backgroundColor: palette.Controls["neutral-control-color"][60].value,
         },
         feeGroupText: {
-            color: palette.Controls["neutral-control-layer-color"][80].value
+            color: palette.Controls["neutral-control-layer-color"][80].value,
         },
         arrowRight: {
-            color: palette.Controls["neutral-control-layer-color"][80].value
+            color: palette.Controls["neutral-control-layer-color"][80].value,
         },
         icon: {
             marginRight: 12,

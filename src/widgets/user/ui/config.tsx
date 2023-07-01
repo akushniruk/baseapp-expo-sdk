@@ -11,11 +11,11 @@ export interface ProfileNavigationOption {
     icon: JSX.Element;
 }
 
-export const profileNavigationOptions: ProfileNavigationOption[] = [
-    { title: "Referral", route: "/Referral", icon: <ReferralIcon /> },
-    { title: "API Keys", route: "/ApiKeys", icon: <ApiKeyIcon /> },
-    { title: "Security", route: "/Security", icon: <SecurityIcon /> },
-    { title: "API Docs", route: "/ApiDocs", icon: <DocsIcon /> },
-    { title: "Help & Support", route: "/Support", icon: <HelpIcon /> },
-    { title: "Settings", route: "/Settings", icon: <SettingsIcon /> },
+export const profileNavigationOptions: (color: string) => ProfileNavigationOption[] = (color: string) => [
+    { title: "Referral", route: "/Referral", icon: <ReferralIcon color={color} /> },
+    { title: "API Keys", route: "/ApiKeys", icon: <ApiKeyIcon color={color} /> },
+    { title: "Security", route: "/Security", icon: <SecurityIcon color={color} /> },
+    { title: "API Docs", route: "/ApiDocs", icon: <DocsIcon color={color} /> },
+    { title: "Help & Support", route: "/Support", icon: <HelpIcon color={color} /> },
+    { title: "Settings", route: "/Settings", icon: <SettingsIcon color={color} /> },
 ];

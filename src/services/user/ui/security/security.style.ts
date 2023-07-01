@@ -34,5 +34,8 @@ export const securityStyles = (theme: string) => {
             justifyContent: "center",
             paddingHorizontal: 12,
         },
+        arrowColor: {
+            color: palette["text-color"][70].value,
+        },
     });
 };

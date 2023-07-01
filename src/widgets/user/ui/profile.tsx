@@ -1,9 +1,15 @@
-import React, { FC, useCallback, useState } from "react";
+import React, { FC, useCallback, useMemo, useState } from "react";
 import { ScrollView, Text, View, RefreshControl } from "react-native";
 import { Profile } from "../../../services/user";
 import { ProfileNavigation } from "../../../services/user/ui/profileNavigation/index";
 import { ProfileNavigationOption, profileNavigationOptions } from "./config";
+import { profileStyles } from "./profile.styles";
+import { useThemeContext } from "../../../shared/hooks/useThemeContext";
+
 export const ProfileWidget: FC = () => {
+    const { theme } = useThemeContext();
+    const styles = useMemo(() => profileStyles(theme), [theme]);
+
     const [refreshing, setRefreshing] = useState(false);
 
     const onRefresh = useCallback(() => {
@@ -29,7 +35,7 @@ export const ProfileWidget: FC = () => {
             >
                 <View onStartShouldSetResponder={() => true}>
                     <Profile />
-                    <View style={{ marginTop: 48 }}>{profileNavigationOptions.map(renderList)}</View>
+                    <View style={{ marginTop: 48 }}>{profileNavigationOptions(styles.icon.color).map(renderList)}</View>
                 </View>
             </ScrollView>
         </View>

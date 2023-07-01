@@ -6,18 +6,14 @@ import { profileNavigationStyles } from "./profileNavigation.stlyes";
 import { ProfileNavigationProps } from "./interface";
 import { ArrowRightIcon } from "../../../../assets/profile";
 
-export const ProfileNavigation: FC<ProfileNavigationProps> = ({
-    option,
-}: ProfileNavigationProps) => {
+export const ProfileNavigation: FC<ProfileNavigationProps> = ({ option }: ProfileNavigationProps) => {
     const linkTo = useLinkTo();
 
     const { theme } = useThemeContext();
     const styles = useMemo(() => profileNavigationStyles(theme), [theme]);
 
     const handleRedirect = useCallback(() => {
-        process.env.REACT_APP_MODE !== "storybook" &&
-            option.route &&
-            linkTo(option.route);
+        process.env.REACT_APP_MODE !== "storybook" && option.route && linkTo(option.route);
     }, [option]);
 
     return (
@@ -27,7 +23,7 @@ export const ProfileNavigation: FC<ProfileNavigationProps> = ({
                 <Text style={styles.blockTitle}>{option.title}</Text>
             </View>
 
-            <ArrowRightIcon color="#090909" />
+            <ArrowRightIcon color={styles.arrowColor.color} />
         </Pressable>
     );
 };

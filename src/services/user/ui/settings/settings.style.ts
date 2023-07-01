@@ -26,7 +26,7 @@ export const settingsStyles = (theme: string) => {
             color: palette["text-color"][50].value,
         },
         label: {
-            color: palette["text-color"][100].value,
+            color: palette["text-color"][70].value,
             marginBottom: 12,
             fontSize: 18,
         },
@@ -41,6 +41,9 @@ export const settingsStyles = (theme: string) => {
             fontSize: 14,
         },
         languageText: {
+            color: palette["text-color"][70].value,
+        },
+        arrowColor: {
             color: palette["text-color"][100].value,
         },
     });
