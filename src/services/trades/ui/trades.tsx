@@ -64,6 +64,7 @@ export const Trades: FC = () => {
             <View style={styles.row} key={`${trade.id}`}>
                 <Text style={[styles.rowText, rowHighlighted, { width: 80 }]}>
                     {getHHMMSSFromDate(convertDateFromTimestamp(trade.created_at))}
+                    {/* ID: {trade.id} */}
                 </Text>
                 <Text style={[styles.rowText, rowHighlighted, { textAlign: "left" }]}>
                     {format(trade.amount, amountFixed)}
@@ -92,7 +93,7 @@ export const Trades: FC = () => {
                 keyExtractor={(item) => String(item.id)}
                 getItemCount={getItemCount}
                 getItem={getItem}
-                maxToRenderPerBatch={30}
+                maxToRenderPerBatch={1}
                 style={styles.bodyContainer}
             />
         </View>

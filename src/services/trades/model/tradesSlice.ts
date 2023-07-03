@@ -22,12 +22,13 @@ export const trades = createSlice({
     initialState: initialTradeState,
     reducers: {
         saveTrades(state, action: PayloadAction<Trade[]>) {
-            state.list = sliceArray(action.payload, DEFAULT_STORAGE_LIMIT);
+            state.list = state.list.concat(action.payload.slice(0, DEFAULT_STORAGE_LIMIT));
         },
         updateTrades(state, action: PayloadAction<{ market: string; trades: EventTrade[] }>) {
             const lastTrades = convertTradeEventList(action.payload.market, action.payload.trades);
+            const slicedItems = state.list.slice(0, 30 - lastTrades.length);
 
-            state.list = sliceArray([...lastTrades, ...state.list], DEFAULT_STORAGE_LIMIT);
+            state.list = [...lastTrades, ...slicedItems];
         },
         saveHistoryList(state, action: PayloadAction<ITradesHistory[]>) {
             state.historyList = action.payload;
