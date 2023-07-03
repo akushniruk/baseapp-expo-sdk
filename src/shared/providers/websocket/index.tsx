@@ -187,7 +187,7 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
 
         if (socketUrl) {
             // @ts-ignore
-            const newWs = new WebSocket(socketUrl, [], headers);
+            const newWs = new WebSocket(socketUrl, [], { headers });
 
             newWs.onopen = () => {
                 setWs(newWs);
