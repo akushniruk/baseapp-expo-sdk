@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { handleIncrementalUpdate, handleIncrementalUpdateArray } from "../libs/handleIncrementalUpdate";
 import { sliceArray } from "../libs/sliceArray";
 
-const ORDERBOOK_SIDE_LIMIT = 20;
+const ORDERBOOK_SIDE_LIMIT = 35;
 
 export interface OrderbookState {
     asks: Array<any>;

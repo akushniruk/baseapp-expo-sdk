@@ -6,14 +6,23 @@ export const OrderbookWidgetStyles = (theme: string) => {
 
     return StyleSheet.create({
         container: {
+            height: 600,
+            backgroundColor: palette.Background["body-background-color"].value,
+        },
+        scrollViewContainer: {
+            flex: 1,
+        },
+        orderbookContainer: {
+            height: 750,
+            backgroundColor: palette.Background["body-background-color"].value,
             display: "flex",
             flexDirection: "row",
-            flexBasis: "auto",
-            flexShrink: 0,
-            flexGrow: 1,
         },
         orderbookTableWrapper: {
             width: "50%",
+        },
+        headerText: {
+            color: palette["text-color"][70].value,
         },
     });
 };

@@ -17,7 +17,7 @@ export const orderBookTableStyles = (theme: string) => {
             position: "relative",
             zIndex: 10,
             paddingVertical: 2,
-            color: palette["text-color"][60].value,
+            color: palette["text-color"][70].value,
         },
         rowTextPriceAsks: {
             color: palette.System.ask[60].value,

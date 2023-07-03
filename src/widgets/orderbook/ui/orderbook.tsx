@@ -1,5 +1,5 @@
 import { FC, useMemo } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import { OrderBookTable } from "../../../services/orderbook/ui/orderbook";
 import { OrderbookWidgetStyles } from "./orderbook.styles";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
@@ -23,26 +23,30 @@ export const OrderbookWidget: FC = () => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.orderbookTableWrapper}>
-                <Text>Bid</Text>
-                <OrderBookTable
-                    key="bids"
-                    side="bid"
-                    data={bids}
-                    orderBookEntry={orderBookEntryBids}
-                    maxVolume={maxVolume}
-                />
-            </View>
-            <View style={styles.orderbookTableWrapper}>
-                <Text>Ask</Text>
-                <OrderBookTable
-                    key="asks"
-                    side="ask"
-                    data={asks}
-                    orderBookEntry={orderBookEntryAsks}
-                    maxVolume={maxVolume}
-                />
-            </View>
+            <ScrollView style={styles.scrollViewContainer}>
+                <View style={styles.orderbookContainer}>
+                    <View style={styles.orderbookTableWrapper}>
+                        <Text style={styles.headerText}>Bid</Text>
+                        <OrderBookTable
+                            key="bids"
+                            side="bid"
+                            data={bids}
+                            orderBookEntry={orderBookEntryBids}
+                            maxVolume={maxVolume}
+                        />
+                    </View>
+                    <View style={styles.orderbookTableWrapper}>
+                        <Text style={styles.headerText}>Ask</Text>
+                        <OrderBookTable
+                            key="asks"
+                            side="ask"
+                            data={asks}
+                            orderBookEntry={orderBookEntryAsks}
+                            maxVolume={maxVolume}
+                        />
+                    </View>
+                </View>
+            </ScrollView>
         </View>
     );
 };
