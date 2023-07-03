@@ -102,6 +102,21 @@ const WebSocketProvider: React.FC<{ children?: any }> = ({ children }) => {
                     return;
                 }
 
+                // public
+                const klineMatch = String(routingKey).match(/([^.]*)\.kline-(.+)/);
+                if (klineMatch) {
+                    console.log("klineMatch", klineMatch);
+                    // dispatch(
+                    //     klinePush({
+                    //         marketId: klineMatch[1],
+                    //         kline: event,
+                    //         period: klineMatch[2],
+                    //     })
+                    // );
+
+                    return;
+                }
+
                 switch (routingKey) {
                     case "global.tickers":
                         dispatch(saveTickers(payload["global.tickers"]));

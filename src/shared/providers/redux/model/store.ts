@@ -17,6 +17,7 @@ import { withdrawal } from "../../../../services/withdrawal/model/withdrawalSlic
 import { transfer } from "../../../../services/transfer/model/transferSlice";
 import { beneficiary } from "../../../../services/withdrawal/model/beneficiarySlice";
 import { order } from "../../../../services/order/model/orderSlice";
+import { kline } from "../../../../services/chart/model/klineSlice";
 
 export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | undefined) =>
     configureStore({
@@ -38,6 +39,7 @@ export const createStore = (options?: ConfigureStoreOptions["preloadedState"] | 
             beneficiary: beneficiary.reducer,
             transfer: transfer.reducer,
             order: order.reducer,
+            kline: kline.reducer,
         },
         middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
         ...options,
