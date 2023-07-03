@@ -1,5 +1,5 @@
 import React, { FC, useMemo, useRef, useState } from "react";
-import { View, Pressable, Text } from "react-native";
+import { View, Pressable, ScrollView, Text } from "react-native";
 import { OrderForm } from "../../../services/order/ui/form";
 import { SceneRendererProps } from "react-native-tab-view";
 import { OrderbookWidget } from "../../orderbook/ui/orderbook";
@@ -9,7 +9,7 @@ import { Modal } from "../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { IOrderType } from "../../../services/order/api/types";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
-import { orderFormStyles } from "../../../services/order/ui/form/orderForm.styles";
+import { orderStyles } from "./order.styles";
 
 const renderScene = (props: SceneRendererProps & { route: any }, tabIndex: number) => {
     switch (props.route.key) {
@@ -51,9 +51,7 @@ const ORDER_TYPES = [
 
 export const OrderWidget: FC = () => {
     const { theme } = useThemeContext();
-
-    // FIXME: move to styles
-    const styles = useMemo(() => orderFormStyles(theme), [theme]);
+    const styles = useMemo(() => orderStyles(theme), [theme]);
 
     const [orderType, setOrderType] = useState<IOrderType>("limit");
     const [isOpenOrderTypeSelector, setIsOpenOrderTypeSelector] = useState<boolean>(false);
@@ -92,16 +90,23 @@ export const OrderWidget: FC = () => {
 
     return (
         <>
-            <View style={{ height: "100%" }}>
-                <OrderForm orderType={orderType} setIsOpenOrderTypeSelector={setIsOpenOrderTypeSelector} />
-                <View style={{ paddingHorizontal: 12 }}>
-                    <TabPanel
-                        currentTabIndex={tabIndex}
-                        renderScene={(props: SceneRendererProps & { route: any }) => renderScene(props, tabIndex)}
-                        routes={routes}
-                        onCurrentTabChange={setTabIndex}
-                    />
-                </View>
+            <View style={styles.container}>
+                <ScrollView style={styles.scrollViewContainer}>
+                    <OrderForm orderType={orderType} setIsOpenOrderTypeSelector={setIsOpenOrderTypeSelector} />
+                    <View style={{ paddingHorizontal: 12 }}>
+                        <TabPanel
+                            customStyles={{
+                                tabViewStyle: {
+                                    height: 720,
+                                },
+                            }}
+                            currentTabIndex={tabIndex}
+                            renderScene={(props: SceneRendererProps & { route: any }) => renderScene(props, tabIndex)}
+                            routes={routes}
+                            onCurrentTabChange={setTabIndex}
+                        />
+                    </View>
+                </ScrollView>
             </View>
             <Modal
                 snapPoints={["60%"]}

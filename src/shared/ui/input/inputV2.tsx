@@ -35,6 +35,8 @@ export const InputV2: FC<InputV2Props> = ({
                     secureTextEntry={secureTextEntry}
                     testID={testID}
                     keyboardType={keyboardType}
+                    placeholderTextColor={styles.placeholder.color}
+                    keyboardAppearance={theme === "dark" ? "dark" : "light"}
                 />
                 <View style={styles.symbol}>
                     <Text style={styles.symbolText}>{symbol}</Text>

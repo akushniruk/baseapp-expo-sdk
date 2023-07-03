@@ -3,14 +3,16 @@ import { getPalette } from "../../../shared/libs/getPalette";
 
 export const MarketsV1WidgetStyles = (theme: string) => {
     const palette = getPalette(theme);
-
+    console.log("palette", palette.Background["main-background-color"].value);
     return StyleSheet.create({
         container: {
             paddingHorizontal: 12,
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         title: {
             fontWeight: "700",
             fontSize: 18,
+            color: palette["text-color"][100].value,
         },
         headerContainer: {
             display: "flex",

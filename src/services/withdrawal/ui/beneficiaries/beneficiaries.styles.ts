@@ -9,6 +9,7 @@ export const beneficiariesStyles = (theme: string) => {
             marginTop: 12,
             height: "100%",
             position: "relative",
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         blockchainKeyContainer: {},
         beneficiarySelector: {
@@ -59,6 +60,7 @@ export const beneficiariesStyles = (theme: string) => {
         },
         noDataText: {
             paddingBottom: 24,
+            color: palette["text-color"][70].value,
         },
         label: {
             color: palette["text-color"][100].value,
@@ -82,7 +84,7 @@ export const beneficiariesStyles = (theme: string) => {
         },
         networkRowTitle: {
             fontSize: 16,
-            color: palette["text-color"][70].value,
+            color: palette.Controls["primary-cta-layer-color"][60].value,
             fontWeight: "700",
         },
         networkSubRow: {
@@ -91,12 +93,14 @@ export const beneficiariesStyles = (theme: string) => {
         },
         networkSubRowTitle: {
             fontSize: 14,
-            color: palette["text-color"][50].value,
+            color: palette.Controls["primary-cta-layer-color"][60].value,
         },
         networkSubRowSubTitle: {
             fontSize: 14,
+            color: palette.Controls["primary-cta-layer-color"][60].value,
         },
         networkName: {
+            color: palette.Controls["primary-cta-layer-color"][60].value,
             fontSize: 14,
         },
         networkMinRow: {
@@ -105,11 +109,20 @@ export const beneficiariesStyles = (theme: string) => {
         },
         networkMinRowTitle: {
             fontSize: 12,
-            color: palette["text-color"][50].value,
+            color: palette.Controls["primary-cta-layer-color"][60].value,
         },
         networkMinRowSubTitle: {
             fontSize: 12,
-            color: palette["text-color"][70].value,
+            color: palette.Controls["primary-cta-layer-color"][60].value,
+        },
+        beneficiaryName: {
+            color: palette["text-color"][100].value,
+        },
+        beneficiaryAddress: {
+            color: palette["text-color"][100].value,
+        },
+        trashIcon: {
+            color: palette["text-color"][100].value,
         },
     });
 };

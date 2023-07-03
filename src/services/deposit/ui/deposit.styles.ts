@@ -8,6 +8,7 @@ export const depositStyles = (theme: string) => {
         container: {
             height: "100%",
             paddingHorizontal: 12,
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         depositContainer: {
             height: "100%",

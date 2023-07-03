@@ -7,6 +7,7 @@ export const withdrawalHistoryStyles = (theme: string) => {
     return StyleSheet.create({
         container: {
             height: "100%",
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         containerTable: {},
         table: {},
@@ -14,7 +15,9 @@ export const withdrawalHistoryStyles = (theme: string) => {
             marginTop: 12,
             flexDirection: "column",
         },
-        tableText: {},
+        tableText: {
+            color: palette["text-color"][70].value,
+        },
         tableTextAction: {
             fontWeight: "700",
         },
@@ -48,7 +51,9 @@ export const withdrawalHistoryStyles = (theme: string) => {
             backgroundColor: palette.Controls["divider-color"][10].value,
             color: palette["text-color"][50].value,
         },
-        tableTextTid: {},
+        tableTextTid: {
+            color: palette["text-color"][70].value,
+        },
         tableRowSeparator: {
             position: "absolute",
             backgroundColor: palette.Controls["divider-color"][10].value,
@@ -92,6 +97,7 @@ export const withdrawalHistoryStyles = (theme: string) => {
         },
         noDataText: {
             marginTop: 12,
+            color: palette["text-color"][70].value,
         },
     });
 };

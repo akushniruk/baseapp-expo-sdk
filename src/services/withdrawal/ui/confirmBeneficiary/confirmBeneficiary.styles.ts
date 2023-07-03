@@ -7,6 +7,8 @@ export const confirmBeneficiaryStyles = (theme: string) => {
     return StyleSheet.create({
         info: {
             marginBottom: 24,
+            color: palette["text-color"][100].value,
+            backgroundColor: palette.Background["body-background-color"].value,
         },
         label: {
             color: palette["text-color"][100].value,

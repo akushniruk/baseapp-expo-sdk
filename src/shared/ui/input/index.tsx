@@ -32,6 +32,8 @@ export const Input: FC<InputProps> = ({
                 secureTextEntry={secureTextEntry}
                 testID={testID}
                 keyboardType={keyboardType}
+                placeholderTextColor={styles.placeholder.color}
+                keyboardAppearance={theme === "dark" ? "dark" : "light"}
             />
         </View>
     );

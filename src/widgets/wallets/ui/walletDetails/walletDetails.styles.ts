@@ -5,7 +5,9 @@ export const walletDetailsStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
-        container: {},
+        container: {
+            backgroundColor: palette.Background["main-background-color"].value,
+        },
         marketsContainer: {
             marginTop: 24,
             paddingHorizontal: 12,
@@ -50,6 +52,7 @@ export const walletDetailsStyles = (theme: string) => {
         },
         noDataText: {
             marginTop: 12,
+            color: palette["text-color"][70].value,
         },
     });
 };

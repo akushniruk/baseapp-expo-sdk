@@ -8,6 +8,7 @@ export const createBeneficiaryStyles = (theme: string) => {
         container: {
             paddingHorizontal: 12,
             height: "100%",
+            backgroundColor: palette.Background["body-background-color"].value,
         },
         inputWrapper: {
             marginBottom: 16,

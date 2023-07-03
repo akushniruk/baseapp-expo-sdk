@@ -90,6 +90,8 @@ export const OTPInput: FC<OTPInputProps> = ({
                 ref={inputRef}
                 keyboardType="number-pad"
                 onBlur={handleOnBlur}
+                placeholderTextColor={styles.placeholder.color}
+                keyboardAppearance={theme === "dark" ? "dark" : "light"}
             />
         </View>
     );

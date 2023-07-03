@@ -43,5 +43,8 @@ export const otpInputStyles = (theme: string) => {
             backgroundColor: palette.Background["input-background-color"].value,
             color: palette["text-color"][100].value,
         },
+        placeholder: {
+            color: palette["text-color"][50].value,
+        },
     });
 };

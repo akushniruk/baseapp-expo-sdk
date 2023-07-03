@@ -72,6 +72,7 @@ export const apiKeysTableStyles = (theme: string) => {
         },
         noDataText: {
             paddingBottom: 24,
+            color: palette["text-color"][70].value,
         },
     });
 };

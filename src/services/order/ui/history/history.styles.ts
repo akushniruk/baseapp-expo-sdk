@@ -8,6 +8,7 @@ export const historyStyles = (theme: string) => {
         container: {
             height: "100%",
             paddingHorizontal: 12,
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         containerTable: {},
         table: {},
@@ -22,7 +23,9 @@ export const historyStyles = (theme: string) => {
             marginTop: 12,
             flexDirection: "column",
         },
-        tableText: {},
+        tableText: {
+            color: palette["text-color"][70].value,
+        },
         tableTextAction: {
             fontWeight: "700",
         },
@@ -43,7 +46,9 @@ export const historyStyles = (theme: string) => {
             width: "100%",
             alignItems: "baseline",
         },
-        tableTextTid: {},
+        tableTextTid: {
+            color: palette["text-color"][70].value,
+        },
         tableDateWrapper: {
             backgroundColor: palette.Controls["divider-color"][10].value,
             marginTop: 12,
@@ -100,6 +105,7 @@ export const historyStyles = (theme: string) => {
         },
         noDataText: {
             marginTop: 12,
+            color: palette["text-color"][70].value,
         },
         cancelIcon: {
             paddingLeft: 24,

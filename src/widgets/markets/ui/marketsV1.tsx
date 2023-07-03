@@ -35,7 +35,7 @@ export const MarketsV1Widget: FC<IMarketsV1WidgetProps> = ({ navigation }: IMark
                         ]}
                         onPress={() => setIsOpenSearch(!isOpenSearch)}
                     >
-                        <SearchIcon width={10} />
+                        <SearchIcon color={styles.searchIcon.color} width={10} />
                     </Pressable>
                     {isOpenSearch ? (
                         <View style={styles.inputWrapper}>

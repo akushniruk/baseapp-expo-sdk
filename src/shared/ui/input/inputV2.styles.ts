@@ -43,6 +43,10 @@ export const inputV2Styles = (theme: string) => {
         symbolText: {
             fontSize: 16,
             textAlign: "center",
+            color: palette["text-color"][70].value,
+        },
+        placeholder: {
+            color: palette["text-color"][50].value,
         },
     });
 };

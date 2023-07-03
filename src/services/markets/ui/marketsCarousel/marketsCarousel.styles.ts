@@ -21,10 +21,10 @@ export const marketsCarouselStyles = (theme: string) => {
             paddingVertical: 4,
         },
         priceChangePositive: {
-            color: palette.System.bid[40].value,
+            color: palette.System.bid[60].value,
         },
         priceChangeNegative: {
-            color: palette.System.ask[40].value,
+            color: palette.System.ask[60].value,
         },
         cardPressedColor: {
             backgroundColor: palette.Controls["primary-cta-color"][60].value,

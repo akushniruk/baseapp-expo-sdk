@@ -2,7 +2,7 @@ import React, { FC, useMemo } from "react";
 import { useWindowDimensions, View } from "react-native";
 import { TabView, TabBar } from "react-native-tab-view";
 import { useThemeContext } from "../../hooks/useThemeContext";
-import { tabPanelStyles } from "./tabPanel.styles";
+import { ICustomTabPanelStyles, tabPanelStyles } from "./tabPanel.styles";
 
 type OnCurrentTabChange = (index: number) => void;
 
@@ -27,6 +27,7 @@ export interface ITabPanelProps {
      * Current index of tab
      */
     currentTabIndex: number;
+    customStyles?: ICustomTabPanelStyles;
 }
 
 export const TabPanel: FC<ITabPanelProps> = ({
@@ -34,10 +35,11 @@ export const TabPanel: FC<ITabPanelProps> = ({
     routes,
     renderScene,
     currentTabIndex,
+    customStyles,
     onCurrentTabChange,
 }: ITabPanelProps) => {
     const { theme } = useThemeContext();
-    const styles = useMemo(() => tabPanelStyles(theme), [theme]);
+    const styles = useMemo(() => tabPanelStyles(theme, customStyles), [theme, customStyles]);
 
     const layout = useWindowDimensions();
 
@@ -54,6 +56,7 @@ export const TabPanel: FC<ITabPanelProps> = ({
     return (
         <View style={styles.tabPanelContainer} testID={testID}>
             <TabView
+                style={styles.tabViewStyle}
                 renderTabBar={renderTabBar}
                 navigationState={{ index: currentTabIndex, routes }}
                 renderScene={renderScene}

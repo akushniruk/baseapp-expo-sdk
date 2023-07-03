@@ -8,6 +8,7 @@ export const walletsStyles = (theme: string) => {
         scrollViewContainer: {
             height: "100%",
             paddingHorizontal: 12,
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         headerContainer: {
             display: "flex",
@@ -24,6 +25,7 @@ export const walletsStyles = (theme: string) => {
             color: palette["text-color"][50].value,
         },
         historyIcon: {
+            color: palette["text-color"][90].value,
             paddingLeft: 12,
             paddingBottom: 6,
         },
@@ -60,7 +62,7 @@ export const walletsStyles = (theme: string) => {
         },
         rowLeftTextName: {
             fontSize: 14,
-            color: palette["text-color"][50].value,
+            color: palette["text-color"][70].value,
         },
         rowLeftTextCurrency: {
             fontSize: 18,
@@ -119,6 +121,7 @@ export const walletsStyles = (theme: string) => {
             justifyContent: "space-between",
         },
         title: {
+            color: palette["text-color"][70].value,
             fontSize: 20,
             fontWeight: "600",
         },
@@ -138,6 +141,7 @@ export const walletsStyles = (theme: string) => {
         },
         noDataText: {
             marginTop: 12,
+            color: palette["text-color"][70].value,
         },
     });
 };

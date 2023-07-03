@@ -210,10 +210,10 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                     </View>
 
                     <Pressable onPress={() => linkTo("/History")} style={styles.historyIcon}>
-                        <HistoryIcon />
+                        <HistoryIcon color={styles.historyIcon.color} />
                     </Pressable>
                 </View>
-                <View style={styles.buttonsContainer}>
+                {/* <View style={styles.buttonsContainer}>
                     <View style={styles.buttonContainer}>
                         <Button title="Deposit" onPress={() => linkTo("/DepositCurrencyList")} isLoading={false} />
                     </View>
@@ -227,7 +227,7 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                     <View style={styles.buttonContainer}>
                         <Button title="Transfer" onPress={() => linkTo("/Transfer")} isLoading={false} />
                     </View>
-                </View>
+                </View> */}
                 <View style={styles.searchContainer}>
                     <Text style={styles.title}>Balances</Text>
                     <View style={styles.searchWrapper}>
@@ -244,7 +244,7 @@ export const Wallets: FC<IWallets> = ({ navigation }: IWallets) => {
                             ]}
                             onPress={() => setIsOpenSearch(!isOpenSearch)}
                         >
-                            <SearchIcon width={10} />
+                            <SearchIcon color={styles.searchIcon.color} width={10} />
                         </Pressable>
                         {isOpenSearch ? (
                             <View style={styles.inputWrapper}>

@@ -7,6 +7,7 @@ export const depositHistoryStyles = (theme: string) => {
     return StyleSheet.create({
         container: {
             height: "100%",
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         containerTable: {},
         table: {},
@@ -14,7 +15,9 @@ export const depositHistoryStyles = (theme: string) => {
             marginTop: 12,
             flexDirection: "column",
         },
-        tableText: {},
+        tableText: {
+            color: palette["text-color"][70].value,
+        },
         tableTextAction: {
             fontWeight: "700",
         },
@@ -29,13 +32,15 @@ export const depositHistoryStyles = (theme: string) => {
             flexDirection: "row",
         },
         tableSubText: {
-            color: palette["text-color"][40].value,
+            color: palette["text-color"][50].value,
         },
         tableRowSeparatorWrapper: {
             width: "100%",
             alignItems: "baseline",
         },
-        tableTextTid: {},
+        tableTextTid: {
+            color: palette["text-color"][70].value,
+        },
         tableDateWrapper: {
             backgroundColor: palette.Controls["divider-color"][10].value,
             marginTop: 12,
@@ -92,6 +97,7 @@ export const depositHistoryStyles = (theme: string) => {
         },
         noDataText: {
             marginTop: 12,
+            color: palette["text-color"][70].value,
         },
     });
 };

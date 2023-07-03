@@ -7,6 +7,7 @@ export const orderFormStyles = (theme: string) => {
     return StyleSheet.create({
         formContainer: {
             padding: 12,
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         headerContainer: {
             display: "flex",
@@ -114,12 +115,12 @@ export const orderFormStyles = (theme: string) => {
         },
         buttonAskActive: {
             backgroundColor: palette.System.ask[60].value,
-            color: palette["text-color"]["00"].value,
+            color: theme === "dark" ? palette["text-color"]["100"].value : palette["text-color"]["00"].value,
             borderWidth: 0,
         },
         buttonBidActive: {
-            backgroundColor: palette.System.bid[40].value,
-            color: palette["text-color"]["00"].value,
+            backgroundColor: palette.System.bid[60].value,
+            color: theme === "dark" ? palette["text-color"]["100"].value : palette["text-color"]["00"].value,
         },
         buttonTitle: {
             fontSize: 18,

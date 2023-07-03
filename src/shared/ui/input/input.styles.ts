@@ -20,5 +20,8 @@ export const inputStyles = (theme: string) => {
             borderRadius: 4,
             backgroundColor: palette.Background["input-background-color"].value,
         },
+        placeholder: {
+            color: palette["text-color"][50].value,
+        },
     });
 };

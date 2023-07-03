@@ -110,7 +110,7 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
                     onPress={() => setIsOpenOrderTypeSelector(true)}
                 >
                     <Text style={styles.orderSelectorText}>{orderType}</Text>
-                    <SelectIcon width={18} />
+                    <SelectIcon color={styles.orderSelectorText.color} width={18} />
                 </Pressable>
             </>
         );

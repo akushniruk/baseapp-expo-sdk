@@ -7,6 +7,7 @@ export const transferHistoryStyles = (theme: string) => {
     return StyleSheet.create({
         container: {
             height: "100%",
+            backgroundColor: palette.Background["main-background-color"].value,
         },
         containerTable: {},
         table: {},
@@ -14,7 +15,9 @@ export const transferHistoryStyles = (theme: string) => {
             marginTop: 12,
             flexDirection: "column",
         },
-        tableText: {},
+        tableText: {
+            color: palette["text-color"][70].value,
+        },
         tableTextAction: {
             fontWeight: "700",
         },
@@ -91,6 +94,7 @@ export const transferHistoryStyles = (theme: string) => {
         },
         noDataText: {
             marginTop: 12,
+            color: palette["text-color"][70].value,
         },
     });
 };

@@ -5,7 +5,9 @@ export const marketsV1Styles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
-        container: {},
+        container: {
+            backgroundColor: palette.Background["main-background-color"].value,
+        },
         headContainer: {
             display: "flex",
             flexDirection: "row",
@@ -38,7 +40,7 @@ export const marketsV1Styles = (theme: string) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: palette.System.bid[40].value,
+            backgroundColor: palette.System.bid[60].value,
             paddingHorizontal: 12,
             paddingVertical: 6,
             borderRadius: 4,
@@ -48,14 +50,14 @@ export const marketsV1Styles = (theme: string) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: palette.System.ask[40].value,
+            backgroundColor: palette.System.ask[60].value,
             paddingHorizontal: 12,
             paddingVertical: 6,
             borderRadius: 4,
             minWidth: 70,
         },
         labelText: {
-            color: palette["text-color"]["00"].value,
+            color: theme === "dark" ? palette["text-color"]["100"].value : palette["text-color"]["00"].value,
             fontSize: 12,
         },
     });

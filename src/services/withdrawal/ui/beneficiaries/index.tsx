@@ -143,13 +143,15 @@ export const Beneficiaries: FC = () => {
                 disabled={network.status === "disabled"}
             >
                 <View>
-                    <Text>{beneficiary?.name}</Text>
-                    <Text>{beneficiary ? truncateMiddle(beneficiary.data.address, 25) : 10}</Text>
+                    <Text style={styles.beneficiaryName}>{beneficiary?.name}</Text>
+                    <Text style={styles.beneficiaryAddress}>
+                        {beneficiary ? truncateMiddle(beneficiary.data.address, 25) : 10}
+                    </Text>
                 </View>
                 <View style={styles.beneficiarySelectorRight}>
                     {handleState(beneficiary?.state)}
                     <Pressable style={styles.deleteButton} onPress={() => handleOpenDeleteModal(beneficiary.id)}>
-                        <TrashIcon />
+                        <TrashIcon color={styles.trashIcon.color} />
                     </Pressable>
                 </View>
             </Pressable>
