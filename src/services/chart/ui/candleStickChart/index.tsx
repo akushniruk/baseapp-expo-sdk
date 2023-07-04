@@ -1,81 +1,107 @@
 import React, { useState } from "react";
-import { ScrollView, TouchableOpacity, Text } from "react-native";
-import Svg, { Path, Line } from "react-native-svg";
-import * as d3Shape from "d3-shape";
-import * as d3Scale from "d3-scale";
-import moment from "moment";
+import { View, TouchableOpacity, Text } from "react-native";
+import { VictoryChart, VictoryCandlestick, VictoryAxis, VictoryLabel, VictoryZoomContainer } from "victory-native";
 
-const CandlestickChart = ({ klineHistory }) => {
-    const [selectedPeriod, setSelectedPeriod] = useState("15m");
+type PeriodButtonProps = {
+    period: string;
+    selectedPeriod: string;
+    onPress: (period: string) => void;
+};
 
-    const handlePeriodChange = (period) => {
+const PeriodButton = ({ period, selectedPeriod, onPress }: PeriodButtonProps) => {
+    const isSelected = period === selectedPeriod;
+
+    return (
+        <TouchableOpacity
+            onPress={() => onPress(period)}
+            style={{
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+                backgroundColor: isSelected ? "#5f5c87" : "#fff",
+                borderRadius: 6,
+                marginHorizontal: 4,
+            }}
+        >
+            <Text style={{ color: isSelected ? "#fff" : "#5f5c87" }}>{period}</Text>
+        </TouchableOpacity>
+    );
+};
+
+const generateData = () => {
+    const startDate = new Date(2023, 6, 1);
+    const data = [];
+
+    for (let i = 0; i < 50; i++) {
+        const date = new Date(startDate.getTime() + i * 24 * 60 * 60 * 1000);
+        const open = Math.random() * 100;
+        const close = Math.random() * 100;
+        const high = Math.random() * 100;
+        const low = Math.random() * 100;
+
+        data.push({ date, open, close, high, low });
+    }
+
+    return data;
+};
+
+const CandlestickChart = () => {
+    const [selectedPeriod, setSelectedPeriod] = useState("1d"); // Initial period is set to '1d'
+
+    // Candlestick data for different periods
+    const data = {
+        "1d": generateData(),
+        "1w": [
+            { date: new Date(2023, 5, 26), open: 12, close: 20, high: 35, low: 7 },
+            { date: new Date(2023, 6, 2), open: 30, close: 45, high: 50, low: 20 },
+            // Data for 1-week period
+        ],
+        "1m": [
+            { date: new Date(2023, 5, 1), open: 18, close: 25, high: 30, low: 15 },
+            { date: new Date(2023, 6, 1), open: 28, close: 32, high: 40, low: 20 },
+            // Data for 1-month period
+        ],
+        // Add more data for other periods as needed
+    };
+
+    // Function to handle period selection
+    const handlePeriodSelect = (period: string) => {
         setSelectedPeriod(period);
     };
 
-    // Calculate the domain for x-axis scale based on selected period
-    const xDomain = klineHistory.map((d) => d.time);
-    const xScale = d3Scale
-        .scaleTime()
-        .domain([new Date(Math.min(...xDomain)), new Date(Math.max(...xDomain))])
-        .range([margin.left, width - margin.right]);
-
-    // Get the time format based on selected period
-    const getTimeFormat = (period) => {
-        switch (period) {
-            case "1m":
-            case "3m":
-            case "5m":
-            case "15m":
-                return "YYYY-MM-DD HH:mm";
-            case "30m":
-            case "1h":
-            case "4h":
-                return "YYYY-MM-DD HH:mm";
-            case "1d":
-            case "3d":
-                return "YYYY-MM-DD";
-            default:
-                return "YYYY-MM-DD HH:mm";
-        }
-    };
-
-    // Format the time based on selected period
-    const formatTime = (time) => {
-        const format = getTimeFormat(selectedPeriod);
-        return moment(time).format(format);
-    };
-
-    // Rest of the code...
-
     return (
-        <ScrollView horizontal contentContainerStyle={{ flexGrow: 1 }} onScroll={handleScroll} scrollEventThrottle={16}>
-            <TouchableOpacity activeOpacity={1} onPress={handleChartTouch}>
-                <Svg width={width} height={height}>
-                    {/* Render the candlestick chart */}
-                    <Path d={candlestickGenerator(klineHistory)} fill="none" stroke="steelblue" />
+        <View>
+            <VictoryChart domainPadding={{ y: 10 }} containerComponent={<VictoryZoomContainer />}>
+                <VictoryAxis
+                    dependentAxis
+                    orientation="right" // Set the orientation to right
+                    style={{ axisLabel: { padding: 35 }, axis: { stroke: "none" } }}
+                    axisLabelComponent={<VictoryLabel dy={-20} />}
+                    label="Price"
+                    offsetY={200}
+                    width={400}
+                    height={380}
+                    offsetX={50}
+                />
+                <VictoryAxis
+                    scale={{ x: "time" }}
+                    style={{ axisLabel: { padding: 30 } }}
+                    offsetY={40}
+                    tickFormat={(x) => new Date(x).toLocaleDateString()}
+                />
+                <VictoryCandlestick
+                    candleColors={{ positive: "#5f5c87", negative: "#d73a49" }}
+                    data={data[selectedPeriod]}
+                    x="date"
+                />
+            </VictoryChart>
 
-                    {/* Render the crosshair cursor */}
-                    {/* Rest of the code... */}
-
-                    {/* Render x-axis labels */}
-                    {klineHistory.map((d, i) => (
-                        <Text
-                            key={i}
-                            x={xScale(new Date(d.time))}
-                            y={height - margin.bottom + 20}
-                            fill="black"
-                            fontSize={12}
-                            textAnchor="middle"
-                        >
-                            {formatTime(d.time)}
-                        </Text>
-                    ))}
-
-                    {/* Render y-axis labels */}
-                    {/* Rest of the code... */}
-                </Svg>
-            </TouchableOpacity>
-        </ScrollView>
+            <View style={{ flexDirection: "row", justifyContent: "center", marginTop: 10 }}>
+                <PeriodButton period="1d" selectedPeriod={selectedPeriod} onPress={handlePeriodSelect} />
+                <PeriodButton period="1w" selectedPeriod={selectedPeriod} onPress={handlePeriodSelect} />
+                <PeriodButton period="1m" selectedPeriod={selectedPeriod} onPress={handlePeriodSelect} />
+                {/* Add more period buttons as needed */}
+            </View>
+        </View>
     );
 };
 

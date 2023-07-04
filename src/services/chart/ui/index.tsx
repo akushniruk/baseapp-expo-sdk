@@ -5,6 +5,7 @@ import { chartStyles } from "./chart.styles";
 import { useGetKlineHistoryMutation } from "../api/chartApi";
 import { useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
+import CandlestickChart from "./candleStickChart";
 
 export const CandleChart: FC = () => {
     const { theme } = useThemeContext();
@@ -25,7 +26,7 @@ export const CandleChart: FC = () => {
 
     return (
         <View>
-            <Text>{JSON.stringify(klineHistory)}</Text>
+            <CandlestickChart />
         </View>
     );
 };
