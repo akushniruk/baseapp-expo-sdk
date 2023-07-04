@@ -1,12 +1,13 @@
 import React, { FC, useEffect, useMemo, useState, useCallback } from "react";
 import { View, ScrollView, Text, Pressable, RefreshControl } from "react-native";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
-import { chartStyles } from "./chart.styles";
+import { chartStyles } from "./chartKLine.styles";
 import { useGetKlineHistoryMutation } from "../api/chartApi";
 import { useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
+import { CandleStickChart } from "./candleStickChart";
 
-export const CandleChart: FC = () => {
+export const ChartKLine: FC = () => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => chartStyles(theme), [theme]);
 
@@ -23,9 +24,5 @@ export const CandleChart: FC = () => {
         getKlineHistory({ marketId: "btczar", period: 15, time_from: 1688397300, time_to: 1688415300 });
     }, [currentMarket]);
 
-    return (
-        <View>
-            <Text>{JSON.stringify(klineHistory)}</Text>
-        </View>
-    );
+    return <CandleStickChart />;
 };

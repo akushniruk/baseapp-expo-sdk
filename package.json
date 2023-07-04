@@ -41,6 +41,7 @@
         "react-native-qrcode-svg": "6.2.0",
         "react-native-reanimated": "2.14.4",
         "react-native-reanimated-carousel": "^3.3.2",
+        "react-native-redash": "18.1.0",
         "react-native-safe-area-context": "^4.4.1",
         "react-native-swipe-modal-up-down": "^1.1.0",
         "react-native-tab-view": "3.5.1",
