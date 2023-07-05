@@ -5,7 +5,7 @@ import { chartStyles } from "./chartKLine.styles";
 import { useGetKlineHistoryMutation } from "../api/chartApi";
 import { useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
-import { CandleStickChart } from "./candleStickChart";
+import { LineChart } from "./LineChart";
 
 export const ChartKLine: FC = () => {
     const { theme } = useThemeContext();
@@ -24,5 +24,5 @@ export const ChartKLine: FC = () => {
         getKlineHistory({ marketId: "btczar", period: 15, time_from: 1688397300, time_to: 1688415300 });
     }, [currentMarket]);
 
-    return <CandleStickChart />;
+    return <LineChart />;
 };
