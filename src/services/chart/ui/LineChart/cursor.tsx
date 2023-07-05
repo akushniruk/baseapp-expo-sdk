@@ -8,33 +8,24 @@ import Animated, {
     withSpring,
 } from "react-native-reanimated";
 import { getYForX, Vector } from "react-native-redash";
+import { IKline } from "../../api/types";
 
-import { GraphIndex, graphs } from "./model";
+import { buildGraph } from "./model";
 
 const CURSOR = 50;
-const styles = StyleSheet.create({
-    cursor: {
-        width: CURSOR,
-        height: CURSOR,
-        borderRadius: CURSOR / 2,
-        backgroundColor: "rgba(0, 0, 0, 0.1)",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    cursorBody: {
-        width: 15,
-        height: 15,
-        borderRadius: 7.5,
-        backgroundColor: "black",
-    },
-});
 
 interface CursorProps {
-    index: Animated.SharedValue<GraphIndex>;
     translation: Vector<Animated.SharedValue<number>>;
+    klineHistory: IKline[];
 }
 
-const Cursor = ({ index, translation }: CursorProps) => {
+const Cursor = ({ klineHistory, translation }: CursorProps) => {
+    const graphs = {
+        label: "1H",
+        value: 0,
+        data: buildGraph(klineHistory, "Last Hour"),
+    };
+
     const isActive = useSharedValue(false);
     const onGestureEvent = useAnimatedGestureHandler({
         onStart: () => {
@@ -42,7 +33,7 @@ const Cursor = ({ index, translation }: CursorProps) => {
         },
         onActive: (event) => {
             translation.x.value = event.x;
-            translation.y.value = getYForX(graphs[index.value].data.path, translation.x.value) || 0;
+            translation.y.value = getYForX(graphs?.data.path, translation.x.value) || 0;
         },
         onEnd: () => {
             isActive.value = false;
@@ -71,3 +62,20 @@ const Cursor = ({ index, translation }: CursorProps) => {
 };
 
 export default Cursor;
+
+const styles = StyleSheet.create({
+    cursor: {
+        width: CURSOR,
+        height: CURSOR,
+        borderRadius: CURSOR / 2,
+        backgroundColor: "rgba(0, 0, 0, 0.1)",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    cursorBody: {
+        width: 15,
+        height: 15,
+        borderRadius: 7.5,
+        backgroundColor: "black",
+    },
+});

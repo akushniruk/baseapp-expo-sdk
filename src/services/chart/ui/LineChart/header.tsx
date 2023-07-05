@@ -3,7 +3,10 @@ import { StyleSheet, Text, View } from "react-native";
 import Animated, { interpolate, useAnimatedStyle, useDerivedValue } from "react-native-reanimated";
 import { ReText, Vector, round } from "react-native-redash";
 
-import { graphs, SIZE, GraphIndex } from "./model";
+import { SIZE, buildGraph } from "./model";
+
+import { IKline } from "../../api/types";
+import { convertTimestampToDate } from "../../../../shared/libs/formatDate";
 
 const styles = StyleSheet.create({
     container: {
@@ -25,32 +28,46 @@ const styles = StyleSheet.create({
 
 interface HeaderProps {
     translation: Vector<Animated.SharedValue<number>>;
-    index: Animated.SharedValue<GraphIndex>;
+    klineHistory: IKline[];
 }
 
-const Header = ({ translation, index }: HeaderProps) => {
-    const data = useDerivedValue(() => graphs[index.value].data);
+const Header = ({ klineHistory, translation }: HeaderProps) => {
+    const graphs = {
+        label: "1H",
+        value: 0,
+        data: buildGraph(klineHistory, "Last Hour"),
+    };
+
+    const data = useDerivedValue(() => graphs?.data);
     const price = useDerivedValue(() => {
         const p = interpolate(translation.y.value, [0, SIZE], [data.value?.maxPrice, data.value?.minPrice]);
         return `$ ${round(p, 2).toLocaleString("en-US", { currency: "USD" })}`;
     });
-    const percentChange = useDerivedValue(() => `${round(data.value?.percentChange, 3)}%`);
-    const label = useDerivedValue(() => data.value?.label);
-    const style = useAnimatedStyle(() => ({
-        fontWeight: "500",
-        fontSize: 24,
-        color: data.value?.percentChange > 0 ? "green" : "red",
-    }));
+
+    const dates = useDerivedValue(() => {
+        const p = interpolate(translation.x.value, [0, SIZE], [data.value?.minDate, data.value?.maxDate]);
+
+        const date = new Date(p); // Multiply by 1000 to convert from seconds to milliseconds
+
+        const day = date.getDate().toString().padStart(2, "0");
+        const month = (date.getMonth() + 1).toString().padStart(2, "0");
+        const year = date.getFullYear().toString();
+        const hours = date.getHours().toString().padStart(2, "0");
+        const minutes = date.getMinutes().toString().padStart(2, "0");
+        const seconds = date.getSeconds().toString().padStart(2, "0");
+
+        return `${day}-${month}-${year} ${hours}:${minutes}:${seconds}`;
+    });
+
     return (
         <View style={styles.container}>
             <View style={styles.values}>
                 <View>
                     <ReText style={styles.value} text={price} />
-                    <Text style={styles.label}>Etherum</Text>
+                    <Text style={styles.label}>Market: BTCZAR</Text>
                 </View>
                 <View>
-                    <ReText style={style} text={percentChange} />
-                    <ReText style={styles.label} text={label} />
+                    <ReText style={styles.value} text={dates} />
                 </View>
             </View>
         </View>

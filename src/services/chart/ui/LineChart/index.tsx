@@ -11,10 +11,5 @@ const styles = StyleSheet.create({
 });
 
 export const LineChart = () => {
-    return (
-        <View style={styles.container}>
-            {/* <Text>new chart</Text> */}
-            <Graph />
-        </View>
-    );
+    return <View style={styles.container}>{/* <Text>new chart</Text> */}</View>;
 };
