@@ -10,7 +10,8 @@ export const klineApi = api.injectEndpoints({
             query(data) {
                 return {
                     // TODO: should be finex
-                    url: `api/v2/peatio/public/markets/${data.marketId}/k-line?period=${data.period}&time_from=${data.time_from}&time_to=${data.time_to}`,
+                    // url: `api/v2/peatio/public/markets/${data.marketId}/k-line?period=${data.period}&time_from=${data.time_from}&time_to=${data.time_to}`,
+                    url: `api/v2/finex/public/markets/btcusdt/k-line?period=15&time_from=1687673700&time_to=1688573700`,
                     method: "GET",
                 };
             },
@@ -21,7 +22,7 @@ export const klineApi = api.injectEndpoints({
                     dispatch(setKlineList(klineList));
                     // @ts-ignore
                 } catch (error: any) {
-                    dispatch( 
+                    dispatch(
                         dispatchAlert({
                             type: "error",
                             messageType: "error",

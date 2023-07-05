@@ -11,11 +11,11 @@ export const SIZE = Dimensions.get("window").width;
 const POINTS = 1000;
 
 export const buildGraph = (klinePoints: IKline[], label: string) => {
-    const priceList = klinePoints.slice(-300);
+    const priceList = klinePoints.slice(-400);
     const formattedValues = priceList.map(
         (kline: IKline) => [(kline.open + kline.close) / 2, kline.time] as [number, number]
     );
-    console.log(priceList.length);
+
     const prices = formattedValues.map((value) => value[0]);
 
     const minDate = priceList[0].time;
@@ -70,4 +70,27 @@ export const buildGraph = (klinePoints: IKline[], label: string) => {
 //     },
 // ] as const;
 
-// export type GraphIndex = 0 | 1 | 2 | 3 | 4;
+export type PeriodIndex = 0 | 1 | 2 | 3 | 4;
+
+export const PERIODS = [
+    {
+        label: "1H",
+        value: 0,
+    },
+    {
+        label: "1D",
+        value: 1,
+    },
+    {
+        label: "1M",
+        value: 2,
+    },
+    {
+        label: "1Y",
+        value: 3,
+    },
+    {
+        label: "all",
+        value: 4,
+    },
+];

@@ -5,7 +5,6 @@ import { chartStyles } from "./chartKLine.styles";
 import { useGetKlineHistoryMutation } from "../api/chartApi";
 import { useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
-// import { LineChart } from "./LineChart";
 import Graph from "./LineChart/graph";
 
 export const ChartKLine: FC = () => {
@@ -24,8 +23,6 @@ export const ChartKLine: FC = () => {
         // TODO: remove this
         getKlineHistory({ marketId: "dashbtc", period: 15, time_from: 1687662900, time_to: 1688562900 });
     }, [currentMarket]);
-
-    console.log("chart", klineHistory.length, klineHistory);
 
     if (!klineHistory.length) {
         return <Text>No data...</Text>;
