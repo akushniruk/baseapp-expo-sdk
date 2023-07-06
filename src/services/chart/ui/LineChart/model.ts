@@ -8,8 +8,6 @@ import { IKline } from "../../api/types";
 
 export const SIZE = Dimensions.get("window").width - 60;
 
-const POINTS = 1000;
-
 export const buildGraph = (klinePoints: IKline[]) => {
     const priceList = klinePoints.slice(-400);
     const formattedValues = priceList.map(
@@ -48,28 +46,3 @@ export const buildGraph = (klinePoints: IKline[]) => {
         xAxisValues: [minDate, minDate + stepDate, minDate + stepDate * 2, maxDate],
     };
 };
-
-export type PeriodIndex = 0 | 1 | 2 | 3 | 4;
-
-export const PERIODS = [
-    {
-        label: "1H",
-        value: 0,
-    },
-    {
-        label: "1D",
-        value: 1,
-    },
-    {
-        label: "1M",
-        value: 2,
-    },
-    {
-        label: "1Y",
-        value: 3,
-    },
-    {
-        label: "all",
-        value: 4,
-    },
-];
