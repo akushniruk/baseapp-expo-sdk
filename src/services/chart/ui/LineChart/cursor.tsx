@@ -9,10 +9,9 @@ import Animated, {
 } from "react-native-reanimated";
 import { getYForX, Vector } from "react-native-redash";
 import { IKline } from "../../api/types";
-
 import { buildGraph } from "./model";
 
-const CURSOR = 50;
+const CURSOR = 18;
 
 interface CursorProps {
     translation: Vector<Animated.SharedValue<number>>;
@@ -20,11 +19,7 @@ interface CursorProps {
 }
 
 const Cursor = ({ klineHistory, translation }: CursorProps) => {
-    const graphs = {
-        label: "1H",
-        value: 0,
-        data: buildGraph(klineHistory, "Last Hour"),
-    };
+    const data = buildGraph(klineHistory);
 
     const isActive = useSharedValue(false);
     const onGestureEvent = useAnimatedGestureHandler({
@@ -33,7 +28,7 @@ const Cursor = ({ klineHistory, translation }: CursorProps) => {
         },
         onActive: (event) => {
             translation.x.value = event.x;
-            translation.y.value = getYForX(graphs?.data.path, translation.x.value) || 0;
+            translation.y.value = getYForX(data?.path, translation.x.value) || 0;
         },
         onEnd: () => {
             isActive.value = false;
@@ -73,8 +68,8 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     cursorBody: {
-        width: 15,
-        height: 15,
+        width: 9,
+        height: 9,
         borderRadius: 7.5,
         backgroundColor: "black",
     },

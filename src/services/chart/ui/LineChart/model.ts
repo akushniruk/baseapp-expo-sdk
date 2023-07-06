@@ -6,11 +6,11 @@ import { parse } from "react-native-redash";
 
 import { IKline } from "../../api/types";
 
-export const SIZE = Dimensions.get("window").width;
+export const SIZE = Dimensions.get("window").width - 60;
 
 const POINTS = 1000;
 
-export const buildGraph = (klinePoints: IKline[], label: string) => {
+export const buildGraph = (klinePoints: IKline[]) => {
     const priceList = klinePoints.slice(-400);
     const formattedValues = priceList.map(
         (kline: IKline) => [(kline.open + kline.close) / 2, kline.time] as [number, number]
@@ -26,8 +26,13 @@ export const buildGraph = (klinePoints: IKline[], label: string) => {
     const maxPrice = Math.max(...prices);
     const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 0]);
 
+    const rangeValue = maxPrice - minPrice;
+    const step = rangeValue / 3;
+
+    const rangeDates = maxDate - minDate;
+    const stepDate = rangeDates / 3;
+
     return {
-        label,
         minPrice,
         maxPrice,
         minDate,
@@ -39,36 +44,10 @@ export const buildGraph = (klinePoints: IKline[], label: string) => {
                 .y(([y]) => scaleY(y) as number)
                 .curve(shape.curveBasis)(formattedValues) as string
         ),
+        yAxisValues: [maxPrice, minPrice + step * 2, minPrice + step, minPrice],
+        xAxisValues: [minDate, minDate + stepDate, minDate + stepDate * 2, maxDate],
     };
 };
-
-// export const graphs = () => [
-//     {
-//         label: "1H",
-//         value: 0,
-//         data: buildGraph(values.hour, "Last Hour"),
-//     },
-//     {
-//         label: "1D",
-//         value: 1,
-//         data: buildGraph(values.day, "Today"),
-//     },
-//     {
-//         label: "1M",
-//         value: 2,
-//         data: buildGraph(values.month, "Last Month"),
-//     },
-//     {
-//         label: "1Y",
-//         value: 3,
-//         data: buildGraph(values.year, "This Year"),
-//     },
-//     {
-//         label: "all",
-//         value: 4,
-//         data: buildGraph(values.all, "All time"),
-//     },
-// ] as const;
 
 export type PeriodIndex = 0 | 1 | 2 | 3 | 4;
 

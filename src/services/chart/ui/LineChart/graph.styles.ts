@@ -14,6 +14,7 @@ export const graphStyles = (theme: string) => {
         },
         graphContainer: {
             position: "relative",
+            marginHorizontal: 12,
         },
         backgroundSelection: {
             backgroundColor: palette.Controls["primary-cta-color"][60].value,
@@ -47,7 +48,15 @@ export const graphStyles = (theme: string) => {
         },
         xAxisContainer: {
             position: "absolute",
-            bottom: -40,
+            bottom: -5,
+        },
+        xAxisValuesContainer: {
+            position: "absolute",
+            bottom: -20,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: SIZE,
         },
     });
 };
