@@ -27,7 +27,8 @@ const Cursor = ({ klineHistory, translation }: CursorProps) => {
             isActive.value = true;
         },
         onActive: (event) => {
-            translation.x.value = event.x;
+            const xValue = event.x < 0 ? 0 : event.x > 370 ? 370 : event.x;
+            translation.x.value = xValue;
             translation.y.value = getYForX(data?.path, translation.x.value) || 0;
         },
         onEnd: () => {
@@ -38,6 +39,7 @@ const Cursor = ({ klineHistory, translation }: CursorProps) => {
     const style = useAnimatedStyle(() => {
         const translateX = translation.x.value - CURSOR / 2;
         const translateY = translation.y.value - CURSOR / 2;
+
         return {
             transform: [{ translateX }, { translateY }, { scale: withSpring(isActive.value ? 1 : 0) }],
         };

@@ -22,7 +22,7 @@ export const buildGraph = (klinePoints: IKline[]) => {
 
     const minPrice = Math.min(...prices);
     const maxPrice = Math.max(...prices);
-    const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 0]);
+    const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 120]);
 
     const rangeValue = maxPrice - minPrice;
     const step = rangeValue / 3;
@@ -42,7 +42,7 @@ export const buildGraph = (klinePoints: IKline[]) => {
                 .y(([y]) => scaleY(y) as number)
                 .curve(shape.curveBasis)(formattedValues) as string
         ),
-        yAxisValues: [maxPrice, minPrice + step * 2, minPrice + step, minPrice],
+        yAxisValues: [maxPrice + step, maxPrice, minPrice + step, minPrice],
         xAxisValues: [minDate, minDate + stepDate, minDate + stepDate * 2, maxDate],
     };
 };
