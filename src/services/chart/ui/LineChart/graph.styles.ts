@@ -25,6 +25,7 @@ export const graphStyles = (theme: string) => {
         xAxisContainer: {
             position: "absolute",
             bottom: -5,
+            color: palette.Controls["divider-color"][20].value,
         },
         xAxisValuesContainer: {
             position: "absolute",

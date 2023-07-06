@@ -6,10 +6,10 @@ import { parse } from "react-native-redash";
 
 import { IKline } from "../../api/types";
 
-export const SIZE = Dimensions.get("window").width - 60;
+export const SIZE = Dimensions.get("window").width - 110;
 
 export const buildGraph = (klinePoints: IKline[]) => {
-    const priceList = klinePoints.slice(-400);
+    const priceList = klinePoints;
     const formattedValues = priceList.map(
         (kline: IKline) => [(kline.open + kline.close) / 2, kline.time] as [number, number]
     );
@@ -22,7 +22,7 @@ export const buildGraph = (klinePoints: IKline[]) => {
 
     const minPrice = Math.min(...prices);
     const maxPrice = Math.max(...prices);
-    const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 120]);
+    const scaleY = scaleLinear().domain([minPrice, maxPrice]).range([SIZE, 0]);
 
     const rangeValue = maxPrice - minPrice;
     const step = rangeValue / 3;
@@ -42,7 +42,7 @@ export const buildGraph = (klinePoints: IKline[]) => {
                 .y(([y]) => scaleY(y) as number)
                 .curve(shape.curveBasis)(formattedValues) as string
         ),
-        yAxisValues: [maxPrice + step, maxPrice, minPrice + step, minPrice],
-        xAxisValues: [minDate, minDate + stepDate, minDate + stepDate * 2, maxDate],
+        yAxisValues: [maxPrice, minPrice + step * 2, minPrice + step, minPrice],
+        xAxisValues: [minDate, minDate + stepDate, maxDate],
     };
 };
