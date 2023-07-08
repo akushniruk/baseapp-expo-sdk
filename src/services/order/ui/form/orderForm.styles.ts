@@ -6,6 +6,7 @@ export const orderFormStyles = (theme: string) => {
 
     return StyleSheet.create({
         formContainer: {
+            position: "relative",
             padding: 12,
             backgroundColor: palette.Background["main-background-color"].value,
         },
@@ -183,6 +184,12 @@ export const orderFormStyles = (theme: string) => {
         },
         availableText: {
             color: palette["text-color"][70].value,
+        },
+        blurContainer: {
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center",
         },
     });
 };

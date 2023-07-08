@@ -14,6 +14,8 @@ import { IAccount } from "../../../wallets/api/types";
 import { getAccount } from "../../libs/helpers/getAccount";
 import { useGetAccountsQuery } from "../../../wallets/api/accountApi";
 import { useCreateOrderMutation } from "../../api/order";
+import { User } from "../../../user";
+import { useLinkTo } from "@react-navigation/native";
 
 interface IOrderFormProps {
     orderType: IOrderType;
@@ -31,6 +33,8 @@ const TRIGGER_BUY_PRICE_MULT = 1.1;
 
 export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSelector }: IOrderFormProps) => {
     useGetAccountsQuery();
+
+    const linkTo = useLinkTo();
     const [createOrder, { isLoading, isSuccess }] = useCreateOrderMutation();
 
     const dispatch = useAppDispatch();
@@ -45,6 +49,7 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
         trigger_price: "",
     });
 
+    const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
     const accounts: IAccount[] | null = useAppSelector((state: RootState) => state.accounts.list);
     const tickers: Tickers | null = useAppSelector((state: RootState) => state.tickers.tickers);
     const markets = useAppSelector((state: RootState) => state.markets.markets);
@@ -212,6 +217,10 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
     };
 
     const handleCreateOrder = () => {
+        if (!profile?.uid) {
+            linkTo("/Home");
+        }
+
         if (!currentMarket) {
             return null;
         }
