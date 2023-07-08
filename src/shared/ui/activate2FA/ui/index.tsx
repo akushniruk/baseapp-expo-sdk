@@ -13,7 +13,7 @@ export const Activate2FA: FC = () => {
     const styles = useMemo(() => activate2FAStyles(theme), [theme]);
 
     const handleRedirectToActivate = useCallback(() => {
-        process.env.REACT_APP_MODE !== "storybook" && linkTo("/Activate2FA");
+        process.env.REACT_APP_MODE !== "storybook" && linkTo("/TwoFactorAuth");
     }, []);
 
     return (

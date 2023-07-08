@@ -32,7 +32,7 @@ export const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
         return () => {
             dispatch(setRequire2FA(false));
         };
-    });
+    }, []);
 
     return (
         <View style={styles.twoFactorAuthFormContainer}>

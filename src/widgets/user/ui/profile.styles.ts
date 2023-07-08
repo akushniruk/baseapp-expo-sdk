@@ -1,6 +1,5 @@
 import { StyleSheet } from "react-native";
 import { getPalette } from "../../../shared/libs/getPalette";
-import { logout } from "../../../../lib/typescript/lib/commonjs/services/user/model/userSlice.d";
 
 export const profileStyles = (theme: string) => {
     const palette = getPalette(theme);

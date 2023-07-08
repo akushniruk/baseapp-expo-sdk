@@ -218,7 +218,7 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
 
     const handleCreateOrder = () => {
         if (!profile?.uid) {
-            linkTo("/Home");
+            linkTo("/Login");
         }
 
         if (!currentMarket) {
