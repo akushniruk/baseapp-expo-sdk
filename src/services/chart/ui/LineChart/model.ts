@@ -19,7 +19,7 @@ export interface IGraph {
 }
 
 export const buildGraph = (klinePoints: IKline[]) => {
-    const priceList = klinePoints.splice(-200);
+    const priceList = klinePoints.slice(-500);
     const formattedValues = priceList.map(
         (kline: IKline) => [(kline.open + kline.close) / 2, kline.time] as [number, number]
     );

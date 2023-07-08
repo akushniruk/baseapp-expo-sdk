@@ -28,7 +28,7 @@ export const loginStyles = (theme: string) => {
             width: "100%",
             display: "flex",
             alignItems: "center",
-            bottom: 80,
+            bottom: 40,
         },
         bottomContainerText: {
             color: palette["text-color"][50].value,

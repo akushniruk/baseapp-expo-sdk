@@ -4,17 +4,20 @@ import { ForgotPasswordForm } from "../../../../../services/iam/authentication/f
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
 import { forgotPasswordStyles } from "./forgotPassword.styles";
+import { DismissKeyboard } from "../../../../../shared/ui/dismissKeyboard";
 
 export const ForgotPassword: FC = () => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => forgotPasswordStyles(theme), [theme]);
 
     return (
-        <View style={styles.container}>
-            <View style={styles.registerFormContainer}>
-                <Text style={styles.title}>{i18n.t("forgotPasswordTitle")}</Text>
-                <ForgotPasswordForm />
+        <DismissKeyboard>
+            <View style={styles.container}>
+                <View style={styles.registerFormContainer}>
+                    <Text style={styles.title}>{i18n.t("forgotPasswordTitle")}</Text>
+                    <ForgotPasswordForm />
+                </View>
             </View>
-        </View>
+        </DismissKeyboard>
     );
 };
