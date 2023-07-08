@@ -1,7 +1,7 @@
 export const es = {
     registerFormCreateNewAccountButton: "Iniciar sesión",
-    registerFormEmailPlaceholder: "Email",
-    registerFormPasswordPlaceholder: "Contraseña",
+    registerFormemailPlaceholder: "Email",
+    registerFormpasswordPlaceholder: "Contraseña",
     loginFormForgotPasswordLink: "Has olvidado tu contraseña",
     twoFactorAuthFormBackToLogin: "Atrás para iniciar sesión",
     twoFactorAuthFormPasteButton: "Pegar",

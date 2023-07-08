@@ -71,17 +71,6 @@ export const LoginForm: FC<LoginFormProps> = ({ redirectToOnLogin = "/Home" }) =
         []
     );
 
-    const renderPlaceholder = (fieldName: string) => {
-        switch (fieldName) {
-            case "email":
-                return i18n.t("loginFormEmailPlaceholder");
-            case "password":
-                return i18n.t("loginFormPasswordPlaceholder");
-            default:
-                return fieldName;
-        }
-    };
-
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
             <View style={styles.inputWrapper}>
@@ -89,8 +78,8 @@ export const LoginForm: FC<LoginFormProps> = ({ redirectToOnLogin = "/Home" }) =
                     onBlur={field.onBlur}
                     onChangeText={field.onChange}
                     value={field.value}
-                    placeholder={renderPlaceholder(field.name)}
-                    label={field.name}
+                    placeholder={i18n.t(`loginForm${field.name}Placeholder`)}
+                    label={i18n.t(`loginForm${field.name}Placeholder`)}
                     testID={field.name}
                     keyboardType={field.name === "email" ? "email-address" : "default"}
                     secureTextEntry={field.name === "password"}

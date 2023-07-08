@@ -54,8 +54,12 @@ export const RegisterForm: FC = () => {
                     onBlur={field.onBlur}
                     onChangeText={field.onChange}
                     value={field.value}
-                    placeholder={field.name}
-                    label={field.name}
+                    placeholder={i18n.t(`register${field.name}Placeholder`)}
+                    label={
+                        field.name === "refid"
+                            ? i18n.t("registerRefidLabel")
+                            : i18n.t(`register${field.name}Placeholder`)
+                    }
                     testID={field.name}
                     keyboardType={field.name === "email" ? "email-address" : "default"}
                     secureTextEntry={field.name === "password"}
@@ -83,11 +87,6 @@ export const RegisterForm: FC = () => {
                 title={i18n.t("registerFormCreateNewAccountButton")}
                 onPress={handleSubmit(onSubmitHandler as SubmitHandler<FieldValues>)}
             />
-            <View style={styles.backToLoginLinkWrapper}>
-                <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>
-                    {i18n.t("registerFormBackToLogin")}
-                </Link>
-            </View>
         </View>
     );
 };

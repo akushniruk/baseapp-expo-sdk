@@ -1,8 +1,8 @@
 export const en = {
     loginFormCreateNewAccountButton: "Login",
-    loginFormEmailPlaceholder: "Email",
-    loginFormPasswordPlaceholder: "Password",
+    loginFormemailPlaceholder: "Email",
+    loginFormpasswordPlaceholder: "Password",
     loginFormForgotPasswordLink: "Forgot Password",
-    twoFactorAuthFormBackToLogin: "Back to Login",
+    twoFactoAuthFormBackToLogin: "Back to Login",
     twoFactorAuthFormPasteButton: "Paste",
 };

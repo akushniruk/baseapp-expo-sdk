@@ -1,5 +1,5 @@
 export const en = {
-    forgotPasswordFormBackToLoginButton: "Back to login",
+    forgotPasswordFormemailPlaceholder: "Email",
     forgotPasswordFormSendButton: "Send",
 
     // Errors

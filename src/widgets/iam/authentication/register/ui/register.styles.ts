@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 import { getPalette } from "../../../../../shared/libs/getPalette";
 
-export const loginStyles = (theme: string) => {
+export const registerStyles = (theme: string) => {
     const palette = getPalette(theme);
 
     return StyleSheet.create({
@@ -13,7 +13,7 @@ export const loginStyles = (theme: string) => {
             paddingHorizontal: 12,
             backgroundColor: palette.Background["main-background-color"].value,
         },
-        loginFormContainer: {
+        registerFormContainer: {
             height: "80%",
             display: "flex",
             flexDirection: "column",

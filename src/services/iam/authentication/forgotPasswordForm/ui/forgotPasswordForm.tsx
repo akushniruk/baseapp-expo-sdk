@@ -1,18 +1,8 @@
 import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { View, Text } from "react-native";
 import { useForgotPasswordMutation } from "../api/forgotPasswordApi";
-import {
-    Controller,
-    FieldValues,
-    SubmitHandler,
-    UseControllerReturn,
-    useForm,
-} from "react-hook-form";
-import {
-    ForgotPasswordType,
-    ForgotPasswordResolver,
-    forgotPasswordSchema,
-} from "../libs/schema";
+import { Controller, FieldValues, SubmitHandler, UseControllerReturn, useForm } from "react-hook-form";
+import { ForgotPasswordType, ForgotPasswordResolver, forgotPasswordSchema } from "../libs/schema";
 import { Input, Button } from "../../../../../shared";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { Link } from "@react-navigation/native";
@@ -23,8 +13,7 @@ export const ForgotPasswordForm: FC = () => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => forgotPasswordFormStyles(theme), [theme]);
 
-    const schemaInputFields: string[] =
-        forgotPasswordSchema.keyof()._def.values;
+    const schemaInputFields: string[] = forgotPasswordSchema.keyof()._def.values;
 
     const {
         control,
@@ -38,8 +27,7 @@ export const ForgotPasswordForm: FC = () => {
         resolver: ForgotPasswordResolver,
     });
 
-    const [handleForgotPassword, { isLoading, isSuccess }] =
-        useForgotPasswordMutation();
+    const [handleForgotPassword, { isLoading, isSuccess }] = useForgotPasswordMutation();
 
     useEffect(() => {
         if (isSuccess) {
@@ -47,8 +35,7 @@ export const ForgotPasswordForm: FC = () => {
         }
     }, [isSuccess]);
 
-    const buttonDisabled = () =>
-        !watch("email")?.length || Object.keys(errors).length;
+    const buttonDisabled = () => !watch("email")?.length || Object.keys(errors).length;
 
     const onSubmitHandler: SubmitHandler<ForgotPasswordType> = (data) => {
         handleForgotPassword(data);
@@ -61,15 +48,13 @@ export const ForgotPasswordForm: FC = () => {
                     onBlur={field.onBlur}
                     onChangeText={field.onChange}
                     value={field.value}
-                    placeholder={field.name}
-                    label={field.name}
+                    placeholder={i18n.t(`forgotPasswordForm${field.name}Placeholder`)}
+                    label={i18n.t(`forgotPasswordForm${field.name}Placeholder`)}
                     testID={field.name}
                     keyboardType="email-address"
                 />
                 {errors && errors[`${field.name}`]?.message && (
-                    <Text style={styles.error}>
-                        {i18n.t(errors[`${field.name}`]?.message as string)}
-                    </Text>
+                    <Text style={styles.error}>{i18n.t(errors[`${field.name}`]?.message as string)}</Text>
                 )}
             </View>
         ),
@@ -79,13 +64,7 @@ export const ForgotPasswordForm: FC = () => {
     const renderLoginForm = useMemo(() => {
         return schemaInputFields.map((name: string) => {
             return (
-                <Controller
-                    key={name}
-                    control={control}
-                    rules={{ required: true }}
-                    name={name}
-                    render={renderInput}
-                />
+                <Controller key={name} control={control} rules={{ required: true }} name={name} render={renderInput} />
             );
         });
     }, [schemaInputFields, control]);
@@ -97,15 +76,8 @@ export const ForgotPasswordForm: FC = () => {
                 isLoading={isLoading}
                 disabled={!!buttonDisabled()}
                 title={i18n.t("forgotPasswordFormSendButton")}
-                onPress={handleSubmit(
-                    onSubmitHandler as SubmitHandler<FieldValues>
-                )}
+                onPress={handleSubmit(onSubmitHandler as SubmitHandler<FieldValues>)}
             />
-            <View style={styles.backToLoginLinkWrapper}>
-                <Link style={styles.backToLoginLink} to={{ screen: "Login" }}>
-                    {i18n.t("forgotPasswordFormBackToLoginButton")}
-                </Link>
-            </View>
         </View>
     );
 };
