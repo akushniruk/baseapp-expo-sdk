@@ -31,8 +31,7 @@ export const buttonStyles = (theme: string, customStyles?: ICustomButtonStyles) 
             alignItems: "center",
             justifyContent: "center",
             minHeight: 40,
-            borderWidth: 1,
-            borderColor: palette.Controls["divider-color"][90].value,
+            borderRadius: 4,
             ...customStyles?.button,
         },
         active: {
@@ -42,7 +41,7 @@ export const buttonStyles = (theme: string, customStyles?: ICustomButtonStyles) 
         },
         disabled: {
             backgroundColor: palette.Controls["neutral-control-color"][20].value,
-            color: palette.Controls["neutral-control-layer-color"][20].value,
+            color: palette.Controls["neutral-control-layer-color"][40].value,
             ...customStyles?.disabled,
         },
         title: {

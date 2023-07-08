@@ -34,7 +34,7 @@ export const inputV2Styles = (theme: string) => {
             width: 80,
             padding: 12,
             height: "100%",
-            borderColor: palette["text-color"][20].value,
+            borderColor: palette.Controls["divider-color"][20].value,
             borderWidth: 1,
             borderLeftWidth: 0,
             borderTopRightRadius: 4,

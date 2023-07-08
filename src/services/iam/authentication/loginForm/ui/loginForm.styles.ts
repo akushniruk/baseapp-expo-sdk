@@ -14,18 +14,12 @@ export const loginFormStyles = (theme: string) => {
         },
         forgotPasswordLinkWrapper: {
             display: "flex",
-            alignItems: "flex-end",
+            alignItems: "center",
+            marginTop: 24,
         },
         forgotPasswordLink: {
-            marginTop: 4,
-        },
-        registerLinkWrapper: {
-            display: "flex",
-            alignItems: "flex-start",
-        },
-        registerLink: {
-            marginTop: 16,
-            color: palette.Controls["primary-cta-color"][60].value,
+            fontSize: 14,
+            color: palette["text-color"][100].value,
         },
     });
 };

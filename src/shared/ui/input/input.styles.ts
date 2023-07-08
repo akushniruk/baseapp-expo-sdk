@@ -15,7 +15,7 @@ export const inputStyles = (theme: string) => {
             color: palette["text-color"][90].value,
             padding: 12,
             fontSize: 16,
-            borderColor: palette["text-color"][20].value,
+            borderColor: palette.Controls["divider-color"][20].value,
             borderWidth: 1,
             borderRadius: 4,
             backgroundColor: palette.Background["input-background-color"].value,

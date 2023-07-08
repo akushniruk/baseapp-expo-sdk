@@ -12,13 +12,12 @@ export const secondaryButtonStyles = (theme: string) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor:
-                palette.Controls["neutral-control-color"][30].value,
+            backgroundColor: palette.Controls["neutral-control-color"][60].value,
         },
         title: {
-            fontSize: 12,
-            backgroundColor:
-                palette.Controls["neutral-control-layer-color"][80].value,
+            fontSize: 14,
+            paddingHorizontal: 8,
+            color: palette.Controls["neutral-control-layer-color"][80].value,
         },
     });
 };

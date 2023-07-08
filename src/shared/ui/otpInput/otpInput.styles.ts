@@ -36,7 +36,7 @@ export const otpInputStyles = (theme: string) => {
         splitBoxText: {
             fontSize: 14,
             textAlign: "center",
-            color: palette["text-color"][50].value,
+            color: palette["text-color"][100].value,
         },
         splitBoxesFocused: {
             borderColor: palette.Controls["primary-cta-color"][60].value,

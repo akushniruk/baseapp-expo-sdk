@@ -71,6 +71,17 @@ export const LoginForm: FC<LoginFormProps> = ({ redirectToOnLogin = "/Home" }) =
         []
     );
 
+    const renderPlaceholder = (fieldName: string) => {
+        switch (fieldName) {
+            case "email":
+                return i18n.t("loginFormEmailPlaceholder");
+            case "password":
+                return i18n.t("loginFormPasswordPlaceholder");
+            default:
+                return fieldName;
+        }
+    };
+
     const renderInput = useCallback(
         ({ field }: UseControllerReturn) => (
             <View style={styles.inputWrapper}>
@@ -78,13 +89,12 @@ export const LoginForm: FC<LoginFormProps> = ({ redirectToOnLogin = "/Home" }) =
                     onBlur={field.onBlur}
                     onChangeText={field.onChange}
                     value={field.value}
-                    placeholder={field.name}
+                    placeholder={renderPlaceholder(field.name)}
                     label={field.name}
                     testID={field.name}
                     keyboardType={field.name === "email" ? "email-address" : "default"}
                     secureTextEntry={field.name === "password"}
                 />
-                {field.name === "password" && renderForgotPasswordLink}
                 {errors && <Text style={styles.error}>{errors[`${field.name}`]?.message as string}</Text>}
             </View>
         ),
@@ -109,11 +119,7 @@ export const LoginForm: FC<LoginFormProps> = ({ redirectToOnLogin = "/Home" }) =
                     title={i18n.t("loginFormCreateNewAccountButton")}
                     onPress={handleSubmit(onSubmitHandler as SubmitHandler<FieldValues>)}
                 />
-                <View style={styles.registerLinkWrapper}>
-                    <Link style={styles.registerLink} to={{ screen: "Register" }}>
-                        {i18n.t("loginFormCreateAccount")}
-                    </Link>
-                </View>
+                {renderForgotPasswordLink}
             </View>
         );
     }, [isLoading, buttonDisabled, onSubmitHandler]);

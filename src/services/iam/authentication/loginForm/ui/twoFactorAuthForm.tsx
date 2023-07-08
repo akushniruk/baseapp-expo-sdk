@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useMemo } from "react";
+import React, { FC, useCallback, useEffect, useMemo } from "react";
 import { View, Pressable, Text } from "react-native";
 import i18n from "../../../../../shared/libs/i18n/supportedLanguages";
 import { useAppDispatch } from "../../../../../shared/providers/redux/lib/useAppDispatch";
@@ -28,9 +28,11 @@ export const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
 
     const dispatch = useAppDispatch();
 
-    const changeRequire2FA = useCallback(() => {
-        dispatch(setRequire2FA(false));
-    }, []);
+    useEffect(() => {
+        return () => {
+            dispatch(setRequire2FA(false));
+        };
+    });
 
     return (
         <View style={styles.twoFactorAuthFormContainer}>
@@ -41,14 +43,6 @@ export const TwoFactorAuthForm: FC<TwoFactorAuthFormProps> = ({
                 title={i18n.t("loginFormCreateNewAccountButton")}
                 onPress={onSubmit}
             />
-            <View style={styles.backToLoginLinkWrapper}>
-                <Pressable
-                    style={styles.backToLoginLink}
-                    onPress={changeRequire2FA}
-                >
-                    <Text>{i18n.t("twoFactorAuthFormBackToLogin")}</Text>
-                </Pressable>
-            </View>
         </View>
     );
 };
