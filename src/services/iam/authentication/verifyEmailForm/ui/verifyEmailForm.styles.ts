@@ -30,5 +30,8 @@ export const verifyEmailFormStyles = (theme: string) => {
             fontWeight: "bold",
             color: palette["text-color"][100].value,
         },
+        loader: {
+            color: palette.Controls["primary-cta-color"][60].value,
+        },
     });
 };
