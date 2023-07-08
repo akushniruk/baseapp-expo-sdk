@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useMemo, useState, useCallback } from "react";
 import { View, ScrollView, Text, Pressable, RefreshControl, ActivityIndicator } from "react-native";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
-import { lineChartKlineStyles } from "./lineChartKline";
+import { lineChartKlineStyles } from "./lineChartKline.styles";
 import { useGetKlineHistoryMutation } from "../api/chartApi";
 import { useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
@@ -61,29 +61,46 @@ export const LineChartKline: FC = () => {
         }
     }, [currentMarket, period]);
 
-    const renderPeriods = (period: typeof PERIODS[0]) => {
+    const renderPeriods = (periodItem: typeof PERIODS[0]) => {
         return (
             <View>
-                <Pressable onPress={() => setPeriod(period)}>
-                    <Text>{period.label}</Text>
+                <Pressable
+                    style={({ pressed }) => [
+                        styles.periodButton,
+                        {
+                            backgroundColor: pressed
+                                ? styles.periodButtonPressed.backgroundColor
+                                : periodItem.value === period.value
+                                ? styles.periodButtonActive.backgroundColor
+                                : styles.periodButton.backgroundColor,
+                        },
+                    ]}
+                    onPress={() => setPeriod(periodItem)}
+                >
+                    <Text
+                        style={[
+                            styles.periodButtonText,
+                            periodItem.value === period.value && styles.periodButtonTextActive,
+                        ]}
+                    >
+                        {periodItem.label}
+                    </Text>
                 </Pressable>
             </View>
         );
     };
 
-    if (!klineHistory.length) {
-        return (
-            <View style={styles.noData}>
-                <NoDataIcon />
-                <Text style={styles.noDataText}>There is no data to show</Text>
-            </View>
-        );
-    }
+    const renderNoData = () => (
+        <View style={styles.noData}>
+            <NoDataIcon />
+            <Text style={styles.noDataText}>There is no data to show</Text>
+        </View>
+    );
 
     return (
         <View>
             <View style={styles.periodsContainer}>{PERIODS.map(renderPeriods)}</View>
-            <Graph klineHistory={klineHistory} isLoading={isLoading} />
+            {klineHistory?.length ? <Graph klineHistory={klineHistory} isLoading={isLoading} /> : renderNoData()}
         </View>
     );
 };

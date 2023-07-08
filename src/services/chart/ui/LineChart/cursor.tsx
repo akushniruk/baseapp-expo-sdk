@@ -10,19 +10,16 @@ import Animated, {
     interpolate,
 } from "react-native-reanimated";
 import { getYForX, ReText, round, Vector } from "react-native-redash";
-import { IKline } from "../../api/types";
-import { SIZE, buildGraph } from "./model";
+import { IGraph, SIZE, buildGraph } from "./model";
 
 const CURSOR = 18;
 
 interface CursorProps {
     translation: Vector<Animated.SharedValue<number>>;
-    klineHistory: IKline[];
+    data: IGraph;
 }
 
-const Cursor = ({ klineHistory, translation }: CursorProps) => {
-    const data = buildGraph(klineHistory);
-
+const Cursor = ({ data, translation }: CursorProps) => {
     const isActive = useSharedValue(false);
 
     const price = useDerivedValue(() => {

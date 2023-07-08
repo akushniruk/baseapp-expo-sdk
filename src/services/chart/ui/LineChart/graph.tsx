@@ -124,7 +124,7 @@ const Graph: FC<IGraphProps> = ({ klineHistory, isLoading }: IGraphProps) => {
                             </View>
                         </Svg>
 
-                        {isCursorActive ? <Cursor klineHistory={klineHistory} translation={translation} /> : null}
+                        {isCursorActive ? <Cursor data={data} translation={translation} /> : null}
                     </View>
                 </LongPressGestureHandler>
             </View>
@@ -133,7 +133,7 @@ const Graph: FC<IGraphProps> = ({ klineHistory, isLoading }: IGraphProps) => {
 
     return (
         <View style={styles.container}>
-            <Header klineHistory={klineHistory} translation={translation} />
+            <Header data={data} translation={translation} />
             <View style={styles.graphContainer}>
                 {isLoading ? renderLoader() : renderChart()}
                 <View style={styles.xAxisContainer}>

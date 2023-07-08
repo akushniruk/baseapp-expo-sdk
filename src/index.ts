@@ -44,8 +44,8 @@ import { TransferHistory } from "./services/transfer/ui/transferHistory";
 import { OrderForm } from "./services/order/ui/form";
 import { OrdersHistory } from "./services/order/ui/history/ordersHistory";
 
-// Services - ChartKLine
-import { ChartKLine } from "./services/chart/ui";
+// Services - LineChartKline
+import { LineChartKline } from "./services/chart/ui";
 
 // Widgets - Markets
 import { MarketsV1Widget } from "./widgets/markets/ui/marketsV1";
@@ -122,7 +122,7 @@ export {
     ProfileDetails,
     ProfileWidget,
     MarketsV1,
-    ChartKLine,
+    LineChartKline,
     TickerV1,
     OrderbookWidget,
     ApiKeysWidget,

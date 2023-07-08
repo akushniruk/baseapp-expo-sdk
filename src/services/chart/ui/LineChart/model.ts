@@ -2,14 +2,24 @@
 import * as shape from "d3-shape";
 import { scaleLinear } from "d3-scale";
 import { Dimensions } from "react-native";
-import { parse } from "react-native-redash";
+import { Path, parse } from "react-native-redash";
 
 import { IKline } from "../../api/types";
 
 export const SIZE = Dimensions.get("window").width - 110;
 
+export interface IGraph {
+    minPrice: number;
+    maxPrice: number;
+    minDate: number;
+    maxDate: number;
+    path: Path;
+    yAxisValues: number[];
+    xAxisValues: number[];
+}
+
 export const buildGraph = (klinePoints: IKline[]) => {
-    const priceList = klinePoints;
+    const priceList = klinePoints.splice(-200);
     const formattedValues = priceList.map(
         (kline: IKline) => [(kline.open + kline.close) / 2, kline.time] as [number, number]
     );

@@ -24,5 +24,27 @@ export const lineChartKlineStyles = (theme: string) => {
             marginTop: 12,
             color: palette["text-color"][70].value,
         },
+        periodButton: {
+            backgroundColor: palette.Background["main-background-color"].value,
+            borderRadius: 4,
+            borderWidth: 1,
+            borderColor: palette.Controls["divider-color"][20].value,
+            width: 56,
+            height: 32,
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        periodButtonActive: {
+            backgroundColor: palette.Controls["primary-cta-color"][60].value,
+        },
+        periodButtonPressed: {
+            backgroundColor: palette.Controls["primary-cta-color"][40].value,
+        },
+        periodButtonText: {
+            color: palette["text-color"][100].value,
+        },
+        periodButtonTextActive: {
+            fontWeight: "bold",
+        },
     });
 };
