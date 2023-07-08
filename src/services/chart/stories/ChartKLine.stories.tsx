@@ -1,19 +1,19 @@
 import React from "react";
 import { ComponentStory, ComponentMeta } from "@storybook/react-native";
-import { ChartKLine } from "../ui";
+import { LineChartKline } from "../ui";
 import { CoreProvider } from "../../../shared/providers/core";
 
-const ChartKLineMeta: ComponentMeta<typeof ChartKLine> = {
-    title: "Services/ChartKLine",
-    component: ChartKLine,
+const LineChartKlineMeta: ComponentMeta<typeof LineChartKline> = {
+    title: "Services/LineChartKline",
+    component: LineChartKline,
 };
 
-export default ChartKLineMeta;
+export default LineChartKlineMeta;
 
-type ChartKLineStory = ComponentStory<typeof ChartKLine>;
+type LineChartKlineStory = ComponentStory<typeof LineChartKline>;
 
-export const Basic: ChartKLineStory = (args) => (
+export const Basic: LineChartKlineStory = (args) => (
     <CoreProvider>
-        <ChartKLine />
+        <LineChartKline />
     </CoreProvider>
 );

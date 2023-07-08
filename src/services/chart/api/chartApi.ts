@@ -9,9 +9,7 @@ export const klineApi = api.injectEndpoints({
         getKlineHistory: build.mutation<IKlineResponse[], IKlineRequest>({
             query(data) {
                 return {
-                    // TODO: should be finex
-                    // url: `api/v2/peatio/public/markets/${data.marketId}/k-line?period=${data.period}&time_from=${data.time_from}&time_to=${data.time_to}`,
-                    url: `api/v2/peatio/public/markets/${data.marketId}/k-line?period=${data.period}&time_from=${data.time_from}&time_to=${data.time_to}`,
+                    url: `api/v2/finex/public/markets/${data.marketId}/k-line?period=${data.period}&time_from=${data.time_from}&time_to=${data.time_to}`,
                     method: "GET",
                 };
             },

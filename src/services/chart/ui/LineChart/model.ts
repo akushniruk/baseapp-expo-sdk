@@ -6,12 +6,10 @@ import { parse } from "react-native-redash";
 
 import { IKline } from "../../api/types";
 
-export const SIZE = Dimensions.get("window").width - 60;
-
-const POINTS = 1000;
+export const SIZE = Dimensions.get("window").width - 110;
 
 export const buildGraph = (klinePoints: IKline[]) => {
-    const priceList = klinePoints.slice(-400);
+    const priceList = klinePoints;
     const formattedValues = priceList.map(
         (kline: IKline) => [(kline.open + kline.close) / 2, kline.time] as [number, number]
     );
@@ -45,31 +43,6 @@ export const buildGraph = (klinePoints: IKline[]) => {
                 .curve(shape.curveBasis)(formattedValues) as string
         ),
         yAxisValues: [maxPrice, minPrice + step * 2, minPrice + step, minPrice],
-        xAxisValues: [minDate, minDate + stepDate, minDate + stepDate * 2, maxDate],
+        xAxisValues: [minDate, minDate + stepDate, maxDate],
     };
 };
-
-export type PeriodIndex = 0 | 1 | 2 | 3 | 4;
-
-export const PERIODS = [
-    {
-        label: "1H",
-        value: 0,
-    },
-    {
-        label: "1D",
-        value: 1,
-    },
-    {
-        label: "1M",
-        value: 2,
-    },
-    {
-        label: "1Y",
-        value: 3,
-    },
-    {
-        label: "all",
-        value: 4,
-    },
-];

@@ -1,15 +1,47 @@
 import React, { FC, useEffect, useMemo, useState, useCallback } from "react";
-import { View, ScrollView, Text, Pressable, RefreshControl } from "react-native";
+import { View, ScrollView, Text, Pressable, RefreshControl, ActivityIndicator } from "react-native";
 import { useThemeContext } from "../../../shared/hooks/useThemeContext";
-import { chartStyles } from "./chartKLine.styles";
+import { lineChartKlineStyles } from "./lineChartKline";
 import { useGetKlineHistoryMutation } from "../api/chartApi";
 import { useAppSelector } from "../../../shared";
 import { RootState } from "../../../shared/providers/redux/model/store";
 import Graph from "./LineChart/graph";
+import { NoDataIcon } from "../../../assets/system/noDataIcon";
+import { getPalette } from "../../../shared/libs/getPalette";
+import { getTimeStamps } from "../libs/helpers/getTimestamps";
 
-export const ChartKLine: FC = () => {
+export const PERIODS = [
+    {
+        label: "5m",
+        value: "5",
+    },
+    {
+        label: "15m",
+        value: "15",
+    },
+    {
+        label: "30m",
+        value: "30",
+    },
+    {
+        label: "1h",
+        value: "60",
+    },
+    {
+        label: "4h",
+        value: "240",
+    },
+    {
+        label: "1d",
+        value: "1440",
+    },
+];
+
+export const LineChartKline: FC = () => {
     const { theme } = useThemeContext();
-    const styles = useMemo(() => chartStyles(theme), [theme]);
+    const styles = useMemo(() => lineChartKlineStyles(theme), [theme]);
+
+    const [period, setPeriod] = useState<typeof PERIODS[0]>(PERIODS[0]);
 
     const [getKlineHistory, { isLoading, isSuccess }] = useGetKlineHistoryMutation();
 
@@ -18,15 +50,40 @@ export const ChartKLine: FC = () => {
 
     useEffect(() => {
         if (currentMarket?.id) {
-            getKlineHistory({ marketId: currentMarket.id, period: 15, time_from: 1688397300, time_to: 1688415300 });
+            const time = getTimeStamps(period);
+
+            getKlineHistory({
+                marketId: currentMarket.id,
+                period: +period.value,
+                time_from: Math.floor(time.time_from_timestamp),
+                time_to: Math.floor(time.time_to_timestamp),
+            });
         }
-        // TODO: remove this
-        getKlineHistory({ marketId: "dashbtc", period: 15, time_from: 1687662900, time_to: 1688562900 });
-    }, [currentMarket]);
+    }, [currentMarket, period]);
+
+    const renderPeriods = (period: typeof PERIODS[0]) => {
+        return (
+            <View>
+                <Pressable onPress={() => setPeriod(period)}>
+                    <Text>{period.label}</Text>
+                </Pressable>
+            </View>
+        );
+    };
 
     if (!klineHistory.length) {
-        return <Text>No data...</Text>;
+        return (
+            <View style={styles.noData}>
+                <NoDataIcon />
+                <Text style={styles.noDataText}>There is no data to show</Text>
+            </View>
+        );
     }
 
-    return <Graph klineHistory={klineHistory} />;
+    return (
+        <View>
+            <View style={styles.periodsContainer}>{PERIODS.map(renderPeriods)}</View>
+            <Graph klineHistory={klineHistory} isLoading={isLoading} />
+        </View>
+    );
 };

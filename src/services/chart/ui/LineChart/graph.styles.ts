@@ -1,9 +1,6 @@
 import { StyleSheet } from "react-native";
-import { PERIODS, SIZE } from "./model";
+import { SIZE } from "./model";
 import { getPalette } from "../../../../shared/libs/getPalette";
-
-const SELECTION_WIDTH = SIZE;
-const BUTTON_WIDTH = SELECTION_WIDTH / PERIODS.length;
 
 export const graphStyles = (theme: string) => {
     const palette = getPalette(theme);
@@ -15,27 +12,6 @@ export const graphStyles = (theme: string) => {
         graphContainer: {
             position: "relative",
             marginHorizontal: 12,
-        },
-        backgroundSelection: {
-            backgroundColor: palette.Controls["primary-cta-color"][60].value,
-            ...StyleSheet.absoluteFillObject,
-            width: BUTTON_WIDTH,
-            borderRadius: 1000,
-        },
-        selection: {
-            flexDirection: "row",
-            width: SELECTION_WIDTH,
-            alignSelf: "center",
-        },
-        labelContainer: {
-            padding: 8,
-            width: BUTTON_WIDTH,
-        },
-        label: {
-            fontSize: 16,
-            color: palette["text-color"][70].value,
-            fontWeight: "bold",
-            textAlign: "center",
         },
         line: {
             color: palette.Controls["primary-cta-color"][60].value,
@@ -49,6 +25,7 @@ export const graphStyles = (theme: string) => {
         xAxisContainer: {
             position: "absolute",
             bottom: -5,
+            color: palette.Controls["divider-color"][20].value,
         },
         xAxisValuesContainer: {
             position: "absolute",

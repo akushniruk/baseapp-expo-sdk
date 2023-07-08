@@ -1,26 +1,26 @@
 import React, { FC, useMemo } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 import Svg, { Defs, Line, LinearGradient, Path, Stop } from "react-native-svg";
-import Animated, { useAnimatedProps, useAnimatedStyle, useSharedValue, withTiming } from "react-native-reanimated";
-import { TouchableWithoutFeedback, LongPressGestureHandler, State } from "react-native-gesture-handler";
-import { mixPath, useVector } from "react-native-redash";
-import { buildGraph, PeriodIndex, PERIODS, SIZE } from "./model";
+import Animated, { useAnimatedProps, useSharedValue } from "react-native-reanimated";
+import { LongPressGestureHandler, State } from "react-native-gesture-handler";
+import { serialize, useVector } from "react-native-redash";
+import { buildGraph, SIZE } from "./model";
 import Cursor from "./cursor";
 import { IKline } from "../../api/types";
 import Header from "./header";
 import { useThemeContext } from "../../../../shared/hooks/useThemeContext";
 import { graphStyles } from "./graph.styles";
+import { getPalette } from "../../../../shared/libs/getPalette";
+import { grid } from "./grid";
 
 interface IGraphProps {
     klineHistory: IKline[];
+    isLoading: boolean;
 }
 
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
-const SELECTION_WIDTH = SIZE;
-const BUTTON_WIDTH = SELECTION_WIDTH / PERIODS.length;
-
-const Graph: FC<IGraphProps> = ({ klineHistory }: IGraphProps) => {
+const Graph: FC<IGraphProps> = ({ klineHistory, isLoading }: IGraphProps) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => graphStyles(theme), [theme]);
 
@@ -28,14 +28,9 @@ const Graph: FC<IGraphProps> = ({ klineHistory }: IGraphProps) => {
     const [isCursorActive, setIsCursorActive] = React.useState(false);
 
     const translation = useVector();
-    const transition = useSharedValue(0);
-    const previous = useSharedValue<PeriodIndex>(0);
-    const current = useSharedValue<PeriodIndex>(0);
 
     const animatedProps = useAnimatedProps(() => {
-        const previousPath = data.path;
-        const currentPath = data.path;
-        const newPath = mixPath(transition.value, previousPath, currentPath);
+        const newPath = serialize(data.path);
         // const pathValue = newPath.replace("M", "L");
         // const gradientD = pathValue.length > 0 ? `M 0,${SIZE} C 0,0 0,0 0,0 ${pathValue} L ${SIZE},${SIZE}` : "";
 
@@ -50,14 +45,8 @@ const Graph: FC<IGraphProps> = ({ klineHistory }: IGraphProps) => {
         }
     };
 
-    const style = useAnimatedStyle(() => {
-        return {
-            transform: [{ translateX: withTiming(BUTTON_WIDTH * current.value) }],
-        };
-    });
-
     const renderYAxisValues = (value: number, index: number) => {
-        return <Text key={index}>{value.toFixed(4)}</Text>;
+        return <Text key={index}>{value.toFixed(2)}</Text>;
     };
 
     const renderXAxisValues = (value: number, index: number) => {
@@ -66,7 +55,6 @@ const Graph: FC<IGraphProps> = ({ klineHistory }: IGraphProps) => {
         // Format the date
         const day = date.getDate();
         const month = date.toLocaleString("en-US", { month: "short" });
-        const year = date.getFullYear();
         const formattedDate = `${day} ${month}`;
 
         // Format the time
@@ -82,74 +70,75 @@ const Graph: FC<IGraphProps> = ({ klineHistory }: IGraphProps) => {
         );
     };
 
+    const renderLoader = () => {
+        return (
+            <View
+                style={{
+                    width: SIZE + 110,
+                    height: SIZE,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                }}
+            >
+                <Text>
+                    <ActivityIndicator color={`${getPalette(theme).Controls["primary-cta-layer-color"][60].value}`} />
+                </Text>
+            </View>
+        );
+    };
+
+    const renderChart = () => {
+        return (
+            <View>
+                <LongPressGestureHandler onHandlerStateChange={handleLongPress} minDurationMs={200}>
+                    <View>
+                        <Svg style={{ position: "relative" }} width={SIZE} height={SIZE + 20}>
+                            {grid()}
+                            <AnimatedPath
+                                animatedProps={animatedProps}
+                                fill="url(#gradient)"
+                                stroke={styles.line.color}
+                                strokeWidth={2}
+                            />
+                            {/* <Defs>
+                                <LinearGradient id="gradient" x1="100%" y1="0%" x2="100%" y2="100%">
+                                    <Stop offset="0%" stopColor={styles.linearGradientTop.color} stopOpacity="1" />
+                                    <Stop offset="100%" stopColor={styles.linearGradientBottom.color} stopOpacity="0" />
+                                </LinearGradient>
+                            </Defs> */}
+                            {/* <Line x1={0} y1={0} x2={0} y2={SIZE + 20} stroke="gray" strokeWidth={2} /> */}
+                            {/* <Line x1={SIZE} y1={0} x2={SIZE} y2={SIZE + 20} stroke="gray" strokeWidth={2} /> */}
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    right: -70,
+                                    top: -10,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "space-between",
+                                    height: SIZE + 20,
+                                }}
+                            >
+                                {data?.yAxisValues.map(renderYAxisValues)}
+                            </View>
+                        </Svg>
+
+                        {isCursorActive ? <Cursor klineHistory={klineHistory} translation={translation} /> : null}
+                    </View>
+                </LongPressGestureHandler>
+            </View>
+        );
+    };
+
     return (
         <View style={styles.container}>
-            <View style={styles.selection}>
-                <View style={StyleSheet.absoluteFill}>
-                    <Animated.View style={[styles.backgroundSelection, style]} />
-                </View>
-                {PERIODS.map((period, index) => {
-                    return (
-                        <TouchableWithoutFeedback
-                            key={period.label}
-                            onPress={() => {
-                                previous.value = current.value;
-                                transition.value = 0;
-                                current.value = index as PeriodIndex;
-                                transition.value = withTiming(1);
-                            }}
-                        >
-                            <Animated.View style={[styles.labelContainer]}>
-                                <Text style={styles.label}>{period.label}</Text>
-                            </Animated.View>
-                        </TouchableWithoutFeedback>
-                    );
-                })}
-            </View>
             <Header klineHistory={klineHistory} translation={translation} />
             <View style={styles.graphContainer}>
-                <View>
-                    <LongPressGestureHandler onHandlerStateChange={handleLongPress} minDurationMs={1000}>
-                        <View>
-                            <Svg style={{ position: "relative" }} width={SIZE} height={SIZE + 20}>
-                                <AnimatedPath
-                                    animatedProps={animatedProps}
-                                    fill="url(#gradient)"
-                                    stroke={styles.line.color}
-                                    strokeWidth={2}
-                                />
-                                <Defs>
-                                    <LinearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <Stop offset="0%" stopColor={styles.linearGradientTop.color} stopOpacity="1" />
-                                        <Stop
-                                            offset="100%"
-                                            stopColor={styles.linearGradientBottom.color}
-                                            stopOpacity="0"
-                                        />
-                                    </LinearGradient>
-                                </Defs>
-                                <Line x1={SIZE} y1={0} x2={SIZE} y2={SIZE + 20} stroke="gray" strokeWidth={1} />
-                                <View
-                                    style={{
-                                        position: "absolute",
-                                        right: -50,
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "space-between",
-                                        height: SIZE,
-                                    }}
-                                >
-                                    {data?.yAxisValues.map(renderYAxisValues)}
-                                </View>
-                            </Svg>
-
-                            {isCursorActive ? <Cursor klineHistory={klineHistory} translation={translation} /> : null}
-                        </View>
-                    </LongPressGestureHandler>
-                </View>
+                {isLoading ? renderLoader() : renderChart()}
                 <View style={styles.xAxisContainer}>
-                    <Svg width={SIZE} height={5}>
-                        <Path d={`M0 0 L${SIZE} 0`} stroke="gray" strokeWidth={1} />
+                    <Svg width={SIZE + 70} height={5}>
+                        <Path d={`M0 0 L${SIZE + 70} 0`} stroke={styles.xAxisContainer.color} strokeWidth={2} />
                     </Svg>
                 </View>
                 <View style={styles.xAxisValuesContainer}>{data.xAxisValues.map(renderXAxisValues)}</View>
