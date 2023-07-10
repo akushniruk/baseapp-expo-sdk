@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useMemo, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Button, OTPInput, useAppSelector } from "../../../../shared";
 import { RootState } from "../../../../shared/providers/redux/model/store";
 import { useActivateBeneficiaryMutation, useGetBeneficiariesMutation } from "../../api/beneficiaryApi";
@@ -37,6 +37,9 @@ export const ConfirmBeneficiary: FC<IConfirmBeneficiaryProps> = ({ navigation }:
 
     return (
         <View style={styles.modalContainer}>
+            <View style={styles.imageContainer}>
+                <Image style={styles.image} source={require("../../../../assets/system/email_verify.png")}></Image>
+            </View>
             <Text style={styles.info}>
                 We have sent you an email containing a confirmation code pin, please enter it below to save the new
                 address.

@@ -20,5 +20,14 @@ export const confirmBeneficiaryStyles = (theme: string) => {
             justifyContent: "center",
             paddingHorizontal: 12,
         },
+        imageContainer: {
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+        },
+        image: {
+            width: 256,
+            height: 256,
+        },
     });
 };
