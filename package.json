@@ -1,6 +1,6 @@
 {
     "name": "@akushniruk/baseapp-expo-sdk",
-    "version": "0.0.138",
+    "version": "0.0.143",
     "main": "node_modules/expo/AppEntry.js",
     "license": "MIT",
     "scripts": {

@@ -13,6 +13,8 @@ import { IWallet } from "../../../wallets/api/types";
 import { CreateBeneficiaryRequest, useCreateBeneficiaryMutation } from "../../api/beneficiaryApi";
 import { createBeneciarySchema, CreateBeneficiaryResolver, CreateBeneficiaryType } from "../../libs/schema";
 import { createBeneficiaryStyles } from "./createCryptoBeneficiary.styles";
+import { User } from "../../../user";
+import { SelectIcon } from "../../../../assets/system/selector";
 
 export const CreateCryptoBeneficiary: FC = () => {
     const [createBeneficiary, { isLoading, isSuccess }] = useCreateBeneficiaryMutation();
@@ -29,6 +31,7 @@ export const CreateCryptoBeneficiary: FC = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const bottomSheetRef = useRef<BottomSheet>(null);
 
+    const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
     const wallet: IWallet | null = useAppSelector((state: RootState) => state.wallet.wallet);
     const currencies: Currency[] | null = useAppSelector((state: RootState) => state.currency.list);
 
@@ -108,10 +111,74 @@ export const CreateCryptoBeneficiary: FC = () => {
         setIsOpen(false);
     };
 
-    const renderNetworks = (network: Network) => {
+    const renderNetworkSelector = () => {
         return (
-            <Pressable onPress={() => handleBlockchainKey(network.blockchain_key)}>
-                <Text>{network.protocol}</Text>
+            <>
+                <Text style={styles.networkLabel}>Network</Text>
+                <Pressable
+                    style={({ pressed }) => [
+                        styles.networkSelector,
+                        {
+                            backgroundColor: pressed
+                                ? styles.networkSelectorPressed.backgroundColor
+                                : styles.networkSelector.backgroundColor,
+                        },
+                    ]}
+                    onPress={() => setIsOpen(true)}
+                >
+                    <Text style={styles.networkSelectorText}>{blockchainKey ? blockchainKey : "Select network"}</Text>
+                    <SelectIcon width={18} />
+                </Pressable>
+            </>
+        );
+    };
+
+    const renderNetworks = (network: Network) => {
+        if (network?.status === "hidden" && profile?.role !== "admin" && profile?.role !== "superadmin") {
+            return null;
+        }
+
+        return (
+            <Pressable
+                style={({ pressed }) => [
+                    styles.network,
+                    {
+                        backgroundColor: pressed
+                            ? styles.networkPressed.backgroundColor
+                            : styles.network.backgroundColor,
+                    },
+                ]}
+                onPress={() => handleBlockchainKey(network.blockchain_key)}
+            >
+                <View style={styles.networkItemContainer}>
+                    {network?.status ? (
+                        <View style={styles.networkItemDisabledContainer}>
+                            <Text style={styles.networkItemDisabledText}>Disabled</Text>
+                        </View>
+                    ) : null}
+                    <View style={styles.networkItemRow}>
+                        <View style={styles.networkItemProtocol}>
+                            <Text style={styles.networkItemText}>
+                                {network?.protocol?.toUpperCase()} {currency?.name}({currency?.id?.toUpperCase()})
+                            </Text>
+                        </View>
+
+                        <View style={styles.networkItemRow}>
+                            <Text style={styles.networkItemLabel}>Min. Withdrawal:</Text>
+                            <Text style={styles.networkItemValue}>
+                                {network?.min_withdraw_amount}
+                                <Text style={styles.networkItemValueCode}> {wallet?.currency?.toUpperCase()}</Text>
+                            </Text>
+                        </View>
+                    </View>
+                    <View style={styles.networkItem}>
+                        <Text style={styles.networkItemLabel}>Network Fee:</Text>
+                        <Text style={styles.networkItemValue}>
+                            {network?.withdraw_fee}
+                            <Text style={styles.networkItemValueCode}> {wallet?.currency?.toUpperCase()}</Text>
+                        </Text>
+                    </View>
+                </View>
             </Pressable>
         );
     };
@@ -119,16 +186,10 @@ export const CreateCryptoBeneficiary: FC = () => {
     return (
         <View style={styles.container}>
             <View>
-                <Text>Create beneficiary for {wallet?.currency}</Text>
                 {renderInputFields}
-                <Pressable onPress={() => setIsOpen(true)}>
-                    <Text>Network</Text>
-                    <View>
-                        <Text>{blockchainKey ? blockchainKey : "Network"}</Text>
-                    </View>
-                </Pressable>
+                {renderNetworkSelector()}
                 <View>
-                    <Text>Enter 2FA code from Google Authenticator app</Text>
+                    <Text style={styles.otpLabel}>Enter 2FA code from Google Authenticator app</Text>
                     <OTPInput code={otp} setCode={setOtp} maximumLength={6} emptyInputSymbol="*" />
                 </View>
 
@@ -139,7 +200,7 @@ export const CreateCryptoBeneficiary: FC = () => {
                     onPress={handleSubmit(onSubmitHandler as SubmitHandler<FieldValues>)}
                 />
             </View>
-            <Modal snapPoints={["40%", "60%"]} bottomSheetRef={bottomSheetRef} isOpen={isOpen} setIsOpen={setIsOpen}>
+            <Modal snapPoints={["60%", "80%"]} bottomSheetRef={bottomSheetRef} isOpen={isOpen} setIsOpen={setIsOpen}>
                 <View style={styles.containerNetworkModal}>{currency?.networks?.map(renderNetworks)}</View>
             </Modal>
         </View>
