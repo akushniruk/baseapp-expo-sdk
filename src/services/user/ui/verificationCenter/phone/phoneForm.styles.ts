@@ -27,11 +27,11 @@ export const phoneFormStyles = (theme: string) => {
             position: "relative",
         },
         phoneInput: {
-            width: "70%",
+            width: "65%",
         },
         buttonWrapper: {
             position: "absolute",
-            width: "27%",
+            width: "32%",
             right: 0,
             bottom: 0,
         },
@@ -41,6 +41,16 @@ export const phoneFormStyles = (theme: string) => {
         submitButtonWrapper: {
             marginTop: 24,
         },
-        timerWrapper: {},
+        timerWrapper: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: 44,
+            backgroundColor: palette.Controls["neutral-control-color"][20].value,
+            color: palette.Controls["neutral-control-layer-color"][40].value,
+        },
+        timerText: {
+            color: palette.Controls["neutral-control-layer-color"][40].value,
+        },
     });
 };

@@ -51,7 +51,7 @@ export const PhoneForm = () => {
     const renderTimer = () => {
         return (
             <View style={styles.timerWrapper}>
-                <Text>
+                <Text style={styles.timerText}>
                     0{seconds === 60 ? "1" : "0"}:{seconds === 60 ? "00" : seconds > 9 ? seconds : "0" + seconds}
                 </Text>
             </View>
@@ -93,7 +93,7 @@ export const PhoneForm = () => {
                 </View>
 
                 <View style={styles.submitButtonWrapper}>
-                    <Button title="Submit" onPress={verifyCode} isLoading={false} />
+                    <Button title="Submit" onPress={verifyCode} isLoading={false} disabled={!code} />
                 </View>
             </View>
         </KeyboardAvoidingView>
