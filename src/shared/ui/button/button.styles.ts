@@ -30,7 +30,7 @@ export const buttonStyles = (theme: string, customStyles?: ICustomButtonStyles) 
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            minHeight: 40,
+            minHeight: 44,
             borderRadius: 4,
             ...customStyles?.button,
         },

@@ -16,6 +16,8 @@ export const Input: FC<InputProps> = ({
     keyboardType,
     onBlur,
     onChangeText,
+    autoComplete,
+    textContentType,
 }: InputProps) => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => inputStyles(theme), [theme]);
@@ -34,6 +36,8 @@ export const Input: FC<InputProps> = ({
                 keyboardType={keyboardType}
                 placeholderTextColor={styles.placeholder.color}
                 keyboardAppearance={theme === "dark" ? "dark" : "light"}
+                textContentType={textContentType}
+                autoComplete={autoComplete}
             />
         </View>
     );
