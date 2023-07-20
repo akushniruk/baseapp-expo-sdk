@@ -8,13 +8,14 @@ import { IWallet, IWalletAddress } from "../../wallets/api/types";
 import { Currency } from "../../currencies/model/type";
 import { Network } from "../../networks/model/type";
 import QRCode from "react-native-qrcode-svg";
-import { User } from "../../user";
+import { IMemberLevels, User } from "../../user";
 import { Modal } from "../../../shared/ui/modal";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { SelectIcon } from "../../../assets/system/selector";
 import { Copy } from "../../../assets/system/copy";
 import * as Clipboard from "expo-clipboard";
 import { useCreateWalletAddressMutation } from "../../wallets/api/accountApi";
+import { PermissionLevel } from "../../../shared/ui/permissionLevel";
 
 // TODO: add support for memo and destination tag
 export const Deposit: FC = () => {
@@ -32,6 +33,7 @@ export const Deposit: FC = () => {
     const wallet: IWallet | null = useAppSelector((state: RootState) => state.wallet.wallet);
     const currencies: Currency[] | null = useAppSelector((state: RootState) => state.currency.list);
     const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
+    const membersLevel: IMemberLevels | null = useAppSelector((state: RootState) => state.user.memberLevels);
 
     const currency: Currency | null = useMemo(
         () => currencies?.find((item) => item.id === wallet?.currency) || null,
@@ -173,6 +175,10 @@ export const Deposit: FC = () => {
             </>
         );
     };
+
+    if (membersLevel && profile && profile.level < membersLevel.trading.minimum_level) {
+        return <PermissionLevel text={`In order to unblock deposit, you will need to pass identity verification.`} />;
+    }
 
     return (
         <View style={styles.container}>

@@ -13,13 +13,14 @@ import { useGetBeneficiariesMutation } from "../api/beneficiaryApi";
 import { setBeneficiary } from "../model/beneficiarySlice";
 import { Currency } from "../../currencies/model/type";
 import { Network } from "../../networks/model/type";
-import { User } from "../../user";
+import { IMemberLevels, User } from "../../user";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { Modal } from "../../../shared/ui/modal";
 import { truncateMiddle } from "../../../shared/libs/truncateMiddle";
 import { Receipt } from "./receipt";
 import { Activate2FA } from "../../../shared/ui/activate2FA/ui";
 import { DismissKeyboard } from "../../../shared/ui/dismissKeyboard";
+import { PermissionLevel } from "../../../shared/ui/permissionLevel";
 
 export const Withdrawal: FC = () => {
     const [getBeneficiaries, { isLoading, isSuccess }] = useGetBeneficiariesMutation();
@@ -41,6 +42,7 @@ export const Withdrawal: FC = () => {
     const beneficiaries: IBeneficiary[] = useAppSelector((state: RootState) => state.beneficiary.list);
     const currencies: Currency[] | null = useAppSelector((state: RootState) => state.currency.list);
     const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
+    const membersLevel: IMemberLevels | null = useAppSelector((state: RootState) => state.user.memberLevels);
 
     const currency: Currency | null = useMemo(
         () => currencies?.find((item) => item.id === wallet?.currency) || null,
@@ -153,6 +155,14 @@ export const Withdrawal: FC = () => {
             </Pressable>
         );
     };
+
+    if (membersLevel && profile && profile.level < membersLevel.withdraw.minimum_level) {
+        return (
+            <PermissionLevel
+                text={`In order to unblock withdrawal, you will need to pass identity, documents and address verification.`}
+            />
+        );
+    }
 
     if (profile && !profile?.otp) {
         return (

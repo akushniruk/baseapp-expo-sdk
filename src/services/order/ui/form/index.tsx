@@ -14,8 +14,9 @@ import { IAccount } from "../../../wallets/api/types";
 import { getAccount } from "../../libs/helpers/getAccount";
 import { useGetAccountsQuery } from "../../../wallets/api/accountApi";
 import { useCreateOrderMutation } from "../../api/order";
-import { User } from "../../../user";
+import { IMemberLevels, User } from "../../../user";
 import { useLinkTo } from "@react-navigation/native";
+import { PermissionLevel } from "../../../../shared/ui/permissionLevel";
 
 interface IOrderFormProps {
     orderType: IOrderType;
@@ -49,6 +50,7 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
         trigger_price: "",
     });
 
+    const membersLevel: IMemberLevels | null = useAppSelector((state: RootState) => state.user.memberLevels);
     const profile: User | null = useAppSelector((state: RootState) => state.user.profile);
     const accounts: IAccount[] | null = useAppSelector((state: RootState) => state.accounts.list);
     const tickers: Tickers | null = useAppSelector((state: RootState) => state.tickers.tickers);
@@ -97,6 +99,20 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
         } else {
             return safeAmount * (Number(newOrder?.trigger_price) || 0);
         }
+    };
+
+    const renderPermission = () => {
+        if (membersLevel && profile && profile.level < membersLevel.deposit.minimum_level) {
+            return (
+                <View style={{ marginBottom: 24 }}>
+                    <PermissionLevel
+                        text={`In order to unblock trading, you will need to pass identity verification.`}
+                    />
+                </View>
+            );
+        }
+
+        return null;
     };
 
     const renderOrderTypeSelector = () => {
@@ -279,6 +295,7 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
 
     return (
         <View style={styles.formContainer}>
+            {renderPermission()}
             <View style={styles.headerContainer}>
                 <Pressable style={styles.marketTypeButton}>
                     <Text style={styles.marketTypeButtonText}>Spot</Text>
@@ -332,15 +349,6 @@ export const OrderForm: FC<IOrderFormProps> = ({ orderType, setIsOpenOrderTypeSe
                     />
                 </View>
 
-                <View></View>
-                {/* <InputV2
-                        value={newOrder?.total || ""}
-                        onChangeText={(text: string) => handleStateChange("total", text)}
-                        keyboardType="numeric"
-                        placeholder="Total"
-                        label="total"
-                        symbol={currentMarket?.quote_unit?.toUpperCase() || ""}
-                    /> */}
                 <View style={styles.totalContainer}>
                     <Text style={styles.totalText}>Total</Text>
                     <View style={styles.containerValues}>

@@ -45,6 +45,7 @@ export const lineChartKlineStyles = (theme: string) => {
         },
         periodButtonTextActive: {
             fontWeight: "bold",
+            color: palette["text-color"]["00"].value,
         },
     });
 };

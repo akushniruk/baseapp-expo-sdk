@@ -84,8 +84,6 @@ export const DocumentsForm = () => {
             base64: true,
         });
 
-        console.log(result);
-
         if (!result.canceled) {
             // @ts-ignore
             setFrontImage(result.assets[0].uri);

@@ -44,9 +44,9 @@ export const BackupKeyForm: FC<IBackupKeyForm> = ({ navigation }) => {
 
     useEffect(() => {
         if (isSuccess) {
-            navigation?.navigate("Profile");
             bottomSheetRef?.current?.forceClose();
             setIsOpen2FAModal(false);
+            navigation?.navigate("Profile");
         }
     }, [isSuccess]);
 
