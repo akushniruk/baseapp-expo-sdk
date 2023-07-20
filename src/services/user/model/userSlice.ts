@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IMFA, Member, User } from "../api/types";
+import { IMemberLevels, IMFA, Member, User } from "../api/types";
 
 export interface UserState {
     profile: User | null;
     peatioMember: Member | null;
+    memberLevels: IMemberLevels | null;
     require2FA: boolean;
     mfa: IMFA;
 }
@@ -11,6 +12,7 @@ export interface UserState {
 export const initialState: UserState = {
     profile: null,
     peatioMember: null,
+    memberLevels: null,
     require2FA: false,
     mfa: {
         barcode: "",
@@ -24,6 +26,9 @@ export const user = createSlice({
     reducers: {
         setPeatioMember: (state: UserState, action: PayloadAction<Member>) => {
             state.peatioMember = action.payload;
+        },
+        setMemberLevels: (state: UserState, action: PayloadAction<IMemberLevels>) => {
+            state.memberLevels = action.payload;
         },
         logout: () => initialState,
         setProfile: (state: UserState, action: PayloadAction<User | null>) => {
@@ -46,4 +51,5 @@ export const user = createSlice({
     },
 });
 
-export const { logout, setProfile, setUpdateProfileOTP, setRequire2FA, setPeatioMember, setMFA } = user.actions;
+export const { logout, setProfile, setUpdateProfileOTP, setRequire2FA, setPeatioMember, setMFA, setMemberLevels } =
+    user.actions;

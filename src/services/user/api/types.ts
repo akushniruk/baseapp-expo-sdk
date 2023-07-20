@@ -55,3 +55,16 @@ export interface IMFA {
     barcode: string;
     url: string;
 }
+
+// TODO: rename to Permissions or something like that;
+export interface IMemberLevels {
+    deposit: {
+        minimum_level: number;
+    };
+    withdraw: {
+        minimum_level: number;
+    };
+    trading: {
+        minimum_level: number;
+    };
+}
