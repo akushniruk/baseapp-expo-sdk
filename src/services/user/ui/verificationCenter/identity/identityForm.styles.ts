@@ -6,7 +6,7 @@ export const identityFormStyles = (theme: string) => {
 
     return StyleSheet.create({
         container: {
-            flex: 1,
+            // flex: 1,
             paddingHorizontal: 12,
         },
         title: {
@@ -19,6 +19,14 @@ export const identityFormStyles = (theme: string) => {
             fontSize: 18,
             color: palette["text-color"][70].value,
         },
-        inputWrapper: {},
+        inputWrapper: {
+            marginTop: 24,
+        },
+        identityContainer: {
+            marginTop: 24,
+        },
+        submitButtonWrapper: {
+            marginTop: 24,
+        },
     });
 };

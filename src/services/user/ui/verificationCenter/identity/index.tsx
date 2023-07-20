@@ -1,43 +1,35 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { View, Text, KeyboardAvoidingView } from "react-native";
+import { View, Text, KeyboardAvoidingView, ScrollView } from "react-native";
 import { useThemeContext } from "../../../../../shared/hooks/useThemeContext";
 import { identityFormStyles } from "./identityForm.styles";
 import { Button, Input } from "../../../../../shared";
 
-// body:
-// identity_number: "+380667756487"
-// POST: https://aurora-master.uat.opendax.app/api/v2/barong/resource/identitys
-// POST: https://aurora-master.uat.opendax.app/api/v2/barong/resource/identitys/send_code
-// VERIFY
-// POST: https://aurora-master.uat.opendax.app/api/v2/barong/resource/identitys/verify
+// POST
+// https://aurora-master.uat.opendax.app/api/v2/barong/resource/profiles
 // {
-//     "identity_number": "+380667756487",
-//     "verification_code": "11111111"
-// }
+//     "first_name": "Andrii",
+//     "last_name": "Kushniruk",
+//     "dob": "02/07/1997",
+//     "address": "Crakow",
+//     "postcode": "01001",
+//     "city": "Crakow",
+//     "country": "PL",
+//     "confirm": true
+//   }
 export const IdentityForm = () => {
     const { theme } = useThemeContext();
     const styles = useMemo(() => identityFormStyles(theme), [theme]);
 
-    const [currentStep, setCurrentStep] = useState<number>(0); // [0, 1, 2, 3]
     const [firstName, setFirstName] = useState<string>("");
     const [lastName, setLastName] = useState<string>("");
     const [dob, setDob] = useState<string>("");
-    const [country, setCountry] = useState<string>("");
     const [nationality, setNationality] = useState<string>("");
-    const [idType, setIdType] = useState<string>("");
-    const [idNumber, setIdNumber] = useState<string>("");
-    const [issueDate, setIssueDate] = useState<string>("");
-    const [expireDate, setExpireDate] = useState<string>("");
-    const [frontImage, setFrontImage] = useState<string>("");
-    const [selfieImage, setSelfieImage] = useState<string>("");
+    const [country, setCountry] = useState<string>("");
 
-    const renderStep1 = () => {
+    const renderVerification = () => {
         return (
             <>
-                <View style={styles.container}>
-                    <Text style={styles.title}>Get verified Your ID</Text>
-                    <Text style={styles.steps}>Step 1 of 4</Text>
-
+                <View style={styles.identityContainer}>
                     <View style={styles.inputWrapper}>
                         <Input
                             onChangeText={setFirstName}
@@ -88,42 +80,24 @@ export const IdentityForm = () => {
         );
     };
 
-    const renderStep2 = () => {
-        return <View style={styles.container}></View>;
-    };
-
-    const renderStep3 = () => {
-        return <View style={styles.container}></View>;
-    };
-
-    const renderStep4 = () => {
-        return <View style={styles.container}></View>;
-    };
-
-    const renderSteps = () => {
-        switch (currentStep) {
-            case 0:
-                return renderStep1();
-            case 1:
-                return renderStep2();
-            case 2:
-                return renderStep3();
-            case 3:
-                return renderStep4();
-            default:
-                return null;
-        }
+    const verifyProfile = () => {
+        console.log("Submit Profile");
     };
 
     return (
         <KeyboardAvoidingView>
-            <View>
-                {renderSteps()}
-                <View>
-                    <Button title="Back" isLoading={false} />
-                    <Button title="Next" isLoading={false} />
+            <ScrollView style={{ height: "100%" }}>
+                <View style={styles.container}>
+                    <View>
+                        <Text style={styles.title}>Get verified Your Profile</Text>
+                        <Text style={styles.steps}>Step 1 of 1</Text>
+                    </View>
+                    {renderVerification()}
+                    <View style={styles.submitButtonWrapper}>
+                        <Button onPress={verifyProfile} title="Submit" isLoading={false} />
+                    </View>
                 </View>
-            </View>
+            </ScrollView>
         </KeyboardAvoidingView>
     );
 };
