@@ -15,7 +15,7 @@ export const Referral: FC = () => {
 
     return (
         <View>
-            <Text style={styles.title}>Inivte Friends.</Text>
+            <Text style={styles.title}>Invite Friends.</Text>
             <Text style={styles.title}>Earn Crypto Together</Text>
             <Text style={styles.subtitle}>Earn up to 40% commission every time your friends make a trade</Text>
             <View>
@@ -24,7 +24,7 @@ export const Referral: FC = () => {
                 </View>
                 <CopyField
                     title="Referral Link"
-                    value={`https://${process.env.REACT_APP_DOMAIN_NAME}/signup?refid=${profile?.uid || ""}`}
+                    value={`https://aurora-master.uat.opendax.app/signup?refid=${profile?.uid || ""}`}
                 />
             </View>
         </View>

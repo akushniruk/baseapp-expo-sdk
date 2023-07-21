@@ -1,14 +1,12 @@
-import React, { FC, useMemo, useCallback } from "react";
-import {
-    TouchableHighlight,
-    TouchableHighlightProps,
-    Text,
-    View,
-} from "react-native";
+import React, { FC, useMemo, useCallback, useState } from "react";
+import { TouchableHighlight, TouchableHighlightProps, Text, View } from "react-native";
 import { useThemeContext } from "../../hooks/useThemeContext";
 import { copyFieldStyles } from "./copyField.styles";
 import { Copy } from "../../../assets/system/copy";
 import * as Clipboard from "expo-clipboard";
+import { useDispatch } from "react-redux";
+import { dispatchAlert } from "../alerts";
+import { truncateMiddle } from "../../libs/truncateMiddle";
 
 export interface CopyFieldProps extends TouchableHighlightProps {
     title: string;
@@ -16,16 +14,20 @@ export interface CopyFieldProps extends TouchableHighlightProps {
     testId?: string;
 }
 
-export const CopyField: FC<CopyFieldProps> = ({
-    title,
-    value,
-    testID,
-}: CopyFieldProps) => {
+export const CopyField: FC<CopyFieldProps> = ({ title, value, testID }: CopyFieldProps) => {
+    const dispatch = useDispatch();
     const { theme } = useThemeContext();
     const styles = useMemo(() => copyFieldStyles(theme), [theme]);
 
     const handlePress = useCallback(async () => {
         await Clipboard.setStringAsync(value || "");
+        dispatch(
+            dispatchAlert({
+                type: "success",
+                messageType: "success",
+                messageText: "Copied to clipboard",
+            })
+        );
     }, [value]);
 
     return (
@@ -39,7 +41,7 @@ export const CopyField: FC<CopyFieldProps> = ({
             <>
                 <Text style={styles.title}>{title}</Text>
                 <View style={styles.valueContainer}>
-                    <Text style={styles.valueText}>{value}</Text>
+                    <Text style={styles.valueText}>{truncateMiddle(value, 40)}</Text>
                     <Copy width={12} color={styles.copyColor.color} />
                 </View>
             </>

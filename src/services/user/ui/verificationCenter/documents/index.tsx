@@ -137,7 +137,7 @@ export const DocumentsForm = () => {
         return (
             <View style={styles.uploadContainer}>
                 <Button title="Pick an image from camera roll" onPress={pickImage} isLoading={false} />
-                {frontImage && <Image source={{ uri: frontImage }} style={{ width: 200, height: 200 }} />}
+                {/* {frontImage && <Image source={{ uri: frontImage }} style={{ width: 200, height: 200 }} />} */}
             </View>
         );
     };
