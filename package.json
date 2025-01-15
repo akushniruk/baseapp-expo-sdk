@@ -29,7 +29,7 @@
         "@types/i18n-js": "3.8.4",
         "d3-scale": "3.2.2",
         "d3-shape": "2.0.0",
-        "expo": "~48.0.19",
+        "expo": "~52.0.25",
         "expo-clipboard": "~4.0.1",
         "expo-constants": "~14.2.1",
         "expo-localization": "14.0.0",
